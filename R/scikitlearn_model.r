@@ -6,7 +6,7 @@
 #'
 #' @usage scikitlearn_model(path)
 #'
-#' @param path a path to the pickle file
+#' @param path a path to the pickle file. Can be used without other arguments if you are sure that active Python version match pickle version.
 #' @param yml a path to the yml file. Conda virtual env will be recreated from this file. If OS is Windows conda has to be added to the PATH first
 #' @param condaenv If yml param is provided, a path to the main conda folder. If yml is null, a name of existing conda environment.
 #' @param env A path to python virtual environment
@@ -72,21 +72,23 @@
 #'
 #' @examples
 #' # Usage with explain()
+#' reticulate::use_condaenv("myenv")
 #' have_sklearn <- reticulate::py_module_available("sklearn.ensemble")
 #' library("DALEX")
+#' library("DALEXtra")
 #' library("reticulate")
 #'
 #' if(have_sklearn) {
 #'    # Explainer build (Keep in mind that 18th column is target)
-#'    titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEX"))
+#'    titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
 #'    # Keep in mind that when pickle is being built and loaded,
 #'    # not only Python version but libraries versions has to match aswell
-#'    model <- scikitlearn_model(system.file("extdata", "scikitlearn.pkl", package = "DALEX"))
-#'    explainer <- explain(model = model, data = titanic_test[,1:17], y = titanic_test$survived)
+#'    model <- scikitlearn_model(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"), condaenv = "myenv")
+#'    explainer <- explain(model = model, data = titanic_test[,1:17], y = titanic_test$survived, predict_function = model$predict_function)
 #'    print(model_performance(explainer))
 #'
 #'    # Predictions with newdata
-#'    predictions <- model$predict_function(model$model, titanic_test[,1:17])
+#'    predictions <- model$predict_function(model, titanic_test[,1:17])
 #'
 #' } else {
 #'   print('Python testing environment is required.')
@@ -104,7 +106,7 @@ scikitlearn_model <-
            explainer = FALSE,
            data = NULL,
            y = NULL) {
-    if (!explainer & (is.null(data) | is.null(y))) {
+    if (explainer & (is.null(data) | is.null(y))) {
       stop("data and y arguments are required when creating an explainer")
     }
     if (!is.null(condaenv) & !is.null(env)) {

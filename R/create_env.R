@@ -1,4 +1,4 @@
-#' Create Your conda virtual env with DALEX
+#' Create your conda virtual env with DALEX
 #'
 #' Phython objects may be loaded into R. However, it requiers versions of the Python and libraries to match bewtween both machines.
 #'
@@ -12,8 +12,12 @@
 #'
 #'
 #' @examples
-#' # system.file("extdata", "scikitlearn.pkl", package = "DALEXtra")
-#' # system.file("extdata", "scikitlearn.yml", package = "DALEXtra")
+#'
+#' if(.Platform$OS.type=="windows"){
+#'   create_env(system.file("extdata", "scikitlearn.yml", package = "DALEXtra"))
+#' }else{
+#'   print("Use windows for tests")
+#' }
 #'
 #' @rdname create_env
 #' @export
