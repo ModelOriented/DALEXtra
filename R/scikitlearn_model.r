@@ -44,7 +44,30 @@
 #' \cr
 #'
 #' \bold{Errors use case}\cr
-#' Here is shortened version of
+#' Here is shortened version of solution for specific errors \cr
+#' \cr
+#' \bold{There already exists environment with a name specified by given .yml file}\cr
+#' You have two ways of solving that issue. Both connected with anaconda prompt. First is removing conda env with command: \cr
+#' \code{conda env remove --name myenv}\cr
+#' And execute function once again. Second is updating env via: \cr
+#' \code{conda env create -f environment.yml}\cr
+#' \cr
+#' \bold{Conda cannot find specified packages at channels you have provided.}\cr
+#' That error may be casued by a lot of things. Of of those is that specified version is too old to be avaialble from offcial conda repo.
+#' Edit Your .yml file and add link to proper repository at channels section.\cr
+#' \cr
+#' Issue may be also connected with the platform. If model was created on the platform with different OS yo may need to remove specific version from .yml file.\cr
+#' \code{- numpy=1.16.4=py36h19fb1c0_0}\cr
+#' \code{- numpy-base=1.16.4=py36hc3f5095_0}\cr
+#' In the example above You have to remove \code{=py36h19fb1c0_0} and \code{=py36hc3f5095_0} \cr
+#' If some packages are not availbe for anaconda at all, use pip statement\cr
+#' \cr
+#' If .yml file seems not to work, virtual env can be created manually using anaconda promt. \cr
+#' \code{conda create -n name_of_env python=3.4} \cr
+#' \code{conda install -n name_of_env name_of_package=0.20} \cr
+#'
+#'
+#'
 #'
 #'
 #' @examples
@@ -56,7 +79,6 @@
 #' if(have_sklearn) {
 #'    # Explainer build (Keep in mind that 18th column is target)
 #'    titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEX"))
-#'    # Model was built under Python 3.7 and scikitlearn 0.20.3
 #'    # Keep in mind that when pickle is being built and loaded,
 #'    # not only Python version but libraries versions has to match aswell
 #'    model <- scikitlearn_model(system.file("extdata", "gbm.pkl", package = "DALEX"))

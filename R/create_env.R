@@ -15,7 +15,7 @@
 #' # system.file("extdata", "scikitlearn.pkl", package = "DALEXtra")
 #' # system.file("extdata", "scikitlearn.yml", package = "DALEXtra")
 #'
-#' @rdname scikitlearn_model
+#' @rdname create_env
 #' @export
 
 
@@ -33,7 +33,7 @@ create_env <- function(yml, condaenv = NULL) {
 
   # Windows and linux has different shells
   if (.Platform$OS.type == "windows") {
-    message("Please be patient. Virtual environemnt is being created.")
+    message("Please be patient. Virtual environemnt is being created. It may take few minutes.")
     tryCatch(
       expr = {
         mes <-
@@ -86,7 +86,7 @@ create_env <- function(yml, condaenv = NULL) {
     )
   }
   if (.Platform$OS.type == "unix") {
-    message("Please be patient. Virtual environemnt is being created.")
+    message("Please be patient. Virtual environemnt is being created. It may take few minutes.")
     tryCatch(
       expr = {
         mes <-
