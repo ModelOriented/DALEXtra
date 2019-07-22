@@ -67,7 +67,7 @@
 #' \code{conda install -n name_of_env name_of_package=0.20} \cr
 #'
 #'
-#'
+#' @import DALEX
 #'
 #'
 #' @examples
@@ -101,9 +101,12 @@ scikitlearn_model <-
            yml = NULL,
            condaenv = NULL,
            env = NULL,
-           explain = FALSE,
+           explainer = FALSE,
            data = NULL,
            y = NULL) {
+    if (!explainer & (is.null(data) | is.null(y))) {
+      stop("data and y arguments are required when creating an explainer")
+    }
     if (!is.null(condaenv) & !is.null(env)) {
       stop("Only one argument from condaenv and env can be different from NULL")
     }
@@ -113,7 +116,7 @@ scikitlearn_model <-
     }
 
     if (!is.null(yml)) {
-    name <- crete_env(yml, condaenv)
+      name <- crete_env(yml, condaenv)
       tryCatch(
         reticulate::use_condaenv(name, required = TRUE),
         error = function(e) {
@@ -213,6 +216,11 @@ scikitlearn_model <-
       model = model
     )
     class(scikitlearn_model) <- "scikitlearn_model"
-    scikitlearn_model
+    if(explainer){
+      object <- explain(scikitlearn_model$model, data = data, y = y, predict_function = scikitlearn_model$predict_function, label = label)
+    }else{
+      object <- scikitlearn_model
+    }
+    object
 
   }

@@ -15,11 +15,11 @@ scikitlearn_model(path)
 
 \item{env}{A path to python virtual environment}
 
-\item{explain}{indicator if explainer should be returned. When TRUE, requires `data` and `y` to be not NULL. Default is FALSE.}
-
 \item{data}{test data set that will be passed to explainer if `explain` is TRUE}
 
 \item{y}{vector that will be passed to explainer if `explain` is TRUE}
+
+\item{explain}{indicator if explainer should be returned. When TRUE, requires `data` and `y` to be not NULL. Default is FALSE.}
 }
 \value{
 An object of the class 'scikitlearn_model' or 'explainer'. Depends on explainer param.
@@ -60,11 +60,11 @@ And execute function once again. Second is updating env via: \cr
 That error may be casued by a lot of things. Of of those is that specified version is too old to be avaialble from offcial conda repo.
 Edit Your .yml file and add link to proper repository at channels section.\cr
 \cr
-Issue may be also connected with the platform. If model was created on the platform with different OS yo may need to remove specific version from .yml file.
+Issue may be also connected with the platform. If model was created on the platform with different OS yo may need to remove specific version from .yml file.\cr
 \code{- numpy=1.16.4=py36h19fb1c0_0}\cr
 \code{- numpy-base=1.16.4=py36hc3f5095_0}\cr
 In the example above You have to remove \code{=py36h19fb1c0_0} and \code{=py36hc3f5095_0} \cr
-If some packaes are not availbe for anaconda at all, use pip statement\cr
+If some packages are not availbe for anaconda at all, use pip statement\cr
 \cr
 If .yml file seems not to work, virtual env can be created manually using anaconda promt. \cr
 \code{conda create -n name_of_env python=3.4} \cr
