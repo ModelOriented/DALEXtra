@@ -1,13 +1,16 @@
 Package: DALEXtra
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Extension for DALEX package
+Version: 0.1
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Szymon",
+           family = "Maksymiuk",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: What license it uses
-Encoding: UTF-8
+           email = "sz.maksymiuk@gmail.com")
+Description: Package is a wrapper for DALEX package from DrWhy.ai family.
+Depends: R (>= 3.0)
+License: GPL
 LazyData: true
+RoxygenNote: 6.1.1
+Imports: DALEX
+Suggests: reticulate
+

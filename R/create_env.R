@@ -2,9 +2,24 @@
 #'
 #' Phython objects may be loaded into R. However, it requiers versions of the Python and libraries to match bewtween both machines.
 #'
+#' @usage create_env(yml, condaenv)
+#' @param yml string - a path to the .yml file. If OS is Windows conda has to be added to the PATH first
+#' @param condaenv - a path to main conda folder. If OS is Unix You have to specify it with .yml file path. Using with windows, param will be omitted.
+#'
+#' @author Szymon Maksymiuk
+#'
+#' @return Name of created virtual env.
+#'
+#'
+#' @examples
+#' # system.file("extdata", "scikitlearn.pkl", package = "DALEXtra")
+#' # system.file("extdata", "scikitlearn.yml", package = "DALEXtra")
+#'
+#' @rdname scikitlearn_model
+#' @export
 
 
-create_env <- function(yml, condaenv) {
+create_env <- function(yml, condaenv = NULL) {
   if(.Platform$OS.type=="unix" & is.null(condaenv)){
     stop("You have to specify condaenv at platforms with unix-like os")
   }
@@ -18,6 +33,7 @@ create_env <- function(yml, condaenv) {
 
   # Windows and linux has different shells
   if (.Platform$OS.type == "windows") {
+    message("Please be patient. Virtual environemnt is being created.")
     tryCatch(
       expr = {
         mes <-
@@ -70,6 +86,7 @@ create_env <- function(yml, condaenv) {
     )
   }
   if (.Platform$OS.type == "unix") {
+    message("Please be patient. Virtual environemnt is being created.")
     tryCatch(
       expr = {
         mes <-

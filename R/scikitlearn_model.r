@@ -6,14 +6,21 @@
 #'
 #' @usage scikitlearn_model(path)
 #'
-#' @param path string - a path to the pickle file
+#' @param path a path to the pickle file
+#' @param yml a path to the yml file. Conda virtual env will be recreated from this file. If OS is Windows conda has to be added to the PATH first
+#' @param condaenv If yml param is provided, a path to the main conda folder. If yml is null, a name of existing conda environment.
+#' @param env A path to python virtual environment
+#' @param explain indicator if explainer should be returned. When TRUE, requires `data` and `y` to be not NULL. Default is FALSE.
+#' @param data test data set that will be passed to explainer if `explain` is TRUE
+#' @param y vector that will be passed to explainer if `explain` is TRUE
+#'
 #'
 #' @author Szymon Maksymiuk
 #'
 #'
-#' @return An object of the class 'scikitlearn_model'.
+#' @return An object of the class 'scikitlearn_model' or 'explainer'. Depends on explainer param.
 #'
-#' It's a list with following fields:
+#' scikitlearn_model is a list with following fields:
 #'
 #' \itemize{
 #' \item \code{model} it is original model received vie reticiulate function. Use it for computations.
@@ -33,6 +40,11 @@
 #' model = sklearn.ensemble.GradientBoostingClassifier() \cr
 #' model = model.fit(titanic_train_X, titanic_train_Y)\cr
 #' pickle.dump(model, open("gbm.pkl", "wb"), protocol = 2)\cr
+#' \cr
+#' \cr
+#'
+#' \bold{Errors use case}\cr
+#' Here is shortened version of
 #'
 #'
 #' @examples
@@ -41,7 +53,7 @@
 #' library("DALEX")
 #' library("reticulate")
 #'
-#' if(have_sklearn & reticulate::py_config()$version == "3.7") {
+#' if(have_sklearn) {
 #'    # Explainer build (Keep in mind that 18th column is target)
 #'    titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEX"))
 #'    # Model was built under Python 3.7 and scikitlearn 0.20.3
@@ -66,7 +78,10 @@ scikitlearn_model <-
   function(path,
            yml = NULL,
            condaenv = NULL,
-           env = NULL) {
+           env = NULL,
+           explain = FALSE,
+           data = NULL,
+           y = NULL) {
     if (!is.null(condaenv) & !is.null(env)) {
       stop("Only one argument from condaenv and env can be different from NULL")
     }
@@ -77,7 +92,6 @@ scikitlearn_model <-
 
     if (!is.null(yml)) {
     name <- crete_env(yml, condaenv)
-    if()
       tryCatch(
         reticulate::use_condaenv(name, required = TRUE),
         error = function(e) {
