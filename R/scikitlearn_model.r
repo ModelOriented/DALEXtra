@@ -116,7 +116,7 @@ scikitlearn_model <-
     }
 
     if (!is.null(yml)) {
-      name <- crete_env(yml, condaenv)
+      name <- create_env(yml, condaenv)
       tryCatch(
         reticulate::use_condaenv(name, required = TRUE),
         error = function(e) {
