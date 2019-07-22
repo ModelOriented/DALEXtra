@@ -81,7 +81,7 @@
 #'    titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEX"))
 #'    # Keep in mind that when pickle is being built and loaded,
 #'    # not only Python version but libraries versions has to match aswell
-#'    model <- scikitlearn_model(system.file("extdata", "gbm.pkl", package = "DALEX"))
+#'    model <- scikitlearn_model(system.file("extdata", "scikitlearn.pkl", package = "DALEX"))
 #'    explainer <- explain(model = model, data = titanic_test[,1:17], y = titanic_test$survived)
 #'    print(model_performance(explainer))
 #'
