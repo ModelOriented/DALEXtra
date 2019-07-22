@@ -217,7 +217,7 @@ scikitlearn_model <-
     )
     class(scikitlearn_model) <- "scikitlearn_model"
     if(explainer){
-      object <- explain(scikitlearn_model$model, data = data, y = y, predict_function = scikitlearn_model$predict_function, label = label)
+      object <- explain(model = scikitlearn_model, data = data, y = y, predict_function = scikitlearn_model$predict_function, label = label)
     }else{
       object <- scikitlearn_model
     }
