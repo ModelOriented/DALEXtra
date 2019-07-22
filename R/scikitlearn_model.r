@@ -198,12 +198,12 @@ scikitlearn_model <-
     if ("predict_proba" %in% names(model)) {
       predict_function <- function(model, newdata) {
         # we take second cloumn which indicates probability of `1` to adapt to DALEX predict functions (yhat)
-        model$predict_proba(newdata)[, 2]
+        model$model$predict_proba(newdata)[, 2]
       }
       type = "classification"
     } else{
       predict_function <- function(model, newdata) {
-        model$predict(newdata)
+        model$model$predict(newdata)
       }
       type = "regression"
     }
