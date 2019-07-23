@@ -88,17 +88,15 @@ exported from Python via pickle file.
 # Usage with explain()
 reticulate::use_condaenv("myenv")
 have_sklearn <- reticulate::py_module_available("sklearn.ensemble")
-library("DALEX")
 library("DALEXtra")
-library("reticulate")
 
 if(have_sklearn) {
    # Explainer build (Keep in mind that 18th column is target)
    titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
    # Keep in mind that when pickle is being built and loaded,
    # not only Python version but libraries versions has to match aswell
-   model <- scikitlearn_explain(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"), condaenv = "myenv")
-   explainer <- explain(model = model, data = titanic_test[,1:17], y = titanic_test$survived, predict_function = model$predict_function)
+   explainer <- scikitlearn_explain(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"), condaenv = "myenv",
+   data = titanic_test[,1:17], y = titanic_test$survived)
    print(model_performance(explainer))
 
    # Predictions with newdata
