@@ -3,8 +3,8 @@
 #' Phython objects may be loaded into R. However, it requiers versions of the Python and libraries to match bewtween both machines.
 #'
 #' @usage create_env(yml, condaenv)
-#' @param yml string - a path to the .yml file. If OS is Windows conda has to be added to the PATH first
-#' @param condaenv - a path to main conda folder. If OS is Unix You have to specify it with .yml file path. Using with windows, param will be omitted.
+#' @param yml a path to the .yml file. If OS is Windows conda has to be added to the PATH first
+#' @param condaenv path to main conda folder. If OS is Unix You have to specify it with .yml file path. Using with windows, param will be omitted.
 #'
 #' @author Szymon Maksymiuk
 #'

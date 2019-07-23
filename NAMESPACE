@@ -3,5 +3,6 @@
 S3method(print,scikitlearn_model)
 S3method(print,scikitlearn_set)
 export(create_env)
-export(scikitlearn_model)
+export(scikitlearn_explain)
 import(DALEX)
+import(reticulate)

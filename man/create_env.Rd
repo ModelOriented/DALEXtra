@@ -7,9 +7,9 @@
 create_env(yml, condaenv)
 }
 \arguments{
-\item{yml}{string - a path to the .yml file. If OS is Windows conda has to be added to the PATH first}
+\item{yml}{a path to the .yml file. If OS is Windows conda has to be added to the PATH first}
 
-\item{condaenv}{- a path to main conda folder. If OS is Unix You have to specify it with .yml file path. Using with windows, param will be omitted.}
+\item{condaenv}{path to main conda folder. If OS is Unix You have to specify it with .yml file path. Using with windows, param will be omitted.}
 }
 \value{
 Name of created virtual env.

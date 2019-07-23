@@ -4,21 +4,24 @@
 #' and compare it with other models, using R tools like DALEX. This function creates an object that is easy accessible R version of scikit-learn model
 #' exported from Python via pickle file.
 #'
-#' @usage scikitlearn_model(path)
+#' @usage scikitlearn_explain(path)
 #'
 #' @param path a path to the pickle file. Can be used without other arguments if you are sure that active Python version match pickle version.
 #' @param yml a path to the yml file. Conda virtual env will be recreated from this file. If OS is Windows conda has to be added to the PATH first
 #' @param condaenv If yml param is provided, a path to the main conda folder. If yml is null, a name of existing conda environment.
-#' @param env A path to python virtual environment
-#' @param explain indicator if explainer should be returned. When TRUE, requires `data` and `y` to be not NULL. Default is FALSE.
-#' @param data test data set that will be passed to explainer if `explain` is TRUE
-#' @param y vector that will be passed to explainer if `explain` is TRUE
+#' @param env A path to python virtual environment.
+#' @param data test data set that will be passed to explainer.
+#' @param y vector that will be passed to explainer.
+#' @param predict_function predict function that will be passed into explainer. If NULL, default will be used.
+#' @param residual_function residual function that will be passed into explainer. If NULL, default will be used.
+#' @param label label that will be passed into explainer. If NULL, default will be used.
+#' @param verbose bool that will be passed into explainer. If NULL, default will be used.
 #'
 #'
 #' @author Szymon Maksymiuk
 #'
 #'
-#' @return An object of the class 'scikitlearn_model' or 'explainer'. Depends on explainer param.
+#' @return An object of the class 'explainer'. Possible extraction of object 'scikitlearn_model' via explainer$model
 #'
 #' scikitlearn_model is a list with following fields:
 #'
@@ -41,6 +44,9 @@
 #' model = model.fit(titanic_train_X, titanic_train_Y)\cr
 #' pickle.dump(model, open("gbm.pkl", "wb"), protocol = 2)\cr
 #' \cr
+#' \cr
+#' In order to export environment into .yml, activating virtual env via \code{activate name_of_the_env} and execution of the following shell command is necessary \cr
+#' \code{conda env export > environment.yml}\cr
 #' \cr
 #'
 #' \bold{Errors use case}\cr
@@ -68,6 +74,7 @@
 #'
 #'
 #' @import DALEX
+#' @import reticulate
 #'
 #'
 #' @examples
@@ -83,7 +90,7 @@
 #'    titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
 #'    # Keep in mind that when pickle is being built and loaded,
 #'    # not only Python version but libraries versions has to match aswell
-#'    model <- scikitlearn_model(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"), condaenv = "myenv")
+#'    model <- scikitlearn_explain(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"), condaenv = "myenv")
 #'    explainer <- explain(model = model, data = titanic_test[,1:17], y = titanic_test$survived, predict_function = model$predict_function)
 #'    print(model_performance(explainer))
 #'
@@ -95,17 +102,21 @@
 #' }
 #'
 #'
-#' @rdname scikitlearn_model
+#' @rdname scikitlearn_explain
 #' @export
 #'
-scikitlearn_model <-
+scikitlearn_explain <-
   function(path,
            yml = NULL,
            condaenv = NULL,
            env = NULL,
-           explainer = FALSE,
            data = NULL,
-           y = NULL) {
+           y = NULL,
+           predict_function = NULL,
+           residual_function = NULL,
+           ...,
+           label = NULL,
+           verbose = TRUE) {
     if (explainer & (is.null(data) | is.null(y))) {
       stop("data and y arguments are required when creating an explainer")
     }
@@ -218,11 +229,16 @@ scikitlearn_model <-
       model = model
     )
     class(scikitlearn_model) <- "scikitlearn_model"
-    if(explainer){
-      object <- explain(model = scikitlearn_model, data = data, y = y, predict_function = scikitlearn_model$predict_function, label = label)
-    }else{
-      object <- scikitlearn_model
-    }
-    object
+
+    explain(
+      model = scikitlearn_model,
+      data = data,
+      y = y,
+      predict_function = scikitlearn_model$predict_function,
+      residual_function = residual_function,
+      ... = ...,
+      label = label,
+      verbose = verbose
+    )
 
   }
