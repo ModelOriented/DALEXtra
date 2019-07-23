@@ -7,7 +7,7 @@ An extension to DALEX package
 Install `DALEXtra` and `DALEX` packages
 
 ```
-devtools::install_github("ModelOriented/shapper")
+devtools::install_github("maksymiuks/DALEXtra")
 install.packages("DALEX")
 ```
 
