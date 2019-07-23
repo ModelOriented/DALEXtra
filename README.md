@@ -1,6 +1,6 @@
 # DALEXtra
 
-An extension to DALEX package
+An extension for DALEX package
 
 ## Installation and configuration
 
