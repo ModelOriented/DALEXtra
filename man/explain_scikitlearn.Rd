@@ -104,7 +104,7 @@ if(have_sklearn) {
    print(model_performance(explainer))
 
    # Predictions with newdata
-   predictions <- model$predict_function(model, titanic_test[,1:17])
+   predictions <- explainer$model$predict_function(explainer$model, titanic_test[,1:17])
 
 } else {
   print('Python testing environment is required.')

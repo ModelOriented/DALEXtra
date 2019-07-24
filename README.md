@@ -7,7 +7,7 @@ An extension for DALEX package
 Install `DALEXtra` and `DALEX` packages
 
 ```
-devtools::install_github("maksymiuks/DALEXtra")
+devtools::install_github("ModelOriented/DALEXtra")
 install.packages("DALEX")
 ```
 
@@ -17,4 +17,4 @@ Install `reticulate` package
 install.packages("reticulate")
 ```
 
-https://maksymiuks.github.io/DALEXtra
+https://modeloriented.github.io/DALEXtra/
