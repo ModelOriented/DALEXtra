@@ -4,7 +4,6 @@
 #' and compare it with other models, using R tools like DALEX. This function creates an object that is easy accessible R version of scikit-learn model
 #' exported from Python via pickle file.
 #'
-#' @usage scikitlearn_explain(path)
 #'
 #' @param path a path to the pickle file. Can be used without other arguments if you are sure that active Python version match pickle version.
 #' @param yml a path to the yml file. Conda virtual env will be recreated from this file. If OS is Windows conda has to be added to the PATH first
@@ -16,6 +15,7 @@
 #' @param residual_function residual function that will be passed into explainer. If NULL, default will be used.
 #' @param label label that will be passed into explainer. If NULL, default will be used.
 #' @param verbose bool that will be passed into explainer. If NULL, default will be used.
+#' @param ... other parameters
 #'
 #'
 #' @author Szymon Maksymiuk
@@ -75,10 +75,11 @@
 #'
 #' @import DALEX
 #' @import reticulate
+#' @importFrom utils head
 #'
 #'
 #' @examples
-#' # Usage with explain()
+#' \dontrun{
 #' reticulate::use_condaenv("myenv")
 #' have_sklearn <- reticulate::py_module_available("sklearn.ensemble")
 #' library("DALEXtra")
@@ -88,8 +89,8 @@
 #'    titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
 #'    # Keep in mind that when pickle is being built and loaded,
 #'    # not only Python version but libraries versions has to match aswell
-#'    explainer <- scikitlearn_explain(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"), condaenv = "myenv",
-#'    data = titanic_test[,1:17], y = titanic_test$survived)
+#'    explainer <- explain_scikitlearn(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
+#'    condaenv = "myenv", data = titanic_test[,1:17], y = titanic_test$survived)
 #'    print(model_performance(explainer))
 #'
 #'    # Predictions with newdata
@@ -98,12 +99,12 @@
 #' } else {
 #'   print('Python testing environment is required.')
 #' }
+#'}
 #'
-#'
-#' @rdname scikitlearn_explain
+#' @rdname explain_scikitlearn
 #' @export
 #'
-scikitlearn_explain <-
+explain_scikitlearn <-
   function(path,
            yml = NULL,
            condaenv = NULL,
@@ -115,9 +116,6 @@ scikitlearn_explain <-
            ...,
            label = NULL,
            verbose = TRUE) {
-    if (explainer & (is.null(data) | is.null(y))) {
-      stop("data and y arguments are required when creating an explainer")
-    }
     if (!is.null(condaenv) & !is.null(env)) {
       stop("Only one argument from condaenv and env can be different from NULL")
     }

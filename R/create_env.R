@@ -12,12 +12,13 @@
 #'
 #'
 #' @examples
-#'
+#'  \dontrun{
 #' if(.Platform$OS.type=="windows"){
 #'   create_env(system.file("extdata", "scikitlearn.yml", package = "DALEXtra"))
 #' }else{
 #'   print("Use windows for tests")
 #' }
+#'  }
 #'
 #' @rdname create_env
 #' @export
@@ -94,7 +95,7 @@ create_env <- function(yml, condaenv = NULL) {
     tryCatch(
       expr = {
         mes <-
-          system(paste(conda,  "/bin/conda ", "env create -f ", yml, sep = ""),
+          system(paste(condaenv,  "/bin/conda ", "env create -f ", yml, sep = ""),
                  intern = TRUE)
       },
       warning = function(w) {

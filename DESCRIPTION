@@ -13,5 +13,6 @@ LazyData: true
 RoxygenNote: 6.1.1
 Imports: DALEX,
 	reticulate
-Suggests: reticulate
+Suggests: h2o,
+  mlr
 
