@@ -169,8 +169,6 @@ explain_scikitlearn <-
     }
 
 
-
-
     model <- dalex_load_object(path)
 
     # params are represented as one longe string
@@ -196,7 +194,7 @@ explain_scikitlearn <-
     names(params) <- as.character(params)
     #extracting parameters value
     params <- lapply(params, function(x) {
-      model[[x]]
+      do.call("$",list(model, x))
     })
 
     class(params) <- "scikitlearn_set"
