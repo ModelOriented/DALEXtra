@@ -14,7 +14,7 @@
 #' @examples
 #'  \dontrun{
 #' if(.Platform$OS.type=="windows"){
-#'   create_env(system.file("extdata", "scikitlearn.yml", package = "DALEXtra"))
+#'   create_env(system.file("extdata", "scikitlearn.yml", package = "DALEXtra"), condaenv = $HOME/miniconda)
 #' }else{
 #'   print("Use windows for tests")
 #' }
