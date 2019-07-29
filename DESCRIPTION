@@ -11,9 +11,11 @@ Depends: R (>= 3.0)
 License: GPL
 LazyData: true
 RoxygenNote: 6.1.1
-Imports: DALEX,
-	reticulate
-Suggests: h2o,
+Imports: 
+  DALEX,
+  reticulate
+Suggests: 
+  h2o,
   mlr
 URL: https://modeloriented.github.io/DALEXtra/
 BugReports: https://github.com/ModelOriented/DALEXtra/issues
