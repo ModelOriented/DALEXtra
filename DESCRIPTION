@@ -14,8 +14,7 @@ RoxygenNote: 6.1.1
 Imports: DALEX,
 	reticulate
 Suggests: h2o,
-  mlr,
-  gbm
+  mlr
 URL: https://modeloriented.github.io/DALEXtra/
 BugReports: https://github.com/ModelOriented/DALEXtra/issues
 
