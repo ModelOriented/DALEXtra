@@ -1,5 +1,4 @@
 language: R
-cache: packages
 dist: xenial 
 sudo: true
 
