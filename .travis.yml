@@ -15,7 +15,7 @@ install:
   - conda update -q conda
   - conda info -a
   
- r_packages:
+r_packages:
   - archivist
   - ggplot2
   - covr
