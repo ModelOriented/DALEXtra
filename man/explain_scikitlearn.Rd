@@ -89,11 +89,11 @@ and compare it with other models, using R tools like DALEX. This function create
 exported from Python via pickle file.
 }
 \examples{
-\dontrun{
 reticulate::use_condaenv("myenv")
 have_sklearn <- reticulate::py_module_available("sklearn.ensemble")
 library("DALEXtra")
-
+library("DALEX")
+if("myenv" \%in\% reticulate::conda_list()$name){
 if(have_sklearn) {
    # Explainer build (Keep in mind that 18th column is target)
    titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
@@ -109,6 +109,9 @@ if(have_sklearn) {
 } else {
   print('Python testing environment is required.')
 }
+} else{
+  print("myenv does not exists, use yml argument")
+
 }
 
 }
