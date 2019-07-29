@@ -21,7 +21,7 @@ Phython objects may be loaded into R. However, it requiers versions of the Pytho
 reticulate::use_condaenv("myenv")
 
 if(.Platform$OS.type=="unix" & !("myenv" \%in\% reticulate::conda_list()$name)){
-  create_env(system.file("extdata", "scikitlearn.yml", package = "DALEXtra"),
+  create_env(system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra"),
              condaenv = "$HOME/miniconda")
 }else{
   print("Use unix for tests")
