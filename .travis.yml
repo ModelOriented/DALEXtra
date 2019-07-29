@@ -16,6 +16,7 @@ before_install:
 r_github_packages:
   - pbiecek/DALEX
   - rstudio/reticulate
+  - r-lib/covr
     
 #install:
 
