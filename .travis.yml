@@ -8,9 +8,22 @@ install:
   - conda config --set always_yes yes --set changeps1 no
   - conda update -q conda
   - conda info -a
-  
+
+env:
+  global:
+  - R_CHECK_ARGS="--timings"
+
+notifications:
+  email: false
+
 r_packages:
+  - archivist
+  - ggplot2
   - covr
+  - mlr
+  - DALEX
+  - h2o
+  - reticulate
 
 after_success:
 - Rscript -e 'library(covr); codecov()'
