@@ -1,5 +1,6 @@
 language: R
 cache: packages
+dist: xenial 
 sudo: true
 
 before_install:
@@ -13,6 +14,15 @@ install:
   - conda config --set always_yes yes --set changeps1 no
   - conda update -q conda
   - conda info -a
+  
+ r_packages:
+  - archivist
+  - ggplot2
+  - covr
+  - mlr
+  - DALEX
+  - h2o
+  - reticulate
 
 env:
   global:
@@ -21,14 +31,7 @@ env:
 notifications:
   email: false
 
-r_packages:
-  - archivist
-  - ggplot2
-  - covr
-  - mlr
-  - DALEX
-  - h2o
-  - reticulate
+
 
 after_success:
 - Rscript -e 'library(covr); codecov()'
