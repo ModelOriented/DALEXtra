@@ -1,0 +1,25 @@
+name: myenv
+channels:
+  - defaults
+dependencies:
+  - blas=1.0=mkl
+  - certifi=2019.6.16
+  - intel-openmp
+  - joblib=0.13.2
+  - mkl=2019.4
+  - mkl-service=2.0.2
+  - mkl_fft=1.0.12
+  - mkl_random=1.0.2
+  - numpy=1.16.4
+  - numpy-base=1.16.4
+  - pip=19.1.1
+  - python=3.6.8
+  - scikit-learn=0.21.2
+  - scipy=1.2.1
+  - setuptools=41.0.1
+  - six=1.12.0
+  - sqlite=3.28.0
+  - wheel=0.33.4
+  - pandas
+prefix: C:\Users\szyna\Anaconda3\envs\myenv
+

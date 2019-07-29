@@ -3,7 +3,7 @@
 dalex_load_object <- function(path){
   tryCatch(
     model <- reticulate::py_load_object(path),
-    
+
     error = function(e) {
       if (grepl("UnicodeDecodeError", e)) {
         warning(paste(e), call. = FALSE)
@@ -23,15 +23,15 @@ dalex_load_object <- function(path){
       else{
         warning(paste(e), call. = FALSE)
       }
-      
+
       stop(
-        "Yours environment has to match environment where pickle file was created. It also includes encoding, python version, and libraries version. Specifying .yml file or path to virtual environment may help. For more information look warnings() and then ?scikitlearn_model",
+        "Yours environment has to match environment where pickle file was created. It also includes encoding, python version, and libraries version. Specifying .yml file or path to virtual environment may help. For more information look warnings() and then ?explain_scikitlearn",
         call. = FALSE
-        
+
       )
     }
-    
+
   )
   model
-  
+
 }

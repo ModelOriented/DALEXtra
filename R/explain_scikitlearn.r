@@ -94,7 +94,7 @@
 #'    print(model_performance(explainer))
 #'
 #'    # Predictions with newdata
-#'    predictions <- explainer$model$predict_function(explainer$model, titanic_test[,1:17])
+#'    explainer$model$predict_function(explainer$model, titanic_test[1:10,1:17])
 #'
 #' } else {
 #'   print('Python testing environment is required.')
@@ -145,7 +145,7 @@ explain_scikitlearn <-
         error = function(e) {
           warning(e, call. = FALSE)
           stop(
-            "reticulete is unable to set new environment due to already using other python.exe, please restart R session. See warnings() for original error",
+            "reticulate is unable to set new environment due to already using other python.exe, please restart R session. See warnings() for original error",
             call. = FALSE
           )
         }
@@ -161,7 +161,7 @@ explain_scikitlearn <-
         error = function(e) {
           warning(e, call. = FALSE)
           stop(
-            "reticulete is unable to set new environment due to already using other python.exe, please restart R session. See warnings() for original error",
+            "reticulate is unable to set new environment due to already using other python.exe, please restart R session. See warnings() for original error",
             call. = FALSE
           )
         }
@@ -171,7 +171,7 @@ explain_scikitlearn <-
 
     model <- dalex_load_object(path)
 
-    # params are represented as one longe string
+    # params are represented as one long string
     params <- model$get_params
     # taking first element since strsplit() returns list of vectors
     params <- strsplit(as.character(params), split = ",")[[1]]

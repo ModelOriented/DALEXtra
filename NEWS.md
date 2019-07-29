@@ -1,3 +1,9 @@
+DALEXtra 0.1.2
+----------------------------------------------------------------
+* scikitlearn_unix.yml file added to external data. This helps testing using linuxlike OS
+* few minor updates in documentation
+* message in `create_env()` changed
+
 DALEXtra 0.1.1
 ----------------------------------------------------------------
 * `explain_mlr()` function implemented

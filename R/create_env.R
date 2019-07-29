@@ -38,7 +38,7 @@ create_env <- function(yml, condaenv = NULL) {
 
   # Windows and linux has different shells
   if (.Platform$OS.type == "windows") {
-    message("Please be patient. Virtual environemnt is being created. It may take few minutes.")
+    message(paste("Virtual environment \"" , name, "\" is being created. It may take few minutes.", sep = ""))
     tryCatch(
       expr = {
         mes <-
@@ -82,7 +82,7 @@ create_env <- function(yml, condaenv = NULL) {
         else{
           cat(mes)
           stop(
-            "Unrecognized error occured when creating anaconda virtual env. Try to configure you environment manually using Anaconda prompt. For usefull commands see ?scikitlearn_model",
+            "Unrecognized error occured when creating anaconda virtual env. Try to configure you environment manually using Anaconda prompt. For usefull commands see ?explain_scikitlearn",
             call. = FALSE
           )
         }
@@ -91,7 +91,8 @@ create_env <- function(yml, condaenv = NULL) {
     )
   }
   if (.Platform$OS.type == "unix") {
-    message("Please be patient. Virtual environemnt is being created. It may take few minutes.")
+    message(paste("Virtual environment \"" , name, "\" is being created. It may take few minutes.", sep = ""))
+
     tryCatch(
       expr = {
         mes <-
@@ -132,7 +133,7 @@ create_env <- function(yml, condaenv = NULL) {
         else{
           warning(e)
           stop(
-            "Unrecognized error occured when creating anaconda virtual env, use warnings() to see it. Try to configure you environment manually using Anaconda prompt. For usefull commands see ?scikitlearn_model",
+            "Unrecognized error occured when creating anaconda virtual env, use warnings() to see it. Try to configure you environment manually using Anaconda prompt. For usefull commands see ?explain_scikitlearn",
             call. = FALSE
           )
         }
