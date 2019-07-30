@@ -17,7 +17,8 @@ Imports:
 Suggests: 
   h2o,
   mlr,
-  gbm
+  gbm,
+  testthat
 URL: https://modeloriented.github.io/DALEXtra/
 BugReports: https://github.com/ModelOriented/DALEXtra/issues
 
