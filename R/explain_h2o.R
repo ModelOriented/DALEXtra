@@ -13,7 +13,7 @@
 #' @param ... other parameters
 #' @param label character - the name of the model. By default it's extracted from the 'class' attribute of the model
 #' @param verbose if TRUE (default) then diagnostic messages will be printed
-#'
+#' @param precalculate if TRUE (default) then 'predicted_values' and 'residuals' are calculated when explainer is created. This will happenn also if 'verbose' is TRUE.
 #' @return explainer object ready to work with DALEX
 #'
 #' @importFrom DALEX explain
@@ -37,7 +37,7 @@
 #' min_rows =  12,
 #' learn_rate = 0.001
 #' )
-#' explain_h2o(model, titanic_test[,1:17], titanic_test[,18])
+#' explain_h2o(model, titanic_test[,1:17], titanic_test[,18]) -> explainer
 #' @rdname explain_h2o
 #' @export
 #'
@@ -50,49 +50,38 @@ explain_h2o <-
            residual_function = NULL,
            ...,
            label = NULL,
-           verbose = TRUE) {
-    switch(
-      class(model),
-      "H2ORegressionModel" = {
-        predict_function <- function(X.model, newdata, ...) {
-          if (!class(newdata) == "H2OFrame") {
-            newdat <- h2o::as.h2o(newdata)
-          }
-          as.vector(h2o::h2o.predict(X.model, newdata = newdata))
-
-        }
-      },
-      "H2OBinomialModel" = {
-        predict_function <- function(X.model, newdata, ...) {
-          if (!class(newdata) == "H2OFrame") {
-            newdata <- h2o::as.h2o(newdata)
-          }
-
-          res <-
-            as.data.frame(h2o::h2o.predict(X.model, newdata = newdata))
-          res$p1
-        }
-      },
-      stop("Model is not explainable h2o object")
-
-
-    )
-
+           verbose = TRUE,
+           precalculate = TRUE) {
     if (class(y) == "H2OFrame") {
       y <- as.numeric(as.vector(y))
     }
 
-    h2o::h2o.init()
-    explain(
-      model,
-      data = data,
-      y = y,
-      predict_function = predict_function,
-      residual_function = residual_function,
-      label = label,
-      verbose = verbose,
-      ... = ...
-    )
+    if (is.null(predict_function)) {
+      h2o::h2o.init()
+      explain(
+        model,
+        data = data,
+        y = y,
+        predict_function = yhat_h2o,
+        residual_function = residual_function,
+        label = label,
+        verbose = verbose,
+        ... = ...
+      )
+    } else {
+      h2o::h2o.init()
+      explain(
+        model,
+        data = data,
+        y = y,
+        predict_function = predict_function,
+        residual_function = residual_function,
+        label = label,
+        verbose = verbose,
+        ... = ...
+      )
+    }
+
 
 
   }

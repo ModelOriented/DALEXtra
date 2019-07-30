@@ -9,3 +9,5 @@ vignettes/
 ^LICENSE$
 ^CONTRIBUTING.md
 miniconda.sh
+Plany.txt
+codecov.yml

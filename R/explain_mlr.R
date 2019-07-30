@@ -13,6 +13,8 @@
 #' @param ... other parameters
 #' @param label character - the name of the model. By default it's extracted from the 'class' attribute of the model
 #' @param verbose if TRUE (default) then diagnostic messages will be printed
+#' @param precalculate if TRUE (default) then 'predicted_values' and 'residuals' are calculated when explainer is created. This will happenn also if 'verbose' is TRUE
+
 #'
 #' @return explainer object ready to work with DALEX
 #'
@@ -57,36 +59,31 @@ explain_mlr <-
            residual_function = NULL,
            ...,
            label = NULL,
-           verbose = TRUE) {
-
-    switch(model$task.desc$type,
-           "classif" = {
-             predict_function <- function(X.model, newdata, ...) {
-               pred <- predict(X.model, newdata = newdata)
-               response <- pred$data[, 1]
-               response
-
-             }
-           },
-           "regr" = {
-             predict_function <- function(X.model, newdata, ...) {
-               pred <- predict(X.model, newdata = newdata)
-               response <- pred$data[, 1]
-               response
-             }
-           },
-           stop("Model is not explainable mlr object"))
-
-    explain(
-      model,
-      data = data,
-      y = y,
-      predict_function = predict_function,
-      residual_function = residual_function,
-      label = label,
-      verbose = verbose,
-      ... = ...
-    )
+           verbose = TRUE,
+           precalculate = TRUE) {
+    if (is.null(predict_function)) {
+      explain(
+        model,
+        data = data,
+        y = y,
+        predict_function = yhat_mlr,
+        residual_function = residual_function,
+        label = label,
+        verbose = verbose,
+        ... = ...
+      )
+    } else {
+      explain(
+        model,
+        data = data,
+        y = y,
+        predict_function = predict_function,
+        residual_function = residual_function,
+        label = label,
+        verbose = verbose,
+        ... = ...
+      )
+    }
 
 
   }

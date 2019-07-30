@@ -1,3 +1,8 @@
+DALEXtra 0.1.4
+----------------------------------------------------------------
+* yhat.R created. Predict functions are sotred there in order to be more accesible
+* explain_h2o() and explain_mlr() rebuilded. 
+
 DALEXtra 0.1.3
 ----------------------------------------------------------------
 * travis and codecov is now aviable available for DALEXtra

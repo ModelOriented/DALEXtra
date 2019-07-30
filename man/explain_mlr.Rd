@@ -5,7 +5,8 @@
 \title{Create explainer from your mlr model}
 \usage{
 explain_mlr(model, data = NULL, y = NULL, predict_function = NULL,
-  residual_function = NULL, ..., label = NULL, verbose = TRUE)
+  residual_function = NULL, ..., label = NULL, verbose = TRUE,
+  precalculate = TRUE)
 }
 \arguments{
 \item{model}{object - a model to be explained}
@@ -23,6 +24,8 @@ explain_mlr(model, data = NULL, y = NULL, predict_function = NULL,
 \item{label}{character - the name of the model. By default it's extracted from the 'class' attribute of the model}
 
 \item{verbose}{if TRUE (default) then diagnostic messages will be printed}
+
+\item{precalculate}{if TRUE (default) then 'predicted_values' and 'residuals' are calculated when explainer is created. This will happenn also if 'verbose' is TRUE}
 }
 \value{
 explainer object ready to work with DALEX
