@@ -11,7 +11,7 @@ test_that("creating env", {
                        condaenv = paste(reticulate::conda_binary(), "/../..", sep = ""))
   } else{
       name <- create_env(system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra"),
-                 condaenv = paste(reticulate::conda_binary(), "/../..", sep = ""))
+                 condaenv = paste(sub('[/][^/]+$', '', reticulate::conda_binary()), "/..", sep = ""))
   }
   expect_is(name, "character")
 
