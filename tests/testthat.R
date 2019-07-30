@@ -1,4 +1,4 @@
 library(testthat)
-library(shapper)
+library(DALEXtra)
 
-test_check("shapper")
+test_check("DALEXtra")
