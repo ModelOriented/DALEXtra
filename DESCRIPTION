@@ -1,6 +1,6 @@
 Package: DALEXtra
 Title: Extension for DALEX package
-Version: 0.1.2
+Version: 0.1.3
 Authors@R: 
     person(given = "Szymon",
            family = "Maksymiuk",
@@ -17,7 +17,8 @@ Imports:
 Suggests: 
   h2o,
   mlr,
-  gbm
+  gbm,
+  testthat
 URL: https://modeloriented.github.io/DALEXtra/
 BugReports: https://github.com/ModelOriented/DALEXtra/issues
 
