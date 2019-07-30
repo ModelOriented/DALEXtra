@@ -1,3 +1,8 @@
+DALEXtra 0.1.3
+----------------------------------------------------------------
+* travis and codecov is now aviable available for DALEXtra
+* tests added
+
 DALEXtra 0.1.2
 ----------------------------------------------------------------
 * scikitlearn_unix.yml file added to external data. This helps testing using linuxlike OS
