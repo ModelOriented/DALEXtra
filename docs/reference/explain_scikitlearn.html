@@ -61,6 +61,9 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -87,7 +90,8 @@ exported from Python via pickle file.</p>
 
     <pre class="usage"><span class='fu'>explain_scikitlearn</span>(<span class='no'>path</span>, <span class='kw'>yml</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>condaenv</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>env</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>predict_function</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>residual_function</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>residual_function</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>precalculate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -135,6 +139,10 @@ exported from Python via pickle file.</p>
     <tr>
       <th>verbose</th>
       <td><p>bool that will be passed into explainer. If NULL, default will be used.</p></td>
+    </tr>
+    <tr>
+      <th>precalculate</th>
+      <td><p>if TRUE (default) then 'predicted_values' and 'residuals' are calculated when explainer is created. This will happenn also if 'verbose' is TRUE.</p></td>
     </tr>
     </table>
     
@@ -191,7 +199,8 @@ If .yml file seems not to work, virtual env can be created manually using anacon
     <pre class="examples"><div class='input'><span class='kw pkg'>reticulate</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/reticulate/topics/use_python'>use_condaenv</a></span>(<span class='st'>"myenv"</span>)
 <span class='no'>have_sklearn</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>reticulate</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/reticulate/topics/py_module_available'>py_module_available</a></span>(<span class='st'>"sklearn.ensemble"</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='st'>"DALEXtra"</span>)
-
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='st'>"DALEX"</span>)
+<span class='kw'>if</span>(<span class='st'>"myenv"</span> <span class='kw'>%in%</span> <span class='kw pkg'>reticulate</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/reticulate/topics/conda-tools'>conda_list</a></span>()$<span class='no'>name</span>){
 <span class='kw'>if</span>(<span class='no'>have_sklearn</span>) {
    <span class='co'># Explainer build (Keep in mind that 18th column is target)</span>
    <span class='no'>titanic_test</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/read.table'>read.csv</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_test.csv"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))
@@ -199,27 +208,32 @@ If .yml file seems not to work, virtual env can be created manually using anacon
    <span class='co'># not only Python version but libraries versions has to match aswell</span>
    <span class='no'>explainer</span> <span class='kw'>&lt;-</span> <span class='fu'>explain_scikitlearn</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"scikitlearn.pkl"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>),
    <span class='kw'>condaenv</span> <span class='kw'>=</span> <span class='st'>"myenv"</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>], <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>titanic_test</span>$<span class='no'>survived</span>)
-   <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='fu'>model_performance</span>(<span class='no'>explainer</span>))
+   <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/DALEX/topics/model_performance'>model_performance</a></span>(<span class='no'>explainer</span>))
 
    <span class='co'># Predictions with newdata</span>
-   <span class='no'>predictions</span> <span class='kw'>&lt;-</span> <span class='no'>explainer</span>$<span class='no'>model</span>$<span class='fu'>predict_function</span>(<span class='no'>explainer</span>$<span class='no'>model</span>, <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>])
+   <span class='no'>explainer</span>$<span class='no'>model</span>$<span class='fu'>predict_function</span>(<span class='no'>explainer</span>$<span class='no'>model</span>, <span class='no'>titanic_test</span>[<span class='fl'>1</span>:<span class='fl'>10</span>,<span class='fl'>1</span>:<span class='fl'>17</span>])
 
 } <span class='kw'>else</span> {
   <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='st'>'Python testing environment is required.'</span>)
+}
+} <span class='kw'>else</span>{
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='st'>"myenv does not exists, use yml argument"</span>)
+
 }</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  GradientBoostingClassifier 
 #&gt;   -&gt; data              :  524  rows  17  cols 
 #&gt;   -&gt; target variable   :  524  values 
 #&gt;   -&gt; predict function  :  scikitlearn_model$predict_function 
 #&gt;   -&gt; predicted values  :  numerical, min =  0.02086126 , mean =  0.288584 , max =  0.9119996  
-#&gt;   -&gt; residual function :  difference between y and yhat (default)
+#&gt;   -&gt; residual function :  difference between y and yhat (<span style='color: #BBBB00;'>default</span><span>)
 #&gt;   -&gt; residuals         :  numerical, min =  -0.8669431 , mean =  0.02248468 , max =  0.9791387  
-#&gt; A new explainer has been created!
+#&gt; </span><span style='color: #00BB00;'>A new explainer has been created!</span><span>
 #&gt;          0%         10%         20%         30%         40%         50% 
 #&gt; -0.97913874 -0.73232601 -0.28554500 -0.12647147  0.07719668  0.13219474 
 #&gt;         60%         70%         80%         90%        100% 
-#&gt;  0.15734697  0.17403135  0.23221115  0.28252542  0.86694306 </div><div class='input'>
-</div></pre>
+#&gt;  0.15734697  0.17403135  0.23221115  0.28252542  0.86694306 </div><div class='output co'>#&gt;  [1] 0.3565896 0.1321947 0.7638813 0.1037486 0.1265221 0.2949228 0.1421281
+#&gt;  [8] 0.1421281 0.4154695 0.1321947</div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

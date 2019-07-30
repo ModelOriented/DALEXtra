@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Prints scikitlearn_set class — print.scikitlearn_set • DALEXtra</title>
+<title>Wrapper over the predict function — yhat_mlr • DALEXtra</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -48,7 +48,7 @@
 	  <a class = "navbar-mi2logo" href="http://mi2.mini.pw.edu.pl/">
         <img src = "https://github.com/mi2-warsaw/MI2template/blob/master/inst/pkgdown/assets/MI2logo.jpg?raw=true" alt = "MI2" height = 46 title = "MI2">
 	  </a>
-      <a class="navbar-brand navbar-mi2" href="../index.html">Prints scikitlearn_set class</a>
+      <a class="navbar-brand navbar-mi2" href="../index.html">Wrapper over the predict function</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="navbar-mi2 nav navbar-nav">
@@ -79,28 +79,45 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Prints scikitlearn_set class</h1>
+    <h1>Wrapper over the predict function</h1>
     </div>
 
     
-    <p>Prints scikitlearn_set class</p>
+    <p>These functios are default predict functions.
+Each function returns a single numeric score for each new observation.</p>
     
 
-    <pre class="usage"><span class='co'># S3 method for scikitlearn_set</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>yhat_mlr</span>(<span class='no'>X.model</span>, <span class='no'>newdata</span>, <span class='no'>...</span>)
+
+<span class='fu'>yhat_h2o</span>(<span class='no'>X.model</span>, <span class='no'>newdata</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>a model created with `scikitlearn_model` function</p></td>
+      <th>X.model</th>
+      <td><p>object - a model to be explained</p></td>
+    </tr>
+    <tr>
+      <th>newdata</th>
+      <td><p>data.frame or matrix - observations for prediction</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>other arguments</p></td>
+      <td><p>other parameters that will be passed to the predict function</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>An numeric vector of predictions</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Currently supported packages are:</p><ul>
+<li><p>`mlr` see more in explain_mlr</p></li>
+<li><p>`h2o` see more in explain_h2o</p></li>
+</ul>
     
 
   </div>
@@ -108,7 +125,11 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+          </ul>
 
   </div>
 </div>

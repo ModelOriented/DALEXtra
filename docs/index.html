@@ -39,6 +39,9 @@
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
 </div>
@@ -51,13 +54,16 @@
       
       </header><div class="row">
   <div class="contents col-md-9">
-    <div id="dalextra" class="section level1">
+    
+<div id="dalextra" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#dalextra" class="anchor"></a>DALEXtra</h1></div>
+
 <p>An extension for DALEX package</p>
-<div id="installation-and-configuration" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation-and-configuration" class="anchor"></a>Installation and configuration</h2>
+</div>
+<div id="installation-and-configuration" class="section level1">
+<h1 class="hasAnchor">
+<a href="#installation-and-configuration" class="anchor"></a>Installation and configuration</h1>
 <p>Install <code>DALEXtra</code> and <code>DALEX</code> packages</p>
 <pre><code>devtools::install_github("ModelOriented/DALEXtra")
 install.packages("DALEX")</code></pre>
@@ -65,7 +71,21 @@ install.packages("DALEX")</code></pre>
 <pre><code><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages("reticulate")</a></code></pre>
 <p><a href="https://modeloriented.github.io/DALEXtra/" class="uri">https://modeloriented.github.io/DALEXtra/</a></p>
 </div>
+<div id="examples" class="section level1">
+<h1 class="hasAnchor">
+<a href="#examples" class="anchor"></a>Examples</h1>
+<pre><code>    # Explainer build (Keep in mind that 18th column is target)
+    titanic_test &lt;- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
+    # Keep in mind that when pickle is being built and loaded,
+    # not only Python version but libraries versions has to match aswell
+    explainer &lt;- explain_scikitlearn(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
+    condaenv = "myenv", data = titanic_test[,1:17], y = titanic_test$survived)
+    print(model_performance(explainer))
+
+    # Predictions with newdata
+    explainer$model$predict_function(explainer$model, titanic_test[1:10,1:17])</code></pre>
 </div>
+
   </div>
 
   <div class="col-md-3" id="sidebar">
@@ -79,7 +99,7 @@ install.packages("DALEX")</code></pre>
 <ul class="list-unstyled">
 <li>Report a bug at <br><a href="https://github.com/ModelOriented/DALEXtra/issues">https://​github.com/​ModelOriented/​DALEXtra/​issues</a>
 </li>
-<li>Source code at <br><a href="https://github.com/maksymiuks/DALEXtra">https://​github.com/​maksymiuks/​DALEXtra</a>
+<li>Source code at <br><a href="https://github.com/ModelOriented/DALEXtra">https://​github.com/​ModelOriented/​DALEXtra</a>
 </li>
 </ul>
 </div>
@@ -96,7 +116,14 @@ install.packages("DALEX")</code></pre>
 </ul>
 </div>
 
-  </div>
+  <div class="dev-status">
+<h2>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://travis-ci.org/ModelOriented/DALEXtra"><img src="https://travis-ci.org/ModelOriented/DALEXtra.svg?branch=master" alt="Build Status"></a></li>
+<li><a href="https://codecov.io/github/ModelOriented/DALEXtra?branch=master"><img src="https://img.shields.io/codecov/c/github/ModelOriented/DALEXtra/master.svg" alt="Coverage Status"></a></li>
+</ul>
+</div>
+</div>
 </div>
 
 
