@@ -8,7 +8,7 @@ test_that("creating env", {
   if("myenv" %in% reticulate::conda_list()$name){
     reticulate::conda_remove("myenv")
     name <- create_env(system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra"),
-                       condaenv = paste(reticulate::conda_binary(), "/../..", sep = ""))
+                       condaenv = paste(sub('[/][^/]+$', '', reticulate::conda_binary()), "/..", sep = ""))
   } else{
       name <- create_env(system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra"),
                  condaenv = paste(sub('[/][^/]+$', '', reticulate::conda_binary()), "/..", sep = ""))
