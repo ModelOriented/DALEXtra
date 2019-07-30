@@ -15,6 +15,7 @@
 #' @param residual_function residual function that will be passed into explainer. If NULL, default will be used.
 #' @param label label that will be passed into explainer. If NULL, default will be used.
 #' @param verbose bool that will be passed into explainer. If NULL, default will be used.
+#' @param precalculate if TRUE (default) then 'predicted_values' and 'residuals' are calculated when explainer is created. This will happenn also if 'verbose' is TRUE.
 #' @param ... other parameters
 #'
 #'
@@ -119,7 +120,8 @@ explain_scikitlearn <-
            residual_function = NULL,
            ...,
            label = NULL,
-           verbose = TRUE) {
+           verbose = TRUE,
+           precalculate = TRUE) {
     if (!is.null(condaenv) & !is.null(env)) {
       stop("Only one argument from condaenv and env can be different from NULL")
     }
@@ -198,7 +200,7 @@ explain_scikitlearn <-
     names(params) <- as.character(params)
     #extracting parameters value
     params <- lapply(params, function(x) {
-      do.call("$",list(model, x))
+      do.call("$", list(model, x))
     })
 
     class(params) <- "scikitlearn_set"

@@ -6,7 +6,8 @@
 \usage{
 explain_scikitlearn(path, yml = NULL, condaenv = NULL, env = NULL,
   data = NULL, y = NULL, predict_function = NULL,
-  residual_function = NULL, ..., label = NULL, verbose = TRUE)
+  residual_function = NULL, ..., label = NULL, verbose = TRUE,
+  precalculate = TRUE)
 }
 \arguments{
 \item{path}{a path to the pickle file. Can be used without other arguments if you are sure that active Python version match pickle version.}
@@ -30,6 +31,8 @@ explain_scikitlearn(path, yml = NULL, condaenv = NULL, env = NULL,
 \item{label}{label that will be passed into explainer. If NULL, default will be used.}
 
 \item{verbose}{bool that will be passed into explainer. If NULL, default will be used.}
+
+\item{precalculate}{if TRUE (default) then 'predicted_values' and 'residuals' are calculated when explainer is created. This will happenn also if 'verbose' is TRUE.}
 }
 \value{
 An object of the class 'explainer'. Possible extraction of object 'scikitlearn_model' via explainer$model
