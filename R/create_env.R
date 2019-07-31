@@ -12,28 +12,46 @@
 #'
 #'
 #' @examples
-#' reticulate::use_condaenv("myenv")
-#'
-#' if(.Platform$OS.type=="unix" & !("myenv" %in% reticulate::conda_list()$name)){
-#'   create_env(system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra"),
-#'              condaenv = paste(sub('[/][^/]+$', '', reticulate::conda_binary()), "/..", sep = ""))
-#' }else{
-#'   print("Use unix for tests")
+#' is_conda <- function(){
+#' is_conda <- try(reticulate::conda_binary())
+#' class(is_conda) != "try-error"
 #' }
+#' if(is_conda()) {
+#'   reticulate::use_condaenv("myenv")
 #'
+#'     create_env(
+#'       system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra"),
+#'       condaenv = paste(
+#'         sub('[/][^/]+$', '', reticulate::conda_binary()[1]),
+#'         "/..",
+#'         sep = ""
+#'       )
+#'     )
+#'
+#'  } else {
+#'   "conda is required"
+#' }
 #' @rdname create_env
 #' @export
 
 
 create_env <- function(yml, condaenv = NULL) {
   if(.Platform$OS.type=="unix" & is.null(condaenv)){
-    stop("You have to specify condaenv at platforms with unix-like os")
+    condaenv = paste(sub('[/][^/]+$', '', reticulate::conda_binary()[1]), "/..", sep = "")
+    message(paste("Path to conda not specified while on unix. Default used.", condaenv))
   }
 
   con <- file(yml, "r")
   first_line <- readLines(con, n = 1)
   close(con)
   name <- strsplit(first_line, split = " ")[[1]][2]
+
+  # Check if specified env already exists
+
+ if(name %in% reticulate::conda_list()$name){
+   message(paste("There already exists environment named the same as it is specified in .yml file - ", name, ". It will be used", sep = ""))
+   return(name)
+ }
 
   # Virtual env creation
 
@@ -53,13 +71,6 @@ create_env <- function(yml, condaenv = NULL) {
           cat(mes)
           stop(
             "conda is not recognised by your shell. Please set system variables for conda in order to use that function",
-            call. = FALSE
-          )
-        }
-        else if (any(grepl("already exists", mes))) {
-          cat(mes)
-          stop(
-            "There already exists environment with a name specified by given .yml file",
             call. = FALSE
           )
         }
@@ -103,10 +114,6 @@ create_env <- function(yml, condaenv = NULL) {
       warning = function(w) {
         warning(w, call. = FALSE)
 
-        warning(
-          "There already exists environment with a name specified by given .yml file",
-          call. = FALSE
-        )
         warning(
           "Conda cannot find specified packages at channels you have provided. Try to add more channels (conda repositories) to your .yml file.",
           call. = FALSE
