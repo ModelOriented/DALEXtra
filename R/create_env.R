@@ -12,10 +12,13 @@
 #'
 #'
 #' @examples
+#' is_conda <- function(){
+#' is_conda <- try(reticulate::conda_binary())
+#' class(is_conda) != "try-error"
+#' }
 #' if(is_conda()) {
 #'   reticulate::use_condaenv("myenv")
 #'
-#'   if (!("myenv" %in% reticulate::conda_list()$name)) {
 #'     create_env(
 #'       system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra"),
 #'       condaenv = paste(
@@ -24,10 +27,8 @@
 #'         sep = ""
 #'       )
 #'     )
-#'   } else{
-#'     print("env already exists")
-#'   }
-#' } else {
+#'
+#'  } else {
 #'   "conda is required"
 #' }
 #' @rdname create_env

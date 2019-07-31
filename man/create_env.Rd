@@ -18,6 +18,10 @@ Name of created virtual env.
 Phython objects may be loaded into R. However, it requiers versions of the Python and libraries to match bewtween both machines.
 }
 \examples{
+is_conda <- function(){
+is_conda <- try(reticulate::conda_binary())
+class(is_conda) != "try-error"
+}
 if(is_conda()) {
   reticulate::use_condaenv("myenv")
 
