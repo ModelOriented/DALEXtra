@@ -1,0 +1,15 @@
+context("test prints")
+
+source("objects_for_tests.R")
+
+test_that("prints", {
+  titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
+  titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
+  skip_if_no_conda()
+  explainer <- explain_scikitlearn(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
+                                     yml = system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra"),
+                                     data = titanic_test[,1:17], y = titanic_test$survived)
+  expect_success(expect_output(print(explainer$model), "Model name"))
+  expect_success(expect_output(print(explainer$model$params), NULL))
+
+})

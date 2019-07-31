@@ -127,13 +127,7 @@ explain_scikitlearn <-
       name <- create_env(yml, condaenv)
       tryCatch(
         reticulate::use_condaenv(name, required = TRUE),
-        error = function(e) {
-          warning(e, call. = FALSE)
-          stop(
-            "reticulate is unable to set new environment due to already using other python.exe, please restart R session. See warnings() for original error",
-            call. = FALSE
-          )
-        }
+        error = error_mes
       )
 
     }
@@ -141,13 +135,7 @@ explain_scikitlearn <-
     if (!is.null(condaenv) & is.null(yml)) {
       tryCatch(
         reticulate::use_condaenv(condaenv, required = TRUE),
-        error = function(e) {
-          warning(e, call. = FALSE)
-          stop(
-            "reticulate is unable to set new environment. Specified envirnonment does not exists or connection cannot be established due to already using other python.exe, please install environment or restart R session. See warnings() for original error",
-            call. = FALSE
-          )
-        }
+        error = error_mes
       )
 
 
@@ -157,13 +145,7 @@ explain_scikitlearn <-
     if (!is.null(env)) {
       tryCatch(
         reticulate::use_virtualenv(env, required = TRUE),
-        error = function(e) {
-          warning(e, call. = FALSE)
-          stop(
-            "reticulate is unable to set new environment. Specified envirnonment does not exists or connection cannot be established due to already using other python.exe, please install environment or restart R session. See warnings() for original error",
-            call. = FALSE
-          )
-        }
+        error = error_mes
       )
     }
 

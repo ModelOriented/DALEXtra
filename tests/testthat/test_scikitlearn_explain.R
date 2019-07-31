@@ -30,6 +30,16 @@ test_that("if check", {
                "Only one argument from condaenv and env can be different from NULL", fixed = TRUE)
   expect_error(explain_scikitlearn("path.pkl",
                                    env = "env"))
+  expect_error(explain_scikitlearn(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
+                                   condaenv = conda_list()$name[1]))
+
+})
+
+test_that("env change error", {
+
+  skip_if_no_conda()
+  expect_error(explain_scikitlearn(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
+                                   condaenv = conda_list()$name[1]))
 
 })
 

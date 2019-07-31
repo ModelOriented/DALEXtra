@@ -1,6 +1,6 @@
 # Here are functions that are not supposed to be exported
 
-dalex_load_object <- function(path){
+dalex_load_object <- function(path) {
   tryCatch(
     model <- reticulate::py_load_object(path),
 
@@ -35,3 +35,13 @@ dalex_load_object <- function(path){
   model
 
 }
+
+error_mes <- function(e) {
+  warning(e, call. = FALSE)
+  stop(
+    "reticulate is unable to set new environment. Specified envirnonment does not exists or connection cannot be established due to already using other python.exe, please install environment or restart R session. See warnings() for original error",
+    call. = FALSE
+  )
+}
+
+
