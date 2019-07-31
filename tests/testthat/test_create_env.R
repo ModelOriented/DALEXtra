@@ -33,7 +33,7 @@ test_that("creating env", {
 })
 test_that("if check", {
   if (.Platform$OS.type == "unix") {
-    expect_success(expect_message(create_env(yml = "conda"),
+    expect_success(expect_message(create_env(yml = system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra")),
                                   "not specified"))
   }
   if ("myenv" %in% reticulate::conda_list()$name){
