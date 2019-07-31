@@ -92,11 +92,9 @@ and compare it with other models, using R tools like DALEX. This function create
 exported from Python via pickle file.
 }
 \examples{
-reticulate::use_condaenv("myenv")
-have_sklearn <- reticulate::py_module_available("sklearn.ensemble")
 library("DALEXtra")
 library("DALEX")
-if(have_sklearn) {
+if(is_conda()) {
    # Explainer build (Keep in mind that 18th column is target)
    titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
    # Keep in mind that when pickle is being built and loaded,
@@ -110,7 +108,7 @@ if(have_sklearn) {
    explainer$model$predict_function(explainer$model, titanic_test[1:10,1:17])
 
 } else {
-  print('Python testing environment is required.')
+  print('Conda is required.')
 }
 
 }

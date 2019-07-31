@@ -35,3 +35,8 @@ dalex_load_object <- function(path){
   model
 
 }
+
+is_conda <- function(){
+  is_conda <- try(reticulate::conda_binary())
+  class(is_conda) != "try-error"
+}
