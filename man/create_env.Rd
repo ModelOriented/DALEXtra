@@ -18,15 +18,28 @@ Name of created virtual env.
 Phython objects may be loaded into R. However, it requiers versions of the Python and libraries to match bewtween both machines.
 }
 \examples{
-reticulate::use_condaenv("myenv")
-
-if(.Platform$OS.type=="unix" & !("myenv" \%in\% reticulate::conda_list()$name)){
-  create_env(system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra"),
-             condaenv = "$HOME/miniconda")
-}else{
-  print("Use unix for tests")
+is_conda <- function(){
+is_conda <- try(reticulate::conda_binary())
+class(is_conda) != "try-error"
 }
+if(is_conda()) {
+  reticulate::use_condaenv("myenv")
 
+  if (!("myenv" \%in\% reticulate::conda_list()$name)) {
+    create_env(
+      system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra"),
+      condaenv = paste(
+        sub('[/][^/]+$', '', reticulate::conda_binary()[1]),
+        "/..",
+        sep = ""
+      )
+    )
+  } else{
+    print("env already exists")
+  }
+} else {
+  "conda is required"
+}
 }
 \author{
 Szymon Maksymiuk

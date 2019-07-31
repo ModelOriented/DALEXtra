@@ -1,3 +1,8 @@
+DALEXtra 0.1.5
+----------------------------------------------------------------
+* Now when you pass .yml that consist environment name that already exists one the machine, DALEXtra will not rise an error and contiune work with existing env
+* If condaenv is NULL when creating_env on unixlike OS, DALEXtra will try to find conda on his own
+* .onLoad function now checks if conda is installed. Alert is rised if not.
 
 DALEXtra 0.1.4
 ----------------------------------------------------------------
