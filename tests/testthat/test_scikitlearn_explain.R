@@ -25,11 +25,7 @@ test_that("if check", {
                                    condaenv = "conda",
                                    env = "env"),
                "Only one argument from condaenv and env can be different from NULL", fixed = TRUE)
-  if(.Platform$OS.type == "unix"){
-    expect_error(explain_scikitlearn("path.pkl",
-                                     yml = "conda"),
-                 "You have to provide condaenv parameter with yml when using unix-like OS", fixed = TRUE)
-  }
+
 })
 
 

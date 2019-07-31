@@ -96,25 +96,21 @@ reticulate::use_condaenv("myenv")
 have_sklearn <- reticulate::py_module_available("sklearn.ensemble")
 library("DALEXtra")
 library("DALEX")
-if("myenv" \%in\% reticulate::conda_list()$name){
 if(have_sklearn) {
    # Explainer build (Keep in mind that 18th column is target)
    titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
    # Keep in mind that when pickle is being built and loaded,
    # not only Python version but libraries versions has to match aswell
    explainer <- explain_scikitlearn(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
-   condaenv = "myenv", data = titanic_test[,1:17], y = titanic_test$survived)
-   print(model_performance(explainer))
+   yml = system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra"),
+   data = titanic_test[,1:17], y = titanic_test$survived)
+   plot(model_performance(explainer))
 
    # Predictions with newdata
    explainer$model$predict_function(explainer$model, titanic_test[1:10,1:17])
 
 } else {
   print('Python testing environment is required.')
-}
-} else{
-  print("myenv does not exists, use yml argument")
-
 }
 
 }

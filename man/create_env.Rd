@@ -22,7 +22,7 @@ reticulate::use_condaenv("myenv")
 
 if(.Platform$OS.type=="unix" & !("myenv" \%in\% reticulate::conda_list()$name)){
   create_env(system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra"),
-             condaenv = "$HOME/miniconda")
+             condaenv = paste(sub('[/][^/]+$', '', reticulate::conda_binary()[1]), "/..", sep = ""))
 }else{
   print("Use unix for tests")
 }
