@@ -43,7 +43,7 @@ yhat_h2o <- function(X.model, newdata, ...) {
     class(X.model),
     "H2ORegressionModel" = {
       if (!class(newdata) == "H2OFrame") {
-        newdat <- h2o::as.h2o(newdata)
+        newdata <- h2o::as.h2o(newdata)
       }
       as.vector(h2o::h2o.predict(X.model, newdata = newdata))
 

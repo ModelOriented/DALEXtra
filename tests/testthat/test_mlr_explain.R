@@ -4,14 +4,14 @@ source("objects_for_tests.R")
 
 
 
-test_that("creating explainer", {
+test_that("creating explainer classif", {
   titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
   titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
   library("mlr")
   task <- mlr::makeClassifTask(
-  id = "R",
-  data = titanic_train,
-  target = "survived"
+    id = "R",
+    data = titanic_train,
+    target = "survived"
   )
   learner <- mlr::makeLearner(
     "classif.gbm",
@@ -28,6 +28,33 @@ test_that("creating explainer", {
   )
   gbm <- mlr::train(learner, task)
   explainer <- explain_mlr(gbm, titanic_test[,1:17], titanic_test[,18])
+  expect_is(explainer, "explainer")
+  expect_is(explainer$y_hat, "numeric")
+
+})
+
+test_that("creating explainer regr", {
+  titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
+  titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
+  library("mlr")
+  task <- mlr::makeRegrTask(
+    id = "R",
+    data = titanic_train,
+    target = "fare"
+  )
+  learner <- mlr::makeLearner(
+    "regr.gbm",
+    par.vals = list(
+      n.trees = 500,
+      interaction.depth = 4,
+      n.minobsinnode = 12,
+      shrinkage = 0.001,
+      bag.fraction = 0.5,
+      train.fraction = 1
+    )
+  )
+  gbm <- mlr::train(learner, task)
+  explainer <- explain_mlr(gbm, titanic_test, titanic_test$fare)
   expect_is(explainer, "explainer")
   expect_is(explainer$y_hat, "numeric")
 
