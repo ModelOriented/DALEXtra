@@ -65,7 +65,6 @@ test_that("Assert when no mlr",{
   titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
   a <- list()
   a$task.desc$type <- "b"
-  expect_error(explain_mlr(a,
-                           data = titanic_test, predict_function = yhat.WrappedModel, y = titanic_test$fare))
+  expect_error(yhat.WrappedModel(a, titanic_test))
 })
 

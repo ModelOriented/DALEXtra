@@ -77,7 +77,7 @@ test_that("y is numeric", {
 test_that("Assert when no h2o",{
   titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
   titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
-  expect_error(explain_h2o("b",
-                           data = titanic_test, predict_function = yhat.h2o, y = titanic_test$fare))
+  expect_error(yhat.H2OBinomialModel("b", titanic_test))
+  expect_error(yhat.H2ORegressionModel("b", titanic_test))
 })
 
