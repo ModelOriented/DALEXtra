@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Wrapper over the predict function — yhat_mlr • DALEXtra</title>
+<title>Wrapper over the predict function — yhat.WrappedModel • DALEXtra</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -87,9 +87,17 @@
 Each function returns a single numeric score for each new observation.</p>
     
 
-    <pre class="usage"><span class='fu'>yhat_mlr</span>(<span class='no'>X.model</span>, <span class='no'>newdata</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='co'># S3 method for WrappedModel</span>
+<span class='fu'>yhat</span>(<span class='no'>X.model</span>, <span class='no'>newdata</span>, <span class='no'>...</span>)
 
-<span class='fu'>yhat_h2o</span>(<span class='no'>X.model</span>, <span class='no'>newdata</span>, <span class='no'>...</span>)</pre>
+<span class='co'># S3 method for H2ORegressionModel</span>
+<span class='fu'>yhat</span>(<span class='no'>X.model</span>, <span class='no'>newdata</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for H2OBinomialModel</span>
+<span class='fu'>yhat</span>(<span class='no'>X.model</span>, <span class='no'>newdata</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for scikitlearn_model</span>
+<span class='fu'>yhat</span>(<span class='no'>X.model</span>, <span class='no'>newdata</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -136,7 +144,7 @@ Each function returns a single numeric score for each new observation.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Szymon Maksymiuk.</p>
+  <p>Developed by Szymon Maksymiuk, Przemyslaw Biecek.</p>
 </div>
 
 <div class="pkgdown">

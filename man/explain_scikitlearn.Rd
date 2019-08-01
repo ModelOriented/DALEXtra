@@ -35,18 +35,7 @@ explain_scikitlearn(path, yml = NULL, condaenv = NULL, env = NULL,
 \item{precalculate}{if TRUE (default) then 'predicted_values' and 'residuals' are calculated when explainer is created. This will happenn also if 'verbose' is TRUE.}
 }
 \value{
-An object of the class 'explainer'. Possible extraction of object 'scikitlearn_model' via explainer$model
-
-scikitlearn_model is a list with following fields:
-
-\itemize{
-\item \code{model} it is original model received vie reticiulate function. Use it for computations.
-\item \code{predict_function} predict function extracted from original model. It is adjusted to DALEX demands and therfore fully compatibile.
-\item \code{type} type model, classification or regression
-\item \code{params} object of class `scikitlearn_set` which in fact is list that consist of parameters of our model.
-\item \code{label} name of model
-
-}
+An object of the class 'explainer'. It has additional field param_set when user can check parameters of scikitlearn model
 
 \bold{Example of Python code}\cr
 
@@ -109,7 +98,7 @@ if(is_conda()) {
    plot(model_performance(explainer))
 
    # Predictions with newdata
-   explainer$model$predict_function(explainer$model, titanic_test[1:10,1:17])
+   predict(explainer, titanic_test[1:10,1:17])
 
 } else {
   print('Conda is required.')

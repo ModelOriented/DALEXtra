@@ -54,9 +54,18 @@ test_that("creating explainer regr", {
     )
   )
   gbm <- mlr::train(learner, task)
-  explainer <- explain_mlr(gbm, titanic_test, titanic_test$fare)
+  explainer <- explain_mlr(gbm, data = titanic_test, predict_function = yhat, y = titanic_test$fare)
   expect_is(explainer, "explainer")
   expect_is(explainer$y_hat, "numeric")
 
+})
+
+test_that("Assert when no mlr",{
+  titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
+  titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
+  a <- list()
+  a$task.desc$type <- "b"
+  expect_error(explain_mlr(a,
+                           data = titanic_test, predict_function = yhat.WrappedModel, y = titanic_test$fare))
 })
 

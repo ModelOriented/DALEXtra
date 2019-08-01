@@ -36,6 +36,7 @@ Unfortunately R packages that create such models are very inconsistent. Differen
 One of those tools, which is one of the most popular one is mlr package. We would like to present dedicated explain function for it.
 }
 \examples{
+library("DALEXtra")
 titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
 titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
 library("mlr")
@@ -48,7 +49,7 @@ learner <- mlr::makeLearner(
   "classif.gbm",
   par.vals = list(
     distribution = "bernoulli",
-    n.trees = 5000,
+    n.trees = 500,
     interaction.depth = 4,
     n.minobsinnode = 12,
     shrinkage = 0.001,

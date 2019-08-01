@@ -18,13 +18,14 @@
 #'
 #' @return explainer object ready to work with DALEX
 #'
-#' @importFrom DALEX explain
+#' @import DALEX
 #' @importFrom stats predict
-#'
+#' @importFrom DALEX yhat
 #'
 #' @rdname explain_mlr
 #' @export
 #' @examples
+#' library("DALEXtra")
 #' titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
 #' titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
 #' library("mlr")
@@ -37,7 +38,7 @@
 #'   "classif.gbm",
 #'   par.vals = list(
 #'     distribution = "bernoulli",
-#'     n.trees = 5000,
+#'     n.trees = 500,
 #'     interaction.depth = 4,
 #'     n.minobsinnode = 12,
 #'     shrinkage = 0.001,
@@ -61,29 +62,17 @@ explain_mlr <-
            label = NULL,
            verbose = TRUE,
            precalculate = TRUE) {
-    if (is.null(predict_function)) {
-      explain(
-        model,
-        data = data,
-        y = y,
-        predict_function = yhat_mlr,
-        residual_function = residual_function,
-        label = label,
-        verbose = verbose,
-        ... = ...
-      )
-    } else {
-      explain(
-        model,
-        data = data,
-        y = y,
-        predict_function = predict_function,
-        residual_function = residual_function,
-        label = label,
-        verbose = verbose,
-        ... = ...
-      )
-    }
+    explain(
+      model,
+      data = data,
+      y = y,
+      predict_function = predict_function,
+      residual_function = residual_function,
+      label = label,
+      verbose = verbose,
+      ...
+    )
+
 
 
   }

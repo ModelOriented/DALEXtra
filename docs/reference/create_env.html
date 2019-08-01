@@ -107,15 +107,25 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw pkg'>reticulate</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/reticulate/topics/use_python'>use_condaenv</a></span>(<span class='st'>"myenv"</span>)
+    <pre class="examples"><div class='input'><span class='no'>is_conda</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(){
+<span class='no'>is_conda</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/try'>try</a></span>(<span class='kw pkg'>reticulate</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/reticulate/topics/conda-tools'>conda_binary</a></span>())
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/class'>class</a></span>(<span class='no'>is_conda</span>) <span class='kw'>!=</span> <span class='st'>"try-error"</span>
+}
+<span class='kw'>if</span>(<span class='fu'>is_conda</span>()) {
+  <span class='kw pkg'>reticulate</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/reticulate/topics/use_python'>use_condaenv</a></span>(<span class='st'>"myenv"</span>)
 
-<span class='kw'>if</span>(<span class='no'>.Platform</span>$<span class='no'>OS.type</span><span class='kw'>==</span><span class='st'>"unix"</span> <span class='kw'>&amp;</span> !(<span class='st'>"myenv"</span> <span class='kw'>%in%</span> <span class='kw pkg'>reticulate</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/reticulate/topics/conda-tools'>conda_list</a></span>()$<span class='no'>name</span>)){
-  <span class='fu'>create_env</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"scikitlearn_unix.yml"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>),
-             <span class='kw'>condaenv</span> <span class='kw'>=</span> <span class='st'>"$HOME/miniconda"</span>)
-}<span class='kw'>else</span>{
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='st'>"Use unix for tests"</span>)
-}</div><div class='output co'>#&gt; [1] "Use unix for tests"</div><div class='input'>
-</div></pre>
+    <span class='fu'>create_env</span>(
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"scikitlearn_unix.yml"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>),
+      <span class='kw'>condaenv</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(
+        <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/grep'>sub</a></span>(<span class='st'>'[/][^/]+$'</span>, <span class='st'>''</span>, <span class='kw pkg'>reticulate</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/reticulate/topics/conda-tools'>conda_binary</a></span>()[<span class='fl'>1</span>]),
+        <span class='st'>"/.."</span>,
+        <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>
+      )
+    )
+
+ } <span class='kw'>else</span> {
+  <span class='st'>"conda is required"</span>
+}</div><div class='output co'>#&gt; <span class='message'>There already exists environment named the same as it is specified in .yml file - myenv. It will be used</span></div><div class='output co'>#&gt; [1] "myenv"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -134,7 +144,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Szymon Maksymiuk.</p>
+  <p>Developed by Szymon Maksymiuk, Przemyslaw Biecek.</p>
 </div>
 
 <div class="pkgdown">

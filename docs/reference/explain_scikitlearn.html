@@ -148,16 +148,7 @@ exported from Python via pickle file.</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An object of the class 'explainer'. Possible extraction of object 'scikitlearn_model' via explainer$model</p>
-<p>scikitlearn_model is a list with following fields:</p>
-<ul>
-<li><p><code>model</code> it is original model received vie reticiulate function. Use it for computations.</p></li>
-<li><p><code>predict_function</code> predict function extracted from original model. It is adjusted to DALEX demands and therfore fully compatibile.</p></li>
-<li><p><code>type</code> type model, classification or regression</p></li>
-<li><p><code>params</code> object of class `scikitlearn_set` which in fact is list that consist of parameters of our model.</p></li>
-<li><p><code>label</code> name of model</p></li>
-</ul>
-
+    <p>An object of the class 'explainer'. It has additional field param_set when user can check parameters of scikitlearn model</p>
 <p><b>Example of Python code</b><br /></p>
 <p>from pandas import DataFrame, read_csv <br />
 import pandas as pd<br />
@@ -196,42 +187,36 @@ If .yml file seems not to work, virtual env can be created manually using anacon
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw pkg'>reticulate</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/reticulate/topics/use_python'>use_condaenv</a></span>(<span class='st'>"myenv"</span>)
-<span class='no'>have_sklearn</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>reticulate</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/reticulate/topics/py_module_available'>py_module_available</a></span>(<span class='st'>"sklearn.ensemble"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='st'>"DALEXtra"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='st'>"DALEXtra"</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='st'>"DALEX"</span>)
-<span class='kw'>if</span>(<span class='st'>"myenv"</span> <span class='kw'>%in%</span> <span class='kw pkg'>reticulate</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/reticulate/topics/conda-tools'>conda_list</a></span>()$<span class='no'>name</span>){
-<span class='kw'>if</span>(<span class='no'>have_sklearn</span>) {
+<span class='no'>is_conda</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(){
+<span class='no'>is_conda</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/try'>try</a></span>(<span class='kw pkg'>reticulate</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/reticulate/topics/conda-tools'>conda_binary</a></span>())
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/class'>class</a></span>(<span class='no'>is_conda</span>) <span class='kw'>!=</span> <span class='st'>"try-error"</span>
+}
+<span class='kw'>if</span>(<span class='fu'>is_conda</span>()) {
    <span class='co'># Explainer build (Keep in mind that 18th column is target)</span>
    <span class='no'>titanic_test</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/read.table'>read.csv</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_test.csv"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))
    <span class='co'># Keep in mind that when pickle is being built and loaded,</span>
    <span class='co'># not only Python version but libraries versions has to match aswell</span>
    <span class='no'>explainer</span> <span class='kw'>&lt;-</span> <span class='fu'>explain_scikitlearn</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"scikitlearn.pkl"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>),
-   <span class='kw'>condaenv</span> <span class='kw'>=</span> <span class='st'>"myenv"</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>], <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>titanic_test</span>$<span class='no'>survived</span>)
-   <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/DALEX/topics/model_performance'>model_performance</a></span>(<span class='no'>explainer</span>))
+   <span class='kw'>yml</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"scikitlearn_unix.yml"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>),
+   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>], <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>titanic_test</span>$<span class='no'>survived</span>)
+   <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/DALEX/topics/model_performance'>model_performance</a></span>(<span class='no'>explainer</span>))
 
    <span class='co'># Predictions with newdata</span>
-   <span class='no'>explainer</span>$<span class='no'>model</span>$<span class='fu'>predict_function</span>(<span class='no'>explainer</span>$<span class='no'>model</span>, <span class='no'>titanic_test</span>[<span class='fl'>1</span>:<span class='fl'>10</span>,<span class='fl'>1</span>:<span class='fl'>17</span>])
+   <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/predict'>predict</a></span>(<span class='no'>explainer</span>, <span class='no'>titanic_test</span>[<span class='fl'>1</span>:<span class='fl'>10</span>,<span class='fl'>1</span>:<span class='fl'>17</span>])
 
 } <span class='kw'>else</span> {
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='st'>'Python testing environment is required.'</span>)
-}
-} <span class='kw'>else</span>{
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='st'>"myenv does not exists, use yml argument"</span>)
-
-}</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
-#&gt;   -&gt; model label       :  GradientBoostingClassifier 
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='st'>'Conda is required.'</span>)
+}</div><div class='output co'>#&gt; <span class='message'>There already exists environment named the same as it is specified in .yml file - myenv. It will be used</span></div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+#&gt;   -&gt; model label       :  scikitlearn_model  (<span style='color: #BBBB00;'>default</span><span>)
 #&gt;   -&gt; data              :  524  rows  17  cols 
 #&gt;   -&gt; target variable   :  524  values 
-#&gt;   -&gt; predict function  :  scikitlearn_model$predict_function 
+#&gt;   -&gt; predict function  :  yhat.scikitlearn_model  will be used (</span><span style='color: #BBBB00;'>default</span><span>)
 #&gt;   -&gt; predicted values  :  numerical, min =  0.02086126 , mean =  0.288584 , max =  0.9119996  
-#&gt;   -&gt; residual function :  difference between y and yhat (<span style='color: #BBBB00;'>default</span><span>)
+#&gt;   -&gt; residual function :  difference between y and yhat (</span><span style='color: #BBBB00;'>default</span><span>)
 #&gt;   -&gt; residuals         :  numerical, min =  -0.8669431 , mean =  0.02248468 , max =  0.9791387  
-#&gt; </span><span style='color: #00BB00;'>A new explainer has been created!</span><span>
-#&gt;          0%         10%         20%         30%         40%         50% 
-#&gt; -0.97913874 -0.73232601 -0.28554500 -0.12647147  0.07719668  0.13219474 
-#&gt;         60%         70%         80%         90%        100% 
-#&gt;  0.15734697  0.17403135  0.23221115  0.28252542  0.86694306 </div><div class='output co'>#&gt;  [1] 0.3565896 0.1321947 0.7638813 0.1037486 0.1265221 0.2949228 0.1421281
+#&gt; </span><span style='color: #00BB00;'>A new explainer has been created!</span><span></div><div class='output co'>#&gt;  [1] 0.3565896 0.1321947 0.7638813 0.1037486 0.1265221 0.2949228 0.1421281
 #&gt;  [8] 0.1421281 0.4154695 0.1321947</div><div class='input'>
 </div></span></pre>
   </div>
@@ -252,7 +237,7 @@ If .yml file seems not to work, virtual env can be created manually using anacon
 
       <footer>
       <div class="copyright">
-  <p>Developed by Szymon Maksymiuk.</p>
+  <p>Developed by Szymon Maksymiuk, Przemyslaw Biecek.</p>
 </div>
 
 <div class="pkgdown">

@@ -36,9 +36,9 @@ Unfortunately R packages that create such models are very inconsistent. Differen
 One of those tools, we would like to make more accessible is H2O.
 }
 \examples{
+library("DALEXtra")
 titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
 titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
-library("DALEX")
 h2o::h2o.init()
 h2o::h2o.no_progress()
 titanic_h2o <- h2o::as.h2o(titanic_train)
@@ -48,7 +48,7 @@ model <- h2o::h2o.gbm(
 training_frame = titanic_h2o,
 y = "survived",
 distribution = "bernoulli",
-ntrees = 5000,
+ntrees = 500,
 max_depth = 4,
 min_rows =  12,
 learn_rate = 0.001
