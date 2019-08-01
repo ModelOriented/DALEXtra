@@ -91,16 +91,6 @@ plot(model_performance(explainer))
 
 ``` r
 library(ingredients)
-```
-
-    ## 
-    ## Attaching package: 'ingredients'
-
-    ## The following objects are masked from 'package:DALEX':
-    ## 
-    ##     theme_drwhy, theme_drwhy_colors, theme_drwhy_vertical
-
-``` r
 plot(feature_importance(explainer))
 ```
 
@@ -108,20 +98,17 @@ plot(feature_importance(explainer))
 
 ``` r
 library(iBreakDown)
-```
-
-    ## 
-    ## Attaching package: 'iBreakDown'
-
-    ## The following object is masked from 'package:ingredients':
-    ## 
-    ##     plotD3
-
-``` r
-plot(feature_importance(explainer))
+plot(break_down(explainer, titanic_test[2,1:17]))
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-3-3.png)<!-- -->
+
+``` r
+library(shapper)
+plot(shap(explainer, titanic_test[2,1:17]))
+```
+
+![](README_files/figure-gfm/unnamed-chunk-3-4.png)<!-- -->
 
 ``` r
 # Predictions with newdata

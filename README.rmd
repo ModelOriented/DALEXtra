@@ -62,13 +62,15 @@ Creating exlainer from scikit-learn Python model is very simple thanks to `DALEX
 
 ## Creating explanations
 Now with explainer ready we can use any of DrWhy.ai universe tools to make explanations. Here is small demo
-```{r}
+```{r message=FALSE}
 library(DALEX)
 plot(model_performance(explainer))
 library(ingredients)
 plot(feature_importance(explainer))
 library(iBreakDown)
-plot(feature_importance(explainer))
+plot(break_down(explainer, titanic_test[2,1:17]))
+library(shapper)
+plot(shap(explainer, titanic_test[2,1:17]))
 
 # Predictions with newdata
 predict(explainer, titanic_test[1:10, 1:17])
