@@ -14,14 +14,12 @@
 #' @param ... other parameters that will be passed to the predict function
 #'
 #' @return An numeric vector of predictions
-#' @rdname yhat
-#' @export
 
 
 
 #' @rdname yhat
 #' @export
-yhat_mlr <- function(X.model, newdata, ...) {
+yhat.WrappedModel <- function(X.model, newdata, ...) {
   switch(X.model$task.desc$type,
          "classif" = {
            pred <- predict(X.model, newdata = newdata)
@@ -32,13 +30,12 @@ yhat_mlr <- function(X.model, newdata, ...) {
            pred <- predict(X.model, newdata = newdata)
            response <- pred$data[, 1]
            response
+
          },
          stop("Model is not explainable mlr object"))
 }
 
-#' @rdname yhat
-#' @export
-yhat_h2o <- function(X.model, newdata, ...) {
+yhat.h2o <- function(X.model, newdata, ...) {
   switch(
     class(X.model),
     "H2ORegressionModel" = {
@@ -63,3 +60,30 @@ yhat_h2o <- function(X.model, newdata, ...) {
 
   )
 }
+
+  #' @rdname yhat
+  #' @export
+
+  yhat.H2ORegressionModel <- yhat.h2o
+
+  #' @rdname yhat
+  #' @export
+  #'
+  yhat.H2OBinomialModel <- yhat.h2o
+
+
+
+  #' @rdname yhat
+  #' @export
+  yhat.scikitlearn_model <- function(X.model, newdata, ...) {
+    if ("predict_proba" %in% names(X.model)) {
+      # we take second cloumn which indicates probability of `1` to adapt to DALEX predict functions (yhat)
+      pred <-  X.model$predict_proba(newdata)[, 2]
+
+    } else{
+      pred <-  X.model$predict(newdata)
+    }
+    pred
+  }
+
+

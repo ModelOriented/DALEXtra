@@ -22,18 +22,7 @@
 #' @author Szymon Maksymiuk
 #'
 #'
-#' @return An object of the class 'explainer'. Possible extraction of object 'scikitlearn_model' via explainer$model
-#'
-#' scikitlearn_model is a list with following fields:
-#'
-#' \itemize{
-#' \item \code{model} it is original model received vie reticiulate function. Use it for computations.
-#' \item \code{predict_function} predict function extracted from original model. It is adjusted to DALEX demands and therfore fully compatibile.
-#' \item \code{type} type model, classification or regression
-#' \item \code{params} object of class `scikitlearn_set` which in fact is list that consist of parameters of our model.
-#' \item \code{label} name of model
-#'
-#' }
+#' @return An object of the class 'explainer'. It has additional field param_set when user can check parameters of scikitlearn model
 #'
 #' \bold{Example of Python code}\cr
 #'
@@ -78,7 +67,6 @@
 #' @import reticulate
 #' @importFrom utils head
 #'
-#'
 #' @examples
 #' library("DALEXtra")
 #' library("DALEX")
@@ -97,7 +85,7 @@
 #'    plot(model_performance(explainer))
 #'
 #'    # Predictions with newdata
-#'    explainer$model$predict_function(explainer$model, titanic_test[1:10,1:17])
+#'    predict(explainer, titanic_test[1:10,1:17])
 #'
 #' } else {
 #'   print('Conda is required.')
@@ -178,42 +166,18 @@ explain_scikitlearn <-
       do.call("$", list(model, x))
     })
 
+
     class(params) <- "scikitlearn_set"
-
-    #name of our model
-    label <- strsplit(as.character(model), split = "\\(")[[1]][1]
-
-    if ("predict_proba" %in% names(model)) {
-      predict_function <- function(model, newdata) {
-        # we take second cloumn which indicates probability of `1` to adapt to DALEX predict functions (yhat)
-        model$model$predict_proba(newdata)[, 2]
-      }
-      type = "classification"
-    } else{
-      predict_function <- function(model, newdata) {
-        model$model$predict(newdata)
-      }
-      type = "regression"
-    }
-
-    scikitlearn_model <- list(
-      label = label,
-      type = type,
-      params = params,
-      predict_function = predict_function,
-      model = model
-    )
-    class(scikitlearn_model) <- "scikitlearn_model"
-
-    explain(
-      model = scikitlearn_model,
+    explainer <-  explain(
+      model = model,
       data = data,
       y = y,
-      predict_function = scikitlearn_model$predict_function,
+      predict_function = predict_function,
       residual_function = residual_function,
-      ... = ...,
+      ...,
       label = label,
       verbose = verbose
     )
-
+    explainer$param_set <- params
+    explainer
   }

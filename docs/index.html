@@ -15,7 +15,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-home">
+    <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top navbar-mi2" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -53,7 +53,10 @@
 
       
       </header><div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
+    
+
+    
     
 <div id="dalextra" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
@@ -64,36 +67,79 @@
 <div id="installation-and-configuration" class="section level1">
 <h1 class="hasAnchor">
 <a href="#installation-and-configuration" class="anchor"></a>Installation and configuration</h1>
-<p>Install <code>DALEXtra</code> and <code>DALEX</code> packages</p>
-<pre><code>devtools::install_github("ModelOriented/DALEXtra")
-install.packages("DALEX")</code></pre>
-<p>Install <code>reticulate</code> package</p>
-<pre><code><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages("reticulate")</a></code></pre>
+<p>Package can be installed with execution of the following code</p>
+<pre><code>install.packages("devtools")
+devtools::install_github("ModelOriented/DALEXtra")
+devtools::install_github("pbiecek/DALEX")</code></pre>
+<p>It is recommended to install latests github version of DALEX</p>
+<p>Package <code>reticulate</code> will be downloaded along with <code>DALEXtra</code> but if you seek for its latests version it can be downloaded here</p>
+<pre><code><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">devtools::install_github("rstudio/reticulate")</a></code></pre>
+<p>Packages useful with explanations</p>
+<pre><code>devtool::install_github("ModelOriented/ingredients)
+devtool::install_github("ModelOriented/iBreakDown)</code></pre>
 <p><a href="https://modeloriented.github.io/DALEXtra/" class="uri">https://modeloriented.github.io/DALEXtra/</a></p>
 </div>
-<div id="examples" class="section level1">
+<div id="demo" class="section level1">
 <h1 class="hasAnchor">
-<a href="#examples" class="anchor"></a>Examples</h1>
-<pre><code>    # Explainer build (Keep in mind that 18th column is target)
-    titanic_test &lt;- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
-    # Keep in mind that when pickle is being built and loaded,
-    # not only Python version but libraries versions has to match aswell
-    explainer &lt;- explain_scikitlearn(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
-    condaenv = "myenv", data = titanic_test[,1:17], y = titanic_test$survived)
-    print(model_performance(explainer))
-
-    # Predictions with newdata
-    explainer$model$predict_function(explainer$model, titanic_test[1:10,1:17])</code></pre>
+<a href="#demo" class="anchor"></a>Demo</h1>
+<p>Here we will present short use case for our package and its compatibility with Python</p>
+<div id="loading-data" class="section level2">
+<h2 class="hasAnchor">
+<a href="#loading-data" class="anchor"></a>Loading data</h2>
+<p>First we need data, explainer is useless without them. Thing is Python object does not store training data so always have to proviede dataset. Feel free to use those attached to <code>DALEX</code> package or those stored in <code>DALEXtra</code> files.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">titanic_test &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/read.table">read.csv</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"titanic_test.csv"</span>, <span class="dt">package =</span> <span class="st">"DALEXtra"</span>))</a></code></pre></div>
+<p>Keep in mind that that dataframe includes targer variable (18th column) and scikit-learn models do not like it</p>
 </div>
-
+<div id="creating-explainer" class="section level2">
+<h2 class="hasAnchor">
+<a href="#creating-explainer" class="anchor"></a>Creating explainer</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(DALEXtra)</a>
+<a class="sourceLine" id="cb5-2" title="2">explainer &lt;-<span class="st"> </span><span class="kw"><a href="reference/explain_scikitlearn.html">explain_scikitlearn</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"scikitlearn.pkl"</span>, <span class="dt">package =</span> <span class="st">"DALEXtra"</span>),</a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="dt">yml =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"scikitlearn_unix.yml"</span>, <span class="dt">package =</span> <span class="st">"DALEXtra"</span>), </a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="dt">data =</span> titanic_test[,<span class="dv">1</span><span class="op">:</span><span class="dv">17</span>], <span class="dt">y =</span> titanic_test<span class="op">$</span>survived)</a></code></pre></div>
+<pre><code>## Preparation of a new explainer is initiated
+##   -&gt; model label       :  scikitlearn_model  ([33mdefault[39m)
+##   -&gt; data              :  524  rows  17  cols 
+##   -&gt; target variable   :  524  values 
+##   -&gt; predict function  :  yhat.scikitlearn_model  will be used ([33mdefault[39m)
+##   -&gt; predicted values  :  numerical, min =  0.02086126 , mean =  0.288584 , max =  0.9119996  
+##   -&gt; residual function :  difference between y and yhat ([33mdefault[39m)
+##   -&gt; residuals         :  numerical, min =  -0.8669431 , mean =  0.02248468 , max =  0.9791387  
+## [32mA new explainer has been created![39m</code></pre>
+<p>Creating exlainer from scikit-learn Python model is very simple thanks to <code>DALEXtra</code>. The only thing you need to provide is path to pickle and, if necessery, something that lets recognize Python environment. It may be .yml file with packages specification, name of existing conda environment or path to Python virtual environment. Execution of <code>scikitlearn_explain</code> only with .pkl file and data will cause usage of default Python.</p>
+</div>
+<div id="creating-explanations" class="section level2">
+<h2 class="hasAnchor">
+<a href="#creating-explanations" class="anchor"></a>Creating explanations</h2>
+<p>Now with explainer ready we can use any of DrWhy.ai universe tools to make explanations. Here is small demo</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(DALEX)</a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(<span class="kw">model_performance</span>(explainer))</a></code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ingredients)</a></code></pre></div>
+<pre><code>## 
+## Attaching package: 'ingredients'</code></pre>
+<pre><code>## The following objects are masked from 'package:DALEX':
+## 
+##     theme_drwhy, theme_drwhy_colors, theme_drwhy_vertical</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/ingredients/topics/feature_importance">feature_importance</a></span>(explainer))</a></code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-3-2.png" width="700"></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(iBreakDown)</a></code></pre></div>
+<pre><code>## 
+## Attaching package: 'iBreakDown'</code></pre>
+<pre><code>## The following object is masked from 'package:ingredients':
+## 
+##     plotD3</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/ingredients/topics/feature_importance">feature_importance</a></span>(explainer))</a></code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-3-3.png" width="700"></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># Predictions with newdata</span></a>
+<a class="sourceLine" id="cb16-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict</a></span>(explainer, titanic_test[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">17</span>])</a></code></pre></div>
+<pre><code>##  [1] 0.3565896 0.1321947 0.7638813 0.1037486 0.1265221 0.2949228 0.1421281
+##  [8] 0.1421281 0.4154695 0.1321947</code></pre>
+</div>
+</div>
   </div>
 
-  <div class="col-md-3" id="sidebar">
-  	<div class="sidebar-logo">
-	 <p>
-		This package is developed by the <a href="http://mi2.mini.pw.edu.pl">MI^2 group</a>. MI^2 (pronounce: Am I square?) is a group of mathematicians and computer scientists that love to play with data. We create tools, do consulting and share our positive attitude. 
-	 </p>
-	</div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
@@ -113,10 +159,11 @@ install.packages("DALEX")</code></pre>
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>Szymon Maksymiuk <br><small class="roles"> Author, maintainer </small>  </li>
+<li>Przemyslaw Biecek <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-8423-1823" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" alt="ORCID" height="16"></a> </li>
 </ul>
 </div>
 
-  <div class="dev-status">
+      <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://travis-ci.org/ModelOriented/DALEXtra"><img src="https://travis-ci.org/ModelOriented/DALEXtra.svg?branch=master" alt="Build Status"></a></li>
@@ -124,11 +171,12 @@ install.packages("DALEX")</code></pre>
 </ul>
 </div>
 </div>
+
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Szymon Maksymiuk.</p>
+  <p>Developed by Szymon Maksymiuk, Przemyslaw Biecek.</p>
 </div>
 
 <div class="pkgdown">

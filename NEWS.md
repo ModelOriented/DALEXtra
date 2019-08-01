@@ -1,3 +1,10 @@
+DALEXtra 0.1.6
+----------------------------------------------------------------
+* `explain_scikitlearn()` rebuilded. Now class scikitlearn_model is a additional class for original Python object instead of another object.
+* explainers created with `explain_scikitlearn()` have addidtional field `param_set`.
+* yhat is now generic
+* New examples in `README.md`
+
 DALEXtra 0.1.5
 ----------------------------------------------------------------
 * Now when you pass .yml that consist environment name that already exists one the machine, DALEXtra will not rise an error and contiune work with existing env

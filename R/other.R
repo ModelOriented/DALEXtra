@@ -32,6 +32,7 @@ dalex_load_object <- function(path) {
     }
 
   )
+  class(model) <- c(class(model), "scikitlearn_model")
   model
 
 }
@@ -43,5 +44,3 @@ error_mes <- function(e) {
     call. = FALSE
   )
 }
-
-

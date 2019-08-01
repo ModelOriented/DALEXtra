@@ -1,0 +1,75 @@
+---
+output: github_document
+---
+
+# DALEXtra
+
+[![Build Status](https://travis-ci.org/ModelOriented/DALEXtra.svg?branch=master)](https://travis-ci.org/ModelOriented/DALEXtra)
+[![Coverage
+Status](https://img.shields.io/codecov/c/github/ModelOriented/DALEXtra/master.svg)](https://codecov.io/github/ModelOriented/DALEXtra?branch=master)
+
+An extension for DALEX package
+
+# Installation and configuration
+
+Package can be installed with execution of the following code
+
+```
+install.packages("devtools")
+devtools::install_github("ModelOriented/DALEXtra")
+devtools::install_github("pbiecek/DALEX")
+```
+It is recommended to install latests github version of DALEX
+
+
+Package `reticulate` will be downloaded along with `DALEXtra` but if you seek for its latests version it can be downloaded here
+
+```
+devtools::install_github("rstudio/reticulate")
+```
+
+Packages useful with explanations
+
+```
+devtool::install_github("ModelOriented/ingredients)
+devtool::install_github("ModelOriented/iBreakDown)
+```
+
+https://modeloriented.github.io/DALEXtra/
+
+# Demo
+
+Here we will present short use case for our package and its compatibility with Python
+
+## Loading data
+
+First we need data, explainer is useless without them. Thing is Python object does not store training data so always have to proviede dataset. Feel free to use those attached to `DALEX` package or those stored in `DALEXtra` files. 
+
+```{r}
+titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
+```
+Keep in mind that that dataframe includes targer variable (18th column) and scikit-learn models do not like it
+
+## Creating explainer
+```{r, message=FALSE}
+library(DALEXtra)
+explainer <- explain_scikitlearn(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
+yml = system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra"), 
+data = titanic_test[,1:17], y = titanic_test$survived)
+```
+
+Creating exlainer from scikit-learn Python model is very simple thanks to `DALEXtra`. The only thing you need to provide is path to pickle and, if necessery, something that lets recognize Python environment. It may be .yml file with packages specification, name of existing conda environment or path to Python virtual environment. Execution of `scikitlearn_explain` only with .pkl file and data will cause usage of default Python.
+
+## Creating explanations
+Now with explainer ready we can use any of DrWhy.ai universe tools to make explanations. Here is small demo
+```{r}
+library(DALEX)
+plot(model_performance(explainer))
+library(ingredients)
+plot(feature_importance(explainer))
+library(iBreakDown)
+plot(feature_importance(explainer))
+
+# Predictions with newdata
+predict(explainer, titanic_test[1:10, 1:17])
+```

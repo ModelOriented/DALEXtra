@@ -54,7 +54,7 @@ test_that("creating explainer regr", {
     )
   )
   gbm <- mlr::train(learner, task)
-  explainer <- explain_mlr(gbm, data = titanic_test, predict_function = yhat_mlr, y = titanic_test$fare)
+  explainer <- explain_mlr(gbm, data = titanic_test, predict_function = yhat, y = titanic_test$fare)
   expect_is(explainer, "explainer")
   expect_is(explainer$y_hat, "numeric")
 
@@ -66,6 +66,6 @@ test_that("Assert when no mlr",{
   a <- list()
   a$task.desc$type <- "b"
   expect_error(explain_mlr(a,
-                           data = titanic_test, predict_function = yhat_mlr, y = titanic_test$fare))
+                           data = titanic_test, predict_function = yhat.WrappedModel, y = titanic_test$fare))
 })
 

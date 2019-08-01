@@ -9,7 +9,6 @@ test_that("prints", {
   explainer <- explain_scikitlearn(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
                                      yml = system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra"),
                                      data = titanic_test[,1:17], y = titanic_test$survived)
-  expect_success(expect_output(print(explainer$model), "Model name"))
-  expect_success(expect_output(print(explainer$model$params), NULL))
+  expect_success(expect_output(print(explainer$param_set), NULL))
 
 })

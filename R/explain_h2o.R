@@ -16,13 +16,14 @@
 #' @param precalculate if TRUE (default) then 'predicted_values' and 'residuals' are calculated when explainer is created. This will happenn also if 'verbose' is TRUE.
 #' @return explainer object ready to work with DALEX
 #'
-#' @importFrom DALEX explain
+#' @import DALEX
+#' @importFrom DALEX yhat
 #'
 #'
 #' @examples
+#' library("DALEXtra")
 #' titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
 #' titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
-#' library("DALEX")
 #' h2o::h2o.init()
 #' h2o::h2o.no_progress()
 #' titanic_h2o <- h2o::as.h2o(titanic_train)
@@ -32,7 +33,7 @@
 #' training_frame = titanic_h2o,
 #' y = "survived",
 #' distribution = "bernoulli",
-#' ntrees = 5000,
+#' ntrees = 500,
 #' max_depth = 4,
 #' min_rows =  12,
 #' learn_rate = 0.001
@@ -56,32 +57,17 @@ explain_h2o <-
       y <- as.numeric(as.vector(y))
     }
 
-    if (is.null(predict_function)) {
-      h2o::h2o.init()
-      explain(
-        model,
-        data = data,
-        y = y,
-        predict_function = yhat_h2o,
-        residual_function = residual_function,
-        label = label,
-        verbose = verbose,
-        ... = ...
-      )
-    } else {
-      h2o::h2o.init()
-      explain(
-        model,
-        data = data,
-        y = y,
-        predict_function = predict_function,
-        residual_function = residual_function,
-        label = label,
-        verbose = verbose,
-        ... = ...
-      )
-    }
 
-
+    h2o::h2o.init()
+    explain(
+      model,
+      data = data,
+      y = y,
+      predict_function = predict_function,
+      residual_function = residual_function,
+      label = label,
+      verbose = verbose,
+      ...
+    )
 
   }

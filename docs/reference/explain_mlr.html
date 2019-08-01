@@ -139,7 +139,8 @@ One of those tools, which is one of the most popular one is mlr package. We woul
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>titanic_test</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/read.table'>read.csv</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_test.csv"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='st'>"DALEXtra"</span>)
+<span class='no'>titanic_test</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/read.table'>read.csv</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_test.csv"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))
 <span class='no'>titanic_train</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/read.table'>read.csv</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_train.csv"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='st'>"mlr"</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: ParamHelpers</span></div><div class='input'><span class='no'>task</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/mlr/topics/ClassifTask'>makeClassifTask</a></span>(
 <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"R"</span>,
@@ -150,7 +151,7 @@ One of those tools, which is one of the most popular one is mlr package. We woul
   <span class='st'>"classif.gbm"</span>,
   <span class='kw'>par.vals</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
     <span class='kw'>distribution</span> <span class='kw'>=</span> <span class='st'>"bernoulli"</span>,
-    <span class='kw'>n.trees</span> <span class='kw'>=</span> <span class='fl'>5000</span>,
+    <span class='kw'>n.trees</span> <span class='kw'>=</span> <span class='fl'>500</span>,
     <span class='kw'>interaction.depth</span> <span class='kw'>=</span> <span class='fl'>4</span>,
     <span class='kw'>n.minobsinnode</span> <span class='kw'>=</span> <span class='fl'>12</span>,
     <span class='kw'>shrinkage</span> <span class='kw'>=</span> <span class='fl'>0.001</span>,
@@ -164,10 +165,10 @@ One of those tools, which is one of the most popular one is mlr package. We woul
 #&gt;   -&gt; model label       :  WrappedModel  (<span style='color: #BBBB00;'>default</span><span>)
 #&gt;   -&gt; data              :  524  rows  17  cols 
 #&gt;   -&gt; target variable   :  524  values 
-#&gt;   -&gt; predict function  :  yhat_mlr 
-#&gt;   -&gt; predicted values  :  numerical, min =  0.03946409 , mean =  0.3320766 , max =  0.9472849  
+#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used (</span><span style='color: #BBBB00;'>default</span><span>)
+#&gt;   -&gt; predicted values  :  numerical, min =  0.2693414 , mean =  0.3319247 , max =  0.5640745  
 #&gt;   -&gt; residual function :  difference between y and yhat (</span><span style='color: #BBBB00;'>default</span><span>)
-#&gt;   -&gt; residuals         :  numerical, min =  -0.9311745 , mean =  -0.02100794 , max =  0.9502293  
+#&gt;   -&gt; residuals         :  numerical, min =  -0.5640745 , mean =  -0.02085597 , max =  0.7306586  
 #&gt; </span><span style='color: #00BB00;'>A new explainer has been created!</span><span></div><div class='output co'>#&gt; Model label:  WrappedModel 
 #&gt; Model class:  WrappedModel 
 #&gt; Data head  :
@@ -200,7 +201,7 @@ One of those tools, which is one of the most popular one is mlr package. We woul
 
       <footer>
       <div class="copyright">
-  <p>Developed by Szymon Maksymiuk.</p>
+  <p>Developed by Szymon Maksymiuk, Przemyslaw Biecek.</p>
 </div>
 
 <div class="pkgdown">
