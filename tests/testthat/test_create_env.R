@@ -37,6 +37,9 @@ test_that("if check", {
 test_that("errors checks", {
   skip_if_no_conda()
   skip_if_windows()
+  if ("myenv" %in% reticulate::conda_list()$name) {
+    reticulate::conda_remove("myenv")
+  }
     expect_error(create_env(
       system.file("extdata", "scikitlearn.yml", package = "DALEXtra")
     ))
