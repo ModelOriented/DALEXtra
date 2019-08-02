@@ -12,11 +12,7 @@
 #'
 #'
 #' @examples
-#' is_conda <- function(){
-#' is_conda <- try(reticulate::conda_binary())
-#' class(is_conda) != "try-error"
-#' }
-#' if(is_conda()) {
+#' if(DALEXtra:::is_conda()) {
 #'   reticulate::use_condaenv("myenv")
 #'
 #'     create_env(

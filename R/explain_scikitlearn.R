@@ -70,11 +70,7 @@
 #' @examples
 #' library("DALEXtra")
 #' library("DALEX")
-#' is_conda <- function(){
-#' is_conda <- try(reticulate::conda_binary())
-#' class(is_conda) != "try-error"
-#' }
-#' if(is_conda()) {
+#' if(DALEXtra:::is_conda()) {
 #'    # Explainer build (Keep in mind that 18th column is target)
 #'    titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
 #'    # Keep in mind that when pickle is being built and loaded,
