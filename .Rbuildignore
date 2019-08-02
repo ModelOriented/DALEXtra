@@ -11,3 +11,5 @@ vignettes/
 miniconda.sh
 Plany.txt
 codecov.yml
+README_files
+README.rmd

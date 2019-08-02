@@ -27,6 +27,7 @@ Packages useful with explanations
 
     devtool::install_github("ModelOriented/ingredients)
     devtool::install_github("ModelOriented/iBreakDown)
+    devtool::install_github("ModelOriented/shapper)
 
 <https://modeloriented.github.io/DALEXtra/>
 

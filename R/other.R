@@ -44,3 +44,8 @@ error_mes <- function(e) {
     call. = FALSE
   )
 }
+
+is_conda <- function(){
+is_conda <- try(reticulate::conda_binary())
+class(is_conda) != "try-error"
+}
