@@ -11,7 +11,6 @@ test_that("creating explainer", {
     explainer_1 <- explain_scikitlearn(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
     condaenv = "myenv", data = titanic_test[,1:17], y = titanic_test$survived)
 
-    skip_if_no_conda()
     explainer_2 <- explain_scikitlearn(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
                                      yml = system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra"),
                                      data = titanic_test[,1:17], y = titanic_test$survived)
@@ -30,10 +29,16 @@ test_that("if check", {
                "Only one argument from condaenv and env can be different from NULL", fixed = TRUE)
   expect_error(explain_scikitlearn("path.pkl",
                                    env = "env"))
-  expect_error(explain_scikitlearn(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
-                                   condaenv = conda_list()$name[1]))
+
 
 })
+
+test_that("wrong env",{
+  skip_if_no_conda()
+          expect_error(explain_scikitlearn(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
+                                           condaenv = conda_list()$name[1]))
+
+  })
 
 test_that("env change error", {
 
