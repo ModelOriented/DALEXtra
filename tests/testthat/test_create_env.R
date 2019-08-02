@@ -22,6 +22,8 @@ test_that("creating env", {
 
 })
 test_that("if check", {
+  skip_if_no_conda()
+  skip_if_windows
   if (.Platform$OS.type == "unix") {
     expect_success(expect_message(create_env(yml = system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra")),
                                   "not specified"))
@@ -30,6 +32,19 @@ test_that("if check", {
     expect_success(expect_message(create_env(yml = system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra")),
                                   "exists"))
   }
+})
+
+test_that("errors checks", {
+  skip_if_no_conda()
+  skip_if_windows()
+    expect_error(create_env(
+      system.file("extdata", "scikitlearn.yml", package = "DALEXtra")
+    ))
+    expect_error(create_env(
+      system.file("extdata", "scikitlearn.yml", package = "DALEXtra"),
+      condaenv = "wrong_path"
+
+    ))
 })
 
 
