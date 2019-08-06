@@ -56,6 +56,7 @@ In order to export environment into .yml, activating virtual env via \code{activ
 Here is shortened version of solution for specific errors \cr
 \cr
 \bold{There already exists environment with a name specified by given .yml file}\cr
+If you provide .yml file that in its header contatins name exact to name of environment that already exists, existing will be set active without changing it. \cr
 You have two ways of solving that issue. Both connected with anaconda prompt. First is removing conda env with command: \cr
 \code{conda env remove --name myenv}\cr
 And execute function once again. Second is updating env via: \cr

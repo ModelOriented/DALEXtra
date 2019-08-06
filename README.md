@@ -8,6 +8,31 @@ Status](https://img.shields.io/codecov/c/github/ModelOriented/DALEXtra/master.sv
 
 An extension for DALEX package
 
+# Anaconda
+
+In order to be able to use some features associated with `DALEXtra`,
+Anaconda in needed. The easiest way to get it, is visting [Anconda
+website](https://www.anaconda.com/distribution). And choosing proper OS
+as it stands in the following picture.
+![](README_files/figure-gfm/anaconda1.png) There is no big difference
+bewtween Python versions when downloading conda therefore it is
+recommended to choose Python 3.7 (newer Anaconda version) and then
+downloading python 2.7.
+
+## Windows
+
+Crucial thing is adding conda to PATH environment variable when using
+Windows. You can do it during installation, by marking this checkbox.
+
+![](README_files/figure-gfm/anaconda2.png)
+
+or, if conda is already installed, by following [those
+instructions](https://stackoverflow.com/a/44597801/9717584).
+
+## Unix
+
+While using unixlike OS, adding conda to PATH is not required.
+
 # Installation and configuration
 
 Package can be installed with execution of the following code
@@ -25,9 +50,10 @@ seek for its latests version it can be downloaded here
 
 Packages useful with explanations
 
-    devtool::install_github("ModelOriented/ingredients)
-    devtool::install_github("ModelOriented/iBreakDown)
-    devtool::install_github("ModelOriented/shapper)
+    devtools::install_github("ModelOriented/ingredients)
+    devtools::install_github("ModelOriented/iBreakDown)
+    devtools::install_github("ModelOriented/shapper)
+    devtools::install_github("MI2DataLab/auditor")
 
 <https://modeloriented.github.io/DALEXtra/>
 
@@ -110,6 +136,15 @@ plot(shap(explainer, titanic_test[2,1:17]))
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-3-4.png)<!-- -->
+
+``` r
+library(auditor)
+plotROC(audit(explainer))
+```
+
+    ## Warning in rev(as.numeric(df$label)): NAs introduced by coercion
+
+![](README_files/figure-gfm/unnamed-chunk-3-5.png)<!-- -->
 
 ``` r
 # Predictions with newdata
