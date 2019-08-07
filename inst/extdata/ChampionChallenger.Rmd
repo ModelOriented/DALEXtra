@@ -1,0 +1,19 @@
+---
+title: "ChampionChallenger"
+author: "DALEXtra"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+# Test
+
+```{r}
+library(DALEX)
+getwd()
+plot(model_performance(champion), model_performance(challenger))
+```
