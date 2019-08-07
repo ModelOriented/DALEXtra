@@ -51,10 +51,6 @@ explainer_mlr <- explain_mlr(gbm, titanic_test[,1:17], titanic_test[,18])-> expl
    explainer_scikit <- explain_scikitlearn(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
    yml = system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra"),
    data = titanic_test[,1:17], y = titanic_test$survived)
-   plot(model_performance(explainer))
-
-   # Predictions with newdata
-   predict(explainer, titanic_test[1:10,1:17])
 
 champion_challenger(explainer_mlr, explainer_scikit)
 } else {
