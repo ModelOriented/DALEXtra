@@ -10,10 +10,15 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```
 
-# Test
+# Residuals histogram
 
 ```{r}
-library(DALEX)
-getwd()
-plot(model_performance(champion), model_performance(challenger))
+library(ggplot2)
+ggplot()+
+  geom_histogram(aes(explainer_scikit$residuals, fill = "Champion"), alpha = 0.4, binwidth = 0.08)+
+  geom_histogram(aes(explainer_mlr$residuals, fill = "Challenger"), alpha = 0.4, binwidth = 0.08)+
+  scale_fill_manual(name = "", values = c("Champion" = "red", "Challenger" = "blue"), 
+                    labels = c(explainer_mlr$label, explainer_scikit$label))+
+  labs(x = "residuals", y = "observations")+
+  theme_drwhy()
 ```

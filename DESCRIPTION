@@ -24,7 +24,8 @@ Suggests:
   h2o,
   mlr,
   gbm,
-  testthat
+  testthat,
+  rmarkdown
 URL: https://modeloriented.github.io/DALEXtra/
 BugReports: https://github.com/ModelOriented/DALEXtra/issues
 
