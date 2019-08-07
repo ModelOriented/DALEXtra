@@ -77,8 +77,11 @@ yhat.h2o <- function(X.model, newdata, ...) {
   #' @export
   yhat.scikitlearn_model <- function(X.model, newdata, ...) {
     if ("predict_proba" %in% names(X.model)) {
-      # we take second cloumn which indicates probability of `1` to adapt to DALEX predict functions (yhat)
-      pred <-  X.model$predict_proba(newdata)[, 2]
+      # we take second cloumn which indicates probability of `1` to adapt to DALEX predict functions (yhat). If output is one column it will be taken
+     sucsess <- try(pred <-  X.model$predict_proba(newdata)[, 2], silent = TRUE)
+     if(class(sucsess) == "try-error"){
+       pred <-  X.model$predict_proba(newdata)[, 1]
+     }
 
     } else{
       pred <-  X.model$predict(newdata)

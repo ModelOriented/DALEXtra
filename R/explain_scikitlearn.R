@@ -136,32 +136,42 @@ explain_scikitlearn <-
 
 
     model <- dalex_load_object(path)
+    # Check if model stores info about his parameters
+    params_available <- try(model$get_params, silent = TRUE)
 
-    # params are represented as one long string
-    params <- model$get_params
-    # taking first element since strsplit() returns list of vectors
-    params <- strsplit(as.character(params), split = ",")[[1]]
-    # replacing blanks and other signs that we don't need and are pasted with params names
-    params <-
-      gsub(params,
-           pattern = "\n",
-           replacement = "",
-           fixed = TRUE)
-    params <-
-      gsub(params,
-           pattern = " ",
-           replacement = "",
-           fixed = TRUE)
-    # splitting after "=" mark and taking first element (head(n = 1L)) provides as with params names
-    params <- lapply(strsplit(params, split = "="), head, n = 1L)
-    # removing name of function from the first parameter
-    params[[1]] <- strsplit(params[[1]], split = "\\(")[[1]][2]
-    # setting freshly extracted parameters names as labels for list
-    names(params) <- as.character(params)
-    #extracting parameters value
-    params <- lapply(params, function(x) {
-      do.call("$", list(model, x))
-    })
+    if (class(params_available) != "try-error") {
+      # params are represented as one long string
+      params <- model$get_params
+      # taking first element since strsplit() returns list of vectors
+      params <- strsplit(as.character(params), split = ",")[[1]]
+      # replacing blanks and other signs that we don't need and are pasted with params names
+      params <-
+        gsub(
+          params,
+          pattern = "\n",
+          replacement = "",
+          fixed = TRUE
+        )
+      params <-
+        gsub(
+          params,
+          pattern = " ",
+          replacement = "",
+          fixed = TRUE
+        )
+      # splitting after "=" mark and taking first element (head(n = 1L)) provides as with params names
+      params <- lapply(strsplit(params, split = "="), head, n = 1L)
+      # removing name of function from the first parameter
+      params[[1]] <- strsplit(params[[1]], split = "\\(")[[1]][2]
+      # setting freshly extracted parameters names as labels for list
+      names(params) <- as.character(params)
+      #extracting parameters value
+      params <- lapply(params, function(x) {
+        do.call("$", list(model, x))
+      })
+    } else{
+      params <- "Params not available"
+    }
 
 
     class(params) <- "scikitlearn_set"
