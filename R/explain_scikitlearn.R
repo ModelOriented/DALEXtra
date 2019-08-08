@@ -139,7 +139,7 @@ explain_scikitlearn <-
     # Check if model stores info about his parameters
     params_available <- try(model$get_params, silent = TRUE)
 
-    if (class(params_available) != "try-error") {
+    if (all(class(params_available) != "try-error")) {
       # params are represented as one long string
       params <- model$get_params
       # taking first element since strsplit() returns list of vectors

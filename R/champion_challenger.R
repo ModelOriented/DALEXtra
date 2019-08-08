@@ -60,6 +60,9 @@
 
 
 champion_challenger <- function(champion, challenger, ...) {
+  if(class(champion) != "explainer" | class(challenger) != "explainer"){
+    stop("Both, champion and challanger have to be explainer objects")
+  }
   rmarkdown::render(
     input = system.file("extdata", "ChampionChallenger.Rmd", package = "DALEXtra"),
     output_file = "ChampionChallenger.html",
