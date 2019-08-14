@@ -21,14 +21,11 @@ library("auditor")
 # Measures 
 
 ```{r}
-au1 <- audit(champion)
-au2 <- audit(challenger)
-
-confusionmatrix <- function(au) {
-  yhat <- as.numeric(au$fitted.values > 0.5)
-  TP <- sum(yhat[yhat == 1] == au$y[yhat == 1])
+confusionmatrix <- function(explainer) {
+  yhat <- as.numeric(explainer$y_hat > 0.5)
+  TP <- sum(yhat[yhat == 1] == explainer$y[yhat == 1])
   FP <- length(yhat[yhat == 1]) - TP
-  TN <- sum(yhat[yhat == 0] == au$y[yhat == 0])
+  TN <- sum(yhat[yhat == 0] == explainer$y[yhat == 0])
   FN <- length(yhat[yhat == 0]) - TN
   list(
     "TP" = TP,
@@ -40,7 +37,7 @@ confusionmatrix <- function(au) {
 
 new_scores <- list(
   "1-auc" = function(au) {
-    1 - score(au, type = "ROC")$score
+    1 - score(au, score = "auc")$score
   },
   "1-acc" = function(au) {
     conf <- confusionmatrix(au)
@@ -64,10 +61,8 @@ new_scores <- list(
       (conf$TP / (conf$TP + conf$FN) + conf$TP / (conf$TP + conf$FP))
   }
 )
-p <- plot(modelPerformance(au1, scores = c("MAE"), new.score = new_scores), modelPerformance(au2, scores = c("MAE"), new.score = new_scores))
-p$plot_ranking
-p$data$value <- round(as.numeric(p$data$value), 4)
-p$data
+plot(auditor::model_performance(champion, score = NULL, new_score = new_scores), auditor::model_performance(challenger, score = NULL, new_score = new_scores))
+
 
 ```
 
@@ -76,7 +71,7 @@ p$data
 Sometimes mesuares or even graphics that are presented below, are not sufficient to judge which model is better. Therefore here we have some scores. DW score and Runs score are based on Durbin-Watson and Runs test statistics.
 
 ```{r}
-scores <- data.frame(c(scoreDW(au1)$score, scoreRuns(au1)$score), c(scoreDW(au2)$score, scoreRuns(au2)$score))
+scores <- data.frame(c(score_dw(champion)$score, score_runs(champion)$score), c(score_dw(challenger)$score, score_runs(challenger)$score))
 colnames(scores) <- c(champion$label, challenger$label)
 rownames(scores) <- c("Durbin-Watson", "Runs")
 scores
@@ -162,7 +157,7 @@ if (max(scores_champion) >= max(scores_challenger)) {
 }
 
 controversial_data_rule
-controversial_data
+as.data.frame(controversial_data)
 
 ```
 
@@ -172,13 +167,17 @@ controversial_data
 ## Autocorrealation of residuals
 
 ```{r}
-plot(audit(challenger), audit(champion), type = "Autocorrelation")
+champion_model_residual <- model_residual(champion)
+challenger_model_residual <- model_residual(challenger)
+plot_autocorrelation(champion_model_residual, challenger_model_residual)
 ```
 
 ## Receiver Operating Characteristic (ROC) Curve
 
 ```{r}
-plot(audit(challenger), audit(champion), type = "ROC")
+champion_model_evaluation <- model_evaluation(champion)
+challenger_model_evaluation <- model_evaluation(challenger)
+plot_roc(champion_model_evaluation, challenger_model_evaluation)
 ```
 
 ## Prediction vs variable
@@ -186,12 +185,12 @@ plot(audit(challenger), audit(champion), type = "ROC")
 ```{r}
 library(ggplot2)
 if(is.null(variable)) {
-  print(plotPrediction(audit(challenger), audit(champion), variable = variable)+
+  print(plot_prediction(champion_model_residual, challenger_model_residual, variable = variable)+
             geom_point(data = plot_data, aes(x = plot_data[,var], y = plot_data$survived), color='red')+
             geom_point(data = controversial_data, aes(x = controversial_data[,var], y = controversial_data$survived), color='orange'))
 } else {
   for (var in variable) {
-    print(plotPrediction(audit(challenger), audit(champion), variable = var)+
+    print(plot_prediction(champion_model_residual, challenger_model_residual, variable = var)+
             geom_point(data = plot_data, aes(x = plot_data[,var], y = plot_data$survived), color='red')+
             geom_point(data = controversial_data, aes(x = controversial_data[,var], y = controversial_data$survived), color='orange'))
   }
@@ -202,18 +201,18 @@ if(is.null(variable)) {
 ## ResidualBoxplot
 
 ```{r}
-plot(audit(challenger), audit(champion), type = "ResidualBoxplot")
+plot_residual_boxplot(champion_model_residual, challenger_model_residual)
 ```
 
 ## Residual Density
 
 ```{r}
-plot(audit(challenger), audit(champion), type = "ResidualDensity")
+plot_residual_density(champion_model_residual, challenger_model_residual)
 ```
 
 ## LIFT curve
 
 ```{r}
-plotLIFT(audit(challenger), audit(champion))
+plot_lift(champion_model_evaluation, challenger_model_evaluation)
 ```
 

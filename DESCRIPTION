@@ -1,6 +1,6 @@
 Package: DALEXtra
 Title: Extension for DALEX package
-Version: 0.1.6
+Version: 0.1.7
 Authors@R: 
     c(person(given = "Szymon",
            family = "Maksymiuk",
