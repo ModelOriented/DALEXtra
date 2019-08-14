@@ -4,12 +4,20 @@
 \alias{champion_challenger}
 \title{Create model comparison}
 \usage{
-champion_challenger(champion, challenger, ...)
+champion_challenger(champion, challenger, variable = NULL, type,
+  control = rpart::rpart.control(maxdepth = 4, minbucket = 27, cp =
+  0.0082212), ...)
 }
 \arguments{
 \item{champion}{- explainer of model that is supposed to be challenged}
 
 \item{challenger}{- explainer of model that is supposed to beat champion}
+
+\item{variable}{- variable that is going to be used in "prediction versus varaible" comparison}
+
+\item{type}{- classification or regression}
+
+\item{control}{- rpart.control object that will be passed to rpart tree}
 
 \item{...}{- other arguments that will ba passed to rmarkdown::render()}
 }
@@ -45,7 +53,7 @@ learner <- mlr::makeLearner(
   predict.type = "prob"
 )
 gbm <- mlr::train(learner, task)
-explainer_mlr <- explain_mlr(gbm, titanic_test[,1:17], titanic_test[,18])-> explainermlr
+explainer_mlr <- explain_mlr(gbm, titanic_test[,1:17], titanic_test[,18])
 
 
 # Explainer build (Keep in mind that 18th column is target)
@@ -61,7 +69,8 @@ explainer_scikit <- explain_scikitlearn(system.file("extdata",
                                         data = titanic_test[,1:17],
                                         y = titanic_test$survived)
 
-champion_challenger(explainer_mlr, explainer_scikit)
+champion_challenger(explainer_mlr, explainer_scikit, type = "classification",
+                    variable = c("fare", "age"))
 } else {
   print('Conda is required.')
 }

@@ -21,11 +21,14 @@ RoxygenNote: 6.1.1
 Imports: 
   reticulate
 Suggests: 
+  auditor,
+  gbm,
   h2o,
   mlr,
-  gbm,
-  testthat,
-  rmarkdown
+  rmarkdown,
+  rpart,
+  rpart.plot,
+  testthat
 URL: https://modeloriented.github.io/DALEXtra/
 BugReports: https://github.com/ModelOriented/DALEXtra/issues
 

@@ -1,0 +1,219 @@
+---
+title: "ChampionChallenger"
+author: "DALEXtra"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    toc: true  
+    toc_float: true
+    number_sections: true
+---
+
+```{r setup, include=FALSE, message=FALSE, warning=TRUE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+
+```{r}
+library("auditor")
+```
+
+# Measures 
+
+```{r}
+au1 <- audit(champion)
+au2 <- audit(challenger)
+
+confusionmatrix <- function(au) {
+  yhat <- as.numeric(au$fitted.values > 0.5)
+  TP <- sum(yhat[yhat == 1] == au$y[yhat == 1])
+  FP <- length(yhat[yhat == 1]) - TP
+  TN <- sum(yhat[yhat == 0] == au$y[yhat == 0])
+  FN <- length(yhat[yhat == 0]) - TN
+  list(
+    "TP" = TP,
+    "FP" = FP,
+    "TN" = TN,
+    "FN" = FN
+  )
+}
+
+new_scores <- list(
+  "1-auc" = function(au) {
+    1 - score(au, type = "ROC")$score
+  },
+  "1-acc" = function(au) {
+    conf <- confusionmatrix(au)
+    1 - (conf$TP + conf$TN) / (conf$TP + conf$FP + conf$TN + conf$FN)
+  },
+  "1-precission" = function(au) {
+    conf <- confusionmatrix(au)
+    1 - conf$TP / (conf$TP + conf$FP)
+  },
+  "1-recall" = function(au) {
+    conf <- confusionmatrix(au)
+    1 - conf$TP / (conf$TP + conf$FN)
+  },
+  "1-specificity" = function(au) {
+    conf <- confusionmatrix(au)
+    1 - conf$TN / (conf$TN + conf$FP)
+  },
+  "1-F1" = function(au) {
+    conf <- confusionmatrix(au)
+    (2 * (conf$TP / (conf$TP + conf$FP)) * (conf$TP / (conf$TP + conf$FN))) /
+      (conf$TP / (conf$TP + conf$FN) + conf$TP / (conf$TP + conf$FP))
+  }
+)
+p <- plot(modelPerformance(au1, scores = c("MAE"), new.score = new_scores), modelPerformance(au2, scores = c("MAE"), new.score = new_scores))
+p$plot_ranking
+p$data$value <- round(as.numeric(p$data$value), 4)
+p$data
+
+```
+
+# Scores comparison
+
+Sometimes mesuares or even graphics that are presented below, are not sufficient to judge which model is better. Therefore here we have some scores. DW score and Runs score are based on Durbin-Watson and Runs test statistics.
+
+```{r}
+scores <- data.frame(c(scoreDW(au1)$score, scoreRuns(au1)$score), c(scoreDW(au2)$score, scoreRuns(au2)$score))
+colnames(scores) <- c(champion$label, challenger$label)
+rownames(scores) <- c("Durbin-Watson", "Runs")
+scores
+```
+
+# Response comparison
+
+```{r}
+library(rpart)
+testdata_champion <-
+  cbind(champion$data,
+        "survived" = as.numeric(champion$y_hat > 0.5))
+testdata_challenger <-
+  cbind(challenger$data,
+        "survived" = as.numeric(challenger$y_hat > 0.5))
+yhats <- data.frame(
+  "champion" = as.numeric(champion$y_hat > 0.5),
+  "challenger" = as.numeric(challenger$y_hat > 0.5)
+)
+
+model_champion <-
+  rpart(survived ~ .,
+        data = testdata_champion,
+        control = control)
+
+model_challenger <-
+  rpart(survived ~ .,
+        data = testdata_challenger,
+        control = control)
+
+datasets_champion <- lapply(sort(unique(model_champion$where)), function(x){
+  yhats[model_champion$where == x,]
+})
+names_champion <- row.names(model_champion$frame[model_champion$frame$var == "<leaf>",])
+rules_champion <- rpart.plot::rpart.rules(model_champion) 
+rules_champion  <- rules_champion[names_champion,]
+
+datasets_challenger<- lapply(sort(unique(model_challenger$where)), function(x){
+  yhats[model_challenger$where == x,]
+})
+names_challenger <- row.names(model_challenger$frame[model_challenger$frame$var == "<leaf>",])
+rules_challenger <- rpart.plot::rpart.rules(model_challenger) 
+rules_challenger <- rules_challenger[names_challenger,]
+
+entropy <- function(x) {
+  if (sum(0 == x) == 0) {
+    ret_0 <- 0
+  } else {
+    ret_0 <- (sum(0 == x) / length(x)) * log2(sum(0 == x) / length(x))
+  }
+  if (sum(1 == x) == 0) {
+    ret_1 <- 0
+  } else {
+    ret_1 <- (sum(1 == x) / length(x)) * log2(sum(1 == x) / length(x))
+  }
+
+
+  - ret_0 - ret_1
+}
+
+loss_function <- function(X){
+  rows <- sum(apply(X, MARGIN = 1, entropy))
+  columns <- sum(apply(X, MARGIN = 2, entropy))
+  rows/nrow(X) - columns/ncol(X)
+}
+
+scores_champion <- sapply(datasets_champion, loss_function)
+scores_challenger <- sapply(datasets_challenger, loss_function)
+if (max(scores_champion) >= max(scores_challenger)) {
+  controversial_data <-
+    cbind(champion$data, "survived" = champion$y_hat)[row.names(datasets_champion[[which.max(scores_champion)]]),]
+  controversial_data_rule <-
+    paste0(rules_champion[which.max(scores_champion), -(1:2)], collapse = " ")
+  plot_data <-
+    cbind(champion$data, "survived" = challenger$y_hat)[row.names(datasets_champion[[which.max(scores_champion)]]),]
+} else{
+  controversial_data <-
+    cbind(challenger$data, "survived" = challenger$y_hat)[row.names(datasets_challenger[[which.max(scores_challenger)]]),]
+  controversial_data_rule <-
+    paste0(rules_challenger[which.max(scores_challenger), -(1:2)], collapse = " ")
+  plot_data <-
+    cbind(challenger$data, "survived" = champion$y_hat)[row.names(datasets_challenger[[which.max(scores_challenger)]]),]
+}
+
+controversial_data_rule
+controversial_data
+
+```
+
+
+# Residual comparison
+
+## Autocorrealation of residuals
+
+```{r}
+plot(audit(challenger), audit(champion), type = "Autocorrelation")
+```
+
+## Receiver Operating Characteristic (ROC) Curve
+
+```{r}
+plot(audit(challenger), audit(champion), type = "ROC")
+```
+
+## Prediction vs variable
+
+```{r}
+library(ggplot2)
+if(is.null(variable)) {
+  print(plotPrediction(audit(challenger), audit(champion), variable = variable)+
+            geom_point(data = plot_data, aes(x = plot_data[,var], y = plot_data$survived), color='red')+
+            geom_point(data = controversial_data, aes(x = controversial_data[,var], y = controversial_data$survived), color='orange'))
+} else {
+  for (var in variable) {
+    print(plotPrediction(audit(challenger), audit(champion), variable = var)+
+            geom_point(data = plot_data, aes(x = plot_data[,var], y = plot_data$survived), color='red')+
+            geom_point(data = controversial_data, aes(x = controversial_data[,var], y = controversial_data$survived), color='orange'))
+  }
+}
+
+```
+
+## ResidualBoxplot
+
+```{r}
+plot(audit(challenger), audit(champion), type = "ResidualBoxplot")
+```
+
+## Residual Density
+
+```{r}
+plot(audit(challenger), audit(champion), type = "ResidualDensity")
+```
+
+## LIFT curve
+
+```{r}
+plotLIFT(audit(challenger), audit(champion))
+```
+

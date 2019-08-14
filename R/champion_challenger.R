@@ -5,6 +5,9 @@
 #'
 #' @param champion - explainer of model that is supposed to be challenged
 #' @param challenger - explainer of model that is supposed to beat champion
+#' @param variable - variable that is going to be used in "prediction versus varaible" comparison
+#' @param type - classification or regression
+#' @param control - rpart.control object that will be passed to rpart tree
 #' @param ... - other arguments that will ba passed to rmarkdown::render()
 #'
 #' @return html raport
@@ -37,7 +40,7 @@
 #'   predict.type = "prob"
 #' )
 #' gbm <- mlr::train(learner, task)
-#' explainer_mlr <- explain_mlr(gbm, titanic_test[,1:17], titanic_test[,18])-> explainermlr
+#' explainer_mlr <- explain_mlr(gbm, titanic_test[,1:17], titanic_test[,18])
 #'
 #'
 #' # Explainer build (Keep in mind that 18th column is target)
@@ -53,21 +56,44 @@
 #'                                         data = titanic_test[,1:17],
 #'                                         y = titanic_test$survived)
 #'
-#' champion_challenger(explainer_mlr, explainer_scikit)
+#' champion_challenger(explainer_mlr, explainer_scikit, type = "classification",
+#'                     variable = c("fare", "age"))
 #' } else {
 #'   print('Conda is required.')
 #' }
 
 
-champion_challenger <- function(champion, challenger, ...) {
-  if(class(champion) != "explainer" | class(challenger) != "explainer"){
-    stop("Both, champion and challanger have to be explainer objects")
+champion_challenger <-
+  function(champion,
+           challenger,
+           variable = NULL,
+           type,
+           control = rpart::rpart.control(maxdepth = 4,
+                                   minbucket = 27,
+                                   cp = 0.0082212),
+           ...) {
+    if (control$maxdepth > 4) {
+      stop("maxdepth has to be lower than 5")
+    }
+    if (class(champion) != "explainer" |
+        class(challenger) != "explainer") {
+      stop("Both, champion and challanger have to be explainer objects")
+    }
+    if (type == "classification") {
+      rmarkdown::render(
+        input = system.file("extdata", "ChampionChallenger_classif.Rmd", package = "DALEXtra"),
+        output_file = "ChampionChallenger.html",
+        output_dir = file.path(getwd()),
+        ...
+      )
+    } else if (type == "regression") {
+      rmarkdown::render(
+        input = system.file("extdata", "ChampionChallenger_regr.Rmd", package = "DALEXtra"),
+        output_file = "ChampionChallenger.html",
+        output_dir = file.path(getwd()),
+        ...
+      )
+    } else {
+      stop("type argument has to be classification or regression")
+    }
   }
-  rmarkdown::render(
-    input = system.file("extdata", "ChampionChallenger.Rmd", package = "DALEXtra"),
-    output_file = "ChampionChallenger.html",
-    output_dir = file.path(getwd()),
-    ...
-  )
-
-}
