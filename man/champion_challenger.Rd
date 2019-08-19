@@ -11,7 +11,7 @@ champion_challenger(champion, challenger, variable = NULL, type,
 \arguments{
 \item{champion}{- explainer of model that is supposed to be challenged}
 
-\item{challenger}{- explainer of model that is supposed to beat champion}
+\item{challenger}{- explainer or list of explainers of models that are supposed to beat champion}
 
 \item{variable}{- variable that is going to be used in "prediction versus varaible" comparison}
 

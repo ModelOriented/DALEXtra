@@ -2,6 +2,10 @@
 output: github_document
 ---
 
+```{r setup, include=FALSE, message=FALSE, warning=TRUE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+```
+
 # DALEXtra
 
 [![Build Status](https://travis-ci.org/ModelOriented/DALEXtra.svg?branch=master)](https://travis-ci.org/ModelOriented/DALEXtra)
@@ -52,7 +56,7 @@ Packages useful with explanations
 devtools::install_github("ModelOriented/ingredients)
 devtools::install_github("ModelOriented/iBreakDown)
 devtools::install_github("ModelOriented/shapper)
-devtools::install_github("MI2DataLab/auditor")
+devtools::install_github("ModelOriented/auditor")
 ```
 
 https://modeloriented.github.io/DALEXtra/
@@ -71,7 +75,7 @@ titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "D
 Keep in mind that that dataframe includes targer variable (18th column) and scikit-learn models do not like it
 
 ## Creating explainer
-```{r, message=FALSE}
+```{r}
 library(DALEXtra)
 explainer <- explain_scikitlearn(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
 yml = system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra"), 
@@ -82,7 +86,7 @@ Creating exlainer from scikit-learn Python model is very simple thanks to `DALEX
 
 ## Creating explanations
 Now with explainer ready we can use any of DrWhy.ai universe tools to make explanations. Here is small demo
-```{r message=FALSE}
+```{r}
 library(DALEX)
 plot(model_performance(explainer))
 library(ingredients)
@@ -92,7 +96,8 @@ plot(break_down(explainer, titanic_test[2,1:17]))
 library(shapper)
 plot(shap(explainer, titanic_test[2,1:17]))
 library(auditor)
-plotROC(audit(explainer))
+eval <- model_evaluation(explainer)
+plot_roc(eval)
 
 # Predictions with newdata
 predict(explainer, titanic_test[1:10, 1:17])

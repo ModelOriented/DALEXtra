@@ -4,7 +4,7 @@
 #' Threfore we may want to compare our models using such a usefull tool.
 #'
 #' @param champion - explainer of model that is supposed to be challenged
-#' @param challenger - explainer of model that is supposed to beat champion
+#' @param challenger - explainer or list of explainers of models that are supposed to beat champion
 #' @param variable - variable that is going to be used in "prediction versus varaible" comparison
 #' @param type - classification or regression
 #' @param control - rpart.control object that will be passed to rpart tree
@@ -42,6 +42,22 @@
 #' gbm <- mlr::train(learner, task)
 #' explainer_mlr <- explain_mlr(gbm, titanic_test[,1:17], titanic_test[,18])
 #'
+#' h2o::h2o.init()
+#' h2o::h2o.no_progress()
+#' titanic_h2o <- h2o::as.h2o(titanic_train)
+#' titanic_h2o["survived"] <- h2o::as.factor(titanic_h2o["survived"])
+#' titanic_test_h2o <- h2o::as.h2o(titanic_test)
+#' model <- h2o::h2o.gbm(
+#' training_frame = titanic_h2o,
+#' y = "survived",
+#' distribution = "bernoulli",
+#' ntrees = 500,
+#' max_depth = 4,
+#' min_rows =  12,
+#' learn_rate = 0.001
+#' )
+#' explainer_h2o <- explain_h2o(model, titanic_test[,1:17], titanic_test[,18])
+#'
 #'
 #' # Explainer build (Keep in mind that 18th column is target)
 #' titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
@@ -56,7 +72,7 @@
 #'                                         data = titanic_test[,1:17],
 #'                                         y = titanic_test$survived)
 #'
-#' champion_challenger(explainer_mlr, explainer_scikit, type = "classification",
+#' champion_challenger(explainer_mlr, list(explainer_scikit, explainer_h2o), type = "classification",
 #'                     variable = c("fare", "age"))
 #' } else {
 #'   print('Conda is required.')
@@ -75,9 +91,12 @@ champion_challenger <-
     if (control$maxdepth > 4) {
       stop("maxdepth has to be lower than 5")
     }
+    if (class(challenger) != "list"){
+      challenger <- list(challenger)
+    }
     if (class(champion) != "explainer" |
-        class(challenger) != "explainer") {
-      stop("Both, champion and challanger have to be explainer objects")
+        any(sapply(challenger, class) != "explainer")) {
+      stop("Both, champion and ale of challengers have to be explainer objects")
     }
     if (type == "classification") {
       rmarkdown::render(

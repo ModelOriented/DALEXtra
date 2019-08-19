@@ -53,7 +53,7 @@ Packages useful with explanations
     devtools::install_github("ModelOriented/ingredients)
     devtools::install_github("ModelOriented/iBreakDown)
     devtools::install_github("ModelOriented/shapper)
-    devtools::install_github("MI2DataLab/auditor")
+    devtools::install_github("ModelOriented/auditor")
 
 <https://modeloriented.github.io/DALEXtra/>
 
@@ -139,10 +139,9 @@ plot(shap(explainer, titanic_test[2,1:17]))
 
 ``` r
 library(auditor)
-plotROC(audit(explainer))
+eval <- model_evaluation(explainer)
+plot_roc(eval)
 ```
-
-    ## Warning in rev(as.numeric(df$label)): NAs introduced by coercion
 
 ![](README_files/figure-gfm/unnamed-chunk-3-5.png)<!-- -->
 

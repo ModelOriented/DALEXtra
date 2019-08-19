@@ -35,8 +35,6 @@ test_that("Error does not occur when create report", {
                                                             package = "DALEXtra"),
                                           data = titanic_test[,1:17],
                                           y = titanic_test$survived)
-
-  skip("Test temporarily unavaliable due to other packages problems")
   expect_error(champion_challenger(explainer_mlr, explainer_scikit, type = "classification",
                          variable = c("fare", "age")), NA)
 
