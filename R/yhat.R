@@ -61,32 +61,46 @@ yhat.h2o <- function(X.model, newdata, ...) {
   )
 }
 
-  #' @rdname yhat
-  #' @export
+#' @rdname yhat
+#' @export
 
-  yhat.H2ORegressionModel <- yhat.h2o
+yhat.H2ORegressionModel <- yhat.h2o
 
-  #' @rdname yhat
-  #' @export
-  #'
-  yhat.H2OBinomialModel <- yhat.h2o
+#' @rdname yhat
+#' @export
+#'
+yhat.H2OBinomialModel <- yhat.h2o
 
 
 
-  #' @rdname yhat
-  #' @export
-  yhat.scikitlearn_model <- function(X.model, newdata, ...) {
-    if ("predict_proba" %in% names(X.model)) {
-      # we take second cloumn which indicates probability of `1` to adapt to DALEX predict functions (yhat). If output is one column it will be taken
-     sucsess <- try(pred <-  X.model$predict_proba(newdata)[, 2], silent = TRUE)
-     if(class(sucsess) == "try-error"){
-       pred <-  X.model$predict_proba(newdata)[, 1]
-     }
-
-    } else{
-      pred <-  X.model$predict(newdata)
+#' @rdname yhat
+#' @export
+yhat.scikitlearn_model <- function(X.model, newdata, ...) {
+  if ("predict_proba" %in% names(X.model)) {
+    # we take second cloumn which indicates probability of `1` to adapt to DALEX predict functions (yhat). If output is one column it will be taken
+    success <-
+      try(pred <-  X.model$predict_proba(newdata)[, 2], silent = TRUE)
+    if (class(success) == "try-error") {
+      pred <-  X.model$predict_proba(newdata)[, 1]
     }
-    pred
+
+  } else{
+    pred <-  X.model$predict(newdata)
   }
+  pred
+}
+
+#' @rdname yhat
+#' @export
+yhat.keras <- function(X.model, newdata, ...) {
+  if ("predict_proba" %in% names(X.model)) {
+
+    #We take first column due to keras not storing matrix when binary classification
+    pred <-  X.model$predict_proba(newdata)[, 1]
 
 
+  } else{
+    pred <-  X.model$predict(newdata)
+  }
+  pred
+}

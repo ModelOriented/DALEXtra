@@ -70,7 +70,6 @@
 #'
 #' @examples
 #' library("DALEXtra")
-#' library("DALEX")
 #' if(DALEXtra:::is_conda()) {
 #'    # Explainer build (Keep in mind that 18th column is target)
 #'    titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
@@ -104,38 +103,9 @@ explain_scikitlearn <-
            label = NULL,
            verbose = TRUE,
            precalculate = TRUE) {
-    if (!is.null(condaenv) & !is.null(env)) {
-      stop("Only one argument from condaenv and env can be different from NULL")
-    }
+    prepeare_env(yml, condaenv, env)
 
-    if (!is.null(yml)) {
-      name <- create_env(yml, condaenv)
-      tryCatch(
-        reticulate::use_condaenv(name, required = TRUE),
-        error = error_mes
-      )
-
-    }
-
-    if (!is.null(condaenv) & is.null(yml)) {
-      tryCatch(
-        reticulate::use_condaenv(condaenv, required = TRUE),
-        error = error_mes
-      )
-
-
-
-    }
-
-    if (!is.null(env)) {
-      tryCatch(
-        reticulate::use_virtualenv(env, required = TRUE),
-        error = error_mes
-      )
-    }
-
-
-    model <- dalex_load_object(path)
+    model <- dalex_load_object(path, "scikitlearn_model")
     # Check if model stores info about his parameters
     params_available <- try(model$get_params, silent = TRUE)
 
