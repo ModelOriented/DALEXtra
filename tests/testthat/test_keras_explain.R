@@ -1,4 +1,4 @@
-context("explain_scikitlearn")
+context("explain_keras")
 
 source("objects_for_tests.R")
 
