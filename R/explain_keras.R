@@ -9,13 +9,13 @@
 #' @param yml a path to the yml file. Conda virtual env will be recreated from this file. If OS is Windows conda has to be added to the PATH first
 #' @param condaenv If yml param is provided, a path to the main conda folder. If yml is null, a name of existing conda environment.
 #' @param env A path to python virtual environment.
-#' @param data test data set that will be passed to explainer.
-#' @param y vector that will be passed to explainer.
-#' @param predict_function predict function that will be passed into explainer. If NULL, default will be used.
-#' @param residual_function residual function that will be passed into explainer. If NULL, default will be used.
-#' @param label label that will be passed into explainer. If NULL, default will be used.
-#' @param verbose bool that will be passed into explainer. If NULL, default will be used.
-#' @param precalculate if TRUE (default) then 'predicted_values' and 'residuals' are calculated when explainer is created. This will happenn also if 'verbose' is TRUE.
+#' @param data test data set that will be passed to \code{\link[DALEX]{explain}}.
+#' @param y vector that will be passed to \code{\link[DALEX]{explain}}.
+#' @param predict_function predict function that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.
+#' @param residual_function residual function that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.
+#' @param label label that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.
+#' @param verbose bool that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.
+#' @param precalculate if TRUE (default) then 'predicted_values' and 'residuals' are calculated when \code{\link[DALEX]{explain}} is created. This will happenn also if 'verbose' is TRUE.
 #' @param ... other parameters
 #'
 #'
@@ -24,7 +24,7 @@
 #'
 #' @return An object of the class 'explainer'.
 #'
-#' \bold{Example of Python code avialble at ?explain_scikitlearn}\cr
+#' \bold{Example of Python code avialble at documentation \code{\link{explain_scikitlearn}}}\cr
 #'
 #' \bold{Errors use case}\cr
 #' Here is shortened version of solution for specific errors \cr
@@ -53,8 +53,25 @@
 #'
 #' @import DALEX
 #' @import reticulate
-#' @importFrom utils head
 #'
+#' @examples
+#' library("DALEXtra")
+#' if(DALEXtra:::is_conda()) {
+#'    # Explainer build (Keep in mind that 9th column is target)
+#'    test_data <- read.csv("https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.data.csv", sep = ",")
+#'    # Keep in mind that when pickle is being built and loaded,
+#'    # not only Python version but libraries versions has to match aswell
+#'    explainer <- explain_keras(system.file("extdata", "keras.pkl", package = "DALEXtra"),
+#'    yml = system.file("extdata", "testing_environment.yml", package = "DALEXtra"),
+#'    data = test_data[,1:8], y = test_data[,9])
+#'    plot(model_performance(explainer))
+#'
+#'    # Predictions with newdata
+#'    predict(explainer, test_data[1:10,1:8])
+#'
+#' } else {
+#'   print('Conda is required.')
+#' }
 #'
 #' @rdname explain_keras
 #' @export

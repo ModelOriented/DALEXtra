@@ -8,13 +8,13 @@ test_that("creating env", {
     reticulate::conda_remove("myenv")
     name <-
       create_env(
-        system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra")
+        system.file("extdata", "testing_environment.yml", package = "DALEXtra")
         )
 
   } else{
     name <-
       create_env(
-        system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra"),
+        system.file("extdata", "testing_environment.yml", package = "DALEXtra"),
       )
   }
   expect_is(name, "character")
@@ -24,11 +24,11 @@ test_that("creating env", {
 test_that("if check", {
   skip_if_no_conda()
   if (.Platform$OS.type == "unix") {
-    expect_success(expect_message(create_env(yml = system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra")),
+    expect_success(expect_message(create_env(yml = system.file("extdata", "testing_environment.yml", package = "DALEXtra")),
                                   "not specified"))
   }
   if ("myenv" %in% reticulate::conda_list()$name){
-    expect_success(expect_message(create_env(yml = system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra")),
+    expect_success(expect_message(create_env(yml = system.file("extdata", "testing_environment.yml", package = "DALEXtra")),
                                   "exists"))
   }
 })

@@ -7,7 +7,7 @@ test_that("prints", {
   titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
   skip_if_no_conda()
   explainer <- explain_scikitlearn(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
-                                     yml = system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra"),
+                                     yml = system.file("extdata", "testing_environment.yml", package = "DALEXtra"),
                                      data = titanic_test[,1:17], y = titanic_test$survived)
   expect_success(expect_output(print(explainer$param_set), NULL))
 

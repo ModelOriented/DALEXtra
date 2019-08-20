@@ -28,7 +28,7 @@ explain_h2o(model, data = NULL, y = NULL, predict_function = NULL,
 \item{precalculate}{if TRUE (default) then 'predicted_values' and 'residuals' are calculated when explainer is created. This will happenn also if 'verbose' is TRUE.}
 }
 \value{
-explainer object ready to work with DALEX
+explainer object (\code{\link[DALEX]{explain}}) ready to work with DALEX
 }
 \description{
 DALEX is designed to work with various black-box models like tree ensembles, linear models, neural networks etc.

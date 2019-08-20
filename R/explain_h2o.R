@@ -14,7 +14,8 @@
 #' @param label character - the name of the model. By default it's extracted from the 'class' attribute of the model
 #' @param verbose if TRUE (default) then diagnostic messages will be printed
 #' @param precalculate if TRUE (default) then 'predicted_values' and 'residuals' are calculated when explainer is created. This will happenn also if 'verbose' is TRUE.
-#' @return explainer object ready to work with DALEX
+#'
+#' @return explainer object (\code{\link[DALEX]{explain}}) ready to work with DALEX
 #'
 #' @import DALEX
 #' @importFrom DALEX yhat

@@ -16,7 +16,7 @@
 #' @param precalculate if TRUE (default) then 'predicted_values' and 'residuals' are calculated when explainer is created. This will happenn also if 'verbose' is TRUE
 
 #'
-#' @return explainer object ready to work with DALEX
+#' @return explainer object (\code{\link[DALEX]{explain}}) ready to work with DALEX
 #'
 #' @import DALEX
 #' @importFrom stats predict

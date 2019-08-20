@@ -116,6 +116,18 @@
       
     </div>
 
+    <div id="dalextra-017" class="section level2">
+<h2 class="hasAnchor">
+<a href="#dalextra-017" class="anchor"></a>DALEXtra 0.1.7</h2>
+<ul>
+<li>
+<code><a href="../reference/explain_keras.html">explain_keras()</a></code> added.</li>
+<li>documentation refreshed with links to functions</li>
+<li>
+<code><a href="../reference/explain_scikitlearn.html">explain_scikitlearn()</a></code> rebuilded. Some of the code was exported to inner functions (other.R)</li>
+<li>conda installation in README.md</li>
+</ul>
+</div>
     <div id="dalextra-016" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dalextra-016" class="anchor"></a>DALEXtra 0.1.6</h2>
@@ -123,7 +135,8 @@
 <li>
 <code><a href="../reference/explain_scikitlearn.html">explain_scikitlearn()</a></code> rebuilded. Now class scikitlearn_model is a additional class for original Python object instead of another object.</li>
 <li>explainers created with <code><a href="../reference/explain_scikitlearn.html">explain_scikitlearn()</a></code> have addidtional field <code>param_set</code>.</li>
-<li>yhat is now generic</li>
+<li>
+<code>yhat()</code> is now generic</li>
 <li>New examples in <code>README.md</code>
 </li>
 </ul>
@@ -134,15 +147,17 @@
 <ul>
 <li>Now when you pass .yml that consist environment name that already exists one the machine, DALEXtra will not rise an error and contiune work with existing env</li>
 <li>If condaenv is NULL when creating_env on unixlike OS, DALEXtra will try to find conda on his own</li>
-<li>.onLoad function now checks if conda is installed. Alert is rised if not.</li>
+<li>
+<code><a href="https://rdrr.io/r/base/ns-hooks.html">.onLoad()</a></code> function now checks if conda is installed. Alert is rised if not.</li>
 </ul>
 </div>
     <div id="dalextra-014" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dalextra-014" class="anchor"></a>DALEXtra 0.1.4</h2>
 <ul>
-<li>yhat.R created. Predict functions are sotred there in order to be more accesible</li>
-<li>explain_h2o() and explain_mlr() rebuilded.</li>
+<li>yhat.R created. Predict functions are stored there in order to be more accesible</li>
+<li>
+<code><a href="../reference/explain_h2o.html">explain_h2o()</a></code> and <code><a href="../reference/explain_mlr.html">explain_mlr()</a></code> rebuilded.</li>
 </ul>
 </div>
     <div id="dalextra-013" class="section level2">
@@ -189,6 +204,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#dalextra-017">0.1.7</a></li>
         <li><a href="#dalextra-016">0.1.6</a></li>
         <li><a href="#dalextra-015">0.1.5</a></li>
         <li><a href="#dalextra-014">0.1.4</a></li>

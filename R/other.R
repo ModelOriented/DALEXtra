@@ -1,5 +1,7 @@
 # Here are functions that are not supposed to be exported
 
+
+# Function loads objects and handles possible errors
 dalex_load_object <- function(path, mode) {
   tryCatch(
     model <- reticulate::py_load_object(path),
@@ -37,6 +39,7 @@ dalex_load_object <- function(path, mode) {
 
 }
 
+# Function sets as working virtual env
 prepeare_env <- function(yml, condaenv, env){
   if (!is.null(condaenv) & !is.null(env)) {
     stop("Only one argument from condaenv and env can be different from NULL")
@@ -69,6 +72,8 @@ prepeare_env <- function(yml, condaenv, env){
   }
 }
 
+
+# Error message
 error_mes <- function(e) {
   warning(e, call. = FALSE)
   stop(

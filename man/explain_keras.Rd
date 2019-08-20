@@ -18,26 +18,26 @@ explain_keras(path, yml = NULL, condaenv = NULL, env = NULL,
 
 \item{env}{A path to python virtual environment.}
 
-\item{data}{test data set that will be passed to explainer.}
+\item{data}{test data set that will be passed to \code{\link[DALEX]{explain}}.}
 
-\item{y}{vector that will be passed to explainer.}
+\item{y}{vector that will be passed to \code{\link[DALEX]{explain}}.}
 
-\item{predict_function}{predict function that will be passed into explainer. If NULL, default will be used.}
+\item{predict_function}{predict function that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.}
 
-\item{residual_function}{residual function that will be passed into explainer. If NULL, default will be used.}
+\item{residual_function}{residual function that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.}
 
 \item{...}{other parameters}
 
-\item{label}{label that will be passed into explainer. If NULL, default will be used.}
+\item{label}{label that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.}
 
-\item{verbose}{bool that will be passed into explainer. If NULL, default will be used.}
+\item{verbose}{bool that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.}
 
-\item{precalculate}{if TRUE (default) then 'predicted_values' and 'residuals' are calculated when explainer is created. This will happenn also if 'verbose' is TRUE.}
+\item{precalculate}{if TRUE (default) then 'predicted_values' and 'residuals' are calculated when \code{\link[DALEX]{explain}} is created. This will happenn also if 'verbose' is TRUE.}
 }
 \value{
 An object of the class 'explainer'.
 
-\bold{Example of Python code avialble at ?explain_scikitlearn}\cr
+\bold{Example of Python code avialble at documentation \code{\link{explain_scikitlearn}}}\cr
 
 \bold{Errors use case}\cr
 Here is shortened version of solution for specific errors \cr
@@ -67,6 +67,28 @@ If .yml file seems not to work, virtual env can be created manually using anacon
 Keras models may be loaded into R environment like any other Python object. This function helps to inspect performance of Python model
 and compare it with other models, using R tools like DALEX. This function creates an object that is easy accessible R version of Keras model
 exported from Python via pickle file.
+}
+\examples{
+library("DALEXtra")
+if(DALEXtra:::is_conda()) {
+   # Explainer build (Keep in mind that 9th column is target)
+   test_data <- read.csv("https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.data.csv", sep = ",")
+   # Keep in mind that when pickle is being built and loaded,
+   # not only Python version but libraries versions has to match aswell
+   explainer <- explain_keras(system.file("extdata", "keras.pkl", package = "DALEXtra"),
+   yml = system.file("extdata", "testing_environment.yml", package = "DALEXtra"),
+   data = test_data[,1:8], y = test_data[,9])
+   plot(model_performance(explainer))
+
+   # Predictions with newdata
+   predict(explainer, titanic_test[1:10,1:17])
+
+} else {
+  print('Conda is required.')
+}
+
+
+
 }
 \author{
 Szymon Maksymiuk

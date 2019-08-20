@@ -5,8 +5,10 @@
 #'
 #' Currently supported packages are:
 #' \itemize{
-#' \item `mlr` see more in explain_mlr
-#' \item `h2o` see more in explain_h2o
+#' \item `mlr` see more in \code{\link{explain_mlr}}
+#' \item `h2o` see more in \code{\link{explain_h2o}}
+#' \item `scikit-learn` see more in \code{\link{explain_scikitlearn}}
+#' \item `keras` see more in \code{\link{explain_keras}}
 #' }
 #'
 #' @param X.model object - a model to be explained

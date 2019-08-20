@@ -24,6 +24,7 @@ dependencies:
   - vs2015_runtime=14.15.26706=h3a45250_4
   - wheel=0.33.4=py36_0
   - wincertstore=0.2=py36h7fe50ca_0
-  - pandas
+  - pandas=0.24.2
+  - keras=2.2.4
 prefix: C:\Users\szyna\Anaconda3\envs\myenv
 

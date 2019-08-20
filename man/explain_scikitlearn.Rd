@@ -18,21 +18,21 @@ explain_scikitlearn(path, yml = NULL, condaenv = NULL, env = NULL,
 
 \item{env}{A path to python virtual environment.}
 
-\item{data}{test data set that will be passed to explainer.}
+\item{data}{test data set that will be passed to \code{\link[DALEX]{explain}}.}
 
-\item{y}{vector that will be passed to explainer.}
+\item{y}{vector that will be passed to \code{\link[DALEX]{explain}}.}
 
-\item{predict_function}{predict function that will be passed into explainer. If NULL, default will be used.}
+\item{predict_function}{predict function that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.}
 
-\item{residual_function}{residual function that will be passed into explainer. If NULL, default will be used.}
+\item{residual_function}{residual function that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.}
 
 \item{...}{other parameters}
 
-\item{label}{label that will be passed into explainer. If NULL, default will be used.}
+\item{label}{label that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.}
 
-\item{verbose}{bool that will be passed into explainer. If NULL, default will be used.}
+\item{verbose}{bool that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.}
 
-\item{precalculate}{if TRUE (default) then 'predicted_values' and 'residuals' are calculated when explainer is created. This will happenn also if 'verbose' is TRUE.}
+\item{precalculate}{if TRUE (default) then 'predicted_values' and 'residuals' are calculated when \code{\link[DALEX]{explain}} is created. This will happenn also if 'verbose' is TRUE.}
 }
 \value{
 An object of the class 'explainer'. It has additional field param_set when user can check parameters of scikitlearn model
@@ -89,7 +89,7 @@ if(DALEXtra:::is_conda()) {
    # Keep in mind that when pickle is being built and loaded,
    # not only Python version but libraries versions has to match aswell
    explainer <- explain_scikitlearn(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
-   yml = system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra"),
+   yml = system.file("extdata", "testing_environment.yml", package = "DALEXtra"),
    data = titanic_test[,1:17], y = titanic_test$survived)
    plot(model_performance(explainer))
 
