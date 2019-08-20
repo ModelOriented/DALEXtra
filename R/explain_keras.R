@@ -59,8 +59,9 @@
 #' if(DALEXtra:::is_conda()) {
 #'    # Explainer build (Keep in mind that 9th column is target)
 #'    test_data <-
-#'       read.csv("https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.data.csv",
-#'                sep = ",")
+#'       read.csv(
+#'          "https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.data.csv",
+#'          sep = ",")
 #'    # Keep in mind that when pickle is being built and loaded,
 #'    # not only Python version but libraries versions has to match aswell
 #'    explainer <- explain_keras(system.file("extdata", "keras.pkl", package = "DALEXtra"),
