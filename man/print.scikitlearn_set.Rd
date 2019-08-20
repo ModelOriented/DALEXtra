@@ -7,7 +7,7 @@
 \method{print}{scikitlearn_set}(x, ...)
 }
 \arguments{
-\item{x}{a model created with `scikitlearn_model` function}
+\item{x}{a list from explainer created with \code{\link{explain_scikitlearn}}}
 
 \item{...}{other arguments}
 }

@@ -17,6 +17,7 @@ r_github_packages:
   - pbiecek/DALEX
   - rstudio/reticulate
   - r-lib/covr
+  - MI2DataLab/auditor
     
 #install:
 

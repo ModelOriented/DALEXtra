@@ -4,7 +4,7 @@
 #'
 #' @usage create_env(yml, condaenv)
 #' @param yml a path to the .yml file. If OS is Windows conda has to be added to the PATH first
-#' @param condaenv path to main conda folder. If OS is Unix You have to specify it with .yml file path. Using with windows, param will be omitted.
+#' @param condaenv path to main conda folder. If OS is Unix You may want to specify it with .yml file path. Using with windows, param will be omitted.
 #'
 #' @author Szymon Maksymiuk
 #'
@@ -16,7 +16,7 @@
 #'   reticulate::use_condaenv("myenv")
 #'
 #'     create_env(
-#'       system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra"),
+#'       system.file("extdata", "testing_environment.yml", package = "DALEXtra"),
 #'       condaenv = paste(
 #'         sub('[/][^/]+$', '', reticulate::conda_binary()[1]),
 #'         "/..",
@@ -32,9 +32,14 @@
 
 
 create_env <- function(yml, condaenv = NULL) {
-  if(.Platform$OS.type=="unix" & is.null(condaenv)){
-    condaenv = paste(sub('[/][^/]+$', '', reticulate::conda_binary()[1]), "/..", sep = "")
-    message(paste("Path to conda not specified while on unix. Default used.", condaenv))
+  if (.Platform$OS.type == "unix" & is.null(condaenv)) {
+    condaenv = paste(sub('[/][^/]+$', '', reticulate::conda_binary()[1]),
+                     "/..",
+                     sep = "")
+    message(paste(
+      "Path to conda not specified while on unix. Default used.",
+      condaenv
+    ))
   }
 
   con <- file(yml, "r")
@@ -44,16 +49,30 @@ create_env <- function(yml, condaenv = NULL) {
 
   # Check if specified env already exists
 
- if(name %in% reticulate::conda_list()$name){
-   message(paste("There already exists environment named the same as it is specified in .yml file - ", name, ". It will be used", sep = ""))
-   return(name)
- }
+  if (name %in% reticulate::conda_list()$name) {
+    message(
+      paste(
+        "There already exists environment named the same as it is specified in .yml file - ",
+        name,
+        ". It will be used",
+        sep = ""
+      )
+    )
+    return(name)
+  }
 
   # Virtual env creation
 
   # Windows and linux has different shells
   if (.Platform$OS.type == "windows") {
-    message(paste("Virtual environment \"" , name, "\" is being created. It may take few minutes.", sep = ""))
+    message(
+      paste(
+        "Virtual environment \"" ,
+        name,
+        "\" is being created. It may take few minutes.",
+        sep = ""
+      )
+    )
     tryCatch(
       expr = {
         mes <-
@@ -99,7 +118,14 @@ create_env <- function(yml, condaenv = NULL) {
     )
   }
   if (.Platform$OS.type == "unix") {
-    message(paste("Virtual environment \"" , name, "\" is being created. It may take few minutes.", sep = ""))
+    message(
+      paste(
+        "Virtual environment \"" ,
+        name,
+        "\" is being created. It may take few minutes.",
+        sep = ""
+      )
+    )
 
     tryCatch(
       expr = {
@@ -107,6 +133,7 @@ create_env <- function(yml, condaenv = NULL) {
           system(paste(condaenv,  "/bin/conda ", "env create -f ", yml, sep = ""),
                  intern = TRUE)
       },
+      # Unix erros not partitioned since it is impossbile to capture whole shell output
       warning = function(w) {
         warning(w, call. = FALSE)
 

@@ -9,7 +9,7 @@ create_env(yml, condaenv)
 \arguments{
 \item{yml}{a path to the .yml file. If OS is Windows conda has to be added to the PATH first}
 
-\item{condaenv}{path to main conda folder. If OS is Unix You have to specify it with .yml file path. Using with windows, param will be omitted.}
+\item{condaenv}{path to main conda folder. If OS is Unix You may want to specify it with .yml file path. Using with windows, param will be omitted.}
 }
 \value{
 Name of created virtual env.
@@ -22,7 +22,7 @@ if(DALEXtra:::is_conda()) {
   reticulate::use_condaenv("myenv")
 
     create_env(
-      system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra"),
+      system.file("extdata", "testing_environment.yml", package = "DALEXtra"),
       condaenv = paste(
         sub('[/][^/]+$', '', reticulate::conda_binary()[1]),
         "/..",

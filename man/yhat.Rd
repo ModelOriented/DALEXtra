@@ -5,6 +5,7 @@
 \alias{yhat.H2ORegressionModel}
 \alias{yhat.H2OBinomialModel}
 \alias{yhat.scikitlearn_model}
+\alias{yhat.keras}
 \title{Wrapper over the predict function}
 \usage{
 \method{yhat}{WrappedModel}(X.model, newdata, ...)
@@ -14,6 +15,8 @@
 \method{yhat}{H2OBinomialModel}(X.model, newdata, ...)
 
 \method{yhat}{scikitlearn_model}(X.model, newdata, ...)
+
+\method{yhat}{keras}(X.model, newdata, ...)
 }
 \arguments{
 \item{X.model}{object - a model to be explained}
@@ -32,7 +35,9 @@ Each function returns a single numeric score for each new observation.
 \details{
 Currently supported packages are:
 \itemize{
-\item `mlr` see more in explain_mlr
-\item `h2o` see more in explain_h2o
+\item `mlr` see more in \code{\link{explain_mlr}}
+\item `h2o` see more in \code{\link{explain_h2o}}
+\item `scikit-learn` see more in \code{\link{explain_scikitlearn}}
+\item `keras` see more in \code{\link{explain_keras}}
 }
 }

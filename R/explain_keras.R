@@ -1,7 +1,7 @@
-#' Wrapper for Python Scikit-Learn Models
+#' Wrapper for Python Keras Models
 #'
-#' scikit-learn models may be loaded into R environment like any other Python object. This function helps to inspect performance of Python model
-#' and compare it with other models, using R tools like DALEX. This function creates an object that is easy accessible R version of scikit-learn model
+#' Keras models may be loaded into R environment like any other Python object. This function helps to inspect performance of Python model
+#' and compare it with other models, using R tools like DALEX. This function creates an object that is easy accessible R version of Keras model
 #' exported from Python via pickle file.
 #'
 #'
@@ -22,22 +22,9 @@
 #' @author Szymon Maksymiuk
 #'
 #'
-#' @return An object of the class 'explainer'. It has additional field param_set when user can check parameters of scikitlearn model
+#' @return An object of the class 'explainer'.
 #'
-#' \bold{Example of Python code}\cr
-#'
-#' from pandas import DataFrame, read_csv \cr
-#' import pandas as pd\cr
-#' import pickle\cr
-#' import sklearn.ensemble\cr
-#' model = sklearn.ensemble.GradientBoostingClassifier() \cr
-#' model = model.fit(titanic_train_X, titanic_train_Y)\cr
-#' pickle.dump(model, open("gbm.pkl", "wb"), protocol = 2)\cr
-#' \cr
-#' \cr
-#' In order to export environment into .yml, activating virtual env via \code{activate name_of_the_env} and execution of the following shell command is necessary \cr
-#' \code{conda env export > environment.yml}\cr
-#' \cr
+#' \bold{Example of Python code avialble at documentation \code{\link{explain_scikitlearn}}}\cr
 #'
 #' \bold{Errors use case}\cr
 #' Here is shortened version of solution for specific errors \cr
@@ -66,31 +53,32 @@
 #'
 #' @import DALEX
 #' @import reticulate
-#' @importFrom utils head
 #'
 #' @examples
 #' library("DALEXtra")
 #' if(DALEXtra:::is_conda()) {
-#'    # Explainer build (Keep in mind that 18th column is target)
-#'    titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
+#'    # Explainer build (Keep in mind that 9th column is target)
+#'    test_data <-
+#'       read.csv("https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.data.csv",
+#'                sep = ",")
 #'    # Keep in mind that when pickle is being built and loaded,
 #'    # not only Python version but libraries versions has to match aswell
-#'    explainer <- explain_scikitlearn(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
+#'    explainer <- explain_keras(system.file("extdata", "keras.pkl", package = "DALEXtra"),
 #'    yml = system.file("extdata", "testing_environment.yml", package = "DALEXtra"),
-#'    data = titanic_test[,1:17], y = titanic_test$survived)
+#'    data = test_data[,1:8], y = test_data[,9])
 #'    plot(model_performance(explainer))
 #'
 #'    # Predictions with newdata
-#'    predict(explainer, titanic_test[1:10,1:17])
+#'    predict(explainer, test_data[1:10,1:8])
 #'
 #' } else {
 #'   print('Conda is required.')
 #' }
 #'
-#' @rdname explain_scikitlearn
+#' @rdname explain_keras
 #' @export
-#'
-explain_scikitlearn <-
+
+explain_keras <-
   function(path,
            yml = NULL,
            condaenv = NULL,
@@ -103,49 +91,12 @@ explain_scikitlearn <-
            label = NULL,
            verbose = TRUE,
            precalculate = TRUE) {
+
     prepeare_env(yml, condaenv, env)
 
-    model <- dalex_load_object(path, "scikitlearn_model")
-    # Check if model stores info about his parameters
-    params_available <- try(model$get_params, silent = TRUE)
+    model <- dalex_load_object(path, "keras")
 
-    if (all(class(params_available) != "try-error")) {
-      # params are represented as one long string
-      params <- model$get_params
-      # taking first element since strsplit() returns list of vectors
-      params <- strsplit(as.character(params), split = ",")[[1]]
-      # replacing blanks and other signs that we don't need and are pasted with params names
-      params <-
-        gsub(
-          params,
-          pattern = "\n",
-          replacement = "",
-          fixed = TRUE
-        )
-      params <-
-        gsub(
-          params,
-          pattern = " ",
-          replacement = "",
-          fixed = TRUE
-        )
-      # splitting after "=" mark and taking first element (head(n = 1L)) provides as with params names
-      params <- lapply(strsplit(params, split = "="), head, n = 1L)
-      # removing name of function from the first parameter
-      params[[1]] <- strsplit(params[[1]], split = "\\(")[[1]][2]
-      # setting freshly extracted parameters names as labels for list
-      names(params) <- as.character(params)
-      #extracting parameters value
-      params <- lapply(params, function(x) {
-        do.call("$", list(model, x))
-      })
-    } else{
-      params <- "Params not available"
-    }
-
-
-    class(params) <- "scikitlearn_set"
-    explainer <-  explain(
+    explain(
       model = model,
       data = data,
       y = y,
@@ -155,6 +106,4 @@ explain_scikitlearn <-
       label = label,
       verbose = verbose
     )
-    explainer$param_set <- params
-    explainer
   }

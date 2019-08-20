@@ -1,5 +1,5 @@
 template:
-  package: MI2template
+  package: DrWhyTemplate
   default_assets: false
 home:
   links:

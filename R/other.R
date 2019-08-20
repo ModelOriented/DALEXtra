@@ -1,6 +1,8 @@
 # Here are functions that are not supposed to be exported
 
-dalex_load_object <- function(path) {
+
+# Function loads objects and handles possible errors
+dalex_load_object <- function(path, mode) {
   tryCatch(
     model <- reticulate::py_load_object(path),
 
@@ -32,11 +34,46 @@ dalex_load_object <- function(path) {
     }
 
   )
-  class(model) <- c(class(model), "scikitlearn_model")
+  class(model) <- c(class(model), mode)
   model
 
 }
 
+# Function sets as working virtual env
+prepeare_env <- function(yml, condaenv, env){
+  if (!is.null(condaenv) & !is.null(env)) {
+    stop("Only one argument from condaenv and env can be different from NULL")
+  }
+
+  if (!is.null(yml)) {
+    name <- create_env(yml, condaenv)
+    tryCatch(
+      reticulate::use_condaenv(name, required = TRUE),
+      error = error_mes
+    )
+
+  }
+
+  if (!is.null(condaenv) & is.null(yml)) {
+    tryCatch(
+      reticulate::use_condaenv(condaenv, required = TRUE),
+      error = error_mes
+    )
+
+
+
+  }
+
+  if (!is.null(env)) {
+    tryCatch(
+      reticulate::use_virtualenv(env, required = TRUE),
+      error = error_mes
+    )
+  }
+}
+
+
+# Error message
 error_mes <- function(e) {
   warning(e, call. = FALSE)
   stop(

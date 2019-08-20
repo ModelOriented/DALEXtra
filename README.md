@@ -39,7 +39,7 @@ Package can be installed with execution of the following code
 
     install.packages("devtools")
     devtools::install_github("ModelOriented/DALEXtra")
-    devtools::install_github("pbiecek/DALEX")
+    devtools::install_github("ModelOriented/DALEX")
 
 It is recommended to install latests github version of DALEX
 
@@ -50,10 +50,10 @@ seek for its latests version it can be downloaded here
 
 Packages useful with explanations
 
-    devtools::install_github("ModelOriented/ingredients)
-    devtools::install_github("ModelOriented/iBreakDown)
-    devtools::install_github("ModelOriented/shapper)
-    devtools::install_github("MI2DataLab/auditor")
+    devtools::install_github("ModelOriented/ingredients")
+    devtools::install_github("ModelOriented/iBreakDown")
+    devtools::install_github("ModelOriented/shapper")
+    devtools::install_github("ModelOriented/auditor")
 
 <https://modeloriented.github.io/DALEXtra/>
 
@@ -82,7 +82,7 @@ and scikit-learn models do not like it
 ``` r
 library(DALEXtra)
 explainer <- explain_scikitlearn(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
-yml = system.file("extdata", "scikitlearn_unix.yml", package = "DALEXtra"), 
+yml = system.file("extdata", "testing_environment.yml", package = "DALEXtra"), 
 data = titanic_test[,1:17], y = titanic_test$survived)
 ```
 
@@ -107,7 +107,7 @@ default Python.
 ## Creating explanations
 
 Now with explainer ready we can use any of DrWhy.ai universe tools to
-make explanations. Here is small demo
+make explanations. Here is a small demo
 
 ``` r
 library(DALEX)
@@ -124,11 +124,29 @@ plot(feature_importance(explainer))
 ![](README_files/figure-gfm/unnamed-chunk-3-2.png)<!-- -->
 
 ``` r
+describe(feature_importance(explainer))
+```
+
+    ## The number of important variables for scikitlearn_model's prediction is 3 out of 17. 
+    ##  Variables gender.female, gender.male, age have the highest importantance.
+
+``` r
 library(iBreakDown)
 plot(break_down(explainer, titanic_test[2,1:17]))
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-3-3.png)<!-- -->
+
+``` r
+describe(break_down(explainer, titanic_test[2,1:17]))
+```
+
+    ## Scikitlearn_model predicts, that the prediction for the selected instance is 0.132 which is lower than the average model prediction.
+    ##  
+    ## The most important variables that decrease the prediction are class.3rd, gender.female. 
+    ## The most important variable that increase the prediction is age.
+    ##  
+    ## Other variables are with less importance. The contribution of all other variables is -0.108 .
 
 ``` r
 library(shapper)
@@ -139,10 +157,9 @@ plot(shap(explainer, titanic_test[2,1:17]))
 
 ``` r
 library(auditor)
-plotROC(audit(explainer))
+eval <- model_evaluation(explainer)
+plot_roc(eval)
 ```
-
-    ## Warning in rev(as.numeric(df$label)): NAs introduced by coercion
 
 ![](README_files/figure-gfm/unnamed-chunk-3-5.png)<!-- -->
 
