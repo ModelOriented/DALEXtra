@@ -58,7 +58,7 @@
 #'
 #' @rdname explain_keras
 #' @export
-#'
+
 explain_keras <-
   function(path,
            yml = NULL,
@@ -72,6 +72,7 @@ explain_keras <-
            label = NULL,
            verbose = TRUE,
            precalculate = TRUE) {
+
     prepeare_env(yml, condaenv, env)
 
     model <- dalex_load_object(path, "keras")
