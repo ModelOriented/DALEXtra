@@ -5,7 +5,6 @@ DALEXtra 0.1.7
 * documentation refreshed with links to functions
 * `explain_scikitlearn()` rebuilded. Some of the code was exported to inner functions (other.R)
 * conda installation in README.md
-* typo
 
 DALEXtra 0.1.6
 ----------------------------------------------------------------
