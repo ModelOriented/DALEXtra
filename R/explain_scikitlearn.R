@@ -153,7 +153,8 @@ explain_scikitlearn <-
       residual_function = residual_function,
       ...,
       label = label,
-      verbose = verbose
+      verbose = verbose,
+      precalculate = precalculate
     )
     explainer$param_set <- params
     explainer

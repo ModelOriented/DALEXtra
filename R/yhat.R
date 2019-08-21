@@ -106,3 +106,11 @@ yhat.keras <- function(X.model, newdata, ...) {
   }
   pred
 }
+
+#' @rdname yhat
+#' @export
+yhat.mljar_model <- function(X.model, newdata, ...) {
+
+ unlist(mljar::mljar_predict(model = X.model, x_pred = newdata, project_title = X.model$project), use.names = FALSE)
+
+}
