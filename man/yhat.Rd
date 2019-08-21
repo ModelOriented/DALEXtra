@@ -6,6 +6,7 @@
 \alias{yhat.H2OBinomialModel}
 \alias{yhat.scikitlearn_model}
 \alias{yhat.keras}
+\alias{yhat.mljar_model}
 \title{Wrapper over the predict function}
 \usage{
 \method{yhat}{WrappedModel}(X.model, newdata, ...)
@@ -17,6 +18,8 @@
 \method{yhat}{scikitlearn_model}(X.model, newdata, ...)
 
 \method{yhat}{keras}(X.model, newdata, ...)
+
+\method{yhat}{mljar_model}(X.model, newdata, ...)
 }
 \arguments{
 \item{X.model}{object - a model to be explained}
