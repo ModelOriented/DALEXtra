@@ -4,7 +4,7 @@ source("objects_for_tests.R")
 
 test_that("creating explainer", {
   load(system.file("extdata", "mljar.RData", package = "DALEXtra"))
-  explainer <- explain_mljar(model, "Project title")
+  explainer <- explain_mljar(model, "Project title", data = titanic_test[,1:17], y = titanic_test[,18], verbose = FALSE, precalculate = FALSE)
 
   expect_is(explainer, "explainer")
 

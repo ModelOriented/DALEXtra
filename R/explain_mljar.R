@@ -34,7 +34,7 @@
 #'                    algorithms = c("logreg"), metric = "logloss")
 #' # It Works
 #' explainer <- explain_mljar(model, project_title = "Project title",
-#'                            data = titanic_test[,1:17], titanic_test[,18])
+#'                            data = titanic_test[,1:17], y = titanic_test[,18])
 #' # But it works aswell
 #' explainer <- explain_mljar(model, project_title = "Project title",
 #'                            verbose = FALSE, precalculate = FALSE)
