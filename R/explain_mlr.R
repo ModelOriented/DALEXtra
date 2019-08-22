@@ -71,7 +71,7 @@ explain_mlr <-
       ...,
       label = label,
       verbose = verbose,
-      precalculate = precalculate,
+      precalculate = precalculate
     )
 
 
