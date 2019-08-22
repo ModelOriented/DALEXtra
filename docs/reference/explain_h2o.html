@@ -146,6 +146,10 @@ One of those tools, we would like to make more accessible is H2O.</p>
       <td><p>data.frame or matrix - data that was used for fitting. If not provided then will be extracted from the model. Data should be passed without target column (this shall be provided as the <code>y</code> argument). NOTE: If target variable is present in the <code>data</code>, some of the functionalities my not work properly.</p></td>
     </tr>
     <tr>
+      <th>y</th>
+      <td><p>numeric vector with outputs / scores. If provided then it shall have the same size as <code>data</code></p></td>
+    </tr>
+    <tr>
       <th>predict_function</th>
       <td><p>function that takes two arguments: model and new data and returns numeric vector with predictions</p></td>
     </tr>
@@ -183,12 +187,12 @@ One of those tools, we would like to make more accessible is H2O.</p>
 <span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.init.html'>h2o.init</a></span>()</div><div class='output co'>#&gt;  Connection successful!
 #&gt; 
 #&gt; R is connected to the H2O cluster: 
-#&gt;     H2O cluster uptime:         7 hours 58 minutes 
+#&gt;     H2O cluster uptime:         2 minutes 38 seconds 
 #&gt;     H2O cluster timezone:       Europe/Belgrade 
 #&gt;     H2O data parsing timezone:  UTC 
 #&gt;     H2O cluster version:        3.24.0.5 
 #&gt;     H2O cluster version age:    2 months and 3 days  
-#&gt;     H2O cluster name:           H2O_started_from_R_szyna_mwl453 
+#&gt;     H2O cluster name:           H2O_started_from_R_szyna_ydg016 
 #&gt;     H2O cluster total nodes:    1 
 #&gt;     H2O cluster total memory:   1.97 GB 
 #&gt;     H2O cluster total cores:    4 
@@ -216,12 +220,12 @@ One of those tools, we would like to make more accessible is H2O.</p>
 <span class='fu'>explain_h2o</span>(<span class='no'>model</span>, <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>], <span class='no'>titanic_test</span>[,<span class='fl'>18</span>])</div><div class='output co'>#&gt;  Connection successful!
 #&gt; 
 #&gt; R is connected to the H2O cluster: 
-#&gt;     H2O cluster uptime:         7 hours 59 minutes 
+#&gt;     H2O cluster uptime:         2 minutes 43 seconds 
 #&gt;     H2O cluster timezone:       Europe/Belgrade 
 #&gt;     H2O data parsing timezone:  UTC 
 #&gt;     H2O cluster version:        3.24.0.5 
 #&gt;     H2O cluster version age:    2 months and 3 days  
-#&gt;     H2O cluster name:           H2O_started_from_R_szyna_mwl453 
+#&gt;     H2O cluster name:           H2O_started_from_R_szyna_ydg016 
 #&gt;     H2O cluster total nodes:    1 
 #&gt;     H2O cluster total memory:   1.97 GB 
 #&gt;     H2O cluster total cores:    4 

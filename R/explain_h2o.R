@@ -7,6 +7,7 @@
 #'
 #' @param model object - a model to be explained
 #' @param data data.frame or matrix - data that was used for fitting. If not provided then will be extracted from the model. Data should be passed without target column (this shall be provided as the \code{y} argument). NOTE: If target variable is present in the \code{data}, some of the functionalities my not work properly.
+#' @param y numeric vector with outputs / scores. If provided then it shall have the same size as \code{data}
 #' @param predict_function function that takes two arguments: model and new data and returns numeric vector with predictions
 #' @param residual_function function that takes three arguments: model, data and response vector y. It should return a numeric vector with model residuals for given data. If not provided, response residuals (\eqn{y-\hat{y}}) are calculated.
 #' @param ... other parameters (passed for example to predict function)
