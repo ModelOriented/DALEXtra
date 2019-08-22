@@ -63,7 +63,7 @@ And execute function once again. Second is updating env via: \cr
 \code{conda env create -f environment.yml}\cr
 \cr
 \bold{Conda cannot find specified packages at channels you have provided.}\cr
-That error may be casued by a lot of things. Of of those is that specified version is too old to be avaialble from offcial conda repo.
+That error may be casued by a lot of things. One of those is that specified version is too old to be avaialble from offcial conda repo.
 Edit Your .yml file and add link to proper repository at channels section.\cr
 \cr
 Issue may be also connected with the platform. If model was created on the platform with different OS yo may need to remove specific version from .yml file.\cr
@@ -78,7 +78,7 @@ If .yml file seems not to work, virtual env can be created manually using anacon
 }
 \description{
 scikit-learn models may be loaded into R environment like any other Python object. This function helps to inspect performance of Python model
-and compare it with other models, using R tools like DALEX. This function creates an object that is easy accessible R version of scikit-learn model
+and compare it with other models, using R tools like DALEX. This function creates an object that is easily accessible R version of scikit-learn model
 exported from Python via pickle file.
 }
 \examples{

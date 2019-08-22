@@ -143,7 +143,7 @@ One of those tools, which is one of the most popular one is mlr package. We woul
     </tr>
     <tr>
       <th>data</th>
-      <td><p>data.frame or matrix - data that was used for fitting. If not provided then will be extracted from the model. Data should be passed without target column (y parameter). If not, some of the functionalities my not work.</p></td>
+      <td><p>data.frame or matrix - data that was used for fitting. If not provided then will be extracted from the model. Data should be passed without target column (this shall be provided as the <code>y</code> argument). NOTE: If target variable is present in the <code>data</code>, some of the functionalities my not work properly.</p></td>
     </tr>
     <tr>
       <th>y</th>
@@ -208,24 +208,9 @@ One of those tools, which is one of the most popular one is mlr package. We woul
 #&gt;   -&gt; data              :  524  rows  17  cols 
 #&gt;   -&gt; target variable   :  524  values 
 #&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used (</span><span style='color: #BBBB00;'>default</span><span>)
-#&gt;   -&gt; predicted values  :  numerical, min =  0.2702407 , mean =  0.3324318 , max =  0.5648559  
+#&gt;   -&gt; predicted values  :  numerical, min =  0.2693414 , mean =  0.3319247 , max =  0.5640745  
 #&gt;   -&gt; residual function :  difference between y and yhat (</span><span style='color: #BBBB00;'>default</span><span>)
-#&gt;   -&gt; residuals         :  numerical, min =  -0.5648559 , mean =  -0.02136306 , max =  0.7297593  
-#&gt; </span><span style='color: #00BB00;'>A new explainer has been created!</span><span></div><div class='output co'>#&gt; Model label:  WrappedModel 
-#&gt; Model class:  WrappedModel 
-#&gt; Data head  :
-#&gt;   gender.female gender.male age class.1st class.2nd class.3rd class.deck.crew
-#&gt; 1             1           0  16         0         0         1               0
-#&gt; 2             0           1  25         0         0         1               0
-#&gt;   class.engineering.crew class.restaurant.staff class.victualling.crew
-#&gt; 1                      0                      0                      0
-#&gt; 2                      0                      0                      0
-#&gt;   embarked.Belfast embarked.Cherbourg embarked.Queenstown embarked.Southampton
-#&gt; 1                0                  0                   0                    1
-#&gt; 2                0                  0                   0                    1
-#&gt;   fare sibsp parch
-#&gt; 1 7.13     0     0
-#&gt; 2 7.13     0     0</div><div class='input'>
+#&gt;   -&gt; residuals         :  numerical, min =  -0.5640745 , mean =  -0.02085597 , max =  0.7306586  </div><div class='output co'>#&gt; <span class='error'>Error in explain(model, data = data, y = y, predict_function = predict_function,     residual_function = residual_function, ..., label = label,     verbose = verbose, precalculate = precalculate, ): argument is missing, with no default</span></div><div class='input'>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

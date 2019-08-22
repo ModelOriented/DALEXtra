@@ -13,7 +13,7 @@ explain_mljar(model, project_title, data = NULL, y = NULL,
 
 \item{project_title}{character - a name of project_title  in which model was built. Without it predictions are unreachable.}
 
-\item{data}{data.frame or matrix - data that was used for fitting. If not provided then will be extracted from the model. Data should be passed without target column (y parameter). If not, some of the functionalities my not work.}
+\item{data}{data.frame or matrix - data that was used for fitting. If not provided then will be extracted from the model. Data should be passed without target column (this shall be provided as the \code{y} argument). NOTE: If target variable is present in the \code{data}, some of the functionalities my not work properly.}
 
 \item{y}{numeric vector with outputs / scores. If provided then it shall have the same size as \code{data}}
 

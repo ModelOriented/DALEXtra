@@ -2,6 +2,7 @@
 #'
 #' These functios are default predict functions.
 #' Each function returns a single numeric score for each new observation.
+#' Those functions are very important since informations from many models have to be extracted with various techniques.
 #'
 #' Currently supported packages are:
 #' \itemize{
@@ -9,6 +10,7 @@
 #' \item `h2o` see more in \code{\link{explain_h2o}}
 #' \item `scikit-learn` see more in \code{\link{explain_scikitlearn}}
 #' \item `keras` see more in \code{\link{explain_keras}}
+#' \item `mljar` see more in \code{\link{explain_mljar}}
 #' }
 #'
 #' @param X.model object - a model to be explained
@@ -45,35 +47,26 @@ yhat.h2o <- function(X.model, newdata, ...) {
         newdata <- h2o::as.h2o(newdata)
       }
       as.vector(h2o::h2o.predict(X.model, newdata = newdata))
-
     },
     "H2OBinomialModel" = {
       if (!class(newdata) == "H2OFrame") {
         newdata <- h2o::as.h2o(newdata)
       }
-
       res <-
         as.data.frame(h2o::h2o.predict(X.model, newdata = newdata))
       res$p1
-
     },
     stop("Model is not explainable h2o object")
-
-
   )
 }
 
 #' @rdname yhat
 #' @export
-
 yhat.H2ORegressionModel <- yhat.h2o
 
 #' @rdname yhat
 #' @export
-#'
 yhat.H2OBinomialModel <- yhat.h2o
-
-
 
 #' @rdname yhat
 #' @export
@@ -85,8 +78,7 @@ yhat.scikitlearn_model <- function(X.model, newdata, ...) {
     if (class(success) == "try-error") {
       pred <-  X.model$predict_proba(newdata)[, 1]
     }
-
-  } else{
+  } else {
     pred <-  X.model$predict(newdata)
   }
   pred
@@ -96,12 +88,9 @@ yhat.scikitlearn_model <- function(X.model, newdata, ...) {
 #' @export
 yhat.keras <- function(X.model, newdata, ...) {
   if ("predict_proba" %in% names(X.model)) {
-
-    #We take first column due to keras not storing matrix when binary classification
+    # We take first column due to keras not storing matrix when binary classification
     pred <-  X.model$predict_proba(newdata)[, 1]
-
-
-  } else{
+  } else {
     pred <-  X.model$predict(newdata)
   }
   pred
@@ -110,7 +99,5 @@ yhat.keras <- function(X.model, newdata, ...) {
 #' @rdname yhat
 #' @export
 yhat.mljar_model <- function(X.model, newdata, ...) {
-
- unlist(mljar::mljar_predict(model = X.model, x_pred = newdata, project_title = X.model$project), use.names = FALSE)
-
+  unlist(mljar::mljar_predict(model = X.model, x_pred = newdata, project_title = X.model$project), use.names = FALSE)
 }

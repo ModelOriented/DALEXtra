@@ -143,11 +143,7 @@ One of those tools, we would like to make more accessible is H2O.</p>
     </tr>
     <tr>
       <th>data</th>
-      <td><p>data.frame or matrix - data that was used for fitting. If not provided then will be extracted from the model. Data should be passed without target column (y parameter). If not, some of the functionalities my not work.</p></td>
-    </tr>
-    <tr>
-      <th>y</th>
-      <td><p>numeric vector with outputs / scores. If provided then it shall have the same size as <code>data</code></p></td>
+      <td><p>data.frame or matrix - data that was used for fitting. If not provided then will be extracted from the model. Data should be passed without target column (this shall be provided as the <code>y</code> argument). NOTE: If target variable is present in the <code>data</code>, some of the functionalities my not work properly.</p></td>
     </tr>
     <tr>
       <th>predict_function</th>
@@ -159,7 +155,7 @@ One of those tools, we would like to make more accessible is H2O.</p>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>other parameters</p></td>
+      <td><p>other parameters (passed for example to predict function)</p></td>
     </tr>
     <tr>
       <th>label</th>
@@ -184,18 +180,10 @@ One of those tools, we would like to make more accessible is H2O.</p>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"DALEXtra"</span>)
 <span class='no'>titanic_test</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_test.csv"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))
 <span class='no'>titanic_train</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_train.csv"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))
-<span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.init.html'>h2o.init</a></span>()</div><div class='output co'>#&gt; 
-#&gt; H2O is not running yet, starting it now...
-#&gt; 
-#&gt; Note:  In case of errors look at the following log files:
-#&gt;     C:\Users\szyna\AppData\Local\Temp\RtmpYZL02P/h2o_szyna_started_from_r.out
-#&gt;     C:\Users\szyna\AppData\Local\Temp\RtmpYZL02P/h2o_szyna_started_from_r.err
-#&gt; 
-#&gt; 
-#&gt; Starting H2O JVM and connecting: . Connection successful!
+<span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.init.html'>h2o.init</a></span>()</div><div class='output co'>#&gt;  Connection successful!
 #&gt; 
 #&gt; R is connected to the H2O cluster: 
-#&gt;     H2O cluster uptime:         3 seconds 9 milliseconds 
+#&gt;     H2O cluster uptime:         7 hours 58 minutes 
 #&gt;     H2O cluster timezone:       Europe/Belgrade 
 #&gt;     H2O data parsing timezone:  UTC 
 #&gt;     H2O cluster version:        3.24.0.5 
@@ -228,7 +216,7 @@ One of those tools, we would like to make more accessible is H2O.</p>
 <span class='fu'>explain_h2o</span>(<span class='no'>model</span>, <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>], <span class='no'>titanic_test</span>[,<span class='fl'>18</span>])</div><div class='output co'>#&gt;  Connection successful!
 #&gt; 
 #&gt; R is connected to the H2O cluster: 
-#&gt;     H2O cluster uptime:         10 seconds 525 milliseconds 
+#&gt;     H2O cluster uptime:         7 hours 59 minutes 
 #&gt;     H2O cluster timezone:       Europe/Belgrade 
 #&gt;     H2O data parsing timezone:  UTC 
 #&gt;     H2O cluster version:        3.24.0.5 

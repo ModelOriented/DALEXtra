@@ -9,28 +9,19 @@ create_env(yml, condaenv)
 \arguments{
 \item{yml}{a path to the .yml file. If OS is Windows conda has to be added to the PATH first}
 
-\item{condaenv}{path to main conda folder. If OS is Unix You may want to specify it with .yml file path. Using with windows, param will be omitted.}
+\item{condaenv}{path to main conda folder. If OS is Unix You may want to specify it. When passed with windows, param will be omitted.}
 }
 \value{
 Name of created virtual env.
 }
 \description{
-Phython objects may be loaded into R. However, it requiers versions of the Python and libraries to match bewtween both machines.
+Python objects may be loaded into R. However, it requiers versions of the Python and libraries to match between both machines.
+This functions allow user to create conda virtual environment based on provided .yml file.
 }
 \examples{
 if(DALEXtra:::is_conda()) {
-  reticulate::use_condaenv("myenv")
-
-    create_env(
-      system.file("extdata", "testing_environment.yml", package = "DALEXtra"),
-      condaenv = paste(
-        sub('[/][^/]+$', '', reticulate::conda_binary()[1]),
-        "/..",
-        sep = ""
-      )
-    )
-
- } else {
+  create_env(system.file("extdata", "testing_environment.yml", package = "DALEXtra"))
+} else {
   "conda is required"
 }
 }

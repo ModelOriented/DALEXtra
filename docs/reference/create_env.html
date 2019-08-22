@@ -37,7 +37,8 @@
 
 <meta property="og:title" content="Create your conda virtual env with DALEX — create_env" />
 
-<meta property="og:description" content="Phython objects may be loaded into R. However, it requiers versions of the Python and libraries to match bewtween both machines." />
+<meta property="og:description" content="Python objects may be loaded into R. However, it requiers versions of the Python and libraries to match between both machines.
+This functions allow user to create conda virtual environment based on provided .yml file." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -122,7 +123,8 @@
 
     <div class="ref-description">
     
-    <p>Phython objects may be loaded into R. However, it requiers versions of the Python and libraries to match bewtween both machines.</p>
+    <p>Python objects may be loaded into R. However, it requiers versions of the Python and libraries to match between both machines.
+This functions allow user to create conda virtual environment based on provided .yml file.</p>
     
     </div>
 
@@ -137,7 +139,7 @@
     </tr>
     <tr>
       <th>condaenv</th>
-      <td><p>path to main conda folder. If OS is Unix You may want to specify it with .yml file path. Using with windows, param will be omitted.</p></td>
+      <td><p>path to main conda folder. If OS is Unix You may want to specify it. When passed with windows, param will be omitted.</p></td>
     </tr>
     </table>
     
@@ -148,18 +150,8 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='kw pkg'>DALEXtra</span><span class='kw ns'>:::</span><span class='fu'>is_conda</span>()) {
-  <span class='kw pkg'>reticulate</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/reticulate/man/use_python.html'>use_condaenv</a></span>(<span class='st'>"myenv"</span>)
-
-    <span class='fu'>create_env</span>(
-      <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"testing_environment.yml"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>),
-      <span class='kw'>condaenv</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(
-        <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>sub</a></span>(<span class='st'>'[/][^/]+$'</span>, <span class='st'>''</span>, <span class='kw pkg'>reticulate</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/reticulate/man/conda-tools.html'>conda_binary</a></span>()[<span class='fl'>1</span>]),
-        <span class='st'>"/.."</span>,
-        <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>
-      )
-    )
-
- } <span class='kw'>else</span> {
+  <span class='fu'>create_env</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"testing_environment.yml"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))
+} <span class='kw'>else</span> {
   <span class='st'>"conda is required"</span>
 }</div><div class='output co'>#&gt; <span class='message'>There already exists environment named the same as it is specified in .yml file - myenv. It will be used</span></div><div class='output co'>#&gt; [1] "myenv"</div></pre>
   </div>

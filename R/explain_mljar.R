@@ -7,7 +7,7 @@
 #'
 #' @param model object - a mljar model to be explained
 #' @param project_title character - a name of project_title  in which model was built. Without it predictions are unreachable.
-#' @param data data.frame or matrix - data that was used for fitting. If not provided then will be extracted from the model. Data should be passed without target column (y parameter). If not, some of the functionalities my not work.
+#' @param data data.frame or matrix - data that was used for fitting. If not provided then will be extracted from the model. Data should be passed without target column (this shall be provided as the \code{y} argument). NOTE: If target variable is present in the \code{data}, some of the functionalities my not work properly.
 #' @param y numeric vector with outputs / scores. If provided then it shall have the same size as \code{data}
 #' @param predict_function function that takes two arguments: model and new data and returns numeric vector with predictions
 #' @param residual_function function that takes three arguments: model, data and response vector y. It should return a numeric vector with model residuals for given data. If not provided, response residuals (\eqn{y-\hat{y}}) are calculated.
@@ -41,7 +41,6 @@
 #' }
 #' @rdname explain_mljar
 #' @export
-#'
 
 explain_mljar <-
   function(model,
@@ -64,11 +63,12 @@ explain_mljar <-
     # Temporary solution until new version of mljar arrive on CRAN
     class(model) <- "mljar_model"
 
+    # If model was created in current session of system, we may try to extract data
     if (is.null(data)) {
       message("Data not specified, trying extract default...")
       err <-
-        try(data <-
-              read.csv(mljar::get_datasets(model$hid)$datasets[[1]]$file_name))
+        try(data <- read.csv(mljar::get_datasets(model$hid)$datasets[[1]]$file_name),
+            silent = TRUE)
       if (class(err) == "try-error") {
         stop("Extracting default data failed")
       } else {
@@ -79,19 +79,17 @@ explain_mljar <-
       }
     }
 
-
+    # mljar does not store information about project title and we cannot do predictions without it. Therefore we expand model with that field
     model$project <- project_title
-
     explain(
       model,
       data = data,
       y = y,
       predict_function = predict_function,
       residual_function = residual_function,
+      ...,
       label = label,
       verbose = verbose,
-      precalculate = precalculate,
-      ...
+      precalculate = precalculate
     )
-
   }

@@ -6,11 +6,10 @@
 #'
 #'
 #' @param model object - a model to be explained
-#' @param data data.frame or matrix - data that was used for fitting. If not provided then will be extracted from the model. Data should be passed without target column (y parameter). If not, some of the functionalities my not work.
-#' @param y numeric vector with outputs / scores. If provided then it shall have the same size as \code{data}
+#' @param data data.frame or matrix - data that was used for fitting. If not provided then will be extracted from the model. Data should be passed without target column (this shall be provided as the \code{y} argument). NOTE: If target variable is present in the \code{data}, some of the functionalities my not work properly.
 #' @param predict_function function that takes two arguments: model and new data and returns numeric vector with predictions
 #' @param residual_function function that takes three arguments: model, data and response vector y. It should return a numeric vector with model residuals for given data. If not provided, response residuals (\eqn{y-\hat{y}}) are calculated.
-#' @param ... other parameters
+#' @param ... other parameters (passed for example to predict function)
 #' @param label character - the name of the model. By default it's extracted from the 'class' attribute of the model
 #' @param verbose if TRUE (default) then diagnostic messages will be printed
 #' @param precalculate if TRUE (default) then 'predicted_values' and 'residuals' are calculated when explainer is created. This will happenn also if 'verbose' is TRUE.
@@ -42,7 +41,6 @@
 #' explain_h2o(model, titanic_test[,1:17], titanic_test[,18])
 #' @rdname explain_h2o
 #' @export
-#'
 
 explain_h2o <-
   function(model,
@@ -58,7 +56,6 @@ explain_h2o <-
       y <- as.numeric(as.vector(y))
     }
 
-
     h2o::h2o.init()
     explain(
       model,
@@ -66,10 +63,9 @@ explain_h2o <-
       y = y,
       predict_function = predict_function,
       residual_function = residual_function,
+      ...,
       label = label,
       verbose = verbose,
-      ...,
       precalculate = precalculate
     )
-
   }

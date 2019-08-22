@@ -82,17 +82,17 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#dalextra" class="anchor"></a>DALEXtra</h1></div>
 
-<p>An extension for DALEX package</p>
+<p>An extension for <a href="https://modeloriented.github.io/DALEX">DALEX</a> package</p>
 </div>
 <div id="anaconda" class="section level1">
 <h1 class="hasAnchor">
 <a href="#anaconda" class="anchor"></a>Anaconda</h1>
-<p>In order to be able to use some features associated with <code>DALEXtra</code>, Anaconda in needed. The easiest way to get it, is visting <a href="https://www.anaconda.com/distribution">Anconda website</a>. And choosing proper OS as it stands in the following picture. <img src="README_files/figure-gfm/anaconda1.png"> There is no big difference bewtween Python versions when downloading conda therefore it is recommended to choose Python 3.7 (newer Anaconda version) and then downloading python 2.7.</p>
+<p>In order to be able to use some features associated with <code>DALEXtra</code>, Anaconda in needed. The easiest way to get it, is visting <a href="https://www.anaconda.com/distribution">Anconda website</a>. And choosing proper OS as it stands in the following picture. <img src="https://raw.githubusercontent.com/ModelOriented/DALEXtra/master/README_files/figure-gfm/anaconda1.png"> There is no big difference bewtween Python versions when downloading Anaconda. You can always create virtual environment with any version of Pytho no matter which version was downloaded first.</p>
 <div id="windows" class="section level2">
 <h2 class="hasAnchor">
 <a href="#windows" class="anchor"></a>Windows</h2>
 <p>Crucial thing is adding conda to PATH environment variable when using Windows. You can do it during installation, by marking this checkbox.</p>
-<p><img src="README_files/figure-gfm/anaconda2.png"></p>
+<p><img src="https://raw.githubusercontent.com/ModelOriented/DALEXtra/master/README_files/figure-gfm/anaconda2.png"></p>
 <p>or, if conda is already installed, by following <a href="https://stackoverflow.com/a/44597801/9717584">those instructions</a>.</p>
 </div>
 <div id="unix" class="section level2">
@@ -108,14 +108,15 @@
 <pre><code>install.packages("devtools")
 devtools::install_github("ModelOriented/DALEXtra")
 devtools::install_github("ModelOriented/DALEX")</code></pre>
-<p>It is recommended to install latests github version of DALEX</p>
-<p>Package <code>reticulate</code> will be downloaded along with <code>DALEXtra</code> but if you seek for its latests version it can be downloaded here</p>
+<p>It is recommended to install latests github version of DALEX.</p>
+<p>Package <code>reticulate</code> will be downloaded along with <code>DALEXtra</code> but if you seek for it’s latests version it can be downloaded here</p>
 <pre><code><a href="https://rdrr.io/pkg/devtools/man/reexports.html">devtools::install_github("rstudio/reticulate")</a></code></pre>
-<p>Packages useful with explanations</p>
+<p>Packages useful with explanations.</p>
 <pre><code>devtools::install_github("ModelOriented/ingredients")
 devtools::install_github("ModelOriented/iBreakDown")
 devtools::install_github("ModelOriented/shapper")
 devtools::install_github("ModelOriented/auditor")</code></pre>
+<p>Above packages can be used along with <code>explain</code> object to create explanations (ingredients, iBreakDown, shapper) or audit our model (audiotr).</p>
 <p><a href="https://modeloriented.github.io/DALEXtra/" class="uri">https://modeloriented.github.io/DALEXtra/</a></p>
 </div>
 <div id="demo" class="section level1">
@@ -125,13 +126,14 @@ devtools::install_github("ModelOriented/auditor")</code></pre>
 <div id="loading-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#loading-data" class="anchor"></a>Loading data</h2>
-<p>First we need data, explainer is useless without them. Thing is Python object does not store training data so always have to proviede dataset. Feel free to use those attached to <code>DALEX</code> package or those stored in <code>DALEXtra</code> files.</p>
+<p>First we need provide the data, explainer is useless without them. Thing is Python object does not store training data so always have to provide dataset. Feel free to use those attached to <code>DALEX</code> package or those stored in <code>DALEXtra</code> files.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">titanic_test &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"titanic_test.csv"</span>, <span class="dt">package =</span> <span class="st">"DALEXtra"</span>))</a></code></pre></div>
-<p>Keep in mind that that dataframe includes targer variable (18th column) and scikit-learn models do not like it</p>
+<p>Keep in mind that dataframe includes target variable (18th column) and scikit-learn models cannot work with it.</p>
 </div>
 <div id="creating-explainer" class="section level2">
 <h2 class="hasAnchor">
 <a href="#creating-explainer" class="anchor"></a>Creating explainer</h2>
+<p>Creating exlainer from scikit-learn Python model is very simple thanks to <code>DALEXtra</code>. The only thing you need to provide is path to pickle and, if necessery, something that lets recognize Python environment. It may be .yml file with packages specification, name of existing conda environment or path to Python virtual environment. Execution of <code>scikitlearn_explain</code> only with .pkl file and data will cause usage of default Python.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(DALEXtra)</a>
 <a class="sourceLine" id="cb5-2" title="2">explainer &lt;-<span class="st"> </span><span class="kw"><a href="reference/explain_scikitlearn.html">explain_scikitlearn</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"scikitlearn.pkl"</span>, <span class="dt">package =</span> <span class="st">"DALEXtra"</span>),</a>
 <a class="sourceLine" id="cb5-3" title="3"><span class="dt">yml =</span> <span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"testing_environment.yml"</span>, <span class="dt">package =</span> <span class="st">"DALEXtra"</span>), </a>
@@ -145,12 +147,11 @@ devtools::install_github("ModelOriented/auditor")</code></pre>
 ##   -&gt; residual function :  difference between y and yhat ([33mdefault[39m)
 ##   -&gt; residuals         :  numerical, min =  -0.8669431 , mean =  0.02248468 , max =  0.9791387  
 ## [32mA new explainer has been created![39m</code></pre>
-<p>Creating exlainer from scikit-learn Python model is very simple thanks to <code>DALEXtra</code>. The only thing you need to provide is path to pickle and, if necessery, something that lets recognize Python environment. It may be .yml file with packages specification, name of existing conda environment or path to Python virtual environment. Execution of <code>scikitlearn_explain</code> only with .pkl file and data will cause usage of default Python.</p>
 </div>
 <div id="creating-explanations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#creating-explanations" class="anchor"></a>Creating explanations</h2>
-<p>Now with explainer ready we can use any of DrWhy.ai universe tools to make explanations. Here is a small demo</p>
+<p>Now with explainer ready we can use any of <a href="https://github.com/ModelOriented/DrWhy/blob/master/README.md">DrWhy.ai</a> universe tools to make explanations. Here is a small demo.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(DALEX)</a>
 <a class="sourceLine" id="cb7-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw">model_performance</span>(explainer))</a></code></pre></div>
 <p><img src="index_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
@@ -158,8 +159,8 @@ devtools::install_github("ModelOriented/auditor")</code></pre>
 <a class="sourceLine" id="cb8-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw">feature_importance</span>(explainer))</a></code></pre></div>
 <p><img src="index_files/figure-html/unnamed-chunk-3-2.png" width="700"></p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">describe</span>(<span class="kw">feature_importance</span>(explainer))</a></code></pre></div>
-<pre><code>## The number of important variables for scikitlearn_model's prediction is 2 out of 17. 
-##  Variables gender.female, gender.male have the highest importantance.</code></pre>
+<pre><code>## The number of important variables for scikitlearn_model's prediction is 3 out of 17. 
+##  Variables gender.female, gender.male, class.1st have the highest importantance.</code></pre>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(iBreakDown)</a>
 <a class="sourceLine" id="cb11-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw">break_down</span>(explainer, titanic_test[<span class="dv">2</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">17</span>]))</a></code></pre></div>
 <p><img src="index_files/figure-html/unnamed-chunk-3-3.png" width="700"></p>

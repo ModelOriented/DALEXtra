@@ -1,10 +1,11 @@
 #' Create your conda virtual env with DALEX
 #'
-#' Phython objects may be loaded into R. However, it requiers versions of the Python and libraries to match bewtween both machines.
+#' Python objects may be loaded into R. However, it requiers versions of the Python and libraries to match between both machines.
+#' This functions allow user to create conda virtual environment based on provided .yml file.
 #'
 #' @usage create_env(yml, condaenv)
 #' @param yml a path to the .yml file. If OS is Windows conda has to be added to the PATH first
-#' @param condaenv path to main conda folder. If OS is Unix You may want to specify it with .yml file path. Using with windows, param will be omitted.
+#' @param condaenv path to main conda folder. If OS is Unix You may want to specify it. When passed with windows, param will be omitted.
 #'
 #' @author Szymon Maksymiuk
 #'
@@ -13,42 +14,35 @@
 #'
 #' @examples
 #' if(DALEXtra:::is_conda()) {
-#'   reticulate::use_condaenv("myenv")
-#'
-#'     create_env(
-#'       system.file("extdata", "testing_environment.yml", package = "DALEXtra"),
-#'       condaenv = paste(
-#'         sub('[/][^/]+$', '', reticulate::conda_binary()[1]),
-#'         "/..",
-#'         sep = ""
-#'       )
-#'     )
-#'
-#'  } else {
+#'   create_env(system.file("extdata", "testing_environment.yml", package = "DALEXtra"))
+#' } else {
 #'   "conda is required"
 #' }
 #' @rdname create_env
 #' @export
-
-
 create_env <- function(yml, condaenv = NULL) {
   if (.Platform$OS.type == "unix" & is.null(condaenv)) {
-    condaenv = paste(sub('[/][^/]+$', '', reticulate::conda_binary()[1]),
-                     "/..",
-                     sep = "")
-    message(paste(
-      "Path to conda not specified while on unix. Default used.",
-      condaenv
-    ))
+    if (is_conda()) {
+      condaenv = paste(sub('[/][^/]+$', '', reticulate::conda_binary()[1]),
+                       "/..",
+                       sep = "")
+      message(paste(
+        "Path to conda not specified while on unix. Default used.",
+        condaenv
+      ))
+    } else {
+      stop("Conda not found")
+    }
   }
 
+  # Extract name of the environment that is stored in .yml header
   con <- file(yml, "r")
   first_line <- readLines(con, n = 1)
   close(con)
+  # Name is stored in the pattern : "name: name_of_env" so we have to split the string
   name <- strsplit(first_line, split = " ")[[1]][2]
 
   # Check if specified env already exists
-
   if (name %in% reticulate::conda_list()$name) {
     message(
       paste(
@@ -113,7 +107,6 @@ create_env <- function(yml, condaenv = NULL) {
             call. = FALSE
           )
         }
-
       }
     )
   }
@@ -126,7 +119,6 @@ create_env <- function(yml, condaenv = NULL) {
         sep = ""
       )
     )
-
     tryCatch(
       expr = {
         mes <-
@@ -136,7 +128,6 @@ create_env <- function(yml, condaenv = NULL) {
       # Unix erros not partitioned since it is impossbile to capture whole shell output
       warning = function(w) {
         warning(w, call. = FALSE)
-
         warning(
           "Conda cannot find specified packages at channels you have provided. Try to add more channels (conda repositories) to your .yml file.",
           call. = FALSE
@@ -149,10 +140,8 @@ create_env <- function(yml, condaenv = NULL) {
           "If nothing above works, some of the packages are not avialable for your conda, try to use 'pip:' statement",
           call. = FALSE
         )
-
         stop("Error has occured, check warnings() for possible problems",
              call. = FALSE)
-
       },
       error = function(e) {
         if (any(grepl("running command", e))) {
@@ -168,7 +157,6 @@ create_env <- function(yml, condaenv = NULL) {
             call. = FALSE
           )
         }
-
       }
     )
   }

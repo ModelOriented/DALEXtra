@@ -147,7 +147,7 @@ One of those tools, we would like to make more accessible is mljar.</p>
     </tr>
     <tr>
       <th>data</th>
-      <td><p>data.frame or matrix - data that was used for fitting. If not provided then will be extracted from the model. Data should be passed without target column (y parameter). If not, some of the functionalities my not work.</p></td>
+      <td><p>data.frame or matrix - data that was used for fitting. If not provided then will be extracted from the model. Data should be passed without target column (this shall be provided as the <code>y</code> argument). NOTE: If target variable is present in the <code>data</code>, some of the functionalities my not work properly.</p></td>
     </tr>
     <tr>
       <th>y</th>
@@ -195,7 +195,7 @@ One of those tools, we would like to make more accessible is mljar.</p>
                    <span class='kw'>algorithms</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"logreg"</span>), <span class='kw'>metric</span> <span class='kw'>=</span> <span class='st'>"logloss"</span>)
 <span class='co'># It Works</span>
 <span class='no'>explainer</span> <span class='kw'>&lt;-</span> <span class='fu'>explain_mljar</span>(<span class='no'>model</span>, <span class='kw'>project_title</span> <span class='kw'>=</span> <span class='st'>"Project title"</span>,
-                           <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>], <span class='no'>titanic_test</span>[,<span class='fl'>18</span>])
+                           <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>], <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>titanic_test</span>[,<span class='fl'>18</span>])
 <span class='co'># But it works aswell</span>
 <span class='no'>explainer</span> <span class='kw'>&lt;-</span> <span class='fu'>explain_mljar</span>(<span class='no'>model</span>, <span class='kw'>project_title</span> <span class='kw'>=</span> <span class='st'>"Project title"</span>,
                            <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>precalculate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)

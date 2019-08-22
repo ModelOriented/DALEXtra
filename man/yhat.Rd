@@ -34,6 +34,7 @@ An numeric vector of predictions
 \description{
 These functios are default predict functions.
 Each function returns a single numeric score for each new observation.
+Those functions are very important since informations from many models have to be extracted with various techniques.
 }
 \details{
 Currently supported packages are:
@@ -42,5 +43,6 @@ Currently supported packages are:
 \item `h2o` see more in \code{\link{explain_h2o}}
 \item `scikit-learn` see more in \code{\link{explain_scikitlearn}}
 \item `keras` see more in \code{\link{explain_keras}}
+\item `mljar` see more in \code{\link{explain_mljar}}
 }
 }
