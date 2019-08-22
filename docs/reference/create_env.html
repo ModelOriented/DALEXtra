@@ -151,7 +151,7 @@
   <span class='kw pkg'>reticulate</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/reticulate/man/use_python.html'>use_condaenv</a></span>(<span class='st'>"myenv"</span>)
 
     <span class='fu'>create_env</span>(
-      <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"scikitlearn_unix.yml"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>),
+      <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"testing_environment.yml"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>),
       <span class='kw'>condaenv</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(
         <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>sub</a></span>(<span class='st'>'[/][^/]+$'</span>, <span class='st'>''</span>, <span class='kw pkg'>reticulate</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/reticulate/man/conda-tools.html'>conda_binary</a></span>()[<span class='fl'>1</span>]),
         <span class='st'>"/.."</span>,

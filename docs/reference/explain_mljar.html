@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create explainer from your mlr model — explain_mlr • DALEXtra</title>
+<title>Create explainer from your mljar model — explain_mljar • DALEXtra</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -35,11 +35,11 @@
 
 
 
-<meta property="og:title" content="Create explainer from your mlr model — explain_mlr" />
+<meta property="og:title" content="Create explainer from your mljar model — explain_mljar" />
 
 <meta property="og:description" content="DALEX is designed to work with various black-box models like tree ensembles, linear models, neural networks etc.
-Unfortunately R packages that create such models are very inconsistent. Different tools use different interfaces to train, validate and use models.
-One of those tools, which is one of the most popular one is mlr package. We would like to present dedicated explain function for it." />
+Unfortunately packages that create such models are very inconsistent between many platforms and programming languages. Different tools use different interfaces to train, validate and use models.
+One of those tools, we would like to make more accessible is mljar." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -117,29 +117,33 @@ One of those tools, which is one of the most popular one is mlr package. We woul
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create explainer from your mlr model</h1>
+    <h1>Create explainer from your mljar model</h1>
     
-    <div class="hidden name"><code>explain_mlr.Rd</code></div>
+    <div class="hidden name"><code>explain_mljar.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
     <p>DALEX is designed to work with various black-box models like tree ensembles, linear models, neural networks etc.
-Unfortunately R packages that create such models are very inconsistent. Different tools use different interfaces to train, validate and use models.
-One of those tools, which is one of the most popular one is mlr package. We would like to present dedicated explain function for it.</p>
+Unfortunately packages that create such models are very inconsistent between many platforms and programming languages. Different tools use different interfaces to train, validate and use models.
+One of those tools, we would like to make more accessible is mljar.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>explain_mlr</span>(<span class='no'>model</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>predict_function</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>residual_function</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>precalculate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>explain_mljar</span>(<span class='no'>model</span>, <span class='no'>project_title</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>predict_function</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>residual_function</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>,
+  <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>precalculate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>model</th>
-      <td><p>object - a model to be explained</p></td>
+      <td><p>object - a mljar model to be explained</p></td>
+    </tr>
+    <tr>
+      <th>project_title</th>
+      <td><p>character - a name of project_title  in which model was built. Without it predictions are unreachable.</p></td>
     </tr>
     <tr>
       <th>data</th>
@@ -171,7 +175,7 @@ One of those tools, which is one of the most popular one is mlr package. We woul
     </tr>
     <tr>
       <th>precalculate</th>
-      <td><p>if TRUE (default) then 'predicted_values' and 'residuals' are calculated when explainer is created. This will happenn also if 'verbose' is TRUE</p></td>
+      <td><p>if TRUE (default) then 'predicted_values' and 'residuals' are calculated when explainer is created. This will happenn also if 'verbose' is TRUE.</p></td>
     </tr>
     </table>
     
@@ -181,52 +185,21 @@ One of those tools, which is one of the most popular one is mlr package. We woul
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"DALEXtra"</span>)
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"DALEXtra"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mljar</span>)
 <span class='no'>titanic_test</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_test.csv"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))
-<span class='no'>titanic_train</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_train.csv"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr"</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: ParamHelpers</span></div><div class='input'><span class='no'>task</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mlr/man/ClassifTask.html'>makeClassifTask</a></span>(
-<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"R"</span>,
-<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>titanic_train</span>,
-<span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"survived"</span>
-)
-<span class='no'>learner</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mlr/man/makeLearner.html'>makeLearner</a></span>(
-  <span class='st'>"classif.gbm"</span>,
-  <span class='kw'>par.vals</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-    <span class='kw'>distribution</span> <span class='kw'>=</span> <span class='st'>"bernoulli"</span>,
-    <span class='kw'>n.trees</span> <span class='kw'>=</span> <span class='fl'>500</span>,
-    <span class='kw'>interaction.depth</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-    <span class='kw'>n.minobsinnode</span> <span class='kw'>=</span> <span class='fl'>12</span>,
-    <span class='kw'>shrinkage</span> <span class='kw'>=</span> <span class='fl'>0.001</span>,
-    <span class='kw'>bag.fraction</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-    <span class='kw'>train.fraction</span> <span class='kw'>=</span> <span class='fl'>1</span>
-  ),
-  <span class='kw'>predict.type</span> <span class='kw'>=</span> <span class='st'>"prob"</span>
-)
-<span class='no'>gbm</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mlr/man/train.html'>train</a></span>(<span class='no'>learner</span>, <span class='no'>task</span>)
-<span class='fu'>explain_mlr</span>(<span class='no'>gbm</span>, <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>], <span class='no'>titanic_test</span>[,<span class='fl'>18</span>])</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
-#&gt;   -&gt; model label       :  WrappedModel  (<span style='color: #BBBB00;'>default</span><span>)
-#&gt;   -&gt; data              :  524  rows  17  cols 
-#&gt;   -&gt; target variable   :  524  values 
-#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used (</span><span style='color: #BBBB00;'>default</span><span>)
-#&gt;   -&gt; predicted values  :  numerical, min =  0.2702407 , mean =  0.3324318 , max =  0.5648559  
-#&gt;   -&gt; residual function :  difference between y and yhat (</span><span style='color: #BBBB00;'>default</span><span>)
-#&gt;   -&gt; residuals         :  numerical, min =  -0.5648559 , mean =  -0.02136306 , max =  0.7297593  
-#&gt; </span><span style='color: #00BB00;'>A new explainer has been created!</span><span></div><div class='output co'>#&gt; Model label:  WrappedModel 
-#&gt; Model class:  WrappedModel 
-#&gt; Data head  :
-#&gt;   gender.female gender.male age class.1st class.2nd class.3rd class.deck.crew
-#&gt; 1             1           0  16         0         0         1               0
-#&gt; 2             0           1  25         0         0         1               0
-#&gt;   class.engineering.crew class.restaurant.staff class.victualling.crew
-#&gt; 1                      0                      0                      0
-#&gt; 2                      0                      0                      0
-#&gt;   embarked.Belfast embarked.Cherbourg embarked.Queenstown embarked.Southampton
-#&gt; 1                0                  0                   0                    1
-#&gt; 2                0                  0                   0                    1
-#&gt;   fare sibsp parch
-#&gt; 1 7.13     0     0
-#&gt; 2 7.13     0     0</div><div class='input'>
-</div></span></pre>
+
+<span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/mljar/man/mljar_fit.html'>mljar_fit</a></span>(<span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>], <span class='no'>titanic_test</span>[,<span class='fl'>18</span>],
+                   <span class='kw'>proj_title</span><span class='kw'>=</span><span class='st'>"Project title"</span>, <span class='kw'>exp_title</span><span class='kw'>=</span><span class='st'>"experiment title"</span>,
+                   <span class='kw'>algorithms</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"logreg"</span>), <span class='kw'>metric</span> <span class='kw'>=</span> <span class='st'>"logloss"</span>)
+<span class='co'># It Works</span>
+<span class='no'>explainer</span> <span class='kw'>&lt;-</span> <span class='fu'>explain_mljar</span>(<span class='no'>model</span>, <span class='kw'>project_title</span> <span class='kw'>=</span> <span class='st'>"Project title"</span>,
+                           <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>], <span class='no'>titanic_test</span>[,<span class='fl'>18</span>])
+<span class='co'># But it works aswell</span>
+<span class='no'>explainer</span> <span class='kw'>&lt;-</span> <span class='fu'>explain_mljar</span>(<span class='no'>model</span>, <span class='kw'>project_title</span> <span class='kw'>=</span> <span class='st'>"Project title"</span>,
+                           <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>precalculate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

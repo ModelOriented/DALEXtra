@@ -107,14 +107,14 @@
 <p>Package can be installed with execution of the following code</p>
 <pre><code>install.packages("devtools")
 devtools::install_github("ModelOriented/DALEXtra")
-devtools::install_github("pbiecek/DALEX")</code></pre>
+devtools::install_github("ModelOriented/DALEX")</code></pre>
 <p>It is recommended to install latests github version of DALEX</p>
 <p>Package <code>reticulate</code> will be downloaded along with <code>DALEXtra</code> but if you seek for its latests version it can be downloaded here</p>
 <pre><code><a href="https://rdrr.io/pkg/devtools/man/reexports.html">devtools::install_github("rstudio/reticulate")</a></code></pre>
 <p>Packages useful with explanations</p>
-<pre><code>devtools::install_github("ModelOriented/ingredients)
-devtools::install_github("ModelOriented/iBreakDown)
-devtools::install_github("ModelOriented/shapper)
+<pre><code>devtools::install_github("ModelOriented/ingredients")
+devtools::install_github("ModelOriented/iBreakDown")
+devtools::install_github("ModelOriented/shapper")
 devtools::install_github("ModelOriented/auditor")</code></pre>
 <p><a href="https://modeloriented.github.io/DALEXtra/" class="uri">https://modeloriented.github.io/DALEXtra/</a></p>
 </div>
@@ -134,7 +134,7 @@ devtools::install_github("ModelOriented/auditor")</code></pre>
 <a href="#creating-explainer" class="anchor"></a>Creating explainer</h2>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(DALEXtra)</a>
 <a class="sourceLine" id="cb5-2" title="2">explainer &lt;-<span class="st"> </span><span class="kw"><a href="reference/explain_scikitlearn.html">explain_scikitlearn</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"scikitlearn.pkl"</span>, <span class="dt">package =</span> <span class="st">"DALEXtra"</span>),</a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="dt">yml =</span> <span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"scikitlearn_unix.yml"</span>, <span class="dt">package =</span> <span class="st">"DALEXtra"</span>), </a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="dt">yml =</span> <span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"testing_environment.yml"</span>, <span class="dt">package =</span> <span class="st">"DALEXtra"</span>), </a>
 <a class="sourceLine" id="cb5-4" title="4"><span class="dt">data =</span> titanic_test[,<span class="dv">1</span><span class="op">:</span><span class="dv">17</span>], <span class="dt">y =</span> titanic_test<span class="op">$</span>survived)</a></code></pre></div>
 <pre><code>## Preparation of a new explainer is initiated
 ##   -&gt; model label       :  scikitlearn_model  ([33mdefault[39m)
@@ -150,25 +150,35 @@ devtools::install_github("ModelOriented/auditor")</code></pre>
 <div id="creating-explanations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#creating-explanations" class="anchor"></a>Creating explanations</h2>
-<p>Now with explainer ready we can use any of DrWhy.ai universe tools to make explanations. Here is small demo</p>
+<p>Now with explainer ready we can use any of DrWhy.ai universe tools to make explanations. Here is a small demo</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(DALEX)</a>
 <a class="sourceLine" id="cb7-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw">model_performance</span>(explainer))</a></code></pre></div>
 <p><img src="index_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ingredients)</a>
 <a class="sourceLine" id="cb8-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw">feature_importance</span>(explainer))</a></code></pre></div>
 <p><img src="index_files/figure-html/unnamed-chunk-3-2.png" width="700"></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(iBreakDown)</a>
-<a class="sourceLine" id="cb9-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw">break_down</span>(explainer, titanic_test[<span class="dv">2</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">17</span>]))</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">describe</span>(<span class="kw">feature_importance</span>(explainer))</a></code></pre></div>
+<pre><code>## The number of important variables for scikitlearn_model's prediction is 2 out of 17. 
+##  Variables gender.female, gender.male have the highest importantance.</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(iBreakDown)</a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw">break_down</span>(explainer, titanic_test[<span class="dv">2</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">17</span>]))</a></code></pre></div>
 <p><img src="index_files/figure-html/unnamed-chunk-3-3.png" width="700"></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(shapper)</a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw">shap</span>(explainer, titanic_test[<span class="dv">2</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">17</span>]))</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">describe</span>(<span class="kw">break_down</span>(explainer, titanic_test[<span class="dv">2</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">17</span>]))</a></code></pre></div>
+<pre><code>## Scikitlearn_model predicts, that the prediction for the selected instance is 0.132 which is lower than the average model prediction.
+##  
+## The most important variables that decrease the prediction are class.3rd, gender.female. 
+## The most important variable that increase the prediction is age.
+##  
+## Other variables are with less importance. The contribution of all other variables is -0.108 .</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(shapper)</a>
+<a class="sourceLine" id="cb14-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw">shap</span>(explainer, titanic_test[<span class="dv">2</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">17</span>]))</a></code></pre></div>
 <p><img src="index_files/figure-html/unnamed-chunk-3-4.png" width="700"></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(auditor)</a>
-<a class="sourceLine" id="cb11-2" title="2">eval &lt;-<span class="st"> </span><span class="kw">model_evaluation</span>(explainer)</a>
-<a class="sourceLine" id="cb11-3" title="3"><span class="kw">plot_roc</span>(eval)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(auditor)</a>
+<a class="sourceLine" id="cb15-2" title="2">eval &lt;-<span class="st"> </span><span class="kw">model_evaluation</span>(explainer)</a>
+<a class="sourceLine" id="cb15-3" title="3"><span class="kw">plot_roc</span>(eval)</a></code></pre></div>
 <p><img src="index_files/figure-html/unnamed-chunk-3-5.png" width="700"></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co"># Predictions with newdata</span></a>
-<a class="sourceLine" id="cb12-2" title="2"><span class="kw"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(explainer, titanic_test[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">17</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># Predictions with newdata</span></a>
+<a class="sourceLine" id="cb16-2" title="2"><span class="kw"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(explainer, titanic_test[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">17</span>])</a></code></pre></div>
 <pre><code>##  [1] 0.3565896 0.1321947 0.7638813 0.1037486 0.1265221 0.2949228 0.1421281
 ##  [8] 0.1421281 0.4154695 0.1321947</code></pre>
 </div>
