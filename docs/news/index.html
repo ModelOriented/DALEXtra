@@ -124,10 +124,12 @@
 <code><a href="../reference/explain_keras.html">explain_keras()</a></code> added.</li>
 <li>
 <code><a href="../reference/explain_mljar.html">explain_mljar()</a></code> added.</li>
-<li>documentation refreshed with links to functions</li>
+<li>documentation refreshed with links to functions.</li>
 <li>
-<code><a href="../reference/explain_scikitlearn.html">explain_scikitlearn()</a></code> rebuilded. Some of the code was exported to inner functions (other.R)</li>
-<li>conda installation in README.md</li>
+<code><a href="../reference/explain_scikitlearn.html">explain_scikitlearn()</a></code> rebuilded. Some of the code was exported to inner functions (helper_functions.R).</li>
+<li>conda installation in <code>README.md</code>.</li>
+<li>
+<code>scikitlearn_unix.yml</code> file renamed to <code>testing_environment.yml</code>.</li>
 </ul>
 </div>
     <div id="dalextra-016" class="section level2">
@@ -138,26 +140,25 @@
 <code><a href="../reference/explain_scikitlearn.html">explain_scikitlearn()</a></code> rebuilded. Now class scikitlearn_model is a additional class for original Python object instead of another object.</li>
 <li>explainers created with <code><a href="../reference/explain_scikitlearn.html">explain_scikitlearn()</a></code> have addidtional field <code>param_set</code>.</li>
 <li>
-<code>yhat()</code> is now generic</li>
-<li>New examples in <code>README.md</code>
-</li>
+<code>yhat()</code> is now generic.</li>
+<li>New examples in <code>README.md</code>.</li>
 </ul>
 </div>
     <div id="dalextra-015" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dalextra-015" class="anchor"></a>DALEXtra 0.1.5</h2>
 <ul>
-<li>Now when you pass .yml that consist environment name that already exists one the machine, DALEXtra will not rise an error and contiune work with existing env</li>
-<li>If condaenv is NULL when creating_env on unixlike OS, DALEXtra will try to find conda on his own</li>
+<li>Now when you pass .yml that consist environment name that already exists one the machine, DALEXtra will not rise an error and contiune work with existing env.</li>
+<li>If condaenv is NULL when creating_env on unixlike OS, DALEXtra will try to find conda on his own.</li>
 <li>
-<code><a href="https://rdrr.io/r/base/ns-hooks.html">.onLoad()</a></code> function now checks if conda is installed. Alert is rised if not.</li>
+<code>on_attach()</code> function now checks if conda is installed. Alert is rised if not.</li>
 </ul>
 </div>
     <div id="dalextra-014" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dalextra-014" class="anchor"></a>DALEXtra 0.1.4</h2>
 <ul>
-<li>yhat.R created. Predict functions are stored there in order to be more accesible</li>
+<li>yhat.R created. Predict functions are stored there in order to be more accesible.</li>
 <li>
 <code><a href="../reference/explain_h2o.html">explain_h2o()</a></code> and <code><a href="../reference/explain_mlr.html">explain_mlr()</a></code> rebuilded.</li>
 </ul>
@@ -166,17 +167,18 @@
 <h2 class="hasAnchor">
 <a href="#dalextra-013" class="anchor"></a>DALEXtra 0.1.3</h2>
 <ul>
-<li>travis and codecov is now aviable available for DALEXtra</li>
-<li>tests added</li>
+<li>travis and codecov is now aviable available for DALEXtra.</li>
+<li>tests added.</li>
 </ul>
 </div>
     <div id="dalextra-012" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dalextra-012" class="anchor"></a>DALEXtra 0.1.2</h2>
 <ul>
-<li>scikitlearn_unix.yml file added to external data. This helps testing using linuxlike OS</li>
-<li>few minor updates in documentation</li>
-<li>message in <code><a href="../reference/create_env.html">create_env()</a></code> changed</li>
+<li>
+<code>scikitlearn_unix.yml</code> file added to external data. This helps testing using linuxlike OS.</li>
+<li>few minor updates in the documentation.</li>
+<li>message in <code><a href="../reference/create_env.html">create_env()</a></code> changed.</li>
 </ul>
 </div>
     <div id="dalextra-011" class="section level2">
@@ -184,20 +186,20 @@
 <a href="#dalextra-011" class="anchor"></a>DALEXtra 0.1.1</h2>
 <ul>
 <li>
-<code><a href="../reference/explain_mlr.html">explain_mlr()</a></code> function implemented</li>
+<code><a href="../reference/explain_mlr.html">explain_mlr()</a></code> function implemented.</li>
 <li>
-<code><a href="../reference/explain_h2o.html">explain_h2o()</a></code> function implemented</li>
+<code><a href="../reference/explain_h2o.html">explain_h2o()</a></code> function implemented.</li>
 </ul>
 </div>
     <div id="dalextra-01" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dalextra-01" class="anchor"></a>DALEXtra 0.1</h2>
 <ul>
-<li>DALEXtra package is now public</li>
+<li>DALEXtra package is now public.</li>
 <li>
-<code><a href="../reference/explain_scikitlearn.html">explain_scikitlearn()</a></code> function implemented</li>
+<code><a href="../reference/explain_scikitlearn.html">explain_scikitlearn()</a></code> function implemented.</li>
 <li>
-<code><a href="../reference/create_env.html">create_env()</a></code> function implemented</li>
+<code><a href="../reference/create_env.html">create_env()</a></code> function implemented.</li>
 </ul>
 </div>
   </div>

@@ -184,15 +184,23 @@ One of those tools, we would like to make more accessible is H2O.</p>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"DALEXtra"</span>)
 <span class='no'>titanic_test</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_test.csv"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))
 <span class='no'>titanic_train</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_train.csv"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))
-<span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.init.html'>h2o.init</a></span>()</div><div class='output co'>#&gt;  Connection successful!
+<span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.init.html'>h2o.init</a></span>()</div><div class='output co'>#&gt; 
+#&gt; H2O is not running yet, starting it now...
+#&gt; 
+#&gt; Note:  In case of errors look at the following log files:
+#&gt;     C:\Users\szyna\AppData\Local\Temp\RtmpUrjwKw/h2o_szyna_started_from_r.out
+#&gt;     C:\Users\szyna\AppData\Local\Temp\RtmpUrjwKw/h2o_szyna_started_from_r.err
+#&gt; 
+#&gt; 
+#&gt; Starting H2O JVM and connecting: .. Connection successful!
 #&gt; 
 #&gt; R is connected to the H2O cluster: 
-#&gt;     H2O cluster uptime:         2 minutes 38 seconds 
+#&gt;     H2O cluster uptime:         4 seconds 846 milliseconds 
 #&gt;     H2O cluster timezone:       Europe/Belgrade 
 #&gt;     H2O data parsing timezone:  UTC 
 #&gt;     H2O cluster version:        3.24.0.5 
-#&gt;     H2O cluster version age:    2 months and 3 days  
-#&gt;     H2O cluster name:           H2O_started_from_R_szyna_ydg016 
+#&gt;     H2O cluster version age:    2 months and 4 days  
+#&gt;     H2O cluster name:           H2O_started_from_R_szyna_mwl453 
 #&gt;     H2O cluster total nodes:    1 
 #&gt;     H2O cluster total memory:   1.97 GB 
 #&gt;     H2O cluster total cores:    4 
@@ -220,12 +228,12 @@ One of those tools, we would like to make more accessible is H2O.</p>
 <span class='fu'>explain_h2o</span>(<span class='no'>model</span>, <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>], <span class='no'>titanic_test</span>[,<span class='fl'>18</span>])</div><div class='output co'>#&gt;  Connection successful!
 #&gt; 
 #&gt; R is connected to the H2O cluster: 
-#&gt;     H2O cluster uptime:         2 minutes 43 seconds 
+#&gt;     H2O cluster uptime:         16 seconds 166 milliseconds 
 #&gt;     H2O cluster timezone:       Europe/Belgrade 
 #&gt;     H2O data parsing timezone:  UTC 
 #&gt;     H2O cluster version:        3.24.0.5 
-#&gt;     H2O cluster version age:    2 months and 3 days  
-#&gt;     H2O cluster name:           H2O_started_from_R_szyna_ydg016 
+#&gt;     H2O cluster version age:    2 months and 4 days  
+#&gt;     H2O cluster name:           H2O_started_from_R_szyna_mwl453 
 #&gt;     H2O cluster total nodes:    1 
 #&gt;     H2O cluster total memory:   1.97 GB 
 #&gt;     H2O cluster total cores:    4 

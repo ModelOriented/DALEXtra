@@ -26,5 +26,4 @@ dependencies:
   - wincertstore=0.2=py36h7fe50ca_0
   - pandas=0.24.2
   - keras=2.2.4
-prefix: C:\Users\szyna\Anaconda3\envs\myenv
 
