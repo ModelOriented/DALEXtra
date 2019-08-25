@@ -1,7 +1,6 @@
 Package: DALEXtra
 Title: Extension for DALEX package
 Version: 0.1.7
-Date: 2019-07-25
 Authors@R: 
     c(person(given = "Szymon",
            family = "Maksymiuk",
@@ -12,7 +11,15 @@ Authors@R:
              email = "przemyslaw.biecek@gmail.com", 
              role = c("aut"), 
              comment = c(ORCID = "0000-0001-8423-1823")))
-Description: Provides wrapper of scikit-learn machine learning models. In applied machine learning, there is a strong belief that we need to strike a balance between interpretability and accuracy. However, in field of the Interpretable Machine Learning, there are more and more new ideas for explaining black-box models, that are implemented in R. DALEXtra creates DALEX explainer for models created using Python, that may be used by any package from DryWhy.ai family.
+Description: Provides wrapper of scikit-learn machine learning models. 
+  In applied machine learning, there 
+  is a strong belief that we need to strike a balance 
+  between interpretability and accuracy. 
+  However, in field of the Interpretable Machine Learning, 
+  there are more and more new ideas for explaining black-box models, 
+  that are implemented in R. 
+  DALEXtra creates DALEX explainer for models created using Python, 
+  that may be used by any package from DryWhy.ai family.
 Depends: 
   R (>= 3.5.0),
   DALEX (>= 0.4.7)
@@ -27,6 +34,6 @@ Suggests:
   mljar,
   mlr,
   testthat
-URL: https://modeloriented.github.io/DALEXtra/
+URL: https://ModelOriented.github.io/DALEXtra/, https://github.com/ModelOriented/DALEXtra
 BugReports: https://github.com/ModelOriented/DALEXtra/issues
 
