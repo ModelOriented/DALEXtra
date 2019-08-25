@@ -5,3 +5,26 @@ home:
   links:
   - text: Source code
     href: https://github.com/ModelOriented/DALEXtra
+
+reference:
+  - title: Explainers
+    desc: New explainers tailored for larger model factories
+    contents:
+    - explain_scikitlearn
+    - explain_h2o
+    - explain_keras
+    - explain_mlr
+    - explain_mljar
+  - title: Addapters for yhat
+    desc: Specfic versions of the generic yhat function
+    contents:
+    - yhat.scikitlearn_model
+    - yhat.WrappedModel
+    - yhat.H2ORegressionModel
+    - yhat.H2OBinomialModel
+    - yhat.keras
+    - yhat.mljar_model
+  - title: Misc
+    contents:
+    - print.scikitlearn_set
+    - create_env
