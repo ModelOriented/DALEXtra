@@ -1,10 +1,6 @@
 template:
   package: DrWhyTemplate
   default_assets: false
-home:
-  links:
-  - text: Source code
-    href: https://github.com/ModelOriented/DALEXtra
 
 reference:
   - title: Explainers

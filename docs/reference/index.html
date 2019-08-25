@@ -98,7 +98,12 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-        
+        <li>
+  <a href="https://github.com/ModelOriented/DALEXtra">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -126,16 +131,16 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
+          <h2 id="section-explainers" class="hasAnchor"><a href="#section-explainers" class="anchor"></a>Explainers</h2>
+          <p class="section-desc"><p>New explainers tailored for larger model factories</p></p>
         </th>
       </tr>
       <tr>
         
         <td>
-          <p><code><a href="create_env.html">create_env()</a></code> </p>
+          <p><code><a href="explain_scikitlearn.html">explain_scikitlearn()</a></code> </p>
         </td>
-        <td><p>Create your conda virtual env with DALEX</p></td>
+        <td><p>Wrapper for Python Scikit-Learn Models</p></td>
       </tr><tr>
         
         <td>
@@ -151,22 +156,38 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="explain_mljar.html">explain_mljar()</a></code> </p>
-        </td>
-        <td><p>Create explainer from your mljar model</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="explain_mlr.html">explain_mlr()</a></code> </p>
         </td>
         <td><p>Create explainer from your mlr model</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="explain_scikitlearn.html">explain_scikitlearn()</a></code> </p>
+          <p><code><a href="explain_mljar.html">explain_mljar()</a></code> </p>
         </td>
-        <td><p>Wrapper for Python Scikit-Learn Models</p></td>
-      </tr><tr>
+        <td><p>Create explainer from your mljar model</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-addapters-for-yhat" class="hasAnchor"><a href="#section-addapters-for-yhat" class="anchor"></a>Addapters for yhat</h2>
+          <p class="section-desc"><p>Specfic versions of the generic yhat function</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="yhat.html">yhat(<i>&lt;WrappedModel&gt;</i>)</a></code> <code><a href="yhat.html">yhat(<i>&lt;H2ORegressionModel&gt;</i>)</a></code> <code><a href="yhat.html">yhat(<i>&lt;H2OBinomialModel&gt;</i>)</a></code> <code><a href="yhat.html">yhat(<i>&lt;scikitlearn_model&gt;</i>)</a></code> <code><a href="yhat.html">yhat(<i>&lt;keras&gt;</i>)</a></code> <code><a href="yhat.html">yhat(<i>&lt;mljar_model&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Wrapper over the predict function</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-misc" class="hasAnchor"><a href="#section-misc" class="anchor"></a>Misc</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
         
         <td>
           <p><code><a href="print.scikitlearn_set.html">print(<i>&lt;scikitlearn_set&gt;</i>)</a></code> </p>
@@ -175,9 +196,9 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="yhat.html">yhat(<i>&lt;WrappedModel&gt;</i>)</a></code> <code><a href="yhat.html">yhat(<i>&lt;H2ORegressionModel&gt;</i>)</a></code> <code><a href="yhat.html">yhat(<i>&lt;H2OBinomialModel&gt;</i>)</a></code> <code><a href="yhat.html">yhat(<i>&lt;scikitlearn_model&gt;</i>)</a></code> <code><a href="yhat.html">yhat(<i>&lt;keras&gt;</i>)</a></code> <code><a href="yhat.html">yhat(<i>&lt;mljar_model&gt;</i>)</a></code> </p>
+          <p><code><a href="create_env.html">create_env()</a></code> </p>
         </td>
-        <td><p>Wrapper over the predict function</p></td>
+        <td><p>Create your conda virtual env with DALEX</p></td>
       </tr>
     </tbody>
     </table>
@@ -186,7 +207,9 @@
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#section-explainers">Explainers</a></li>
+      <li><a href="#section-addapters-for-yhat">Addapters for yhat</a></li>
+      <li><a href="#section-misc">Misc</a></li>
     </ul>
   </div>
 </div>
