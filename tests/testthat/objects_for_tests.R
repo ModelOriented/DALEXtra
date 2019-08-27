@@ -13,3 +13,8 @@ skip_if_windows <- function() {
     skip("Test with unix")
 }
 
+skip_if_no_mljar <- function() {
+  if (!"MLJAR_TOKEN" %in% names(Sys.getenv())) {
+    skip("MLJAR_TOKEN entry needed for tests")
+  }
+}
