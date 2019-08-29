@@ -1,5 +1,6 @@
 language: R
 dist: xenial 
+cache: packages
 sudo: true
 
 before_install:
@@ -15,15 +16,10 @@ before_install:
   
   
 r_github_packages:
-  - pbiecek/DALEX
+  - ModelOriented/DALEX
   - rstudio/reticulate
   - r-lib/covr
-  - MI2DataLab/auditor
     
-#install:
-
-
-
 env:
   global:
   - R_CHECK_ARGS="--timings"
