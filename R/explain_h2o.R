@@ -22,7 +22,7 @@
 #'
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' library("DALEXtra")
 #' titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
 #' titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
