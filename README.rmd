@@ -30,7 +30,7 @@ devtools::install_github("ModelOriented/DALEX")
 devtools::install_github("ModelOriented/DALEXtra")
 ```
 
-Package `reticulate` will be downloaded along with `DALEXtra` but if you seek for it's latests version it can be downloaded here
+Package `reticulate` will be downloaded along with `DALEXtra` but if you seek for it's latest version it can be downloaded here
 
 ```
 devtools::install_github("rstudio/reticulate")
@@ -50,9 +50,9 @@ Above packages can be used along with `explain` object to create explanations (i
 
 ## How to setup Anaconda
 
-In order to be able to use some features associated with `DALEXtra`, Anaconda in needed. The easiest way to get it, is visting 
-[Anconda website](https://www.anaconda.com/distribution). And choosing proper OS as it stands in the following picture.
-![](https://raw.githubusercontent.com/ModelOriented/DALEXtra/master/README_files/figure-gfm/anaconda1.png) There is no big difference bewtween Python versions when downloading Anaconda. You can always create virtual environment with any version of Pytho no matter which version was downloaded first.
+In order to be able to use some features associated with `DALEXtra`, Anaconda in needed. The easiest way to get it, is visiting 
+[Anaconda website](https://www.anaconda.com/distribution). And choosing proper OS as it stands in the following picture.
+![](https://raw.githubusercontent.com/ModelOriented/DALEXtra/master/README_files/figure-gfm/anaconda1.png) There is no big difference bewtween Python versions when downloading Anaconda. You can always create virtual environment with any version of Python no matter which version was downloaded first.
 
 ### Windows 
 
@@ -64,7 +64,7 @@ or, if conda is already installed, by following [those instructions](https://sta
 
 ### Unix
 
-While using unixlike OS, adding conda to PATH is not required.
+While using unix-like OS, adding conda to PATH is not required.
 
 ## Demo
 
@@ -81,7 +81,7 @@ Keep in mind that dataframe includes target variable (18th column) and scikit-le
 
 ### Creating explainer
 
-Creating exlainer from scikit-learn Python model is very simple thanks to `DALEXtra`. The only thing you need to provide is path to pickle and, if necessery, something that lets recognize Python environment. It may be .yml file with packages specification, name of existing conda environment or path to Python virtual environment. Execution of `scikitlearn_explain` only with .pkl file and data will cause usage of default Python.
+Creating exlainer from scikit-learn Python model is very simple thanks to `DALEXtra`. The only thing you need to provide is path to pickle and, if necessary, something that lets recognize Python environment. It may be a .yml file with packages specification, name of existing conda environment or path to Python virtual environment. Execution of `scikitlearn_explain` only with .pkl file and data will cause usage of default Python.
 
 ```{r}
 library(DALEXtra)
