@@ -6,7 +6,7 @@ output: github_document
 knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 ```
 
-# DALEXtra
+# DALEXtra <img src="man/figures/logo.png" align="right" width="150"/>
 
 [![Build Status](https://travis-ci.org/ModelOriented/DALEXtra.svg?branch=master)](https://travis-ci.org/ModelOriented/DALEXtra)
 [![Coverage
