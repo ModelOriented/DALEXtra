@@ -35,24 +35,3 @@ DALEX is designed to work with various black-box models like tree ensembles, lin
 Unfortunately R packages that create such models are very inconsistent. Different tools use different interfaces to train, validate and use models.
 One of those tools, we would like to make more accessible is H2O.
 }
-\examples{
-library("DALEXtra")
-titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
-titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
-h2o::h2o.init()
-h2o::h2o.no_progress()
-titanic_h2o <- h2o::as.h2o(titanic_train)
-titanic_h2o["survived"] <- h2o::as.factor(titanic_h2o["survived"])
-titanic_test_h2o <- h2o::as.h2o(titanic_test)
-model <- h2o::h2o.gbm(
-training_frame = titanic_h2o,
-y = "survived",
-distribution = "bernoulli",
-ntrees = 500,
-max_depth = 4,
-min_rows =  12,
-learn_rate = 0.001
-)
-explain_h2o(model, titanic_test[,1:17], titanic_test[,18])
-h2o::h2o.shutdown(prompt = FALSE)
-}
