@@ -1,11 +1,7 @@
 Package: DALEXtra
-<<<<<<< Updated upstream
-Title: Extension for DALEX package
-Version: 0.1.7
-=======
 Title: Extension for 'DALEX' Package
 Version: 0.1.8
->>>>>>> Stashed changes
+
 Authors@R: 
     c(person(given = "Szymon",
            family = "Maksymiuk",
