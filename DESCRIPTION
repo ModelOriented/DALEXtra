@@ -1,6 +1,11 @@
 Package: DALEXtra
+<<<<<<< Updated upstream
 Title: Extension for DALEX package
 Version: 0.1.7
+=======
+Title: Extension for 'DALEX' Package
+Version: 0.1.8
+>>>>>>> Stashed changes
 Authors@R: 
     c(person(given = "Szymon",
            family = "Maksymiuk",
@@ -27,12 +32,17 @@ License: GPL
 LazyData: true
 RoxygenNote: 6.1.1
 Imports: 
-  reticulate
-Suggests: 
+  reticulate,
+  ggplot2
+Suggests:
+  auditor,
   gbm,
+  ggrepel,
   h2o,
   mljar,
   mlr,
+  randomForest,
+  rmarkdown,
   testthat
 URL: https://ModelOriented.github.io/DALEXtra/, https://github.com/ModelOriented/DALEXtra
 BugReports: https://github.com/ModelOriented/DALEXtra/issues

@@ -1,0 +1,32 @@
+# Overall comparison
+
+In this section we present comparison of our models accross whole dataset. 
+
+```{r include=FALSE}
+p <- plot(overall_comparison_data)
+```
+
+## Radar plot
+
+Each score value has the property that lower score value indicates better model. Therfore some of those are inversed. Scores are scaled by dividing them by the max score, so they fit radar aesthetics. 
+
+```{r fig.width= 10, fig.height= 8}
+p$radar_plot
+
+if (model_performance_table) {
+  data <- p$radar_plot$data[c("_label_","_name_", "_value_")]
+  data$`_value_` <- as.numeric(data$`_value_`)
+  data$`_name_` <- gsub(x = data$`_name_`, pattern = c("\n"), replacement = "")
+  data$`_name_` <- gsub(x = data$`_name_`, pattern = c("inv"), replacement = "")
+  knitr::kable(data)
+}
+```
+
+## Accordance plot
+
+Plot shows relation between Champion response, which is located on te OX axis and Challenger response placed at OY axis. Colour let us determinate exact Challenger label. The $y = x$ is an accordance line and points located on it indicate on obseravtions where Champion and Challenger fully agree.
+
+```{r fig.width= 10, fig.height= 8}
+p$accordance_plot
+```
+

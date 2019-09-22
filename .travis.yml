@@ -1,5 +1,5 @@
 language: R
-dist: xenial 
+dist: xenial
 cache: packages
 sudo: true
 
@@ -17,13 +17,14 @@ before_install:
   - conda update -q conda
   - conda info -a
   - export MLJAR_TOKEN=example
-  
-  
+  - export JAVA=example
+
+
 r_github_packages:
   - ModelOriented/DALEX
   - rstudio/reticulate
   - r-lib/covr
-    
+
 env:
   global:
   - R_CHECK_ARGS="--timings"

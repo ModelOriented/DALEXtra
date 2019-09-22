@@ -1,5 +1,13 @@
 DALEXtra 0.1.7
 ----------------------------------------------------------------
+* `champion_challenger()`.
+* `overall_comparison()` added with generic plot and print functions. 
+* `training_test_comparison()` added with generic plot and print functions. 
+* `funnel_measure()` added with generic plot and print functions. 
+* test for h2o rebuilded.
+
+DALEXtra 0.1.7
+----------------------------------------------------------------
 * `explain_keras()` added. 
 * `explain_mljar()` added.
 * documentation refreshed with links to functions.
