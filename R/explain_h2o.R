@@ -40,11 +40,8 @@
 #' learn_rate = 0.001
 #' )
 #' explain_h2o(model, titanic_test[,1:17], titanic_test[,18])
-<<<<<<< Updated upstream
-=======
 #' h2o::h2o.shutdown(prompt = FALSE)
 #' }
->>>>>>> Stashed changes
 #' @rdname explain_h2o
 #' @export
 
