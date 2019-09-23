@@ -28,7 +28,12 @@ champion_challenger(sections, dot_size = 4, output_dir_path = getwd(),
 rmarkdown report
 }
 \description{
-Compare machine learning models
+Determining if one model is better than the other one is a difficult task. Mostly because there is a lot of fields that have to be
+covered to make such a judgemnt. Overall performance, performance on the crucial subset, distribution of residuals, those are only
+few among many ideas related to that issue. Following function allow user to create a report based on various sections. Each says something different
+about relation between champion and challengers. \code{DALEXtra} package share 3 base sections which are \code{\link{funnel_measure}}
+\code{\link{overall_comparison}} and \code{\link{training_test_comparison}} but any object that has generic \code{plot} function can
+be inculded at report.
 }
 \examples{
 \donttest{
