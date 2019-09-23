@@ -41,10 +41,10 @@ Response of the model is caluclated based on test data, extracted from the expla
 Output can be easily shown with \code{print} or \code{plot} function.
 }
 \examples{
+\donttest{
 library(DALEXtra)
 titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
 titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
-
 h2o::h2o.init()
 h2o::h2o.no_progress()
 titanic_h2o <- h2o::as.h2o(titanic_train)
@@ -96,4 +96,5 @@ data <- training_test_comparison(explainer_scikit, list(explainer_h2o, explainer
                                  training_data = titanic_train[,-18],
                                  training_y = titanic_train[,18])
 plot(data)
+}
 }

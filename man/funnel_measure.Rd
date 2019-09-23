@@ -49,7 +49,7 @@ It is a named list containing following fields:
 }
 }
 \description{
-Function \code{funnel_measure} allow users to compare two models based on their explainers. It partitions dataset on which models were builded
+Function \code{funnel_measure} allows users to compare two models based on their explainers. It partitions dataset on which models were builded
 and creates categories according to quantiles of columns in \code{parition data}. \code{nbins} parameter determinates number of qunatiles.
 For each category difference in provided measure is being calculated. Positive value of that differnece means that Champion model
 has better performance in specified category, while negative value means that one of the Challengers was better. Function allows

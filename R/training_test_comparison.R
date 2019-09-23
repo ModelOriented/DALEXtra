@@ -31,10 +31,10 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' library(DALEXtra)
 #' titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
 #' titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
-#'
 #' h2o::h2o.init()
 #' h2o::h2o.no_progress()
 #' titanic_h2o <- h2o::as.h2o(titanic_train)
@@ -86,6 +86,7 @@
 #'                                  training_data = titanic_train[,-18],
 #'                                  training_y = titanic_train[,18])
 #' plot(data)
+#' }
 
 training_test_comparison <- function(champion,
                                      challengers,
@@ -161,10 +162,10 @@ training_test_comparison <- function(champion,
 #'
 #' @export
 #' @examples
+#' \donttest{
 #' library(DALEXtra)
 #' titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
 #' titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
-#'
 #' h2o::h2o.init()
 #' h2o::h2o.no_progress()
 #' titanic_h2o <- h2o::as.h2o(titanic_train)
@@ -216,6 +217,7 @@ training_test_comparison <- function(champion,
 #'                                  training_data = titanic_train[,-18],
 #'                                  training_y = titanic_train[,18])
 #' print(data)
+#' }
 
 
 print.training_test_comparison <- function(x, ...) {
