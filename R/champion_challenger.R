@@ -36,7 +36,7 @@
 #'   "regr.gbm"
 #' )
 #' model_gbm <- mlr::train(learner_gbm, task)
-#' explainer_gbm <- explain_mlr(model_gbm, apartmentsTest, apartmentsTest$m2.price, label = "SVM")
+#' explainer_gbm <- explain_mlr(model_gbm, apartmentsTest, apartmentsTest$m2.price, label = "GBM")
 #'
 #'
 #' plot_data <- funnel_measure(explainer_lm, list(explainer_rf, explainer_gbm),
