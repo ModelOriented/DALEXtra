@@ -1,5 +1,5 @@
 
-# DALEXtra
+# DALEXtra <img src="man/figures/logo.png" align="right" width="150"/>
 
 [![Build
 Status](https://travis-ci.org/ModelOriented/DALEXtra.svg?branch=master)](https://travis-ci.org/ModelOriented/DALEXtra)
@@ -103,14 +103,14 @@ data = titanic_test[,1:17], y = titanic_test$survived)
 ```
 
     ## Preparation of a new explainer is initiated
-    ##   -> model label       :  scikitlearn_model  ([33mdefault[39m)
+    ##   -> model label       :  scikitlearn_model  ([33mdefault[39m)
     ##   -> data              :  524  rows  17  cols 
     ##   -> target variable   :  524  values 
-    ##   -> predict function  :  yhat.scikitlearn_model  will be used ([33mdefault[39m)
+    ##   -> predict function  :  yhat.scikitlearn_model  will be used ([33mdefault[39m)
     ##   -> predicted values  :  numerical, min =  0.02086126 , mean =  0.288584 , max =  0.9119996  
-    ##   -> residual function :  difference between y and yhat ([33mdefault[39m)
+    ##   -> residual function :  difference between y and yhat ([33mdefault[39m)
     ##   -> residuals         :  numerical, min =  -0.8669431 , mean =  0.02248468 , max =  0.9791387  
-    ## [32mA new explainer has been created![39m
+    ## [32mA new explainer has been created![39m
 
 ### Creating explanations
 

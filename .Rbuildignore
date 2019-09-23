@@ -13,4 +13,5 @@ Plany.txt
 codecov.yml
 README_files
 README.rmd
+^CRAN-RELEASE$
 cran-comments.md
