@@ -27,12 +27,16 @@ yhat.WrappedModel <- function(X.model, newdata, ...) {
   switch(X.model$task.desc$type,
          "classif" = {
            pred <- predict(X.model, newdata = newdata)
-           response <- pred$data[, 1]
+           if ("truth" %in% colnames(pred$data)){
+             response <- pred$data[, 2]
+           } else {
+             response <- pred$data[, 1]
+           }
            response
          },
          "regr" = {
            pred <- predict(X.model, newdata = newdata)
-           response <- pred$data[, 1]
+           response <- pred$data$response
            response
 
          },

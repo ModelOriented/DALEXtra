@@ -85,7 +85,7 @@ One of those tools, which is one of the most popular one is mlr package. We woul
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/">MI^2 DataLab</a> </span>
-          <span class="version version-default">0.1.7</span>
+          <span class="version version-default">0.1.8</span>
         </div>
       </div>
     </div>
@@ -189,7 +189,8 @@ One of those tools, which is one of the most popular one is mlr package. We woul
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"DALEXtra"</span>)
 <span class='no'>titanic_test</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_test.csv"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))
 <span class='no'>titanic_train</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_train.csv"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr"</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: ParamHelpers</span></div><div class='input'><span class='no'>task</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mlr/man/ClassifTask.html'>makeClassifTask</a></span>(
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr"</span>)
+<span class='no'>task</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mlr/man/ClassifTask.html'>makeClassifTask</a></span>(
 <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"R"</span>,
 <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>titanic_train</span>,
 <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"survived"</span>
@@ -213,9 +214,9 @@ One of those tools, which is one of the most popular one is mlr package. We woul
 #&gt;   -&gt; data              :  524  rows  17  cols 
 #&gt;   -&gt; target variable   :  524  values 
 #&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used (</span><span style='color: #BBBB00;'>default</span><span>)
-#&gt;   -&gt; predicted values  :  numerical, min =  0.2693414 , mean =  0.3319247 , max =  0.5640745  
+#&gt;   -&gt; predicted values  :  numerical, min =  0.2694527 , mean =  0.3320889 , max =  0.5635427  
 #&gt;   -&gt; residual function :  difference between y and yhat (</span><span style='color: #BBBB00;'>default</span><span>)
-#&gt;   -&gt; residuals         :  numerical, min =  -0.5640745 , mean =  -0.02085597 , max =  0.7306586  
+#&gt;   -&gt; residuals         :  numerical, min =  -0.5635427 , mean =  -0.02102024 , max =  0.7305473  
 #&gt; </span><span style='color: #00BB00;'>A new explainer has been created!</span><span></div><div class='output co'>#&gt; Model label:  WrappedModel 
 #&gt; Model class:  WrappedModel 
 #&gt; Data head  :

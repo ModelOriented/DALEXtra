@@ -1,0 +1,9 @@
+# Funnel plot
+
+Plot shown below help us inspect our model performance across differenct categories. OY axis is row partitioned by column names of `parition_data` specified when creating object. Then whole test data is splited by quantilles of every column, one by one. Thanks to that we have subsets for which measure of Champion and every Challenger is being caluclated. Dots seen on the plot show difference in those measures, colours let us to distinguish Challengers. Thanks to measure property, that lower score value indicates better performance, dots spoted on the right side of vertical line means that Champion predcits following subset better than Challenger by value of measure shown on the OX axis. Accordingly dot on the left side of that line, means that Challanger was better by absolute value shown on the OX. 
+```{r fig.width= 10, fig.height= 8}
+p <- plot(funnel_measure_data)
+p$labels$subtitle <- ""
+p
+```
+

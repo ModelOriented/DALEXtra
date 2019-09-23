@@ -41,6 +41,7 @@
 #' learn_rate = 0.001
 #' )
 #' explain_h2o(model, titanic_test[,1:17], titanic_test[,18])
+#' h2o::h2o.shutdown(prompt = FALSE)
 #' }
 #' @rdname explain_h2o
 #' @export

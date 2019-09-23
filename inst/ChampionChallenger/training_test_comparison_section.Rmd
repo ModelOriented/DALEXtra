@@ -1,0 +1,8 @@
+# Trainig-test comparison
+
+Following plot can help us determinate if our model encounter overfitting problem. OX axis stands for measure acquired on the train set while OY axis for measure acquired on test set. Therefore plot shows realation between measure on test and measure on trainig data. $y = x$ line stands for a standard. Depends on type of measure, dot deeply below the line my indicate that model overfits, if measure has property that highest value indicates better performance. Overfit models can be also seen above the line, if measure has decreasing property.
+
+```{r fig.width= 10, fig.height= 8}
+plot(training_test_comparison_data)
+```
+

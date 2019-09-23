@@ -5,6 +5,7 @@ source("objects_for_tests.R")
 
 
 test_that("creating explainer classif", {
+  skip_if_no_java()
   titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
   titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
   library("DALEX")
@@ -29,6 +30,7 @@ test_that("creating explainer classif", {
 })
 
 test_that("creating explainer regr", {
+  skip_if_no_java()
   titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
   titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
   library("DALEX")
@@ -51,7 +53,9 @@ test_that("creating explainer regr", {
 
 })
 
+
 test_that("y is numeric", {
+  skip_if_no_java()
   titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
   titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
   library("DALEX")
@@ -71,6 +75,7 @@ test_that("y is numeric", {
   )
   explainer <- explain_h2o(model, titanic_test[,1:17], titanic_test_h2o["survived"])
   expect_is(explainer$y, "numeric")
+  h2o::h2o.shutdown(prompt = FALSE)
 
 })
 

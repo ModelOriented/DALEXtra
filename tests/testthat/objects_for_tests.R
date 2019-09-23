@@ -18,3 +18,9 @@ skip_if_no_mljar <- function() {
     skip("MLJAR_TOKEN entry needed for tests")
   }
 }
+
+skip_if_no_java <- function() {
+  if (!"JAVA" %in% names(Sys.getenv())) {
+    skip("JAVA entry needed for tests")
+  }
+}

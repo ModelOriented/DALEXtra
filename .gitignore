@@ -3,3 +3,6 @@
 DALEXtra.Rproj
 .Rbuildignore
 Plany.txt
+Report.html
+Report.Rmd
+cran-comments.md
