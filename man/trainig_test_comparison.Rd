@@ -17,26 +17,26 @@ they have to differ from data passed to an explainer.}
 
 \item{training_y}{- target column for \code{training_data}}
 
-\item{measure_function}{- measure function that calculates performance of model based on true observation and prediction. 
+\item{measure_function}{- measure function that calculates performance of model based on true observation and prediction.
 Order of parameters is important and should be (y, y_hat). By default it is RMSE.}
 }
 \value{
-An object of the class \code{training_test_comparison}. 
+An object of the class \code{training_test_comparison}.
 
 It is a named list containig:
 \itemize{
 \item \code{data} data.frame with following columns
   \itemize{
-  \item \code{measure_test} performance on test set 
+  \item \code{measure_test} performance on test set
   \item \code{measure_train} performance on training set
   \item \code{label} label of explainer
   \item \code{type} flag that indicates if explainer was passed as champion or as challenger.
-} 
+}
 \item \code{models_info} data.frame containig inforamtion about models used in analysys
 }
 }
 \description{
-Function \code{training_test_comparison} calculates performance of the provided model based on specified measure function. 
+Function \code{training_test_comparison} calculates performance of the provided model based on specified measure function.
 Response of the model is caluclated based on test data, extracted from the explainer and training data, provided by the user.
 Output can be easily shown with \code{print} or \code{plot} function.
 }
@@ -92,8 +92,8 @@ learner <- mlr::makeLearner(
 gbm <- mlr::train(learner, task)
 explainer_mlr <- explain_mlr(gbm, titanic_test[,1:17], titanic_test[,18])
 
-data <- training_test_comparison(explainer_scikit, list(explainer_h2o, explainer_mlr), 
-                                 training_data = titanic_train[,-18], 
+data <- training_test_comparison(explainer_scikit, list(explainer_h2o, explainer_mlr),
+                                 training_data = titanic_train[,-18],
                                  training_y = titanic_train[,18])
 plot(data)
 }
