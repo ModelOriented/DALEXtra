@@ -48,12 +48,12 @@ learner_rf <- mlr::makeLearner(
 model_rf <- mlr::train(learner_rf, task)
 explainer_rf <- explain_mlr(model_rf, apartmentsTest, apartmentsTest$m2.price, label = "RF")
 
-learner_svm <- mlr::makeLearner(
-  "regr.ksvm"
+learner_gbm, <- mlr::makeLearner(
+  "regr.gbm"
 )
-model_svm <- mlr::train(learner_svm, task)
-explainer_svm <- explain_mlr(model_svm, apartmentsTest, apartmentsTest$m2.price, label = "SVM")
+model_gbm <- mlr::train(learner_gbm, task)
+explainer_gbm <- explain_mlr(model_gbm, apartmentsTest, apartmentsTest$m2.price, label = "gbm")
 
-data <- overall_comparison(explainer_lm, list(explainer_svm, explainer_rf), type = "regression")
+data <- overall_comparison(explainer_lm, list(explainer_gbm, explainer_rf), type = "regression")
 plot(data)
 }

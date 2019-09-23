@@ -34,13 +34,13 @@ learner_rf <- mlr::makeLearner(
 model_rf <- mlr::train(learner_rf, task)
 explainer_rf <- explain_mlr(model_rf, apartmentsTest, apartmentsTest$m2.price, label = "RF")
 
-learner_svm <- mlr::makeLearner(
-  "regr.ksvm"
+learner_gbm <- mlr::makeLearner(
+  "regr.gbm"
 )
-model_svm <- mlr::train(learner_svm, task)
-explainer_svm <- explain_mlr(model_svm, apartmentsTest, apartmentsTest$m2.price, label = "SVM")
+model_gbm <- mlr::train(learner_gbm, task)
+explainer_gbm <- explain_mlr(model_gbm, apartmentsTest, apartmentsTest$m2.price, label = "GBM")
 
-plot_data <- funnel_measure(explainer_lm, list(explainer_rf, explainer_svm),
+plot_data <- funnel_measure(explainer_lm, list(explainer_rf, explainer_gbm),
                             nbins = 5, measure_function = DALEX::loss_root_mean_square)
 print(plot_data)
 }

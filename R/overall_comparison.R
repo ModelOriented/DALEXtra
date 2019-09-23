@@ -1,26 +1,26 @@
 #' Compare champion with challengers globally
-#' 
+#'
 #' The function creates objects that present global model perfromance using various measures. Those date can be easily
 #' ploted with \code{plot} function. It uses \code{auditor} package to create \code{\link[auditor]{model_performance}} of all passed
 #' explainers. Keep in mind that type of task has to be specified. The function has his own \code{plot} method.
-#' 
+#'
 #' @param champion - explainer of champion model.
 #' @param challengers - explainer of challenger model or list of explainers.
 #' @param type - type of the task. Either classification or regression
-#' 
+#'
 #' @return An object of the class overall_comparison
-#' 
+#'
 #'  It is a named list containing following fields:
 #' \itemize{
 #' \item \code{radar} list of \code{\link[auditor]{model_performance}} objects and other parameters that will be passed to \code{plot} function
 #' \item \code{accordance} data.frame objects of champion responses and challenger's corresponding to them. Used to plot accordance.
 #' \item \code{models_info} data.frame containig inforamtion about models used in analysys
 #' }
-#' 
+#'
 #' @rdname overall_comparison
 #' @export
-#' 
-#' @examples 
+#'
+#' @examples
 #' library("DALEXtra")
 #' library("mlr")
 #' task <- mlr::makeRegrTask(
@@ -33,20 +33,20 @@
 #' )
 #' model_lm <- mlr::train(learner_lm, task)
 #' explainer_lm <- explain_mlr(model_lm, apartmentsTest, apartmentsTest$m2.price, label = "LM")
-#' 
+#'
 #' learner_rf <- mlr::makeLearner(
 #'   "regr.randomForest"
 #' )
 #' model_rf <- mlr::train(learner_rf, task)
 #' explainer_rf <- explain_mlr(model_rf, apartmentsTest, apartmentsTest$m2.price, label = "RF")
-#' 
-#' learner_svm <- mlr::makeLearner(
-#'   "regr.ksvm"
+#'
+#' learner_gbm, <- mlr::makeLearner(
+#'   "regr.gbm"
 #' )
-#' model_svm <- mlr::train(learner_svm, task)
-#' explainer_svm <- explain_mlr(model_svm, apartmentsTest, apartmentsTest$m2.price, label = "SVM")
-#' 
-#' data <- overall_comparison(explainer_lm, list(explainer_svm, explainer_rf), type = "regression")
+#' model_gbm <- mlr::train(learner_gbm, task)
+#' explainer_gbm <- explain_mlr(model_gbm, apartmentsTest, apartmentsTest$m2.price, label = "gbm")
+#'
+#' data <- overall_comparison(explainer_lm, list(explainer_gbm, explainer_rf), type = "regression")
 #' plot(data)
 
 overall_comparison <- function(champion, challengers, type) {
@@ -58,21 +58,21 @@ overall_comparison <- function(champion, challengers, type) {
   })) & class(champion) != "explainer") {
     stop("Champion and all of challengers has to be explainer objects")
   }
-  
+
   if (is.null(champion$data)) {
     stop("Data argument has to be passed with explainer")
   }
-  
+
   if (is.null(champion$y_hat)) {
     stop("Explain function has to be run with precalculate TRUE")
   }
   models_info <- data.frame(label = champion$label, class = class(champion$model)[1], type = "Champion", stringsAsFactors = FALSE)
   for (e in challengers) {
-    models_info <- rbind(models_info, 
+    models_info <- rbind(models_info,
                          list(label = e$label, class = class(e$model)[1], type = "Challenger"),
                          stringsAsFactors = FALSE)
   }
-  
+
   if (type == "classification") {
     radar_args <- lapply(challengers, auditor::model_performance, score = NULL, new_score = new_scores)
     radar_args$object <- auditor::model_performance(champion, score = NULL, new_score = new_scores)
@@ -107,12 +107,12 @@ overall_comparison <- function(champion, challengers, type) {
 }
 
 #' Print overall_comparison object
-#' 
+#'
 #' @param x an object of class \code{overall_comparison}
 #' @param ... other parameters
-#' 
+#'
 #' @export
-#' @examples 
+#' @examples
 #' library("DALEXtra")
 #' library("mlr")
 #' task <- mlr::makeRegrTask(
@@ -125,20 +125,20 @@ overall_comparison <- function(champion, challengers, type) {
 #' )
 #' model_lm <- mlr::train(learner_lm, task)
 #' explainer_lm <- explain_mlr(model_lm, apartmentsTest, apartmentsTest$m2.price, label = "LM")
-#' 
+#'
 #' learner_rf <- mlr::makeLearner(
 #'   "regr.randomForest"
 #' )
 #' model_rf <- mlr::train(learner_rf, task)
 #' explainer_rf <- explain_mlr(model_rf, apartmentsTest, apartmentsTest$m2.price, label = "RF")
-#' 
-#' learner_svm <- mlr::makeLearner(
-#'   "regr.ksvm"
+#'
+#' learner_gbm <- mlr::makeLearner(
+#'   "regr.gbm"
 #' )
-#' model_svm <- mlr::train(learner_svm, task)
-#' explainer_svm <- explain_mlr(model_svm, apartmentsTest, apartmentsTest$m2.price, label = "SVM")
-#' 
-#' data <- overall_comparison(explainer_lm, list(explainer_svm, explainer_rf), type = "regression")
+#' model_gbm <- mlr::train(learner_gbm, task)
+#' explainer_gbm <- explain_mlr(model_gbm, apartmentsTest, apartmentsTest$m2.price, label = "gbm")
+#'
+#' data <- overall_comparison(explainer_lm, list(explainer_gbm, explainer_rf), type = "regression")
 #' plot(data)
 
 print.overall_comparison <- function(x, ...) {
