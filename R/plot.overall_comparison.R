@@ -57,7 +57,7 @@ plot.overall_comparison <- function(x, ...) {
   data <- overall_comparison
   p <- do.call(plot, data$radar)
 
-  q <- ggplot(data = data$accordance, aes(x = data$accordance$Champion, y = data$accordance$Challenger, colour = data$accordance$Label))+
+  q <- ggplot(data = data$accordance, aes_string(x = data$accordance$Champion, y = data$accordance$Challenger, colour = data$accordance$Label))+
     geom_point()+
     geom_abline(slope = 1, intercept = 0, size = 1, color = "#8bdcbe", show.legend = TRUE)+
     labs(x = "Champion response",

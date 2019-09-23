@@ -74,7 +74,7 @@ plot.training_test_comparison <- function(x, ...) {
   training_test_comparison <- x
   if(!"training_test_comparison" %in% class(training_test_comparison)) stop("Data is not a training_test_comparison object")
   data <- training_test_comparison$data
-  ggplot(data, aes(x = "measure_train", y = "measure_test")) +
+  ggplot(data, aes_string(x = "measure_train", y = "measure_test")) +
     geom_abline(
       slope = 1,
       intercept = 0,
@@ -82,9 +82,9 @@ plot.training_test_comparison <- function(x, ...) {
       color = "#8bdcbe",
       show.legend = TRUE
     ) +
-    geom_point(aes(colour = "type")) +
+    geom_point(aes_string(colour = "type")) +
     scale_color_manual(values = c("Challenger" = "orange", "Champion" = "black")) +
-    ggrepel::geom_text_repel(aes(label = "label"), color = "#371ea3") +
+    ggrepel::geom_text_repel(aes_string(label = "label"), color = "#371ea3") +
     xlim(c(
       min(data$measure_train) - 0.05,
       max(data$measure_train) + 0.05

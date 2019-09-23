@@ -36,7 +36,7 @@
 #'   "regr.gbm"
 #' )
 #' model_gbm <- mlr::train(learner_gbm, task)
-#' explainer_gbm <- explain_mlr(model_gbm, apartmentsTest, apartmentsTest$m2.price, label = "SVM")
+#' explainer_gbm <- explain_mlr(model_gbm, apartmentsTest, apartmentsTest$m2.price, label = "GBM")
 #'
 #'
 #' plot_data <- funnel_measure(explainer_lm, list(explainer_rf, explainer_gbm),
@@ -49,9 +49,10 @@ plot.funnel_measure <- function(x, ..., dot_size = 4){
   if(!"funnel_measure" %in% class(funnel_measure)) stop("Data is not a funnel_measure object")
     data <- funnel_measure$data
     champion_label <- funnel_measure$models_info[funnel_measure$models_info$type == "Champion",]$label
-    p <- ggplot(data = data, aes(x = "Measure", y = "Variable"))+
-    geom_point(aes(color = "Challenger"), size = dot_size) +
-    ggrepel::geom_text_repel(aes(label = "Label"), color = "#371ea3") +
+    p <- ggplot(data = data, aes_string(x = "Measure", y = "Variable")) +
+    scale_y_discrete() +
+    geom_point(aes_string(color = "Challenger"), size = dot_size) +
+    ggrepel::geom_text_repel(aes_string(label = "Label"), color = "#371ea3") +
     geom_vline(xintercept = 0,  color = "#f05a71", size=0.5) +
     xlim(c(-max(abs(data$Measure)), max(abs(data$Measure)))) +
     xlab(paste("Champion (", champion_label, ") and Challengers measure difference", sep = ""))+
