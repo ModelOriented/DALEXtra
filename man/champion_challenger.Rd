@@ -10,7 +10,8 @@ champion_challenger(sections, dot_size = 4, output_dir_path = getwd(),
 }
 \arguments{
 \item{sections}{- list of sections to be attached to report. Could be sections available with DALEXtra which are \code{\link{funnel_measure}}
-\code{\link{training_test_comparison}}, \code{\link{overall_comparison}} or any other explanation that can work with \code{plot} function.}
+\code{\link{training_test_comparison}}, \code{\link{overall_comparison}} or any other explanation that can work with \code{plot} function. Please
+provide name for not standard sections, that will be presented as section titles. Oterwise class of the object will be used.}
 
 \item{dot_size}{- dot_size argument passed to \code{\link{plot.funnel_measure}} if \code{\link{funnel_measure}} section present}
 

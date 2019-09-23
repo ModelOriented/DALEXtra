@@ -18,15 +18,15 @@ An object of the class overall_comparison
 
  It is a named list containing following fields:
 \itemize{
-\item \code{radar} list of \code{\link[auditor]{model_performance}} objects and other parameters that will be passed to \code{plot} function
-\item \code{accordance} data.frame objects of champion responses and challenger's corresponding to them. Used to plot accordance.
-\item \code{models_info} data.frame containig inforamtion about models used in analysys
+\item \code{radar} list of \code{\link[auditor]{model_performance}} objects and other parameters that will be passed to generic \code{plot} function
+\item \code{accordance} data.frame object of champion responses and challenger's corresponding to them. Used to plot accordance.
+\item \code{models_info} data.frame containig inforamtion about models used in analysys.
 }
 }
 \description{
 The function creates objects that present global model perfromance using various measures. Those date can be easily
 ploted with \code{plot} function. It uses \code{auditor} package to create \code{\link[auditor]{model_performance}} of all passed
-explainers. Keep in mind that type of task has to be specified. The function has his own \code{plot} method.
+explainers. Keep in mind that type of task has to be specified.
 }
 \examples{
 \donttest{

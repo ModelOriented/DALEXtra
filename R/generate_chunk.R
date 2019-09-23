@@ -1,9 +1,9 @@
 # Helper functions for ChampionChallenger. Not supposed to be exported.
 
-generate_chunk <- function(object, output_path, iterator)
+generate_chunk <- function(object, output_path, iterator, name)
   UseMethod("generate_chunk")
 
-generate_chunk.overall_comparison <- function(object, output_path, iterator) {
+generate_chunk.overall_comparison <- function(object, output_path, iterator, name) {
   con_overall_comparison <- file(system.file("ChampionChallenger", "overall_comparison_section.Rmd", package = "DALEXtra"))
   lines_overall_comparison <- readLines(con_overall_comparison)
   lines_overall_comparison[6] <-
@@ -20,7 +20,7 @@ generate_chunk.overall_comparison <- function(object, output_path, iterator) {
         append = TRUE)
 }
 
-generate_chunk.training_test_comparison <- function(object, output_path, iterator) {
+generate_chunk.training_test_comparison <- function(object, output_path, iterator, name) {
   con_training_test_comparison <- file(system.file("ChampionChallenger", "training_test_comparison_section.Rmd", package = "DALEXtra"))
   lines_training_test_comparison <- readLines(con_training_test_comparison)
   lines_training_test_comparison[6] <-
@@ -37,7 +37,7 @@ generate_chunk.training_test_comparison <- function(object, output_path, iterato
         append = TRUE)
 }
 
-generate_chunk.funnel_measure <- function(object, output_path, iterator) {
+generate_chunk.funnel_measure <- function(object, output_path, iterator, name) {
   con_funnel_measure <- file(system.file("ChampionChallenger", "funnel_measure_section.Rmd", package = "DALEXtra"))
   lines_funnel_measure <- readLines(con_funnel_measure)
   lines_funnel_measure[5] <-
@@ -55,10 +55,13 @@ generate_chunk.funnel_measure <- function(object, output_path, iterator) {
 
 }
 
-generate_chunk.default <- function(object, output_path, iterator) {
+generate_chunk.default <- function(object, output_path, iterator, name) {
+  if(is.null(name) | name == "") {
+    name <- class(object)[1]
+  }
   chunk <- c(
     "",
-    paste("# ", class(object)[1], sep = ""),
+    paste("# ", name, sep = ""),
     "",
     "```{r}",
     paste("plot(sections[[",

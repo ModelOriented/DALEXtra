@@ -9,7 +9,8 @@
 #'
 #'
 #' @param sections - list of sections to be attached to report. Could be sections available with DALEXtra which are \code{\link{funnel_measure}}
-#' \code{\link{training_test_comparison}}, \code{\link{overall_comparison}} or any other explanation that can work with \code{plot} function.
+#' \code{\link{training_test_comparison}}, \code{\link{overall_comparison}} or any other explanation that can work with \code{plot} function. Please
+#' provide name for not standard sections, that will be presented as section titles. Oterwise class of the object will be used.
 #' @param dot_size - dot_size argument passed to \code{\link{plot.funnel_measure}} if \code{\link{funnel_measure}} section present
 #' @param output_dir_path - path to directory where Report should be created. By default it is current working directory.
 #' @param output_name - name of the Report. By default it is "Report"
@@ -84,7 +85,7 @@ champion_challenger <- function(sections,
     if (is.null(models_info) & !is.null(sections[[i]]$models_info)) {
       models_info <- sections[[i]]$models_info
     }
-    generate_chunk(sections[[i]], output_path, i)
+    generate_chunk(sections[[i]], output_path, i, names(sections)[i])
   }
 
 

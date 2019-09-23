@@ -2,7 +2,7 @@
 #'
 #' The function creates objects that present global model perfromance using various measures. Those date can be easily
 #' ploted with \code{plot} function. It uses \code{auditor} package to create \code{\link[auditor]{model_performance}} of all passed
-#' explainers. Keep in mind that type of task has to be specified. The function has his own \code{plot} method.
+#' explainers. Keep in mind that type of task has to be specified.
 #'
 #' @param champion - explainer of champion model.
 #' @param challengers - explainer of challenger model or list of explainers.
@@ -12,9 +12,9 @@
 #'
 #'  It is a named list containing following fields:
 #' \itemize{
-#' \item \code{radar} list of \code{\link[auditor]{model_performance}} objects and other parameters that will be passed to \code{plot} function
-#' \item \code{accordance} data.frame objects of champion responses and challenger's corresponding to them. Used to plot accordance.
-#' \item \code{models_info} data.frame containig inforamtion about models used in analysys
+#' \item \code{radar} list of \code{\link[auditor]{model_performance}} objects and other parameters that will be passed to generic \code{plot} function
+#' \item \code{accordance} data.frame object of champion responses and challenger's corresponding to them. Used to plot accordance.
+#' \item \code{models_info} data.frame containig inforamtion about models used in analysys.
 #' }
 #'
 #' @rdname overall_comparison
@@ -189,7 +189,7 @@ new_scores <- list(
   },
   "1-F1" = function(au) {
     conf <- confusionmatrix(au)
-    (2 * (conf$TP / (conf$TP + conf$FP)) * (conf$TP / (conf$TP + conf$FN))) /
+    1 - (2 * (conf$TP / (conf$TP + conf$FP)) * (conf$TP / (conf$TP + conf$FN))) /
       (conf$TP / (conf$TP + conf$FN) + conf$TP / (conf$TP + conf$FP))
   }
 )
