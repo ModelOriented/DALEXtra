@@ -20,6 +20,19 @@ reference:
     - yhat.H2OBinomialModel
     - yhat.keras
     - yhat.mljar_model
+  - title: Champion Challenger
+    desc: Function used for Champion Challenger analysys
+    contents:
+    - champion_challenger
+    - funnel_measure
+    - print.funnel_measure
+    - plot.funnel_measure
+    - overall_comparison
+    - print.overall_comparison
+    - plot.overall_comparison
+    - training_test_comparison
+    - print.training_test_comparison
+    - plot.training_test_comparison
   - title: Misc
     contents:
     - print.scikitlearn_set

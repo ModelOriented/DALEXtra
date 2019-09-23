@@ -6,7 +6,7 @@
 \usage{
 champion_challenger(sections, dot_size = 4, output_dir_path = getwd(),
   output_name = "Report", model_performance_table = FALSE,
-  title = "ChampionChallenger", author = Sys.info()[["user"]])
+  title = "ChampionChallenger", author = Sys.info()[["user"]], ...)
 }
 \arguments{
 \item{sections}{- list of sections to be attached to report. Could be sections available with DALEXtra which are \code{\link{funnel_measure}}
@@ -24,6 +24,8 @@ provide name for not standard sections, that will be presented as section titles
 \item{title}{- Title for report, by default it is "ChampionChallenger".}
 
 \item{author}{- Author of , report. By default it is current user name.}
+
+\item{...}{- other parameters passed to rmarkdown::render.}
 }
 \value{
 rmarkdown report

@@ -17,6 +17,7 @@
 #' @param model_performance_table - If TRUE and \code{\link{overall_comparison}} section present, table of scores will be displayed.
 #' @param title - Title for report, by default it is "ChampionChallenger".
 #' @param author - Author of , report. By default it is current user name.
+#' @param ... - other parameters passed to rmarkdown::render.
 #'
 #' @return rmarkdown report
 #'
@@ -63,7 +64,8 @@ champion_challenger <- function(sections,
                                 output_name = "Report",
                                 model_performance_table = FALSE,
                                 title = "ChampionChallenger",
-                                author = Sys.info()[["user"]]) {
+                                author = Sys.info()[["user"]],
+                                ...) {
 
   output_path <-
     paste(output_dir_path,
@@ -95,5 +97,7 @@ champion_challenger <- function(sections,
 
   rmarkdown::render(input = output_path,
                     output_file = paste(output_name, ".html", sep = ""),
-                    output_dir = output_dir_path)
+                    output_dir = output_dir_path,
+                    quiet = TRUE,
+                    ...)
 }
