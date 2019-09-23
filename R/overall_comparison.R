@@ -40,7 +40,7 @@
 #' model_rf <- mlr::train(learner_rf, task)
 #' explainer_rf <- explain_mlr(model_rf, apartmentsTest, apartmentsTest$m2.price, label = "RF")
 #'
-#' learner_gbm, <- mlr::makeLearner(
+#' learner_gbm <- mlr::makeLearner(
 #'   "regr.gbm"
 #' )
 #' model_gbm <- mlr::train(learner_gbm, task)
