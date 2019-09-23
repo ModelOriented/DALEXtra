@@ -41,6 +41,7 @@
 #' @importFrom stats quantile
 #'
 #' @examples
+#' \donttest{
 #' library("mlr")
 #' library("DALEXtra")
 #' task <- mlr::makeRegrTask(
@@ -70,6 +71,7 @@
 #' plot_data <- funnel_measure(explainer_lm, list(explainer_rf, explainer_gbm),
 #'                             nbins = 5, measure_function = DALEX::loss_root_mean_square)
 #' plot(plot_data)
+#' }
 
 
 funnel_measure <-
@@ -253,6 +255,7 @@ funnel_measure <-
 #'
 #' @export
 #' @examples
+#' \donttest{
 #' library("DALEXtra")
 #' library("mlr")
 #' task <- mlr::makeRegrTask(
@@ -281,6 +284,7 @@ funnel_measure <-
 #' plot_data <- funnel_measure(explainer_lm, list(explainer_rf, explainer_gbm),
 #'                             nbins = 5, measure_function = DALEX::loss_root_mean_square)
 #' print(plot_data)
+#' }
 
 print.funnel_measure <- function(x, ...) {
   cat("Funnel measure head:\n")

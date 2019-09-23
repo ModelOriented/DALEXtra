@@ -21,6 +21,7 @@ Function \code{plot.funnel_measure} creates funnel plot of differences in measur
 It uses data created with 'funnel_measure' function.
 }
 \examples{
+\donttest{
 library("mlr")
 library("DALEXtra")
 task <- mlr::makeRegrTask(
@@ -50,4 +51,5 @@ explainer_gbm <- explain_mlr(model_gbm, apartmentsTest, apartmentsTest$m2.price,
 plot_data <- funnel_measure(explainer_lm, list(explainer_rf, explainer_gbm),
                             nbins = 5, measure_function = DALEX::loss_root_mean_square)
 plot(plot_data)
+}
 }

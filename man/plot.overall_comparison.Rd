@@ -26,6 +26,7 @@ The function plots data created with \code{\link{overall_comparison}}. For radar
 \code{\link[auditor]{plot_radar}}. Keep in mind that the function creates two plots returned as list.
 }
 \examples{
+\donttest{
 library("DALEXtra")
 library("mlr")
 task <- mlr::makeRegrTask(
@@ -53,4 +54,5 @@ explainer_gbm <- explain_mlr(model_gbm, apartmentsTest, apartmentsTest$m2.price,
 
 data <- overall_comparison(explainer_lm, list(explainer_gbm, explainer_rf), type = "regression")
 plot(data)
+}
 }

@@ -21,6 +21,7 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' library("DALEXtra")
 #' library("mlr")
 #' task <- mlr::makeRegrTask(
@@ -48,6 +49,7 @@
 #'
 #' data <- overall_comparison(explainer_lm, list(explainer_gbm, explainer_rf), type = "regression")
 #' plot(data)
+#' }
 
 plot.overall_comparison <- function(x, ...) {
   overall_comparison <- x

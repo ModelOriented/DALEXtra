@@ -56,6 +56,7 @@ has better performance in specified category, while negative value means that on
 to compare multiple Challengers at once.
 }
 \examples{
+\donttest{
 library("mlr")
 library("DALEXtra")
 task <- mlr::makeRegrTask(
@@ -85,4 +86,5 @@ explainer_gbm <- explain_mlr(model_gbm, apartmentsTest, apartmentsTest$m2.price,
 plot_data <- funnel_measure(explainer_lm, list(explainer_rf, explainer_gbm),
                             nbins = 5, measure_function = DALEX::loss_root_mean_square)
 plot(plot_data)
+}
 }

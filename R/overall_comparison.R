@@ -21,6 +21,7 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' library("DALEXtra")
 #' library("mlr")
 #' task <- mlr::makeRegrTask(
@@ -48,6 +49,7 @@
 #'
 #' data <- overall_comparison(explainer_lm, list(explainer_gbm, explainer_rf), type = "regression")
 #' plot(data)
+#' }
 
 overall_comparison <- function(champion, challengers, type) {
   if (class(challengers) == "explainer") {
@@ -113,6 +115,7 @@ overall_comparison <- function(champion, challengers, type) {
 #'
 #' @export
 #' @examples
+#' \donttest{
 #' library("DALEXtra")
 #' library("mlr")
 #' task <- mlr::makeRegrTask(
@@ -139,7 +142,8 @@ overall_comparison <- function(champion, challengers, type) {
 #' explainer_gbm <- explain_mlr(model_gbm, apartmentsTest, apartmentsTest$m2.price, label = "gbm")
 #'
 #' data <- overall_comparison(explainer_lm, list(explainer_gbm, explainer_rf), type = "regression")
-#' plot(data)
+#' print(data)
+#' }
 
 print.overall_comparison <- function(x, ...) {
    cat("Radar Args: ", length(x$radar)-1, "model_performances detected\n")

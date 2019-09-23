@@ -13,6 +13,7 @@
 #' @rdname plot.funnel_measure
 #' @export
 #' @examples
+#' \donttest{
 #' library("mlr")
 #' library("DALEXtra")
 #' task <- mlr::makeRegrTask(
@@ -42,6 +43,7 @@
 #' plot_data <- funnel_measure(explainer_lm, list(explainer_rf, explainer_gbm),
 #'                             nbins = 5, measure_function = DALEX::loss_root_mean_square)
 #' plot(plot_data)
+#' }
 
 
 plot.funnel_measure <- function(x, ..., dot_size = 4){

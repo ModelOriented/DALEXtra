@@ -15,6 +15,7 @@
 Print overall_comparison object
 }
 \examples{
+\donttest{
 library("DALEXtra")
 library("mlr")
 task <- mlr::makeRegrTask(
@@ -41,5 +42,6 @@ model_gbm <- mlr::train(learner_gbm, task)
 explainer_gbm <- explain_mlr(model_gbm, apartmentsTest, apartmentsTest$m2.price, label = "gbm")
 
 data <- overall_comparison(explainer_lm, list(explainer_gbm, explainer_rf), type = "regression")
-plot(data)
+print(data)
+}
 }

@@ -15,6 +15,7 @@
 Print funnel_measure object
 }
 \examples{
+\donttest{
 library("DALEXtra")
 library("mlr")
 task <- mlr::makeRegrTask(
@@ -43,4 +44,5 @@ explainer_gbm <- explain_mlr(model_gbm, apartmentsTest, apartmentsTest$m2.price,
 plot_data <- funnel_measure(explainer_lm, list(explainer_rf, explainer_gbm),
                             nbins = 5, measure_function = DALEX::loss_root_mean_square)
 print(plot_data)
+}
 }

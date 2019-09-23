@@ -29,6 +29,7 @@ ploted with \code{plot} function. It uses \code{auditor} package to create \code
 explainers. Keep in mind that type of task has to be specified. The function has his own \code{plot} method.
 }
 \examples{
+\donttest{
 library("DALEXtra")
 library("mlr")
 task <- mlr::makeRegrTask(
@@ -56,4 +57,5 @@ explainer_gbm <- explain_mlr(model_gbm, apartmentsTest, apartmentsTest$m2.price,
 
 data <- overall_comparison(explainer_lm, list(explainer_gbm, explainer_rf), type = "regression")
 plot(data)
+}
 }
