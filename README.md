@@ -6,6 +6,7 @@ Status](https://travis-ci.org/ModelOriented/DALEXtra.svg?branch=master)](https:/
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/ModelOriented/DALEXtra/master.svg)](https://codecov.io/github/ModelOriented/DALEXtra?branch=master)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/DALEXtra)](https://cran.r-project.org/package=DALEXtra)
+[![Total Downloads](http://cranlogs.r-pkg.org/badges/grand-total/DALEXtra?color=orange)](http://cranlogs.r-pkg.org/badges/grand-total/DALEXtra)
 [![DrWhy-eXtrAI](https://img.shields.io/badge/DrWhy-BackBone-373589)](http://drwhy.ai/#BackBone)
 
 ## Overview

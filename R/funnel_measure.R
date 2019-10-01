@@ -133,7 +133,7 @@ funnel_measure <-
       if (is.numeric(col)) {
         #Separate case for first entry as it has to be equal on the both sides of compratment due to semi constant variables
         quantiles <-
-          ceiling(quantile(col, probs = seq(0, 1, length.out = nbins+1)))
+          round(quantile(col, probs = seq(0, 1, length.out = nbins+1)), 2)
         scoring_data <-
           data[(quantiles[1] <= col & col <= quantiles[2]),]
         scoring_y <-
