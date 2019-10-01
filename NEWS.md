@@ -1,4 +1,9 @@
-DALEXtra 0.1.7
+
+DALEXtra 0.1.9
+----------------------------------------------------------------
+* Ceiling replaced with round in `funnel_measure()`
+
+DALEXtra 0.1.8
 ----------------------------------------------------------------
 * `champion_challenger()`.
 * `overall_comparison()` added with generic plot and print functions. 
