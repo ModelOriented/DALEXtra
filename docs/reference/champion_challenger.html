@@ -43,6 +43,8 @@ few among many ideas related to that issue. Following function allow user to cre
 about relation between champion and challengers. DALEXtra package share 3 base sections which are funnel_measure
 overall_comparison and training_test_comparison but any object that has generic plot function can
 be inculded at report." />
+
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -88,7 +90,7 @@ be inculded at report." />
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/">MI^2 DataLab</a> </span>
-          <span class="version version-default">0.1.8</span>
+          <span class="version version-default">0.1.9</span>
         </div>
       </div>
     </div>
@@ -143,7 +145,7 @@ be inculded at report.</p>
 
     <pre class="usage"><span class='fu'>champion_challenger</span>(<span class='no'>sections</span>, <span class='kw'>dot_size</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>output_dir_path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>(),
   <span class='kw'>output_name</span> <span class='kw'>=</span> <span class='st'>"Report"</span>, <span class='kw'>model_performance_table</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"ChampionChallenger"</span>, <span class='kw'>author</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.info.html'>Sys.info</a></span>()<span class='kw'>[[</span><span class='st'>"user"</span>]])</pre>
+  <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"ChampionChallenger"</span>, <span class='kw'>author</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.info.html'>Sys.info</a></span>()<span class='kw'>[[</span><span class='st'>"user"</span>]], <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -178,6 +180,10 @@ provide name for not standard sections, that will be presented as section titles
       <th>author</th>
       <td><p>- Author of , report. By default it is current user name.</p></td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td><p>- other parameters passed to rmarkdown::render.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -200,13 +206,15 @@ provide name for not standard sections, that will be presented as section titles
 #&gt;   -&gt; model label       :  LM 
 #&gt;   -&gt; data              :  9000  rows  6  cols 
 #&gt;   -&gt; target variable   :  9000  values 
-#&gt;   -&gt; data              :  A column identical to the target variable `y` has been found in the `data`.  (<span style='color: #BB0000;'>WARNING</span><span>)
+#&gt;   -&gt; data              :  A column identical to the target variable `y` has been found in the `data`.  ( <span style='color: #BB0000;'> WARNING </span><span> )
 #&gt;   -&gt; data              :  It is highly recommended to pass `data` without the target variable column
-#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used (</span><span style='color: #BBBB00;'>default</span><span>)
+#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; predicted values  :  numerical, min =  1792.597 , mean =  3506.836 , max =  6241.447  
-#&gt;   -&gt; residual function :  difference between y and yhat (</span><span style='color: #BBBB00;'>default</span><span>)
+#&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -257.2555 , mean =  4.687686 , max =  472.356  
-#&gt; </span><span style='color: #00BB00;'>A new explainer has been created!</span><span></div><div class='input'>
+#&gt;   -&gt; model_info        :  model_info not specified, assuming type: regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; model_info        :  package: Model of class: WrappedModel package unrecognized Unknown ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 <span class='no'>learner_rf</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mlr/man/makeLearner.html'>makeLearner</a></span>(
   <span class='st'>"regr.randomForest"</span>
 )
@@ -215,13 +223,15 @@ provide name for not standard sections, that will be presented as section titles
 #&gt;   -&gt; model label       :  RF 
 #&gt;   -&gt; data              :  9000  rows  6  cols 
 #&gt;   -&gt; target variable   :  9000  values 
-#&gt;   -&gt; data              :  A column identical to the target variable `y` has been found in the `data`.  (</span><span style='color: #BB0000;'>WARNING</span><span>)
+#&gt;   -&gt; data              :  A column identical to the target variable `y` has been found in the `data`.  ( </span><span style='color: #BB0000;'> WARNING </span><span> )
 #&gt;   -&gt; data              :  It is highly recommended to pass `data` without the target variable column
-#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used (</span><span style='color: #BBBB00;'>default</span><span>)
+#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; predicted values  :  numerical, min =  1976.589 , mean =  3507.215 , max =  5779.887  
-#&gt;   -&gt; residual function :  difference between y and yhat (</span><span style='color: #BBBB00;'>default</span><span>)
+#&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -715.967 , mean =  4.308321 , max =  1255.235  
-#&gt; </span><span style='color: #00BB00;'>A new explainer has been created!</span><span></div><div class='input'>
+#&gt;   -&gt; model_info        :  model_info not specified, assuming type: regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; model_info        :  package: Model of class: WrappedModel package unrecognized Unknown ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 <span class='no'>learner_gbm</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mlr/man/makeLearner.html'>makeLearner</a></span>(
   <span class='st'>"regr.gbm"</span>
 )
@@ -230,46 +240,19 @@ provide name for not standard sections, that will be presented as section titles
 #&gt;   -&gt; model label       :  GBM 
 #&gt;   -&gt; data              :  9000  rows  6  cols 
 #&gt;   -&gt; target variable   :  9000  values 
-#&gt;   -&gt; data              :  A column identical to the target variable `y` has been found in the `data`.  (</span><span style='color: #BB0000;'>WARNING</span><span>)
+#&gt;   -&gt; data              :  A column identical to the target variable `y` has been found in the `data`.  ( </span><span style='color: #BB0000;'> WARNING </span><span> )
 #&gt;   -&gt; data              :  It is highly recommended to pass `data` without the target variable column
-#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used (</span><span style='color: #BBBB00;'>default</span><span>)
+#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; predicted values  :  numerical, min =  2129.738 , mean =  3502.03 , max =  6067.672  
-#&gt;   -&gt; residual function :  difference between y and yhat (</span><span style='color: #BBBB00;'>default</span><span>)
+#&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -628.0318 , mean =  9.493952 , max =  732.9962  
-#&gt; </span><span style='color: #00BB00;'>A new explainer has been created!</span><span></div><div class='input'>
+#&gt;   -&gt; model_info        :  model_info not specified, assuming type: regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; model_info        :  package: Model of class: WrappedModel package unrecognized Unknown ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 
 <span class='no'>plot_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='funnel_measure.html'>funnel_measure</a></span>(<span class='no'>explainer_lm</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>explainer_rf</span>, <span class='no'>explainer_gbm</span>),
-                            <span class='kw'>nbins</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>measure_function</span> <span class='kw'>=</span> <span class='kw pkg'>DALEX</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/DALEX/man/loss_cross_entropy.html'>loss_root_mean_square</a></span>)</div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |============                                                          |  17%  |                                                                              |=======================                                               |  33%  |                                                                              |===================================                                   |  50%  |                                                                              |===============================================                       |  67%  |                                                                              |==========================================================            |  83%  |                                                                              |======================================================================| 100%</div><div class='input'>
-<span class='fu'>champion_challenger</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>plot_data</span>), <span class='kw'>dot_size</span> <span class='kw'>=</span> <span class='fl'>3</span>)</div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>processing file: Report.Rmd</span></div><div class='output co'>#&gt;   |                                                                         |                                                                 |   0%  |                                                                         |........                                                         |  12%
-#&gt;    inline R code fragments
-#&gt; 
-#&gt;   |                                                                         |................                                                 |  25%
-#&gt; label: setup (with options) 
-#&gt; List of 1
-#&gt;  $ include: logi FALSE
-#&gt; 
-#&gt;   |                                                                         |........................                                         |  38%
-#&gt;   ordinary text without R code
-#&gt; 
-#&gt;   |                                                                         |................................                                 |  50%
-#&gt; label: unnamed-chunk-1
-#&gt;   |                                                                         |.........................................                        |  62%
-#&gt;   ordinary text without R code
-#&gt; 
-#&gt;   |                                                                         |.................................................                |  75%
-#&gt; label: unnamed-chunk-2 (with options) 
-#&gt; List of 2
-#&gt;  $ fig.width : num 10
-#&gt;  $ fig.height: num 8
-#&gt; </div><div class='output co'>#&gt;   |                                                                         |.........................................................        |  88%
-#&gt;   ordinary text without R code
-#&gt; 
-#&gt;   |                                                                         |.................................................................| 100%
-#&gt; label: unnamed-chunk-3
-#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: Report.knit.md</span></div><div class='output co'>#&gt; "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS Report.utf8.md --to html4 --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash+smart --output pandoc49c6d39289d.html --email-obfuscation none --self-contained --standalone --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template "C:\Users\szyna\Documents\R\win-library\3.6\rmarkdown\rmd\h\default.html" --no-highlight --variable highlightjs=1 --number-sections --variable "theme:bootstrap" --include-in-header "C:\Users\szyna\AppData\Local\Temp\RtmpMRBUBd\rmarkdown-str49cfe27a07.html" --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" </div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Output created: Report.html</span></div></span><div class='input'>
+                            <span class='kw'>nbins</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>measure_function</span> <span class='kw'>=</span> <span class='kw pkg'>DALEX</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/DALEX/man/loss_functions.html'>loss_root_mean_square</a></span>)</div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |============                                                          |  17%  |                                                                              |=======================                                               |  33%  |                                                                              |===================================                                   |  50%  |                                                                              |===============================================                       |  67%  |                                                                              |==========================================================            |  83%  |                                                                              |======================================================================| 100%</div><div class='input'>
+<span class='fu'>champion_challenger</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>plot_data</span>), <span class='kw'>dot_size</span> <span class='kw'>=</span> <span class='fl'>3</span>)</div></span><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

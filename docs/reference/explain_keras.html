@@ -40,6 +40,8 @@
 <meta property="og:description" content="Keras models may be loaded into R environment like any other Python object. This function helps to inspect performance of Python model
 and compare it with other models, using R tools like DALEX. This function creates an object that is easily accessible R version of Keras model
 exported from Python via pickle file." />
+
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -85,7 +87,7 @@ exported from Python via pickle file." />
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/">MI^2 DataLab</a> </span>
-          <span class="version version-default">0.1.8</span>
+          <span class="version version-default">0.1.9</span>
         </div>
       </div>
     </div>
@@ -243,14 +245,16 @@ If .yml file seems not to work, virtual env can be created manually using anacon
 } <span class='kw'>else</span> {
   <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='st'>'Conda is required.'</span>)
 }</div><div class='output co'>#&gt; <span class='message'>There already exists environment named the same as it is specified in .yml file - myenv. It will be used</span></div><div class='output co'>#&gt; Preparation of a new explainer is initiated
-#&gt;   -&gt; model label       :  keras  (<span style='color: #BBBB00;'>default</span><span>)
+#&gt;   -&gt; model label       :  keras  ( <span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; data              :  767  rows  8  cols 
 #&gt;   -&gt; target variable   :  767  values 
-#&gt;   -&gt; predict function  :  yhat.keras  will be used (</span><span style='color: #BBBB00;'>default</span><span>)
+#&gt;   -&gt; predict function  :  yhat.keras  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; predicted values  :  numerical, min =  0.004537016 , mean =  0.316504 , max =  0.9806014  
-#&gt;   -&gt; residual function :  difference between y and yhat (</span><span style='color: #BBBB00;'>default</span><span>)
+#&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -0.8733932 , mean =  0.03160553 , max =  0.9648628  
-#&gt; </span><span style='color: #00BB00;'>A new explainer has been created!</span><span></div><div class='output co'>#&gt;  [1] 0.16833094 0.75797921 0.05761898 0.69794130 0.21207666 0.22323561
+#&gt;   -&gt; model_info        :  model_info not specified, assuming type: regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; model_info        :  package: Model of class: keras.engine.sequential.Sequential package unrecognized Unknown ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='output co'>#&gt;  [1] 0.16833094 0.75797921 0.05761898 0.69794130 0.21207666 0.22323561
 #&gt;  [7] 0.75763035 0.56127292 0.46056730 0.11284519</div><div class='input'>
 </div></span></pre>
   </div>

@@ -38,6 +38,8 @@
 <meta property="og:title" content="Print overall_comparison object — print.overall_comparison" />
 
 <meta property="og:description" content="Print overall_comparison object" />
+
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -83,7 +85,7 @@
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/">MI^2 DataLab</a> </span>
-          <span class="version version-default">0.1.8</span>
+          <span class="version version-default">0.1.9</span>
         </div>
       </div>
     </div>
@@ -164,13 +166,15 @@
 #&gt;   -&gt; model label       :  LM 
 #&gt;   -&gt; data              :  9000  rows  6  cols 
 #&gt;   -&gt; target variable   :  9000  values 
-#&gt;   -&gt; data              :  A column identical to the target variable `y` has been found in the `data`.  (<span style='color: #BB0000;'>WARNING</span><span>)
+#&gt;   -&gt; data              :  A column identical to the target variable `y` has been found in the `data`.  ( <span style='color: #BB0000;'> WARNING </span><span> )
 #&gt;   -&gt; data              :  It is highly recommended to pass `data` without the target variable column
-#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used (</span><span style='color: #BBBB00;'>default</span><span>)
+#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; predicted values  :  numerical, min =  1792.597 , mean =  3506.836 , max =  6241.447  
-#&gt;   -&gt; residual function :  difference between y and yhat (</span><span style='color: #BBBB00;'>default</span><span>)
+#&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -257.2555 , mean =  4.687686 , max =  472.356  
-#&gt; </span><span style='color: #00BB00;'>A new explainer has been created!</span><span></div><div class='input'>
+#&gt;   -&gt; model_info        :  model_info not specified, assuming type: regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; model_info        :  package: Model of class: WrappedModel package unrecognized Unknown ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 <span class='no'>learner_rf</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mlr/man/makeLearner.html'>makeLearner</a></span>(
   <span class='st'>"regr.randomForest"</span>
 )
@@ -179,13 +183,15 @@
 #&gt;   -&gt; model label       :  RF 
 #&gt;   -&gt; data              :  9000  rows  6  cols 
 #&gt;   -&gt; target variable   :  9000  values 
-#&gt;   -&gt; data              :  A column identical to the target variable `y` has been found in the `data`.  (</span><span style='color: #BB0000;'>WARNING</span><span>)
+#&gt;   -&gt; data              :  A column identical to the target variable `y` has been found in the `data`.  ( </span><span style='color: #BB0000;'> WARNING </span><span> )
 #&gt;   -&gt; data              :  It is highly recommended to pass `data` without the target variable column
-#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used (</span><span style='color: #BBBB00;'>default</span><span>)
+#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; predicted values  :  numerical, min =  2004.322 , mean =  3506.05 , max =  5847.68  
-#&gt;   -&gt; residual function :  difference between y and yhat (</span><span style='color: #BBBB00;'>default</span><span>)
+#&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -742.1502 , mean =  5.473423 , max =  1252.785  
-#&gt; </span><span style='color: #00BB00;'>A new explainer has been created!</span><span></div><div class='input'>
+#&gt;   -&gt; model_info        :  model_info not specified, assuming type: regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; model_info        :  package: Model of class: WrappedModel package unrecognized Unknown ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 <span class='no'>learner_gbm</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mlr/man/makeLearner.html'>makeLearner</a></span>(
   <span class='st'>"regr.gbm"</span>
 )
@@ -194,13 +200,15 @@
 #&gt;   -&gt; model label       :  gbm 
 #&gt;   -&gt; data              :  9000  rows  6  cols 
 #&gt;   -&gt; target variable   :  9000  values 
-#&gt;   -&gt; data              :  A column identical to the target variable `y` has been found in the `data`.  (</span><span style='color: #BB0000;'>WARNING</span><span>)
+#&gt;   -&gt; data              :  A column identical to the target variable `y` has been found in the `data`.  ( </span><span style='color: #BB0000;'> WARNING </span><span> )
 #&gt;   -&gt; data              :  It is highly recommended to pass `data` without the target variable column
-#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used (</span><span style='color: #BBBB00;'>default</span><span>)
+#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; predicted values  :  numerical, min =  2122.612 , mean =  3502.85 , max =  6073.093  
-#&gt;   -&gt; residual function :  difference between y and yhat (</span><span style='color: #BBBB00;'>default</span><span>)
+#&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -553.5509 , mean =  8.673842 , max =  719.8609  
-#&gt; </span><span style='color: #00BB00;'>A new explainer has been created!</span><span></div><div class='input'>
+#&gt;   -&gt; model_info        :  model_info not specified, assuming type: regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; model_info        :  package: Model of class: WrappedModel package unrecognized Unknown ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 <span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='overall_comparison.html'>overall_comparison</a></span>(<span class='no'>explainer_lm</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>explainer_gbm</span>, <span class='no'>explainer_rf</span>), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"regression"</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>data</span>)</div><div class='output co'>#&gt; Radar Args:  3 model_performances detected
 #&gt; Accordance table head

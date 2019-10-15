@@ -38,6 +38,8 @@
 <meta property="og:title" content="Print funnel_measure object — print.funnel_measure" />
 
 <meta property="og:description" content="Print funnel_measure object" />
+
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -83,7 +85,7 @@
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/">MI^2 DataLab</a> </span>
-          <span class="version version-default">0.1.8</span>
+          <span class="version version-default">0.1.9</span>
         </div>
       </div>
     </div>
@@ -164,13 +166,15 @@
 #&gt;   -&gt; model label       :  LM 
 #&gt;   -&gt; data              :  9000  rows  6  cols 
 #&gt;   -&gt; target variable   :  9000  values 
-#&gt;   -&gt; data              :  A column identical to the target variable `y` has been found in the `data`.  (<span style='color: #BB0000;'>WARNING</span><span>)
+#&gt;   -&gt; data              :  A column identical to the target variable `y` has been found in the `data`.  ( <span style='color: #BB0000;'> WARNING </span><span> )
 #&gt;   -&gt; data              :  It is highly recommended to pass `data` without the target variable column
-#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used (</span><span style='color: #BBBB00;'>default</span><span>)
+#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; predicted values  :  numerical, min =  1792.597 , mean =  3506.836 , max =  6241.447  
-#&gt;   -&gt; residual function :  difference between y and yhat (</span><span style='color: #BBBB00;'>default</span><span>)
+#&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -257.2555 , mean =  4.687686 , max =  472.356  
-#&gt; </span><span style='color: #00BB00;'>A new explainer has been created!</span><span></div><div class='input'>
+#&gt;   -&gt; model_info        :  model_info not specified, assuming type: regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; model_info        :  package: Model of class: WrappedModel package unrecognized Unknown ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 <span class='no'>learner_rf</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mlr/man/makeLearner.html'>makeLearner</a></span>(
   <span class='st'>"regr.randomForest"</span>
 )
@@ -179,13 +183,15 @@
 #&gt;   -&gt; model label       :  RF 
 #&gt;   -&gt; data              :  9000  rows  6  cols 
 #&gt;   -&gt; target variable   :  9000  values 
-#&gt;   -&gt; data              :  A column identical to the target variable `y` has been found in the `data`.  (</span><span style='color: #BB0000;'>WARNING</span><span>)
+#&gt;   -&gt; data              :  A column identical to the target variable `y` has been found in the `data`.  ( </span><span style='color: #BB0000;'> WARNING </span><span> )
 #&gt;   -&gt; data              :  It is highly recommended to pass `data` without the target variable column
-#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used (</span><span style='color: #BBBB00;'>default</span><span>)
+#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; predicted values  :  numerical, min =  1976.007 , mean =  3505.353 , max =  5832.449  
-#&gt;   -&gt; residual function :  difference between y and yhat (</span><span style='color: #BBBB00;'>default</span><span>)
+#&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -721.6703 , mean =  6.170972 , max =  1248.355  
-#&gt; </span><span style='color: #00BB00;'>A new explainer has been created!</span><span></div><div class='input'>
+#&gt;   -&gt; model_info        :  model_info not specified, assuming type: regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; model_info        :  package: Model of class: WrappedModel package unrecognized Unknown ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 <span class='no'>learner_gbm</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mlr/man/makeLearner.html'>makeLearner</a></span>(
   <span class='st'>"regr.gbm"</span>
 )
@@ -194,22 +200,24 @@
 #&gt;   -&gt; model label       :  GBM 
 #&gt;   -&gt; data              :  9000  rows  6  cols 
 #&gt;   -&gt; target variable   :  9000  values 
-#&gt;   -&gt; data              :  A column identical to the target variable `y` has been found in the `data`.  (</span><span style='color: #BB0000;'>WARNING</span><span>)
+#&gt;   -&gt; data              :  A column identical to the target variable `y` has been found in the `data`.  ( </span><span style='color: #BB0000;'> WARNING </span><span> )
 #&gt;   -&gt; data              :  It is highly recommended to pass `data` without the target variable column
-#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used (</span><span style='color: #BBBB00;'>default</span><span>)
+#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; predicted values  :  numerical, min =  2123.159 , mean =  3503.63 , max =  6063.518  
-#&gt;   -&gt; residual function :  difference between y and yhat (</span><span style='color: #BBBB00;'>default</span><span>)
+#&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -520.1592 , mean =  7.893932 , max =  769.8398  
-#&gt; </span><span style='color: #00BB00;'>A new explainer has been created!</span><span></div><div class='input'>
+#&gt;   -&gt; model_info        :  model_info not specified, assuming type: regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; model_info        :  package: Model of class: WrappedModel package unrecognized Unknown ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 <span class='no'>plot_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='funnel_measure.html'>funnel_measure</a></span>(<span class='no'>explainer_lm</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>explainer_rf</span>, <span class='no'>explainer_gbm</span>),
-                            <span class='kw'>nbins</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>measure_function</span> <span class='kw'>=</span> <span class='kw pkg'>DALEX</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/DALEX/man/loss_cross_entropy.html'>loss_root_mean_square</a></span>)</div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |============                                                          |  17%  |                                                                              |=======================                                               |  33%  |                                                                              |===================================                                   |  50%  |                                                                              |===============================================                       |  67%  |                                                                              |==========================================================            |  83%  |                                                                              |======================================================================| 100%</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>plot_data</span>)</div><div class='output co'>#&gt; Funnel measure head:
-#&gt;    Variable    Measure        Label Challenger
-#&gt; 0% m2.price   46.86363 [1603, 2737]         RF
-#&gt; 2  m2.price  -25.59572 [1603, 2737]        GBM
-#&gt; 3  m2.price  -62.10391 (2737, 3198]         RF
-#&gt; 4  m2.price -142.98789 (2737, 3198]        GBM
-#&gt; 5  m2.price -148.86691 (3198, 3634]         RF
-#&gt; 6  m2.price -178.46073 (3198, 3634]        GBM
+                            <span class='kw'>nbins</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>measure_function</span> <span class='kw'>=</span> <span class='kw pkg'>DALEX</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/DALEX/man/loss_functions.html'>loss_root_mean_square</a></span>)</div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |============                                                          |  17%  |                                                                              |=======================                                               |  33%  |                                                                              |===================================                                   |  50%  |                                                                              |===============================================                       |  67%  |                                                                              |==========================================================            |  83%  |                                                                              |======================================================================| 100%</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>plot_data</span>)</div><div class='output co'>#&gt; Funnel measure head:
+#&gt;    Variable    Measure          Label Challenger
+#&gt; 0% m2.price   46.91442 [1603, 2736.8]         RF
+#&gt; 2  m2.price  -25.53971 [1603, 2736.8]        GBM
+#&gt; 3  m2.price  -62.04701 (2736.8, 3198]         RF
+#&gt; 4  m2.price -142.93498 (2736.8, 3198]        GBM
+#&gt; 5  m2.price -148.86691   (3198, 3634]         RF
+#&gt; 6  m2.price -178.46073   (3198, 3634]        GBM
 #&gt; Models Info
 #&gt;   label        class       type
 #&gt; 1    LM WrappedModel   Champion

@@ -40,6 +40,8 @@
 <meta property="og:description" content="DALEX is designed to work with various black-box models like tree ensembles, linear models, neural networks etc.
 Unfortunately R packages that create such models are very inconsistent. Different tools use different interfaces to train, validate and use models.
 One of those tools, which is one of the most popular one is mlr package. We would like to present dedicated explain function for it." />
+
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -85,7 +87,7 @@ One of those tools, which is one of the most popular one is mlr package. We woul
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/">MI^2 DataLab</a> </span>
-          <span class="version version-default">0.1.8</span>
+          <span class="version version-default">0.1.9</span>
         </div>
       </div>
     </div>
@@ -210,15 +212,17 @@ One of those tools, which is one of the most popular one is mlr package. We woul
 )
 <span class='no'>gbm</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mlr/man/train.html'>train</a></span>(<span class='no'>learner</span>, <span class='no'>task</span>)
 <span class='fu'>explain_mlr</span>(<span class='no'>gbm</span>, <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>], <span class='no'>titanic_test</span>[,<span class='fl'>18</span>])</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
-#&gt;   -&gt; model label       :  WrappedModel  (<span style='color: #BBBB00;'>default</span><span>)
+#&gt;   -&gt; model label       :  WrappedModel  ( <span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; data              :  524  rows  17  cols 
 #&gt;   -&gt; target variable   :  524  values 
-#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used (</span><span style='color: #BBBB00;'>default</span><span>)
-#&gt;   -&gt; predicted values  :  numerical, min =  0.2694527 , mean =  0.3320889 , max =  0.5635427  
-#&gt;   -&gt; residual function :  difference between y and yhat (</span><span style='color: #BBBB00;'>default</span><span>)
-#&gt;   -&gt; residuals         :  numerical, min =  -0.5635427 , mean =  -0.02102024 , max =  0.7305473  
-#&gt; </span><span style='color: #00BB00;'>A new explainer has been created!</span><span></div><div class='output co'>#&gt; Model label:  WrappedModel 
-#&gt; Model class:  WrappedModel 
+#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; predicted values  :  numerical, min =  0.2698508 , mean =  0.3322473 , max =  0.5649514  
+#&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; residuals         :  numerical, min =  -0.5649514 , mean =  -0.02117863 , max =  0.7301492  
+#&gt;   -&gt; model_info        :  model_info not specified, assuming type: regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; model_info        :  package: Model of class: WrappedModel package unrecognized Unknown ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='output co'>#&gt; Model label:  WrappedModel 
+#&gt; Model class:   
 #&gt; Data head  :
 #&gt;   gender.female gender.male age class.1st class.2nd class.3rd class.deck.crew
 #&gt; 1             1           0  16         0         0         1               0

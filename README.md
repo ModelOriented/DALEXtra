@@ -6,7 +6,8 @@ Status](https://travis-ci.org/ModelOriented/DALEXtra.svg?branch=master)](https:/
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/ModelOriented/DALEXtra/master.svg)](https://codecov.io/github/ModelOriented/DALEXtra?branch=master)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/DALEXtra)](https://cran.r-project.org/package=DALEXtra)
-[![Total Downloads](http://cranlogs.r-pkg.org/badges/grand-total/DALEXtra?color=orange)](http://cranlogs.r-pkg.org/badges/grand-total/DALEXtra)
+[![Total
+Downloads](http://cranlogs.r-pkg.org/badges/grand-total/DALEXtra?color=orange)](http://cranlogs.r-pkg.org/badges/grand-total/DALEXtra)
 [![DrWhy-eXtrAI](https://img.shields.io/badge/DrWhy-BackBone-373589)](http://drwhy.ai/#BackBone)
 
 ## Overview
@@ -26,7 +27,7 @@ keras, H2O, mljar and mlr.
     devtools::install_github("ModelOriented/DALEXtra")
 
 Package `reticulate` will be downloaded along with `DALEXtra` but if you
-seek for it’s latests version it can be downloaded here
+seek for it’s latest version it can be downloaded here
 
     devtools::install_github("rstudio/reticulate")
 
@@ -44,13 +45,13 @@ explanations (ingredients, iBreakDown, shapper) or audit our model
 ## How to setup Anaconda
 
 In order to be able to use some features associated with `DALEXtra`,
-Anaconda in needed. The easiest way to get it, is visting [Anconda
+Anaconda in needed. The easiest way to get it, is visiting [Anaconda
 website](https://www.anaconda.com/distribution). And choosing proper OS
 as it stands in the following picture.
 ![](https://raw.githubusercontent.com/ModelOriented/DALEXtra/master/README_files/figure-gfm/anaconda1.png)
 There is no big difference bewtween Python versions when downloading
 Anaconda. You can always create virtual environment with any version of
-Pytho no matter which version was downloaded first.
+Python no matter which version was downloaded first.
 
 ### Windows
 
@@ -65,7 +66,7 @@ instructions](https://stackoverflow.com/a/44597801/9717584).
 
 ### Unix
 
-While using unixlike OS, adding conda to PATH is not required.
+While using unix-like OS, adding conda to PATH is not required.
 
 ## Demo
 
@@ -91,8 +92,8 @@ scikit-learn models cannot work with it.
 
 Creating exlainer from scikit-learn Python model is very simple thanks
 to `DALEXtra`. The only thing you need to provide is path to pickle and,
-if necessery, something that lets recognize Python environment. It may
-be .yml file with packages specification, name of existing conda
+if necessary, something that lets recognize Python environment. It may
+be a .yml file with packages specification, name of existing conda
 environment or path to Python virtual environment. Execution of
 `scikitlearn_explain` only with .pkl file and data will cause usage of
 default Python.
@@ -105,14 +106,16 @@ data = titanic_test[,1:17], y = titanic_test$survived)
 ```
 
     ## Preparation of a new explainer is initiated
-    ##   -> model label       :  scikitlearn_model  ([33mdefault[39m)
+    ##   -> model label       :  scikitlearn_model  ( [33m default [39m )
     ##   -> data              :  524  rows  17  cols 
     ##   -> target variable   :  524  values 
-    ##   -> predict function  :  yhat.scikitlearn_model  will be used ([33mdefault[39m)
+    ##   -> predict function  :  yhat.scikitlearn_model  will be used ( [33m default [39m )
     ##   -> predicted values  :  numerical, min =  0.02086126 , mean =  0.288584 , max =  0.9119996  
-    ##   -> residual function :  difference between y and yhat ([33mdefault[39m)
+    ##   -> residual function :  difference between y and yhat ( [33m default [39m )
     ##   -> residuals         :  numerical, min =  -0.8669431 , mean =  0.02248468 , max =  0.9791387  
-    ## [32mA new explainer has been created![39m
+    ##   -> model_info        :  model_info not specified, assuming type: regression ( [33m default [39m ) 
+    ##   -> model_info        :  package: Model of class: sklearn.ensemble.gradient_boosting.GradientBoostingClassifier package unrecognized Unknown ( [33m default [39m ) 
+    ##  [32m A new explainer has been created! [39m
 
 ### Creating explanations
 
@@ -138,8 +141,8 @@ plot(feature_importance(explainer))
 describe(feature_importance(explainer))
 ```
 
-    ## The number of important variables for scikitlearn_model's prediction is 3 out of 17. 
-    ##  Variables gender.female, gender.male, age have the highest importantance.
+    ## The number of important variables for scikitlearn_model's prediction is 2 out of 17. 
+    ##  Variables gender.female, gender.male have the highest importantance.
 
 ``` r
 library(iBreakDown)
