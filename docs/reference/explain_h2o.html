@@ -55,13 +55,13 @@ One of those tools, we would like to make more accessible is H2O." />
 <![endif]-->
 
 <!-- google analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-115082821-1"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5650686-14""></script>
 <script>
  window.dataLayer = window.dataLayer || [];
  function gtag(){dataLayer.push(arguments);}
  gtag('js', new Date());
 
- gtag('config', 'UA-115082821-1');
+ gtag('config', 'UA-5650686-14');
 </script>
 
   </head>
@@ -80,9 +80,6 @@ One of those tools, we would like to make more accessible is H2O." />
       </button>
 
       <div class="navbar-brand-container">
-      <a class = "navbar-mi2logo" href="http://DrWhy.AI/">
-    <img src = "https://github.com/ModelOriented/DrWhyTemplate/blob/master/inst/pkgdown/assets/drwhy_znak_violet_small.jpg?raw=true" alt = "MI2" height = 46 title = "MI2">
-	  </a>
         <a class="navbar-brand" href="../index.html">DALEXtra</a>
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a>
@@ -191,23 +188,15 @@ One of those tools, we would like to make more accessible is H2O.</p>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"DALEXtra"</span>)
 <span class='no'>titanic_test</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_test.csv"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))
 <span class='no'>titanic_train</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_train.csv"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))
-<span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.init.html'>h2o.init</a></span>()</div><div class='output co'>#&gt; 
-#&gt; H2O is not running yet, starting it now...
-#&gt; 
-#&gt; Note:  In case of errors look at the following log files:
-#&gt;     C:\Users\szyna\AppData\Local\Temp\RtmpMbVK2r/h2o_szyna_started_from_r.out
-#&gt;     C:\Users\szyna\AppData\Local\Temp\RtmpMbVK2r/h2o_szyna_started_from_r.err
-#&gt; 
-#&gt; 
-#&gt; Starting H2O JVM and connecting: . Connection successful!
+<span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.init.html'>h2o.init</a></span>()</div><div class='output co'>#&gt;  Connection successful!
 #&gt; 
 #&gt; R is connected to the H2O cluster: 
-#&gt;     H2O cluster uptime:         3 seconds 643 milliseconds 
+#&gt;     H2O cluster uptime:         1 hours 44 minutes 
 #&gt;     H2O cluster timezone:       Europe/Belgrade 
 #&gt;     H2O data parsing timezone:  UTC 
 #&gt;     H2O cluster version:        3.24.0.5 
 #&gt;     H2O cluster version age:    3 months and 26 days !!! 
-#&gt;     H2O cluster name:           H2O_started_from_R_szyna_ozw432 
+#&gt;     H2O cluster name:           H2O_started_from_R_szyna_dze421 
 #&gt;     H2O cluster total nodes:    1 
 #&gt;     H2O cluster total memory:   1.97 GB 
 #&gt;     H2O cluster total cores:    4 
@@ -236,12 +225,12 @@ One of those tools, we would like to make more accessible is H2O.</p>
 <span class='fu'>explain_h2o</span>(<span class='no'>model</span>, <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>], <span class='no'>titanic_test</span>[,<span class='fl'>18</span>])</div><div class='output co'>#&gt;  Connection successful!
 #&gt; 
 #&gt; R is connected to the H2O cluster: 
-#&gt;     H2O cluster uptime:         11 seconds 734 milliseconds 
+#&gt;     H2O cluster uptime:         1 hours 44 minutes 
 #&gt;     H2O cluster timezone:       Europe/Belgrade 
 #&gt;     H2O data parsing timezone:  UTC 
 #&gt;     H2O cluster version:        3.24.0.5 
 #&gt;     H2O cluster version age:    3 months and 26 days !!! 
-#&gt;     H2O cluster name:           H2O_started_from_R_szyna_ozw432 
+#&gt;     H2O cluster name:           H2O_started_from_R_szyna_dze421 
 #&gt;     H2O cluster total nodes:    1 
 #&gt;     H2O cluster total memory:   1.97 GB 
 #&gt;     H2O cluster total cores:    4 
@@ -279,7 +268,7 @@ One of those tools, we would like to make more accessible is H2O.</p>
 #&gt; 2                0                  0                   0                    1
 #&gt;   fare sibsp parch
 #&gt; 1 7.13     0     0
-#&gt; 2 7.13     0     0</div><div class='input'><span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.shutdown.html'>h2o.shutdown</a></span>(<span class='kw'>prompt</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] TRUE</div></span></pre>
+#&gt; 2 7.13     0     0</div><div class='input'><span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.shutdown.html'>h2o.shutdown</a></span>(<span class='kw'>prompt</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
