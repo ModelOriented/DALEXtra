@@ -1,3 +1,7 @@
+DALEXtra 0.1.10
+----------------------------------------------------------------
+* Added `aspect_importnace` from `ingredients  ([#19](https://github.com/ModelOriented/ingredients/issues/19))
+
 
 DALEXtra 0.1.9
 ----------------------------------------------------------------

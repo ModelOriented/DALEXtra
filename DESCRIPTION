@@ -1,6 +1,6 @@
 Package: DALEXtra
 Title: Extension for 'DALEX' Package
-Version: 0.1.9
+Version: 0.1.10
 Authors@R: 
     c(person(given = "Szymon",
            family = "Maksymiuk",
@@ -10,7 +10,8 @@ Authors@R:
              family = "Biecek", 
              email = "przemyslaw.biecek@gmail.com", 
              role = c("aut"), 
-             comment = c(ORCID = "0000-0001-8423-1823")))
+             comment = c(ORCID = "0000-0001-8423-1823")),
+      person("Katarzyna", "Pekala", role = "aut"))
 Description: Provides wrapper of various machine learning models. 
   In applied machine learning, there 
   is a strong belief that we need to strike a balance 
@@ -28,9 +29,13 @@ LazyData: true
 RoxygenNote: 6.1.1
 Imports: 
   reticulate,
-  ggplot2
+  ggplot2,
+  glmnet,
+  ggdendro,
+  gridExtra
 Suggests:
   auditor,
+  ingredients,
   gbm,
   ggrepel,
   h2o,
@@ -38,6 +43,7 @@ Suggests:
   mlr,
   randomForest,
   rmarkdown,
+  xgboost,
   testthat
 URL: https://ModelOriented.github.io/DALEXtra/, https://github.com/ModelOriented/DALEXtra
 BugReports: https://github.com/ModelOriented/DALEXtra/issues
