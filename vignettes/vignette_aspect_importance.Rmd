@@ -81,7 +81,7 @@ Now we can call aspect_importance() function and see that features included in `
 
 ```{r Calculating aspect importance (logistic regression)}
 library("ggplot2")
-library("ingredients")
+library("DALEXtra")
 
 titanic_glm_ai <- aspect_importance(model_titanic_glm, titanic, predict, passenger, aspects_titanic, N = 1000, label = "logistic regression")
 

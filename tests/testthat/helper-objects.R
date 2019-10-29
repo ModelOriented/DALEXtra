@@ -1,40 +1,4 @@
-library("randomForest")
-library("xgboost")
-library("DALEX")
 
-HR_glm_model <- glm(status == "fired" ~ ., data = HR, family = "binomial")
-explainer_glm <- explain(HR_glm_model, data = HR,  y = HR$status == "fired", verbose = FALSE)
-
-HR_rf_model <- randomForest(status ~ ., data = HR, ntree = 100)
-explainer_HR_rf  <- explain(HR_rf_model, data = HR, y = HR$status, verbose = FALSE)
-
-loss_cross_entropy <- function (observed, predicted, p_min = 0.0001) {
-  p <- sapply(seq_along(observed), function(i) predicted[i, observed[i]])
-  sum(-log(pmax(p, p_min)))
-}
-
-
-# Random Forest
-# Example of a model built using a data frame
-titanic_small <- na.omit(titanic[1:1000,])
-rf_model <- randomForest(survived == "yes" ~ gender + age + class + embarked +
-                           fare + sibsp + parch,  data = titanic_small)
-
-explainer_rf <- explain(rf_model, data = titanic_small,
-                        y = titanic_small$survived == "yes", label = "RF", verbose = FALSE)
-
-# xgboost (using matrix object)
-# Example of a model that relies on a numeric matrix
-
-titanic_small_mat <- as.matrix(titanic_small[,c(2,6,7,8)])
-titanic_small_survived <- ifelse(titanic_small$survived == "yes", 1, 0)
-
-xgb_model <- xgboost(data = titanic_small_mat, label = titanic_small_survived,
-                     nrounds = 2, verbose = FALSE)
-
-explainer_xgb <- explain(xgb_model,
-                         data=titanic_small_mat,
-                         y = titanic_small_survived, label="xgboost", verbose = FALSE)
 
 # helper objects for aspect_importance tests
 # titanic
