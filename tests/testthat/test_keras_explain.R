@@ -4,6 +4,7 @@ source("objects_for_tests.R")
 
 test_that("creating explainer", {
   skip_if_no_conda()
+  reticulate::use_condaenv("myenv")
   if(!"myenv" %in% reticulate::conda_list()$name){
     create_env(system.file("extdata", "testing_environment.yml", package = "DALEXtra"))
   }
