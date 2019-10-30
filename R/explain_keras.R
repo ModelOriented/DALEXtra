@@ -56,7 +56,7 @@
 #'
 #' @examples
 #' library("DALEXtra")
-#' if(DALEXtra:::is_conda()) {
+#' \donttest{
 #'    # Explainer build (Keep in mind that 9th column is target)
 #'    test_data <-
 #'    read.csv(
@@ -72,9 +72,7 @@
 #'    # Predictions with newdata
 #'    predict(explainer, test_data[1:10,1:8])
 #'
-#' } else {
-#'   print('Conda is required.')
-#' }
+#'}
 #'
 #' @rdname explain_keras
 #' @export
