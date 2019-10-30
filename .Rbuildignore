@@ -4,6 +4,7 @@
 ^misc$
 ^docs$
 ^_pkgdown\.yml$
+^pkgdown
 .travis.yml
 vignettes/
 ^LICENSE$

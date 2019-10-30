@@ -3,27 +3,23 @@ channels:
   - defaults
 dependencies:
   - blas=1.0=mkl
-  - certifi=2019.6.16=py36_0
-  - icc_rt=2019.0.0=h0cc432a_1
-  - intel-openmp=2019.4=245
-  - joblib=0.13.2=py36_0
-  - mkl=2019.4=245
-  - mkl-service=2.0.2=py36he774522_0
-  - mkl_fft=1.0.12=py36h14836fe_0
-  - mkl_random=1.0.2=py36h343c172_0
-  - numpy=1.16.4=py36h19fb1c0_0
-  - numpy-base=1.16.4=py36hc3f5095_0
-  - pip=19.1.1=py36_0
-  - python=3.6.8=h9f7ef89_7
-  - scikit-learn=0.21.2=py36h6288b17_0
-  - scipy=1.2.1=py36h29ff71c_0
-  - setuptools=41.0.1=py36_0
-  - six=1.12.0=py36_0
-  - sqlite=3.28.0=he774522_0
-  - vc=14.1=h0510ff6_4
-  - vs2015_runtime=14.15.26706=h3a45250_4
-  - wheel=0.33.4=py36_0
-  - wincertstore=0.2=py36h7fe50ca_0
+  - certifi=2019.6.16
+  - intel-openmp
+  - joblib=0.13.2
+  - mkl=2019.4
+  - mkl-service=2.0.2
+  - mkl_fft=1.0.12
+  - mkl_random=1.0.2
+  - numpy=1.16.4
+  - numpy-base=1.16.4
+  - pip=19.1.1
+  - python=3.6.8
+  - scikit-learn=0.21.2
+  - scipy=1.2.1
+  - setuptools=41.0.1
+  - six=1.12.0
+  - sqlite=3.28.0
+  - wheel=0.33.4
   - pandas=0.24.2
   - keras=2.2.4
 
