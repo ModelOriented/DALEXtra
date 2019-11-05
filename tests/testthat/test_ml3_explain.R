@@ -1,7 +1,7 @@
 context("explain_mlr")
 
 library("DALEXtra")
-library(mlr3)
+library("mlr3")
 
 test_that("creating explainer classif", {
   titanic_imputed$survived <- as.factor(titanic_imputed$survived)

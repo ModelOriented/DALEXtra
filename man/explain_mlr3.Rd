@@ -49,7 +49,8 @@ titanic_imputed$survived <- as.factor(titanic_imputed$survived)
 task_classif <- TaskClassif$new(id = "1", backend = titanic_imputed, target = "survived")
 learner_classif <- lrn("classif.rpart", predict_type = "prob")
 learner_classif$train(task_classif)
-explain_mlr3(learner_classif, data = titanic_imputed, y = as.numeric(as.character(titanic_imputed$survived)))
+explain_mlr3(learner_classif, data = titanic_imputed,
+             y = as.numeric(as.character(titanic_imputed$survived)))
 
 
 task_regr <- TaskRegr$new(id = "2", backend = apartments, target = "m2.price")
