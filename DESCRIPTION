@@ -41,8 +41,10 @@ Suggests:
   h2o,
   mljar,
   mlr,
+  mlr3,
   randomForest,
   rmarkdown,
+  rpart,
   xgboost,
   testthat
 URL: https://ModelOriented.github.io/DALEXtra/, https://github.com/ModelOriented/DALEXtra

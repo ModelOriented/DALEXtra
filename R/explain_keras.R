@@ -11,12 +11,15 @@
 #' @param env A path to python virtual environment.
 #' @param data test data set that will be passed to \code{\link[DALEX]{explain}}.
 #' @param y vector that will be passed to \code{\link[DALEX]{explain}}.
+#' @param weights numeric vector with sampling weights. By default it's \code{NULL}. If provided then it shall have the same length as \code{data}
 #' @param predict_function predict function that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.
 #' @param residual_function residual function that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.
 #' @param ... other parameters
 #' @param label label that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.
 #' @param verbose bool that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.
-#' @param precalculate if TRUE (default) then 'predicted_values' and 'residuals' are calculated when \code{\link[DALEX]{explain}} is created. This will happenn also if 'verbose' is TRUE.
+#' @param precalculate if TRUE (default) then 'predicted_values' and 'residuals' are calculated when explainer is created. This will happenn also if 'verbose' is TRUE.
+#' @param colorize if TRUE (default) then \code{WARNINGS}, \code{ERRORS} and \code{NOTES} are colorized. Will work only in the R console.
+#' @param model_info a named list (\code{package}, \code{version}, \code{type}) containg information about model. If \code{NULL}, \code{DALEX} will seek for information on it's own.
 #'
 #'
 #' @author Szymon Maksymiuk
@@ -84,12 +87,15 @@ explain_keras <-
            env = NULL,
            data = NULL,
            y = NULL,
+           weights = NULL,
            predict_function = NULL,
            residual_function = NULL,
            ...,
            label = NULL,
            verbose = TRUE,
-           precalculate = TRUE) {
+           precalculate = TRUE,
+           colorize = TRUE,
+           model_info = NULL) {
 
     prepeare_env(yml, condaenv, env)
 
