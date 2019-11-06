@@ -6,11 +6,12 @@
 #'
 #' Currently supported packages are:
 #' \itemize{
-#' \item `mlr` see more in \code{\link{explain_mlr}}
-#' \item `h2o` see more in \code{\link{explain_h2o}}
-#' \item `scikit-learn` see more in \code{\link{explain_scikitlearn}}
-#' \item `keras` see more in \code{\link{explain_keras}}
-#' \item `mljar` see more in \code{\link{explain_mljar}}
+#' \item \code{mlr} see more in \code{\link{explain_mlr}}
+#' \item \code{h2o} see more in \code{\link{explain_h2o}}
+#' \item \code{scikit-learn} see more in \code{\link{explain_scikitlearn}}
+#' \item \code{keras} see more in \code{\link{explain_keras}}
+#' \item \code{mljar} see more in \code{\link{explain_mljar}}
+#' \item \code{mlr3} see more in \code{\link{explain_mlr3}}
 #' }
 #'
 #' @param X.model object - a model to be explained
@@ -104,4 +105,16 @@ yhat.keras <- function(X.model, newdata, ...) {
 #' @export
 yhat.mljar_model <- function(X.model, newdata, ...) {
   unlist(mljar::mljar_predict(model = X.model, x_pred = newdata, project_title = X.model$project), use.names = FALSE)
+}
+
+#' @rdname yhat
+#' @export
+yhat.LearnerRegr <- function(X.model, newdata, ...) {
+  predict(X.model, newdata = newdata, ...)
+}
+
+#' @rdname yhat
+#' @export
+yhat.LearnerClassif <- function(X.model, newdata, ...) {
+  predict(X.model, newdata = newdata, predict_type = "prob", ...)[,1]
 }

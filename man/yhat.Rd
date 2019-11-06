@@ -7,6 +7,8 @@
 \alias{yhat.scikitlearn_model}
 \alias{yhat.keras}
 \alias{yhat.mljar_model}
+\alias{yhat.LearnerRegr}
+\alias{yhat.LearnerClassif}
 \title{Wrapper over the predict function}
 \usage{
 \method{yhat}{WrappedModel}(X.model, newdata, ...)
@@ -20,6 +22,10 @@
 \method{yhat}{keras}(X.model, newdata, ...)
 
 \method{yhat}{mljar_model}(X.model, newdata, ...)
+
+\method{yhat}{LearnerRegr}(X.model, newdata, ...)
+
+\method{yhat}{LearnerClassif}(X.model, newdata, ...)
 }
 \arguments{
 \item{X.model}{object - a model to be explained}
@@ -39,10 +45,11 @@ Those functions are very important since informations from many models have to b
 \details{
 Currently supported packages are:
 \itemize{
-\item `mlr` see more in \code{\link{explain_mlr}}
-\item `h2o` see more in \code{\link{explain_h2o}}
-\item `scikit-learn` see more in \code{\link{explain_scikitlearn}}
-\item `keras` see more in \code{\link{explain_keras}}
-\item `mljar` see more in \code{\link{explain_mljar}}
+\item \code{mlr} see more in \code{\link{explain_mlr}}
+\item \code{h2o} see more in \code{\link{explain_h2o}}
+\item \code{scikit-learn} see more in \code{\link{explain_scikitlearn}}
+\item \code{keras} see more in \code{\link{explain_keras}}
+\item \code{mljar} see more in \code{\link{explain_mljar}}
+\item \code{mlr3} see more in \code{\link{explain_mlr3}}
 }
 }
