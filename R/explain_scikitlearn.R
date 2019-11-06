@@ -151,16 +151,19 @@ explain_scikitlearn <-
 
 
     class(params) <- "scikitlearn_set"
-    explainer <-  explain(
-      model = model,
+    explain(
+      model,
       data = data,
       y = y,
+      weights = weights,
       predict_function = predict_function,
       residual_function = residual_function,
       ...,
       label = label,
       verbose = verbose,
-      precalculate = precalculate
+      precalculate = precalculate,
+      colorize = colorize,
+      model_info = model_info
     )
     explainer$param_set <- params
     explainer

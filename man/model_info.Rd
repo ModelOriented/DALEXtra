@@ -34,12 +34,12 @@
 
 Currently supported packages are:
 \itemize{
-\item `mlr` models created with \code{mlr} package
-\item `h2o` models created with \code{h2o} package
-\item `scikit-learn` models created with \code{scikit-learn} pyhton library and accesed via \code{reticulate}
-\item `keras` models created with \code{keras} pyhton library and accesed via \code{reticulate}
-\item `mljar` models created with \code{mljar} API and accesed via \code{mljar} R package
-\item `mlr3` models created with \code{mlr3} package
+\item \code{mlr} models created with \code{mlr} package
+\item \code{h2o} models created with \code{h2o} package
+\item \code{scikit-learn} models created with \code{scikit-learn} pyhton library and accesed via \code{reticulate}
+\item \code{keras} models created with \code{keras} pyhton library and accesed via \code{reticulate}
+\item \code{mljar} models created with \code{mljar} API and accesed via \code{mljar} R package
+\item \code{mlr3} models created with \code{mlr3} package
 }}
 }
 \value{

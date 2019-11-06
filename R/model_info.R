@@ -9,12 +9,12 @@
 #'
 #' Currently supported packages are:
 #' \itemize{
-#' \item `mlr` models created with \code{mlr} package
-#' \item `h2o` models created with \code{h2o} package
-#' \item `scikit-learn` models created with \code{scikit-learn} pyhton library and accesed via \code{reticulate}
-#' \item `keras` models created with \code{keras} pyhton library and accesed via \code{reticulate}
-#' \item `mljar` models created with \code{mljar} API and accesed via \code{mljar} R package
-#' \item `mlr3` models created with \code{mlr3} package
+#' \item \code{mlr} models created with \code{mlr} package
+#' \item \code{h2o} models created with \code{h2o} package
+#' \item \code{scikit-learn} models created with \code{scikit-learn} pyhton library and accesed via \code{reticulate}
+#' \item \code{keras} models created with \code{keras} pyhton library and accesed via \code{reticulate}
+#' \item \code{mljar} models created with \code{mljar} API and accesed via \code{mljar} R package
+#' \item \code{mlr3} models created with \code{mlr3} package
 #' }
 #'
 #' @return A named list of class \code{model_info}
@@ -141,23 +141,3 @@ model_info.LearnerClassif <- function(model, ...) {
   model_info
 }
 
-#' Print model_info
-#'
-#' Function prints object of class \code{model_info} created with \code{\link{model_info}}
-#'
-#' @param x - an object of class \code{model_info}
-#' @param ... - other parameters
-#' @rdname print.model_info
-#' @export
-print.model_info <- function(x, ...) {
-  if (length(x$package) == 2) {
-    cat(paste("Wrapper package:", x$package["wrapper"], "\n"))
-    cat(paste("Wrapper package version:", x$ver["wrapper"], "\n"))
-    cat(paste("Package:", x$package["package"], "\n"))
-    cat(paste("Package version:", x$ver["package"], "\n"))
-  } else {
-    cat(paste("Package:", x$package, "\n"))
-    cat(paste("Package version:", x$ver, "\n"))
-  }
-  cat(paste("Task type:", x$type))
-}

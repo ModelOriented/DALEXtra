@@ -102,14 +102,17 @@ explain_keras <-
     model <- dalex_load_object(path, "keras")
 
     explain(
-      model = model,
+      model,
       data = data,
       y = y,
+      weights = weights,
       predict_function = predict_function,
       residual_function = residual_function,
       ...,
       label = label,
       verbose = verbose,
-      precalculate = precalculate
+      precalculate = precalculate,
+      colorize = colorize,
+      model_info = model_info
     )
   }
