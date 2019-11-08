@@ -1,6 +1,6 @@
 Package: DALEXtra
 Title: Extension for 'DALEX' Package
-Version: 0.1.10
+Version: 0.1.11
 Authors@R: 
     c(person(given = "Szymon",
            family = "Maksymiuk",
@@ -11,7 +11,8 @@ Authors@R:
              email = "przemyslaw.biecek@gmail.com", 
              role = c("aut"), 
              comment = c(ORCID = "0000-0001-8423-1823")),
-      person("Katarzyna", "Pekala", role = "aut"))
+      person("Katarzyna", "Pekala", role = "aut"),
+	  person("Anna", "Kozak", role = "ctb"))
 Description: Provides wrapper of various machine learning models. 
   In applied machine learning, there 
   is a strong belief that we need to strike a balance 
@@ -23,7 +24,7 @@ Description: Provides wrapper of various machine learning models.
   including those created using 'python' 'scikit-learn' and 'keras' libraries.
 Depends: 
   R (>= 3.5.0),
-  DALEX (>= 0.4.7)
+  DALEX (>= 0.4.9)
 License: GPL
 LazyData: true
 RoxygenNote: 6.1.1
