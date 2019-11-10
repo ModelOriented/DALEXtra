@@ -33,7 +33,7 @@ By default full test data. If data.frame, number of rows has to be equal to numb
 
 \item{show_info}{- Logical value indicating if progress bar should be shown.}
 
-\item{categories}{- a named list of variable names that will be plotted in a different colour. By deafault it is partitioned on Features, Other Variables and Target.}
+\item{categories}{- a named list of variable names that will be plotted in a different colour. By deafault it is partitioned on Explanatory, External and Target.}
 }
 \value{
 An object of the class \code{funnel_measure}
