@@ -18,7 +18,7 @@
 #' @param cutoff - Threshold for categorical data. Entries less frequent than specified value will be merged into one category.
 #' @param cutoff_name - Name for new category that arised after merging entries less frequent than \code{cutoff}
 #' @param factor_conversion_threshold - Numeric columns with lower number of unique values than value of this parameter will be treated as factors
-#' @param categories - a named list of variable names that will be plotted in a different colour. By deafault it is partitioned on Features, Other Variables and Target.
+#' @param categories - a named list of variable names that will be plotted in a different colour. By deafault it is partitioned on Explanatory, External and Target.
 #' @param show_info - Logical value indicating if progress bar should be shown.
 #'
 #' @return An object of the class \code{funnel_measure}
@@ -266,7 +266,7 @@ funnel_measure <-
         }
       }
     }
-    ret[ret$Category == "",]$Category <- "other_variables"
+    ret[ret$Category == "",]$Category <- other_variables
 
 
     ret <- list(data = ret, models_info = models_info)
