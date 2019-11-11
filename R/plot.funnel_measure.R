@@ -6,7 +6,7 @@
 #' @param x - funnel_measure object created with \code{\link{funnel_measure}} function.
 #' @param ... - other parameters
 #' @param dot_size - size of the dot on plots. Passed to \code{\link[ggplot2]{geom_point}}.
-#' 
+#'
 #' @return ggplot object
 #'
 #' @import ggplot2
@@ -60,6 +60,7 @@ plot.funnel_measure <- function(x, ..., dot_size = 0.5){
       }
     ))
     p <- lapply(challenger_label, function(y){
+      data <- funnel_measure$data
       data = data[data$Challenger == y, ]
       data$Text <- unlist(lapply(unique(data$Variable), function(x){
         tmp <- data[data$Variable == x, ]
@@ -68,13 +69,14 @@ plot.funnel_measure <- function(x, ..., dot_size = 0.5){
         }
       ))
       data$L <- ifelse(data$Text == -1 | data$Text == 1, data$Label, "")
-     
-      ggplot(data, aes(x = Variable, y = Measure)) + 
-        geom_pointrange(aes(ymin = Measure_min, ymax = Measure_max, color = Category), 
-                        position = position_dodge2(width = 0.75), size = dot_size) +
+
+      ggplot(data, aes(x = Variable, y = Measure)) +
+        geom_pointrange(aes(ymin = Measure_min, ymax = Measure_max, color = Category),
+                        position = position_dodge2(width = 0.75), size =
+                          dot_size) +
         scale_color_manual(values = c(theme_drwhy_colors(3))) +
-        geom_hline(yintercept = 0, color = "#371ea3", size=1) + 
-        ylim(c(-max(abs(data$Measure))-20, max(abs(data$Measure))+20)) + 
+        geom_hline(yintercept = 0, color = "#371ea3", size=1) +
+        ylim(c(-max(abs(data$Measure))-20, max(abs(data$Measure))+20)) +
         ylab(paste("Champion (", champion_label, ") and Challengers measure difference", sep = "")) +
         xlab("") +
         labs(title = "Funnel Plot",
@@ -83,16 +85,16 @@ plot.funnel_measure <- function(x, ..., dot_size = 0.5){
                               ") is better. \nDot on the left means that one of the Challengers is better than Champion (",
                               champion_label,
                               ")",
-                              sep = "")) + 
-        theme_drwhy() + 
-        theme(panel.grid = element_blank()) + 
+                              sep = "")) +
+        theme_drwhy() +
+        theme(panel.grid = element_blank()) +
         geom_vline(xintercept = seq(1.5, 1.5 + length(unique(data$Variable))), linetype = "dotdash", color = "#371ea3")+
-        geom_text(aes(y = Text * max(abs(Measure)), label = L), 
-                  hjust = 0.5, vjust = 0.5, 
+        geom_text(aes(y = Text * max(abs(Measure)), label = L),
+                  hjust = 0.5, vjust = 0.5,
                   position = position_dodge2(width = 0.75),
                   color = "#371ea3") +
-        coord_flip() 
-      
+        coord_flip()
+
     })
     p
 }
