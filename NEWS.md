@@ -1,6 +1,7 @@
 DALEXtra 0.1.11
 ----------------------------------------------------------------
-* New plot function for `funnel_measure()` objects. (Thanks Anna Kozak, You are awsome!) 
+* New plot function for `funnel_measure()` objects. (Thanks Anna Kozak, You are awsome!)
+* New tests for `funnel_measure()` and `plot.funnel_measure()` (Once again You are awsome, Ania!)
 
 DALEXtra 0.1.10
 ----------------------------------------------------------------

@@ -74,7 +74,7 @@ plot.funnel_measure <- function(x, ..., dot_size = 0.5){
         geom_pointrange(aes(ymin = Measure_min, ymax = Measure_max, color = Category),
                         position = position_dodge2(width = 0.75), size =
                           dot_size) +
-        scale_color_manual(values = c(theme_drwhy_colors(3))) +
+        scale_color_manual(values = c(colors_discrete_drwhy(3))) +
         geom_hline(yintercept = 0, color = "#371ea3", size=1) +
         ylim(c(-max(abs(data$Measure))-20, max(abs(data$Measure))+20)) +
         ylab(paste("Champion (", champion_label, ") and Challengers measure difference", sep = "")) +
