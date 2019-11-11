@@ -4,7 +4,7 @@
 \alias{plot.funnel_measure}
 \title{Funnel plot for difference in measures}
 \usage{
-\method{plot}{funnel_measure}(x, ..., dot_size = 4)
+\method{plot}{funnel_measure}(x, ..., dot_size = 0.5)
 }
 \arguments{
 \item{x}{- funnel_measure object created with \code{\link{funnel_measure}} function.}
