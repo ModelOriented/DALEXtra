@@ -8,7 +8,7 @@ funnel_measure(champion, challengers,
   measure_function = DALEX::loss_root_mean_square, nbins = 5,
   partition_data = champion$data, cutoff = 0.01,
   cutoff_name = "Other", factor_conversion_threshold = 7,
-  show_info = TRUE)
+  show_info = TRUE, categories = NULL)
 }
 \arguments{
 \item{champion}{- explainer of champion model.}
@@ -32,6 +32,8 @@ By default full test data. If data.frame, number of rows has to be equal to numb
 \item{factor_conversion_threshold}{- Numeric columns with lower number of unique values than value of this parameter will be treated as factors}
 
 \item{show_info}{- Logical value indicating if progress bar should be shown.}
+
+\item{categories}{- a named list of variable names that will be plotted in a different colour. By deafault it is partitioned on Explanatory, External and Target.}
 }
 \value{
 An object of the class \code{funnel_measure}
@@ -44,6 +46,7 @@ It is a named list containing following fields:
    \item \code{Measure} Difference in measures. Positive value indicates that champion was better, while negative that challenger.
    \item \code{Label} String that defines subset of \code{Variable} values (partition rule).
    \item \code{Challenger} Label of challenger explainer that was used in \code{Measure}
+   \item \code{Category} a category of the variable passed to function
    }
 \item \code{models_info} data.frame containig inforamtion about models used in analysys
 }
