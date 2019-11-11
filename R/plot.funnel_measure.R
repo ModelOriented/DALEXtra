@@ -48,6 +48,7 @@
 
 plot.funnel_measure <- function(x, ..., dot_size = 0.5){
   funnel_measure <- x
+  Variable <- Measure <- Measure_min <- Measure_max <- Category <- Text <- L <- NULL
   if(!"funnel_measure" %in% class(funnel_measure)) stop("Data is not a funnel_measure object")
     champion_label <- funnel_measure$models_info[funnel_measure$models_info$type == "Champion",]$label
     challenger_label <- funnel_measure$models_info[funnel_measure$models_info$type == "Challenger",]$label
