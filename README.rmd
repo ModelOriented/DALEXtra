@@ -16,11 +16,19 @@ Status](https://img.shields.io/codecov/c/github/ModelOriented/DALEXtra/master.sv
 [![DrWhy-eXtrAI](https://img.shields.io/badge/DrWhy-BackBone-373589)](http://drwhy.ai/#BackBone)
 
 
-## Overview
+# Overview
 
-The `DALEXtra` package is an extension pack for [DALEX](https://modeloriented.github.io/DALEX) package.
-This package provides easy to use connectors for models created with scikitlearn, keras, H2O, mljar and mlr.
+The `DALEXtra` package is an extension pack for [DALEX](https://modeloriented.github.io/DALEX) package. It contains various tool for XAI (eXplainable Artificial Intelligence) that can help us inspect and improve our model. Functionalities of the `DALXtra` could be divided into three areas.
 
+* Champion-Challenger analysys
+ + Let us compare two or more Machine-Learning models and try to determinate which one is better or improve both of them
+ + Funnel Plot of performance measures as an innovative approach to measure comparison
+ + Automatic HTML report
+* Cross langauge comaprison
+ + Creating explainers for models created in different languges so they can be explained using R tools like dr.why.ai family
+ + Currently supported are Python scikit-learn and keras, Java h2o and mljar, R mlr and mlr3
+* Aspect Importance analysys
+ + Provides instance-level explanations for the groups of explanatory variables.
 
 ## Installation
 
@@ -50,6 +58,18 @@ devtools::install_github("ModelOriented/auditor")
 
 Above packages can be used along with `explain` object to create explanations (ingredients, iBreakDown, shapper) or audit our model (audiotr).
 
+# Champion-Challenger analysys
+
+Without aby doubt, comaprison of models, espacially black-box ones is very important use case nowadays. Every day new models are being created and we need to tools that can allow us to determinate which one is better. For this purpose we present Champion-Challenger analysys. It is set of functions that creates comaprisons of models and later can be gethered up to created one report with generic comments. Example of report can be found ![here](). As you can see any explenation that has generic `plot()` function can be plotted. 
+
+## Funnell Plot
+
+Core of our analysys is funnel plot.
+
+
+# Cross langauge comaprison
+
+Here we will present short use case for our package and its compatibility with Python.
 
 ## How to setup Anaconda
 
@@ -68,10 +88,6 @@ or, if conda is already installed, by following [those instructions](https://sta
 ### Unix
 
 While using unix-like OS, adding conda to PATH is not required.
-
-## Demo
-
-Here we will present short use case for our package and its compatibility with Python
 
 ### Loading data
 
@@ -115,7 +131,7 @@ predict(explainer, titanic_test[1:10, 1:17])
 ```
 
 
-## Acknowledgments
+# Acknowledgments
 
 Work on this package was financially supported by the 'NCN Opus grant 2016/21/B/ST6/02176'.
     
