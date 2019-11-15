@@ -97,5 +97,6 @@ plot.funnel_measure <- function(x, ..., dot_size = 0.5){
         coord_flip()
 
     })
+    names(p) <- unlist(lapply(challenger_label, function(x){paste0("challanger_", x)}))
     p
 }

@@ -10,12 +10,28 @@ Status](https://img.shields.io/codecov/c/github/ModelOriented/DALEXtra/master.sv
 Downloads](http://cranlogs.r-pkg.org/badges/grand-total/DALEXtra?color=orange)](http://cranlogs.r-pkg.org/badges/grand-total/DALEXtra)
 [![DrWhy-eXtrAI](https://img.shields.io/badge/DrWhy-BackBone-373589)](http://drwhy.ai/#BackBone)
 
-## Overview
+# Overview
 
 The `DALEXtra` package is an extension pack for
-[DALEX](https://modeloriented.github.io/DALEX) package. This package
-provides easy to use connectors for models created with scikitlearn,
-keras, H2O, mljar and mlr.
+[DALEX](https://modeloriented.github.io/DALEX) package. It contains
+various tools for XAI (eXplainable Artificial Intelligence) that can
+help us inspect and improve our model. Functionalities of the `DALEXtra`
+could be divided into three areas.
+
+  - Champion-Challenger analysis
+      - Lets us compare two or more Machine-Learning models, determinate
+        which one is better and improve both of them.
+      - Funnel Plot of performance measures as an innovative approach to
+        measure comparison.
+      - Automatic HTML report.
+  - Cross langauge comaprison
+      - Creating explainers for models created in different languges so
+        they can be explained using R tools like dr.why.ai family.
+      - Currently supported are Python scikit-learn and keras, Java h2o
+        and mljar, R mlr and mlr3.
+  - Aspect Importance analysis
+      - Provides instance-level explanations for the groups of
+        explanatory variables.
 
 ## Installation
 
@@ -26,11 +42,6 @@ keras, H2O, mljar and mlr.
     # install.packages("devtools")
     devtools::install_github("ModelOriented/DALEXtra")
 
-Package `reticulate` will be downloaded along with `DALEXtra` but if you
-seek for it’s latest version it can be downloaded here
-
-    devtools::install_github("rstudio/reticulate")
-
 Other packages useful with explanations.
 
     devtools::install_github("ModelOriented/ingredients")
@@ -40,7 +51,73 @@ Other packages useful with explanations.
 
 Above packages can be used along with `explain` object to create
 explanations (ingredients, iBreakDown, shapper) or audit our model
-(audiotr).
+(auditor).
+
+# Champion-Challenger analysis
+
+Without aby doubt, comaprison of models, espacially black-box ones is
+very important use case nowadays. Every day new models are being created
+and we need tools that can allow us to determinate which one is better.
+For this purpose we present Champion-Challenger analysis. It is set of
+functions that creates comaprisons of models and later can be gathered
+up to created one report with generic comments. Example of report can be
+found
+[here](http://htmlpreview.github.io/?https://github.com/ModelOriented/DALEXtra/blob/master/inst/ChampionChallenger/DALEXtra_example_of_report.html).
+As you can see any explenation that has generic `plot()` function can be
+plotted.
+
+## Funnel Plot
+
+Core of our analysis is funnel plot. It lets us find subsets of data
+where one of models is significantly better than other ones. That
+ability is insanely usefull, when we have models that have similiar
+overall performance and we want to know which one should we use.
+
+``` r
+ library("mlr")
+ library("DALEXtra")
+ task <- mlr::makeRegrTask(
+   id = "R",
+   data = apartments,
+   target = "m2.price"
+ )
+ learner_lm <- mlr::makeLearner(
+   "regr.lm"
+ )
+ model_lm <- mlr::train(learner_lm, task)
+ explainer_lm <- explain_mlr(model_lm, apartmentsTest, apartmentsTest$m2.price, label = "LM", 
+                             verbose = FALSE, precalculate = FALSE)
+
+ learner_rf <- mlr::makeLearner(
+   "regr.randomForest"
+ )
+ model_rf <- mlr::train(learner_rf, task)
+ explainer_rf <- explain_mlr(model_rf, apartmentsTest, apartmentsTest$m2.price, label = "RF",
+                             verbose = FALSE, precalculate = FALSE)
+
+ plot_data <- funnel_measure(explainer_lm, explainer_rf, 
+                             partition_data = cbind(apartmentsTest, "m2.per.room" = apartmentsTest$surface/apartmentsTest$no.rooms),
+                             nbins = 5, measure_function = DALEX::loss_root_mean_square, show_info = FALSE)
+ plot(plot_data)[[1]]
+```
+
+![](README_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
+
+Such situation is shown in the following plot. Both, `LM` and `RF`
+models have smiliar RMSE, but Funnel Plot shows that if we want to
+predict expensive or cheap apartemnts, we definetly should use `LM`
+while `RF` for average priced apartments. Also without any doubt `LM` is
+much better than `RF` for `Srodmiescie` district. Following use case
+show us how powerfull tool can Funnel Plot be, for example we can
+compund two or models into one based of areas acquired from the Plot and
+thus improve our models. One another advantage of Funnel Plot is that it
+doesn’t require model to be fitted with Variables shown on the plot, as
+you can see, `m2.per.room` is an artificial variable.
+
+# Cross langauge comaprison
+
+Here we will present short use case for our package and its
+compatibility with Python.
 
 ## How to setup Anaconda
 
@@ -67,11 +144,6 @@ instructions](https://stackoverflow.com/a/44597801/9717584).
 ### Unix
 
 While using unix-like OS, adding conda to PATH is not required.
-
-## Demo
-
-Here we will present short use case for our package and its
-compatibility with Python
 
 ### Loading data
 
@@ -113,8 +185,7 @@ data = titanic_test[,1:17], y = titanic_test$survived)
     ##   -> predicted values  :  numerical, min =  0.02086126 , mean =  0.288584 , max =  0.9119996  
     ##   -> residual function :  difference between y and yhat ( [33m default [39m )
     ##   -> residuals         :  numerical, min =  -0.8669431 , mean =  0.02248468 , max =  0.9791387  
-    ##   -> model_info        :  model_info not specified, assuming type: regression ( [33m default [39m ) 
-    ##   -> model_info        :  package: Model of class: sklearn.ensemble.gradient_boosting.GradientBoostingClassifier package unrecognized Unknown ( [33m default [39m ) 
+    ##   -> model_info        :  package reticulate , ver. 1.13 , task classification ( [33m default [39m ) 
     ##  [32m A new explainer has been created! [39m
 
 ### Creating explanations
@@ -128,28 +199,28 @@ library(DALEX)
 plot(model_performance(explainer))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 ``` r
 library(ingredients)
 plot(feature_importance(explainer))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-3-2.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-4-2.png)<!-- -->
 
 ``` r
 describe(feature_importance(explainer))
 ```
 
-    ## The number of important variables for scikitlearn_model's prediction is 2 out of 17. 
-    ##  Variables gender.female, gender.male have the highest importantance.
+    ## The number of important variables for scikitlearn_model's prediction is 4 out of 17. 
+    ##  Variables gender.female, gender.male, age have the highest importantance.
 
 ``` r
 library(iBreakDown)
 plot(break_down(explainer, titanic_test[2,1:17]))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-3-3.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-4-3.png)<!-- -->
 
 ``` r
 describe(break_down(explainer, titanic_test[2,1:17]))
@@ -163,19 +234,12 @@ describe(break_down(explainer, titanic_test[2,1:17]))
     ## Other variables are with less importance. The contribution of all other variables is -0.108 .
 
 ``` r
-library(shapper)
-plot(shap(explainer, titanic_test[2,1:17]))
-```
-
-![](README_files/figure-gfm/unnamed-chunk-3-4.png)<!-- -->
-
-``` r
 library(auditor)
 eval <- model_evaluation(explainer)
 plot_roc(eval)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-3-5.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-4-4.png)<!-- -->
 
 ``` r
 # Predictions with newdata
@@ -185,7 +249,122 @@ predict(explainer, titanic_test[1:10, 1:17])
     ##  [1] 0.3565896 0.1321947 0.7638813 0.1037486 0.1265221 0.2949228 0.1421281
     ##  [8] 0.1421281 0.4154695 0.1321947
 
-## Acknowledgments
+# Aspect importance
+
+Aspect importance function provides instance-level explanations for the
+groups of explanatory variables. It enables grouping predictors into
+entities called aspects. Afterwards, it can calculate the contribution
+of those aspects to the prediction.
+
+To illustrate how the function works, we use titanic example. We build
+random forest model, group features into aspects and choose new
+observation to be explained. Then we build `DALEX` explainer and use it
+to call aspect importance function. Finally, we print and plot function
+results. We can observe that `personal` (`age` and `gender`) variables
+have the biggest contribution to the prediction. This contribution is of
+a positive type.
+
+``` r
+library("DALEX")
+library("randomForest")
+library("DALEXtra")
+titanic <- titanic_imputed
+titanic$country <- NULL
+titanic_without_target <- titanic[,colnames(titanic)!="survived"]
+aspects_titanic <-
+  list(
+    wealth = c("class", "fare"),
+    family = c("sibsp", "parch"),
+    personal = c("age", "gender"),
+    embarked = "embarked"
+  )
+passenger <- titanic_without_target[4,]
+model_titanic_rf <- randomForest(factor(survived) == "yes" ~ gender + age + 
+                                   class + embarked + fare + sibsp + parch,  
+                                 data = titanic)
+predict(model_titanic_rf, passenger)
+```
+
+    ## 4 
+    ## 0
+
+``` r
+explain_titanic_rf <- explain(model_titanic_rf, 
+                               data = titanic_without_target,
+                               y = titanic$survived == "yes", 
+                               predict_function = predict,
+                               verbose = FALSE)
+titanic_rf_ai <- aspect_importance(x = explain_titanic_rf, 
+                                   new_observation = passenger, 
+                                   aspects = aspects_titanic)
+titanic_rf_ai
+```
+
+    ##    aspects importance     features
+    ## 2   wealth          0  class, fare
+    ## 3   family          0 sibsp, parch
+    ## 4 personal          0  age, gender
+    ## 5 embarked          0     embarked
+
+``` r
+plot(titanic_rf_ai, add_importance = TRUE)
+```
+
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+## Automated grouping
+
+In examples described above, we had to manually group features into
+aspects. Aspect importance provides group\_variables() - function that
+automatically groups features for us, based on the features correlation.
+Function only works on numeric variables.
+
+Below, we test aspect importance function on another dataset. But this
+time we build aspect list by running run group\_variables() (with cut
+off level set on 0.6). As a result, we get a list of variables groups
+(aspects) where absolute value of features’ pairwise correlation is at
+least at 0.6.
+
+``` r
+library(DALEX)
+data("apartments")
+apartments_num <- apartments[,unlist(lapply(apartments, is.numeric))] 
+apartments_no_target <- apartments_num[,-1]
+new_observation_apartments <- apartments_num[10,]
+model_apartments <- lm(m2.price ~ ., data = apartments_num)
+aspects_apartments <- group_variables(apartments_no_target, 0.6)
+predict(model_apartments, new_observation_apartments)
+```
+
+    ##       10 
+    ## 2875.794
+
+``` r
+explain_apartments <- explain(model_apartments, 
+                               data = apartments_no_target,
+                               y = apartments$m2.price, 
+                               predict_function = predict,
+                               verbose = FALSE)
+apartments_ai <- aspect_importance(x = explain_apartments, 
+                                   new_observation = new_observation_apartments, 
+                                   aspects = aspects_apartments, 
+                                   N = 1000, show_cor = TRUE)
+apartments_ai
+```
+
+    ##         aspects importance          features
+    ## 4 aspect.group3    -355.08             floor
+    ## 3 aspect.group2    -280.53 surface, no.rooms
+    ## 2 aspect.group1      -2.62 construction.year
+
+``` r
+plot(apartments_ai, aspects_on_axis = FALSE, add_importance = TRUE, 
+     digits_to_round = 0)
+```
+
+![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+# Acknowledgments
 
 Work on this package was financially supported by the ‘NCN Opus grant
 2016/21/B/ST6/02176’.

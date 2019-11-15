@@ -4,8 +4,14 @@
 \alias{plot_group_variables}
 \title{Plots tree with correlation values}
 \usage{
-plot_group_variables(x, p, show_labels = TRUE, draw_abline = TRUE,
-  axis_lab_size = 10, text_size = 3)
+plot_group_variables(
+  x,
+  p,
+  show_labels = TRUE,
+  draw_abline = TRUE,
+  axis_lab_size = 10,
+  text_size = 3
+)
 }
 \arguments{
 \item{x}{hclust object}

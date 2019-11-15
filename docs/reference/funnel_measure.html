@@ -86,7 +86,7 @@ to compare multiple Challengers at once." />
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/">MI^2 DataLab</a> </span>
-          <span class="version version-default">0.1.9</span>
+          <span class="version version-default">0.2.0</span>
         </div>
       </div>
     </div>
@@ -100,6 +100,18 @@ to compare multiple Challengers at once." />
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/vignette_aspect_importance.html">Aspect importance function examples</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -142,7 +154,7 @@ to compare multiple Challengers at once.</p>
   <span class='kw'>measure_function</span> <span class='kw'>=</span> <span class='kw pkg'>DALEX</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/DALEX/man/loss_functions.html'>loss_root_mean_square</a></span>, <span class='kw'>nbins</span> <span class='kw'>=</span> <span class='fl'>5</span>,
   <span class='kw'>partition_data</span> <span class='kw'>=</span> <span class='no'>champion</span>$<span class='no'>data</span>, <span class='kw'>cutoff</span> <span class='kw'>=</span> <span class='fl'>0.01</span>,
   <span class='kw'>cutoff_name</span> <span class='kw'>=</span> <span class='st'>"Other"</span>, <span class='kw'>factor_conversion_threshold</span> <span class='kw'>=</span> <span class='fl'>7</span>,
-  <span class='kw'>show_info</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>show_info</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>categories</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -187,6 +199,10 @@ By default full test data. If data.frame, number of rows has to be equal to numb
       <th>show_info</th>
       <td><p>- Logical value indicating if progress bar should be shown.</p></td>
     </tr>
+    <tr>
+      <th>categories</th>
+      <td><p>- a named list of variable names that will be plotted in a different colour. By deafault it is partitioned on Explanatory, External and Target.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -198,6 +214,7 @@ By default full test data. If data.frame, number of rows has to be equal to numb
 <li><p><code>Measure</code> Difference in measures. Positive value indicates that champion was better, while negative that challenger.</p></li>
 <li><p><code>Label</code> String that defines subset of <code>Variable</code> values (partition rule).</p></li>
 <li><p><code>Challenger</code> Label of challenger explainer that was used in <code>Measure</code></p></li>
+<li><p><code>Category</code> a category of the variable passed to function</p></li>
 </ul></li>
 <li><p><code>models_info</code> data.frame containig inforamtion about models used in analysys</p></li>
 </ul>
@@ -226,8 +243,7 @@ By default full test data. If data.frame, number of rows has to be equal to numb
 #&gt;   -&gt; predicted values  :  numerical, min =  1792.597 , mean =  3506.836 , max =  6241.447  
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -257.2555 , mean =  4.687686 , max =  472.356  
-#&gt;   -&gt; model_info        :  model_info not specified, assuming type: regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
-#&gt;   -&gt; model_info        :  package: Model of class: WrappedModel package unrecognized Unknown ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; model_info        :  package mlr , ver. 2.14.0 , task regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 <span class='no'>learner_rf</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mlr/man/makeLearner.html'>makeLearner</a></span>(
   <span class='st'>"regr.randomForest"</span>
@@ -240,11 +256,10 @@ By default full test data. If data.frame, number of rows has to be equal to numb
 #&gt;   -&gt; data              :  A column identical to the target variable `y` has been found in the `data`.  ( </span><span style='color: #BB0000;'> WARNING </span><span> )
 #&gt;   -&gt; data              :  It is highly recommended to pass `data` without the target variable column
 #&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; predicted values  :  numerical, min =  1990.354 , mean =  3507.247 , max =  5832.487  
+#&gt;   -&gt; predicted values  :  numerical, min =  1986.334 , mean =  3508.601 , max =  5826.933  
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; residuals         :  numerical, min =  -717.3285 , mean =  4.276517 , max =  1255.057  
-#&gt;   -&gt; model_info        :  model_info not specified, assuming type: regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
-#&gt;   -&gt; model_info        :  package: Model of class: WrappedModel package unrecognized Unknown ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; residuals         :  numerical, min =  -758.7004 , mean =  2.922365 , max =  1291.469  
+#&gt;   -&gt; model_info        :  package mlr , ver. 2.14.0 , task regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 <span class='no'>learner_gbm</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mlr/man/makeLearner.html'>makeLearner</a></span>(
   <span class='st'>"regr.gbm"</span>
@@ -257,15 +272,15 @@ By default full test data. If data.frame, number of rows has to be equal to numb
 #&gt;   -&gt; data              :  A column identical to the target variable `y` has been found in the `data`.  ( </span><span style='color: #BB0000;'> WARNING </span><span> )
 #&gt;   -&gt; data              :  It is highly recommended to pass `data` without the target variable column
 #&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; predicted values  :  numerical, min =  2110.295 , mean =  3503.859 , max =  6044.313  
+#&gt;   -&gt; predicted values  :  numerical, min =  2126.189 , mean =  3502.078 , max =  6060.25  
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; residuals         :  numerical, min =  -507.2952 , mean =  7.664081 , max =  744.2742  
-#&gt;   -&gt; model_info        :  model_info not specified, assuming type: regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
-#&gt;   -&gt; model_info        :  package: Model of class: WrappedModel package unrecognized Unknown ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; residuals         :  numerical, min =  -548.2796 , mean =  9.445713 , max =  740.0901  
+#&gt;   -&gt; model_info        :  package mlr , ver. 2.14.0 , task regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 
 <span class='no'>plot_data</span> <span class='kw'>&lt;-</span> <span class='fu'>funnel_measure</span>(<span class='no'>explainer_lm</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>explainer_rf</span>, <span class='no'>explainer_gbm</span>),
-                            <span class='kw'>nbins</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>measure_function</span> <span class='kw'>=</span> <span class='kw pkg'>DALEX</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/DALEX/man/loss_functions.html'>loss_root_mean_square</a></span>)</div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |============                                                          |  17%  |                                                                              |=======================                                               |  33%  |                                                                              |===================================                                   |  50%  |                                                                              |===============================================                       |  67%  |                                                                              |==========================================================            |  83%  |                                                                              |======================================================================| 100%</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>plot_data</span>)</div><div class='img'><img src='funnel_measure-1.png' alt='' width='700' height='433' /></div></span></pre>
+                            <span class='kw'>nbins</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>measure_function</span> <span class='kw'>=</span> <span class='kw pkg'>DALEX</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/DALEX/man/loss_functions.html'>loss_root_mean_square</a></span>)</div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |============                                                          |  17%  |                                                                              |=======================                                               |  33%  |                                                                              |===================================                                   |  50%  |                                                                              |===============================================                       |  67%  |                                                                              |==========================================================            |  83%  |                                                                              |======================================================================| 100%</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>plot_data</span>)</div><div class='output co'>#&gt; $challanger_RF</div><div class='img'><img src='funnel_measure-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; $challanger_GBM</div><div class='img'><img src='funnel_measure-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -284,7 +299,7 @@ By default full test data. If data.frame, number of rows has to be equal to numb
       <footer>
       <div class="author">
   <p>
-    Developed by Szymon Maksymiuk, Przemyslaw Biecek.
+    Developed by Szymon Maksymiuk, Przemyslaw Biecek, Katarzyna Pekala.
     Site built by <a href="https://pkgdown.r-lib.org">pkgdown</a>.
   </p>
 </div>

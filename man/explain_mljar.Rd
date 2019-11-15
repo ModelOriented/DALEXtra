@@ -4,10 +4,21 @@
 \alias{explain_mljar}
 \title{Create explainer from your mljar model}
 \usage{
-explain_mljar(model, project_title, data = NULL, y = NULL,
-  weights = NULL, predict_function = NULL, residual_function = NULL,
-  ..., label = NULL, verbose = TRUE, precalculate = TRUE,
-  colorize = TRUE, model_info = NULL)
+explain_mljar(
+  model,
+  project_title,
+  data = NULL,
+  y = NULL,
+  weights = NULL,
+  predict_function = NULL,
+  residual_function = NULL,
+  ...,
+  label = NULL,
+  verbose = TRUE,
+  precalculate = TRUE,
+  colorize = TRUE,
+  model_info = NULL
+)
 }
 \arguments{
 \item{model}{object - a mljar model to be explained}

@@ -1,7 +1,13 @@
+DALEXtra 0.2.0
+----------------------------------------------------------------
+* Rebuilded `plot.overall_comparison()` (I lack words that can describe Your greatness, Ania!).
+* New README and DESCRIPTION. They are more accurate now.
+* Small fixes to `funnel_measure()` that imporves it's stability.
+
 DALEXtra 0.1.11
 ----------------------------------------------------------------
-* New plot function for `funnel_measure()` objects. (Thanks Anna Kozak, You are awsome!)
-* New tests for `funnel_measure()` and `plot.funnel_measure()` (Once again You are awsome, Ania!)
+* New plot function for `funnel_measure()` objects. (Thanks Anna Kozak, You are awesome!).
+* New tests for `funnel_measure()` and `plot.funnel_measure()` (Once again You are awesome, Ania!).
 
 DALEXtra 0.1.10
 ----------------------------------------------------------------

@@ -80,7 +80,7 @@
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/">MI^2 DataLab</a> </span>
-          <span class="version version-default">0.1.9</span>
+          <span class="version version-default">0.2.0</span>
         </div>
       </div>
     </div>
@@ -94,6 +94,18 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/vignette_aspect_importance.html">Aspect importance function examples</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -162,6 +174,12 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="explain_mlr3.html">explain_mlr3()</a></code> </p>
+        </td>
+        <td><p>Create explainer from your mlr model</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="explain_mljar.html">explain_mljar()</a></code> </p>
         </td>
         <td><p>Create explainer from your mljar model</p></td>
@@ -176,9 +194,23 @@
       <tr>
         
         <td>
-          <p><code><a href="yhat.html">yhat(<i>&lt;WrappedModel&gt;</i>)</a></code> <code><a href="yhat.html">yhat(<i>&lt;H2ORegressionModel&gt;</i>)</a></code> <code><a href="yhat.html">yhat(<i>&lt;H2OBinomialModel&gt;</i>)</a></code> <code><a href="yhat.html">yhat(<i>&lt;scikitlearn_model&gt;</i>)</a></code> <code><a href="yhat.html">yhat(<i>&lt;keras&gt;</i>)</a></code> <code><a href="yhat.html">yhat(<i>&lt;mljar_model&gt;</i>)</a></code> </p>
+          <p><code><a href="yhat.html">yhat(<i>&lt;WrappedModel&gt;</i>)</a></code> <code><a href="yhat.html">yhat(<i>&lt;H2ORegressionModel&gt;</i>)</a></code> <code><a href="yhat.html">yhat(<i>&lt;H2OBinomialModel&gt;</i>)</a></code> <code><a href="yhat.html">yhat(<i>&lt;scikitlearn_model&gt;</i>)</a></code> <code><a href="yhat.html">yhat(<i>&lt;keras&gt;</i>)</a></code> <code><a href="yhat.html">yhat(<i>&lt;mljar_model&gt;</i>)</a></code> <code><a href="yhat.html">yhat(<i>&lt;LearnerRegr&gt;</i>)</a></code> <code><a href="yhat.html">yhat(<i>&lt;LearnerClassif&gt;</i>)</a></code> </p>
         </td>
         <td><p>Wrapper over the predict function</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-addapters-for-model-info" class="hasAnchor"><a href="#section-addapters-for-model-info" class="anchor"></a>Addapters for model_info</h2>
+          <p class="section-desc"><p>Specfic versions of the generic model_info function</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="model_info.html">model_info(<i>&lt;WrappedModel&gt;</i>)</a></code> <code><a href="model_info.html">model_info(<i>&lt;H2ORegressionModel&gt;</i>)</a></code> <code><a href="model_info.html">model_info(<i>&lt;H2OBinomialModel&gt;</i>)</a></code> <code><a href="model_info.html">model_info(<i>&lt;scikitlearn_model&gt;</i>)</a></code> <code><a href="model_info.html">model_info(<i>&lt;keras&gt;</i>)</a></code> <code><a href="model_info.html">model_info(<i>&lt;mljar_model&gt;</i>)</a></code> <code><a href="model_info.html">model_info(<i>&lt;LearnerRegr&gt;</i>)</a></code> <code><a href="model_info.html">model_info(<i>&lt;LearnerClassif&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Exract info from model</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -251,6 +283,63 @@
     </tbody><tbody>
       <tr>
         <th colspan="2">
+          <h2 id="section-aspect-importance" class="hasAnchor"><a href="#section-aspect-importance" class="anchor"></a>Aspect importance</h2>
+          <p class="section-desc"><p>Function used for Aspect Importance analysys</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="aspect_importance.html">aspect_importance()</a></code> <code><a href="aspect_importance.html">lime()</a></code> </p>
+        </td>
+        <td><p>Calculates the feature groups importance (called aspects importance) for a
+selected observation</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="aspect_importance_single.html">aspect_importance_single()</a></code> </p>
+        </td>
+        <td><p>Aspects importance for single aspects</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="plot.aspect_importance.html">plot(<i>&lt;aspect_importance&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Function for plotting aspect_importance results</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_sample.html">get_sample()</a></code> </p>
+        </td>
+        <td><p>Function for getting binary matrix</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="group_variables.html">group_variables()</a></code> </p>
+        </td>
+        <td><p>Groups numeric features into aspects</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="plot_aspects_importance_grouping.html">plot_aspects_importance_grouping()</a></code> </p>
+        </td>
+        <td><p>Function plots tree with aspect importance values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="plot_group_variables.html">plot_group_variables()</a></code> </p>
+        </td>
+        <td><p>Plots tree with correlation values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="triplot.html">triplot()</a></code> </p>
+        </td>
+        <td><p>Three plots that sum up automatic aspect importance grouping</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
           <h2 id="section-misc" class="hasAnchor"><a href="#section-misc" class="anchor"></a>Misc</h2>
           <p class="section-desc"></p>
         </th>
@@ -277,7 +366,9 @@
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#section-explainers">Explainers</a></li>
       <li><a href="#section-addapters-for-yhat">Addapters for yhat</a></li>
+      <li><a href="#section-addapters-for-model-info">Addapters for model_info</a></li>
       <li><a href="#section-champion-challenger">Champion Challenger</a></li>
+      <li><a href="#section-aspect-importance">Aspect importance</a></li>
       <li><a href="#section-misc">Misc</a></li>
     </ul>
   </div>
@@ -287,7 +378,7 @@
       <footer>
       <div class="author">
   <p>
-    Developed by Szymon Maksymiuk, Przemyslaw Biecek.
+    Developed by Szymon Maksymiuk, Przemyslaw Biecek, Katarzyna Pekala.
     Site built by <a href="https://pkgdown.r-lib.org">pkgdown</a>.
   </p>
 </div>

@@ -138,7 +138,7 @@ To use aspect_importance() with lasso, we have to provide `n_var` parameter, whi
 
 For this example, we use `titanic_imputed` dataset again and random forest model. With the help of lasso technique, we would like to check the importance of variables' aspects, while controlling that one of them should be equal to 0. Therefore we call aspect_importance() with `n_var` parameter set to 3. 
 
-```{r lasso demo}
+```{r lasso demo, eval=FALSE}
 titanic_rf_ai_lasso <- aspect_importance(model_titanic_rf, titanic, predict, passenger, aspects_titanic, N = 1000, n_var = 3)
 titanic_rf_ai_lasso
 ```

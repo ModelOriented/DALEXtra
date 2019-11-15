@@ -82,7 +82,7 @@
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/">MI^2 DataLab</a> </span>
-          <span class="version version-default">0.1.9</span>
+          <span class="version version-default">0.2.0</span>
         </div>
       </div>
     </div>
@@ -96,6 +96,18 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/vignette_aspect_importance.html">Aspect importance function examples</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -154,12 +166,12 @@
 <span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.init.html'>h2o.init</a></span>()</div><div class='output co'>#&gt;  Connection successful!
 #&gt; 
 #&gt; R is connected to the H2O cluster: 
-#&gt;     H2O cluster uptime:         39 seconds 140 milliseconds 
+#&gt;     H2O cluster uptime:         41 seconds 676 milliseconds 
 #&gt;     H2O cluster timezone:       Europe/Belgrade 
 #&gt;     H2O data parsing timezone:  UTC 
 #&gt;     H2O cluster version:        3.24.0.5 
-#&gt;     H2O cluster version age:    3 months and 26 days !!! 
-#&gt;     H2O cluster name:           H2O_started_from_R_szyna_dze421 
+#&gt;     H2O cluster version age:    4 months and 27 days !!! 
+#&gt;     H2O cluster name:           H2O_started_from_R_szyna_ssh825 
 #&gt;     H2O cluster total nodes:    1 
 #&gt;     H2O cluster total memory:   1.97 GB 
 #&gt;     H2O cluster total cores:    4 
@@ -171,7 +183,7 @@
 #&gt;     H2O Internal Security:      FALSE 
 #&gt;     H2O API Extensions:         Amazon S3, Algos, AutoML, Core V3, Core V4 
 #&gt;     R Version:                  R version 3.6.1 (2019-07-05) </div><div class='output co'>#&gt; <span class='warning'>Warning: </span>
-#&gt; <span class='warning'>Your H2O cluster version is too old (3 months and 26 days)!</span>
+#&gt; <span class='warning'>Your H2O cluster version is too old (4 months and 27 days)!</span>
 #&gt; <span class='warning'>Please download and install the latest version from http://h2o.ai/download/</span></div><div class='output co'>#&gt; </div><div class='input'><span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.no_progress.html'>h2o.no_progress</a></span>()
 <span class='no'>titanic_h2o</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.h2o.html'>as.h2o</a></span>(<span class='no'>titanic_train</span>)
 <span class='no'>titanic_h2o</span>[<span class='st'>"survived"</span>] <span class='kw'>&lt;-</span> <span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.factor.html'>as.factor</a></span>(<span class='no'>titanic_h2o</span>[<span class='st'>"survived"</span>])
@@ -188,12 +200,12 @@
 <span class='no'>explainer_h2o</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='explain_h2o.html'>explain_h2o</a></span>(<span class='no'>model</span>, <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>], <span class='no'>titanic_test</span>[,<span class='fl'>18</span>])</div><div class='output co'>#&gt;  Connection successful!
 #&gt; 
 #&gt; R is connected to the H2O cluster: 
-#&gt;     H2O cluster uptime:         45 seconds 741 milliseconds 
+#&gt;     H2O cluster uptime:         47 seconds 543 milliseconds 
 #&gt;     H2O cluster timezone:       Europe/Belgrade 
 #&gt;     H2O data parsing timezone:  UTC 
 #&gt;     H2O cluster version:        3.24.0.5 
-#&gt;     H2O cluster version age:    3 months and 26 days !!! 
-#&gt;     H2O cluster name:           H2O_started_from_R_szyna_dze421 
+#&gt;     H2O cluster version age:    4 months and 27 days !!! 
+#&gt;     H2O cluster name:           H2O_started_from_R_szyna_ssh825 
 #&gt;     H2O cluster total nodes:    1 
 #&gt;     H2O cluster total memory:   1.97 GB 
 #&gt;     H2O cluster total cores:    4 
@@ -205,7 +217,7 @@
 #&gt;     H2O Internal Security:      FALSE 
 #&gt;     H2O API Extensions:         Amazon S3, Algos, AutoML, Core V3, Core V4 
 #&gt;     R Version:                  R version 3.6.1 (2019-07-05) </div><div class='output co'>#&gt; <span class='warning'>Warning: </span>
-#&gt; <span class='warning'>Your H2O cluster version is too old (3 months and 26 days)!</span>
+#&gt; <span class='warning'>Your H2O cluster version is too old (4 months and 27 days)!</span>
 #&gt; <span class='warning'>Please download and install the latest version from http://h2o.ai/download/</span></div><div class='output co'>#&gt; 
 #&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  H2OBinomialModel  ( <span style='color: #BBBB00;'> default </span><span> )
@@ -215,8 +227,7 @@
 #&gt;   -&gt; predicted values  :  numerical, min =  0.1994385 , mean =  0.3299534 , max =  0.5876636  
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -0.5847857 , mean =  -0.01888466 , max =  0.8005615  
-#&gt;   -&gt; model_info        :  model_info not specified, assuming type: regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
-#&gt;   -&gt; model_info        :  package: Model of class: H2OBinomialModel package unrecognized Unknown ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; model_info        :  package h2o , ver. 3.24.0.5 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 <span class='no'>explainer_scikit</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='explain_scikitlearn.html'>explain_scikitlearn</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>,
                                                     <span class='st'>"scikitlearn.pkl"</span>,
@@ -233,8 +244,7 @@
 #&gt;   -&gt; predicted values  :  numerical, min =  0.02086126 , mean =  0.288584 , max =  0.9119996  
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -0.8669431 , mean =  0.02248468 , max =  0.9791387  
-#&gt;   -&gt; model_info        :  model_info not specified, assuming type: regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
-#&gt;   -&gt; model_info        :  package: Model of class: sklearn.ensemble.gradient_boosting.GradientBoostingClassifier package unrecognized Unknown ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; model_info        :  package reticulate , ver. 1.13 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr"</span>)
 <span class='no'>task</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mlr/man/ClassifTask.html'>makeClassifTask</a></span>(
@@ -261,11 +271,10 @@
 #&gt;   -&gt; data              :  524  rows  17  cols 
 #&gt;   -&gt; target variable   :  524  values 
 #&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; predicted values  :  numerical, min =  0.2693943 , mean =  0.3321218 , max =  0.5649764  
+#&gt;   -&gt; predicted values  :  numerical, min =  0.2701992 , mean =  0.3322446 , max =  0.5647147  
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; residuals         :  numerical, min =  -0.5647297 , mean =  -0.02105306 , max =  0.7303992  
-#&gt;   -&gt; model_info        :  model_info not specified, assuming type: regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
-#&gt;   -&gt; model_info        :  package: Model of class: WrappedModel package unrecognized Unknown ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; residuals         :  numerical, min =  -0.5647147 , mean =  -0.02117592 , max =  0.7298008  
+#&gt;   -&gt; model_info        :  package mlr , ver. 2.14.0 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 <span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='trainig_test_comparison.html'>training_test_comparison</a></span>(<span class='no'>explainer_scikit</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>explainer_h2o</span>, <span class='no'>explainer_mlr</span>),
                                  <span class='kw'>training_data</span> <span class='kw'>=</span> <span class='no'>titanic_train</span>[,-<span class='fl'>18</span>],
@@ -273,7 +282,7 @@
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>data</span>)</div><div class='output co'>#&gt; Training test data head:
 #&gt;   measure_test measure_train             label       type
 #&gt; 1    0.4106213     0.4136271  H2OBinomialModel Challenger
-#&gt; 2    0.4127991     0.4218564      WrappedModel Challenger
+#&gt; 2    0.4126601     0.4219142      WrappedModel Challenger
 #&gt; 3    0.3854527     0.3811051 scikitlearn_model   Champion
 #&gt; Models Info
 #&gt;               label
@@ -300,7 +309,7 @@
       <footer>
       <div class="author">
   <p>
-    Developed by Szymon Maksymiuk, Przemyslaw Biecek.
+    Developed by Szymon Maksymiuk, Przemyslaw Biecek, Katarzyna Pekala.
     Site built by <a href="https://pkgdown.r-lib.org">pkgdown</a>.
   </p>
 </div>

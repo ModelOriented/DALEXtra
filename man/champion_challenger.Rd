@@ -4,9 +4,16 @@
 \alias{champion_challenger}
 \title{Compare machine learning models}
 \usage{
-champion_challenger(sections, dot_size = 4, output_dir_path = getwd(),
-  output_name = "Report", model_performance_table = FALSE,
-  title = "ChampionChallenger", author = Sys.info()[["user"]], ...)
+champion_challenger(
+  sections,
+  dot_size = 4,
+  output_dir_path = getwd(),
+  output_name = "Report",
+  model_performance_table = FALSE,
+  title = "ChampionChallenger",
+  author = Sys.info()[["user"]],
+  ...
+)
 }
 \arguments{
 \item{sections}{- list of sections to be attached to report. Could be sections available with DALEXtra which are \code{\link{funnel_measure}}

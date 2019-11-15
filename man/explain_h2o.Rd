@@ -4,10 +4,20 @@
 \alias{explain_h2o}
 \title{Create explainer from your h2o model}
 \usage{
-explain_h2o(model, data = NULL, y = NULL, weights = NULL,
-  predict_function = NULL, residual_function = NULL, ...,
-  label = NULL, verbose = TRUE, precalculate = TRUE,
-  colorize = TRUE, model_info = NULL)
+explain_h2o(
+  model,
+  data = NULL,
+  y = NULL,
+  weights = NULL,
+  predict_function = NULL,
+  residual_function = NULL,
+  ...,
+  label = NULL,
+  verbose = TRUE,
+  precalculate = TRUE,
+  colorize = TRUE,
+  model_info = NULL
+)
 }
 \arguments{
 \item{model}{object - a model to be explained}

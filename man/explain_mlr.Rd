@@ -4,10 +4,20 @@
 \alias{explain_mlr}
 \title{Create explainer from your mlr model}
 \usage{
-explain_mlr(model, data = NULL, y = NULL, weights = NULL,
-  predict_function = NULL, residual_function = NULL, ...,
-  label = NULL, verbose = TRUE, precalculate = TRUE,
-  colorize = TRUE, model_info = NULL)
+explain_mlr(
+  model,
+  data = NULL,
+  y = NULL,
+  weights = NULL,
+  predict_function = NULL,
+  residual_function = NULL,
+  ...,
+  label = NULL,
+  verbose = TRUE,
+  precalculate = TRUE,
+  colorize = TRUE,
+  model_info = NULL
+)
 }
 \arguments{
 \item{model}{object - a model to be explained}
