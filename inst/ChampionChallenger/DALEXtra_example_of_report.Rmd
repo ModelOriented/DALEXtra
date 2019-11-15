@@ -1,0 +1,105 @@
+---
+title: "Welcome to DALEXtra's Champion-Challenger"
+author: "DALEXtra"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    toc: true  
+    toc_float: true
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(ggplot2)
+```
+
+# Introduction
+
+Welocme at Champion Challenger analysys report. In table below we present detected models and labels.
+
+```{r}
+knitr::kable(models_info)
+```
+
+# Funnel plot
+
+Plot shown below helps us inspect our model performance across differenct categories. OY axis is row partitioned by column names of `parition_data` specified when creating object. Then whole test data is splited by quantilles of every column, one by one. Thanks to that we have subsets for which measure of Champion and every Challenger is being caluclated. Dots seen on the plot show difference in those measures, colours let us to distinguish variables. Thanks to measure property, that lower score value indicates better performance, dots spoted on the right side of vertical line means that Champion predcits following subset better than Challenger by value of measure shown on the OX axis. Accordingly dot on the left side of that line, means that Challanger was better by absolute value shown on the OX. 
+```{r fig.width= 10, fig.height= 8}
+p <- plot(sections[[ 1 ]])
+p <- lapply(p, function(x) {
+  x$labels$subtitle <- ""
+  x
+})
+p
+```
+
+# Overall comparison
+
+In this section we present comparison of our models accross whole dataset. 
+
+```{r include=FALSE}
+p <- plot(sections[[ 2 ]])
+```
+
+## Radar plot
+
+Each score value has the property that lower score value indicates better model. Therfore some of those are inversed. Scores are scaled by dividing them by the max score, so they fit radar aesthetics. 
+
+```{r fig.width= 10, fig.height= 8}
+p$radar_plot
+
+if (model_performance_table) {
+  data <- p$radar_plot$data[c("_label_","_name_", "_value_")]
+  data$`_value_` <- as.numeric(data$`_value_`)
+  data$`_name_` <- gsub(x = data$`_name_`, pattern = c("\n"), replacement = "")
+  data$`_name_` <- gsub(x = data$`_name_`, pattern = c("inv"), replacement = "")
+  knitr::kable(data)
+}
+```
+
+## Accordance plot
+
+Plot shows relation between Champion response, which is located on te OX axis and Challenger response placed at OY axis. Colour let us determinate exact Challenger label. The $y = x$ is an accordance line and points located on it indicate on obseravtions where Champion and Challenger fully agree.
+
+```{r fig.width= 10, fig.height= 8}
+p$accordance_plot
+```
+
+
+# iBreakDown LM
+
+```{r}
+plot(sections[[3]])
+```
+
+
+
+# iBreakDown RF
+
+```{r}
+plot(sections[[4]])
+```
+
+
+
+# iBreakDown GBM
+
+```{r}
+plot(sections[[5]])
+```
+
+
+# Trainig-test comparison
+
+Following plot can help us determinate if our model encounter overfitting problem. OX axis stands for measure acquired on the train set while OY axis for measure acquired on test set. Therefore plot shows realation between measure on test and measure on trainig data. $y = x$ line stands for a standard. Depends on type of measure, dot deeply below the line my indicate that model overfits, if measure has property that highest value indicates better performance. Overfit models can be also seen above the line, if measure has decreasing property.
+
+```{r fig.width= 10, fig.height= 8}
+plot(sections[[ 6 ]])
+```
+
+# Session Info
+
+```{r}
+sessionInfo()
+```
