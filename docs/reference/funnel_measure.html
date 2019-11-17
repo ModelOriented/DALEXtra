@@ -150,11 +150,18 @@ to compare multiple Challengers at once.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>funnel_measure</span>(<span class='no'>champion</span>, <span class='no'>challengers</span>,
-  <span class='kw'>measure_function</span> <span class='kw'>=</span> <span class='kw pkg'>DALEX</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/DALEX/man/loss_functions.html'>loss_root_mean_square</a></span>, <span class='kw'>nbins</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>partition_data</span> <span class='kw'>=</span> <span class='no'>champion</span>$<span class='no'>data</span>, <span class='kw'>cutoff</span> <span class='kw'>=</span> <span class='fl'>0.01</span>,
-  <span class='kw'>cutoff_name</span> <span class='kw'>=</span> <span class='st'>"Other"</span>, <span class='kw'>factor_conversion_threshold</span> <span class='kw'>=</span> <span class='fl'>7</span>,
-  <span class='kw'>show_info</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>categories</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>funnel_measure</span>(
+  <span class='no'>champion</span>,
+  <span class='no'>challengers</span>,
+  <span class='kw'>measure_function</span> <span class='kw'>=</span> <span class='kw pkg'>DALEX</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/DALEX/man/loss_functions.html'>loss_root_mean_square</a></span>,
+  <span class='kw'>nbins</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>partition_data</span> <span class='kw'>=</span> <span class='no'>champion</span>$<span class='no'>data</span>,
+  <span class='kw'>cutoff</span> <span class='kw'>=</span> <span class='fl'>0.01</span>,
+  <span class='kw'>cutoff_name</span> <span class='kw'>=</span> <span class='st'>"Other"</span>,
+  <span class='kw'>factor_conversion_threshold</span> <span class='kw'>=</span> <span class='fl'>7</span>,
+  <span class='kw'>show_info</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>categories</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -256,9 +263,9 @@ By default full test data. If data.frame, number of rows has to be equal to numb
 #&gt;   -&gt; data              :  A column identical to the target variable `y` has been found in the `data`.  ( </span><span style='color: #BB0000;'> WARNING </span><span> )
 #&gt;   -&gt; data              :  It is highly recommended to pass `data` without the target variable column
 #&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; predicted values  :  numerical, min =  1986.334 , mean =  3508.601 , max =  5826.933  
+#&gt;   -&gt; predicted values  :  numerical, min =  1973.615 , mean =  3507.485 , max =  5770.118  
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; residuals         :  numerical, min =  -758.7004 , mean =  2.922365 , max =  1291.469  
+#&gt;   -&gt; residuals         :  numerical, min =  -763.3018 , mean =  4.038385 , max =  1261.248  
 #&gt;   -&gt; model_info        :  package mlr , ver. 2.14.0 , task regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 <span class='no'>learner_gbm</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mlr/man/makeLearner.html'>makeLearner</a></span>(
@@ -272,9 +279,9 @@ By default full test data. If data.frame, number of rows has to be equal to numb
 #&gt;   -&gt; data              :  A column identical to the target variable `y` has been found in the `data`.  ( </span><span style='color: #BB0000;'> WARNING </span><span> )
 #&gt;   -&gt; data              :  It is highly recommended to pass `data` without the target variable column
 #&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; predicted values  :  numerical, min =  2126.189 , mean =  3502.078 , max =  6060.25  
+#&gt;   -&gt; predicted values  :  numerical, min =  2121.157 , mean =  3503.708 , max =  6078.641  
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; residuals         :  numerical, min =  -548.2796 , mean =  9.445713 , max =  740.0901  
+#&gt;   -&gt; residuals         :  numerical, min =  -538.6525 , mean =  7.815549 , max =  763.9172  
 #&gt;   -&gt; model_info        :  package mlr , ver. 2.14.0 , task regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 

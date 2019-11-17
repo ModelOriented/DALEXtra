@@ -26,9 +26,10 @@ could be divided into three areas.
       - Automatic HTML report.
   - Cross langauge comaprison
       - Creating explainers for models created in different languges so
-        they can be explained using R tools like dr.why.ai family.
-      - Currently supported are Python scikit-learn and keras, Java h2o
-        and mljar, R mlr and mlr3.
+        they can be explained using R tools like
+        [DrWhy.AI](https://github.com/ModelOriented/DrWhy) family.
+      - Currently supported are **Python** *scikit-learn* and *keras*,
+        **Java** *h2o* and *mljar*, **R** *mlr* and *mlr3*.
   - Aspect Importance analysis
       - Provides instance-level explanations for the groups of
         explanatory variables.
@@ -41,6 +42,11 @@ could be divided into three areas.
     devtools::install_github("ModelOriented/DALEX")
     # install.packages("devtools")
     devtools::install_github("ModelOriented/DALEXtra")
+
+or latest CRAN version
+
+    install.packages("DALEX")
+    install.packages("DALEXtra")
 
 Other packages useful with explanations.
 
@@ -96,23 +102,26 @@ overall performance and we want to know which one should we use.
                              verbose = FALSE, precalculate = FALSE)
 
  plot_data <- funnel_measure(explainer_lm, explainer_rf, 
-                             partition_data = cbind(apartmentsTest, "m2.per.room" = apartmentsTest$surface/apartmentsTest$no.rooms),
+                             partition_data = cbind(apartmentsTest, 
+                                                    "m2.per.room" = apartmentsTest$surface/apartmentsTest$no.rooms),
                              nbins = 5, measure_function = DALEX::loss_root_mean_square, show_info = FALSE)
- plot(plot_data)[[1]]
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
+``` r
+plot(plot_data)[[1]]
+```
 
-Such situation is shown in the following plot. Both, `LM` and `RF`
-models have smiliar RMSE, but Funnel Plot shows that if we want to
-predict expensive or cheap apartemnts, we definetly should use `LM`
-while `RF` for average priced apartments. Also without any doubt `LM` is
-much better than `RF` for `Srodmiescie` district. Following use case
-show us how powerfull tool can Funnel Plot be, for example we can
-compund two or models into one based of areas acquired from the Plot and
-thus improve our models. One another advantage of Funnel Plot is that it
-doesn’t require model to be fitted with Variables shown on the plot, as
-you can see, `m2.per.room` is an artificial variable.
+![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- --> Such
+situation is shown in the following plot. Both, `LM` and `RF` models
+have smiliar RMSE, but Funnel Plot shows that if we want to predict
+expensive or cheap apartemnts, we definetly should use `LM` while `RF`
+for average priced apartments. Also without any doubt `LM` is much
+better than `RF` for `Srodmiescie` district. Following use case show us
+how powerfull tool can Funnel Plot be, for example we can compund two or
+models into one based of areas acquired from the Plot and thus improve
+our models. One another advantage of Funnel Plot is that it doesn’t
+require model to be fitted with Variables shown on the plot, as you can
+see, `m2.per.room` is an artificial variable.
 
 # Cross langauge comaprison
 
@@ -174,56 +183,56 @@ default Python.
 library(DALEXtra)
 explainer <- explain_scikitlearn(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
 yml = system.file("extdata", "testing_environment.yml", package = "DALEXtra"), 
-data = titanic_test[,1:17], y = titanic_test$survived)
+data = titanic_test[,1:17], y = titanic_test$survived, colorize = FALSE)
 ```
 
     ## Preparation of a new explainer is initiated
-    ##   -> model label       :  scikitlearn_model  ( [33m default [39m )
+    ##   -> model label       :  scikitlearn_model  (  default  )
     ##   -> data              :  524  rows  17  cols 
     ##   -> target variable   :  524  values 
-    ##   -> predict function  :  yhat.scikitlearn_model  will be used ( [33m default [39m )
+    ##   -> predict function  :  yhat.scikitlearn_model  will be used (  default  )
     ##   -> predicted values  :  numerical, min =  0.02086126 , mean =  0.288584 , max =  0.9119996  
-    ##   -> residual function :  difference between y and yhat ( [33m default [39m )
+    ##   -> residual function :  difference between y and yhat (  default  )
     ##   -> residuals         :  numerical, min =  -0.8669431 , mean =  0.02248468 , max =  0.9791387  
-    ##   -> model_info        :  package reticulate , ver. 1.13 , task classification ( [33m default [39m ) 
-    ##  [32m A new explainer has been created! [39m
-
-### Creating explanations
+    ##   -> model_info        :  package reticulate , ver. 1.13 , task classification (  default  ) 
+    ##   A new explainer has been created!
 
 Now with explainer ready we can use any of
-[DrWhy.ai](https://github.com/ModelOriented/DrWhy/blob/master/README.md)
+[DrWhy.Ai](https://github.com/ModelOriented/DrWhy/blob/master/README.md)
 universe tools to make explanations. Here is a small demo.
+
+### Creating explanations
 
 ``` r
 library(DALEX)
 plot(model_performance(explainer))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 ``` r
 library(ingredients)
 plot(feature_importance(explainer))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-4-2.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-5-2.png)<!-- -->
 
 ``` r
 describe(feature_importance(explainer))
 ```
 
-    ## The number of important variables for scikitlearn_model's prediction is 4 out of 17. 
+    ## The number of important variables for scikitlearn_model's prediction is 3 out of 17. 
     ##  Variables gender.female, gender.male, age have the highest importantance.
 
 ``` r
 library(iBreakDown)
-plot(break_down(explainer, titanic_test[2,1:17]))
+plot(break_down(explainer, titanic_test[2, 1:17]))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-4-3.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-5-3.png)<!-- -->
 
 ``` r
-describe(break_down(explainer, titanic_test[2,1:17]))
+describe(break_down(explainer, titanic_test[2, 1:17]))
 ```
 
     ## Scikitlearn_model predicts, that the prediction for the selected instance is 0.132 which is lower than the average model prediction.
@@ -239,7 +248,7 @@ eval <- model_evaluation(explainer)
 plot_roc(eval)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-4-4.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-5-4.png)<!-- -->
 
 ``` r
 # Predictions with newdata
@@ -285,9 +294,6 @@ model_titanic_rf <- randomForest(factor(survived) == "yes" ~ gender + age +
 predict(model_titanic_rf, passenger)
 ```
 
-    ## 4 
-    ## 0
-
 ``` r
 explain_titanic_rf <- explain(model_titanic_rf, 
                                data = titanic_without_target,
@@ -298,29 +304,18 @@ titanic_rf_ai <- aspect_importance(x = explain_titanic_rf,
                                    new_observation = passenger, 
                                    aspects = aspects_titanic)
 titanic_rf_ai
-```
-
-    ##    aspects importance     features
-    ## 2   wealth          0  class, fare
-    ## 3   family          0 sibsp, parch
-    ## 4 personal          0  age, gender
-    ## 5 embarked          0     embarked
-
-``` r
 plot(titanic_rf_ai, add_importance = TRUE)
 ```
-
-![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 ## Automated grouping
 
 In examples described above, we had to manually group features into
-aspects. Aspect importance provides group\_variables() - function that
+aspects. Aspect importance provides `group_variables()` - function that
 automatically groups features for us, based on the features correlation.
 Function only works on numeric variables.
 
 Below, we test aspect importance function on another dataset. But this
-time we build aspect list by running run group\_variables() (with cut
+time we build aspect list by running run `group_variables()` (with cut
 off level set on 0.6). As a result, we get a list of variables groups
 (aspects) where absolute value of features’ pairwise correlation is at
 least at 0.6.
@@ -336,9 +331,6 @@ aspects_apartments <- group_variables(apartments_no_target, 0.6)
 predict(model_apartments, new_observation_apartments)
 ```
 
-    ##       10 
-    ## 2875.794
-
 ``` r
 explain_apartments <- explain(model_apartments, 
                                data = apartments_no_target,
@@ -350,19 +342,9 @@ apartments_ai <- aspect_importance(x = explain_apartments,
                                    aspects = aspects_apartments, 
                                    N = 1000, show_cor = TRUE)
 apartments_ai
-```
-
-    ##         aspects importance          features
-    ## 4 aspect.group3    -355.08             floor
-    ## 3 aspect.group2    -280.53 surface, no.rooms
-    ## 2 aspect.group1      -2.62 construction.year
-
-``` r
 plot(apartments_ai, aspects_on_axis = FALSE, add_importance = TRUE, 
      digits_to_round = 0)
 ```
-
-![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 # Acknowledgments
 

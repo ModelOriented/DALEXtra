@@ -211,9 +211,9 @@ explainers. Keep in mind that type of task has to be specified.</p>
 #&gt;   -&gt; data              :  A column identical to the target variable `y` has been found in the `data`.  ( </span><span style='color: #BB0000;'> WARNING </span><span> )
 #&gt;   -&gt; data              :  It is highly recommended to pass `data` without the target variable column
 #&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; predicted values  :  numerical, min =  1953.389 , mean =  3506.644 , max =  5781.439  
+#&gt;   -&gt; predicted values  :  numerical, min =  1971.121 , mean =  3506.59 , max =  5842.387  
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; residuals         :  numerical, min =  -743.812 , mean =  4.879159 , max =  1317.109  
+#&gt;   -&gt; residuals         :  numerical, min =  -717.0776 , mean =  4.933371 , max =  1225.502  
 #&gt;   -&gt; model_info        :  package mlr , ver. 2.14.0 , task regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 <span class='no'>learner_gbm</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mlr/man/makeLearner.html'>makeLearner</a></span>(
@@ -227,9 +227,9 @@ explainers. Keep in mind that type of task has to be specified.</p>
 #&gt;   -&gt; data              :  A column identical to the target variable `y` has been found in the `data`.  ( </span><span style='color: #BB0000;'> WARNING </span><span> )
 #&gt;   -&gt; data              :  It is highly recommended to pass `data` without the target variable column
 #&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; predicted values  :  numerical, min =  2129.811 , mean =  3506.31 , max =  6044.249  
+#&gt;   -&gt; predicted values  :  numerical, min =  2112.989 , mean =  3502.036 , max =  6044.296  
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; residuals         :  numerical, min =  -526.8114 , mean =  5.213263 , max =  794.834  
+#&gt;   -&gt; residuals         :  numerical, min =  -509.9888 , mean =  9.487889 , max =  743.3734  
 #&gt;   -&gt; model_info        :  package mlr , ver. 2.14.0 , task regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 <span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'>overall_comparison</span>(<span class='no'>explainer_lm</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>explainer_gbm</span>, <span class='no'>explainer_rf</span>), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"regression"</span>)

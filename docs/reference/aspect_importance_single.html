@@ -147,14 +147,29 @@ one feature).</p>
     <pre class="usage"><span class='fu'>aspect_importance_single</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for explainer</span>
-<span class='fu'>aspect_importance_single</span>(<span class='no'>x</span>, <span class='no'>new_observation</span>, <span class='kw'>N</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>sample_method</span> <span class='kw'>=</span> <span class='st'>"default"</span>, <span class='kw'>n_var</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>f</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>...</span>)
+<span class='fu'>aspect_importance_single</span>(
+  <span class='no'>x</span>,
+  <span class='no'>new_observation</span>,
+  <span class='kw'>N</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+  <span class='kw'>sample_method</span> <span class='kw'>=</span> <span class='st'>"default"</span>,
+  <span class='kw'>n_var</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>f</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='no'>...</span>
+)
 
 <span class='co'># S3 method for default</span>
-<span class='fu'>aspect_importance_single</span>(<span class='no'>x</span>, <span class='no'>data</span>,
-  <span class='kw'>predict_function</span> <span class='kw'>=</span> <span class='no'>predict</span>, <span class='no'>new_observation</span>, <span class='kw'>N</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>x</span>)[<span class='fl'>1</span>], <span class='kw'>sample_method</span> <span class='kw'>=</span> <span class='st'>"default"</span>, <span class='kw'>n_var</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>f</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='no'>...</span>)</pre>
+<span class='fu'>aspect_importance_single</span>(
+  <span class='no'>x</span>,
+  <span class='no'>data</span>,
+  <span class='kw'>predict_function</span> <span class='kw'>=</span> <span class='no'>predict</span>,
+  <span class='no'>new_observation</span>,
+  <span class='kw'>N</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+  <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>x</span>)[<span class='fl'>1</span>],
+  <span class='kw'>sample_method</span> <span class='kw'>=</span> <span class='st'>"default"</span>,
+  <span class='kw'>n_var</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>f</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='no'>...</span>
+)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

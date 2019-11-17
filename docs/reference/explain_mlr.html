@@ -146,10 +146,20 @@ One of those tools, which is one of the most popular one is mlr package. We woul
     
     </div>
 
-    <pre class="usage"><span class='fu'>explain_mlr</span>(<span class='no'>model</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>weights</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>predict_function</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>residual_function</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>,
-  <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>precalculate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>colorize</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>model_info</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>explain_mlr</span>(
+  <span class='no'>model</span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>weights</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>predict_function</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>residual_function</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>...</span>,
+  <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>precalculate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>colorize</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>model_info</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -238,9 +248,9 @@ One of those tools, which is one of the most popular one is mlr package. We woul
 #&gt;   -&gt; data              :  524  rows  17  cols 
 #&gt;   -&gt; target variable   :  524  values 
 #&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; predicted values  :  numerical, min =  0.2700385 , mean =  0.3322221 , max =  0.5650134  
+#&gt;   -&gt; predicted values  :  numerical, min =  0.2694343 , mean =  0.3317526 , max =  0.5637414  
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; residuals         :  numerical, min =  -0.5650134 , mean =  -0.02115338 , max =  0.7299615  
+#&gt;   -&gt; residuals         :  numerical, min =  -0.5636942 , mean =  -0.02068385 , max =  0.7303664  
 #&gt;   -&gt; model_info        :  package mlr , ver. 2.14.0 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='output co'>#&gt; Model label:  WrappedModel 
 #&gt; Model class:  WrappedModel 

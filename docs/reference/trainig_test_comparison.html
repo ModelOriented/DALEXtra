@@ -146,8 +146,13 @@ Output can be easily shown with <code>print</code> or <code>plot</code> function
     
     </div>
 
-    <pre class="usage"><span class='fu'>training_test_comparison</span>(<span class='no'>champion</span>, <span class='no'>challengers</span>, <span class='no'>training_data</span>, <span class='no'>training_y</span>,
-  <span class='kw'>measure_function</span> <span class='kw'>=</span> <span class='kw pkg'>DALEX</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/DALEX/man/loss_functions.html'>loss_root_mean_square</a></span>)</pre>
+    <pre class="usage"><span class='fu'>training_test_comparison</span>(
+  <span class='no'>champion</span>,
+  <span class='no'>challengers</span>,
+  <span class='no'>training_data</span>,
+  <span class='no'>training_y</span>,
+  <span class='kw'>measure_function</span> <span class='kw'>=</span> <span class='kw pkg'>DALEX</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/DALEX/man/loss_functions.html'>loss_root_mean_square</a></span>
+)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -198,11 +203,11 @@ Order of parameters is important and should be (y, y_hat). By default it is RMSE
 <span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.init.html'>h2o.init</a></span>()</div><div class='output co'>#&gt;  Connection successful!
 #&gt; 
 #&gt; R is connected to the H2O cluster: 
-#&gt;     H2O cluster uptime:         59 seconds 130 milliseconds 
+#&gt;     H2O cluster uptime:         51 seconds 309 milliseconds 
 #&gt;     H2O cluster timezone:       Europe/Belgrade 
 #&gt;     H2O data parsing timezone:  UTC 
 #&gt;     H2O cluster version:        3.24.0.5 
-#&gt;     H2O cluster version age:    4 months and 27 days !!! 
+#&gt;     H2O cluster version age:    4 months and 29 days !!! 
 #&gt;     H2O cluster name:           H2O_started_from_R_szyna_ssh825 
 #&gt;     H2O cluster total nodes:    1 
 #&gt;     H2O cluster total memory:   1.97 GB 
@@ -215,7 +220,7 @@ Order of parameters is important and should be (y, y_hat). By default it is RMSE
 #&gt;     H2O Internal Security:      FALSE 
 #&gt;     H2O API Extensions:         Amazon S3, Algos, AutoML, Core V3, Core V4 
 #&gt;     R Version:                  R version 3.6.1 (2019-07-05) </div><div class='output co'>#&gt; <span class='warning'>Warning: </span>
-#&gt; <span class='warning'>Your H2O cluster version is too old (4 months and 27 days)!</span>
+#&gt; <span class='warning'>Your H2O cluster version is too old (4 months and 29 days)!</span>
 #&gt; <span class='warning'>Please download and install the latest version from http://h2o.ai/download/</span></div><div class='output co'>#&gt; </div><div class='input'><span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.no_progress.html'>h2o.no_progress</a></span>()
 <span class='no'>titanic_h2o</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.h2o.html'>as.h2o</a></span>(<span class='no'>titanic_train</span>)
 <span class='no'>titanic_h2o</span>[<span class='st'>"survived"</span>] <span class='kw'>&lt;-</span> <span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.factor.html'>as.factor</a></span>(<span class='no'>titanic_h2o</span>[<span class='st'>"survived"</span>])
@@ -232,11 +237,11 @@ Order of parameters is important and should be (y, y_hat). By default it is RMSE
 <span class='no'>explainer_h2o</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='explain_h2o.html'>explain_h2o</a></span>(<span class='no'>model</span>, <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>], <span class='no'>titanic_test</span>[,<span class='fl'>18</span>])</div><div class='output co'>#&gt;  Connection successful!
 #&gt; 
 #&gt; R is connected to the H2O cluster: 
-#&gt;     H2O cluster uptime:         1 minutes 5 seconds 
+#&gt;     H2O cluster uptime:         55 seconds 735 milliseconds 
 #&gt;     H2O cluster timezone:       Europe/Belgrade 
 #&gt;     H2O data parsing timezone:  UTC 
 #&gt;     H2O cluster version:        3.24.0.5 
-#&gt;     H2O cluster version age:    4 months and 27 days !!! 
+#&gt;     H2O cluster version age:    4 months and 29 days !!! 
 #&gt;     H2O cluster name:           H2O_started_from_R_szyna_ssh825 
 #&gt;     H2O cluster total nodes:    1 
 #&gt;     H2O cluster total memory:   1.97 GB 
@@ -249,7 +254,7 @@ Order of parameters is important and should be (y, y_hat). By default it is RMSE
 #&gt;     H2O Internal Security:      FALSE 
 #&gt;     H2O API Extensions:         Amazon S3, Algos, AutoML, Core V3, Core V4 
 #&gt;     R Version:                  R version 3.6.1 (2019-07-05) </div><div class='output co'>#&gt; <span class='warning'>Warning: </span>
-#&gt; <span class='warning'>Your H2O cluster version is too old (4 months and 27 days)!</span>
+#&gt; <span class='warning'>Your H2O cluster version is too old (4 months and 29 days)!</span>
 #&gt; <span class='warning'>Please download and install the latest version from http://h2o.ai/download/</span></div><div class='output co'>#&gt; 
 #&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  H2OBinomialModel  ( <span style='color: #BBBB00;'> default </span><span> )

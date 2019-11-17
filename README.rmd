@@ -25,8 +25,8 @@ The `DALEXtra` package is an extension pack for [DALEX](https://modeloriented.gi
     + Funnel Plot of performance measures as an innovative approach to measure comparison.
     + Automatic HTML report.
 * Cross langauge comaprison
-    + Creating explainers for models created in different languges so they can be explained using R tools like dr.why.ai family.
-    + Currently supported are Python scikit-learn and keras, Java h2o and mljar, R mlr and mlr3.
+    + Creating explainers for models created in different languges so they can be explained using R tools like [DrWhy.AI](https://github.com/ModelOriented/DrWhy) family.
+    + Currently supported are **Python** *scikit-learn* and *keras*, **Java** *h2o* and *mljar*, **R** *mlr* and *mlr3*.
 * Aspect Importance analysis
     + Provides instance-level explanations for the groups of explanatory variables.
 
@@ -39,6 +39,12 @@ The `DALEXtra` package is an extension pack for [DALEX](https://modeloriented.gi
 devtools::install_github("ModelOriented/DALEX")
 # install.packages("devtools")
 devtools::install_github("ModelOriented/DALEXtra")
+```
+or latest CRAN version
+
+```
+install.packages("DALEX")
+install.packages("DALEXtra")
 ```
 
 Other packages useful with explanations.
@@ -83,11 +89,14 @@ Core of our analysis is funnel plot. It lets us find subsets of data where one o
                              verbose = FALSE, precalculate = FALSE)
 
  plot_data <- funnel_measure(explainer_lm, explainer_rf, 
-                             partition_data = cbind(apartmentsTest, "m2.per.room" = apartmentsTest$surface/apartmentsTest$no.rooms),
+                             partition_data = cbind(apartmentsTest, 
+                                                    "m2.per.room" = apartmentsTest$surface/apartmentsTest$no.rooms),
                              nbins = 5, measure_function = DALEX::loss_root_mean_square, show_info = FALSE)
- plot(plot_data)[[1]]
+ 
 ```
-
+```{r fig.width=12, fig.height=7}
+plot(plot_data)[[1]]
+```
 Such situation is shown in the following plot. Both, `LM` and `RF` models have smiliar RMSE, but Funnel Plot shows that if we want to predict expensive or cheap apartemnts, we definetly should use `LM` while `RF` for average priced apartments. Also without any doubt 
 `LM` is much better than `RF` for `Srodmiescie` district. Following use case show us how powerfull tool can Funnel Plot be, for example we can compund two or models into one based of areas acquired from the Plot and thus improve our models. One another advantage of Funnel Plot is that it doesn't require model to be fitted with Variables shown on the plot, as you can see, `m2.per.room` is an artificial variable.
 
@@ -130,11 +139,13 @@ Creating exlainer from scikit-learn Python model is very simple thanks to `DALEX
 library(DALEXtra)
 explainer <- explain_scikitlearn(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
 yml = system.file("extdata", "testing_environment.yml", package = "DALEXtra"), 
-data = titanic_test[,1:17], y = titanic_test$survived)
+data = titanic_test[,1:17], y = titanic_test$survived, colorize = FALSE)
 ```
 
+Now with explainer ready we can use any of [DrWhy.Ai](https://github.com/ModelOriented/DrWhy/blob/master/README.md) universe tools to make explanations. Here is a small demo.
+
 ### Creating explanations
-Now with explainer ready we can use any of [DrWhy.ai](https://github.com/ModelOriented/DrWhy/blob/master/README.md) universe tools to make explanations. Here is a small demo.
+
 ```{r}
 library(DALEX)
 plot(model_performance(explainer))
@@ -142,8 +153,8 @@ library(ingredients)
 plot(feature_importance(explainer))
 describe(feature_importance(explainer))
 library(iBreakDown)
-plot(break_down(explainer, titanic_test[2,1:17]))
-describe(break_down(explainer, titanic_test[2,1:17]))
+plot(break_down(explainer, titanic_test[2, 1:17]))
+describe(break_down(explainer, titanic_test[2, 1:17]))
 library(auditor)
 eval <- model_evaluation(explainer)
 plot_roc(eval)
@@ -159,7 +170,7 @@ Aspect importance function provides instance-level explanations for the groups o
 To illustrate how the function works, we use titanic example. We build random 
 forest model, group features into aspects and choose new observation to be explained. Then we build `DALEX` explainer and use it to call aspect importance function. Finally, we print and plot function results. We can observe that `personal` (`age` and `gender`) variables have the biggest contribution to the prediction. This contribution is of a positive type.
 
-```{r}
+```{r eval=FALSE}
 library("DALEX")
 library("randomForest")
 library("DALEXtra")
@@ -181,7 +192,7 @@ predict(model_titanic_rf, passenger)
 ```
 
 
-```{r}
+```{r eval=FALSE}
 explain_titanic_rf <- explain(model_titanic_rf, 
                                data = titanic_without_target,
                                y = titanic$survived == "yes", 
@@ -197,12 +208,12 @@ plot(titanic_rf_ai, add_importance = TRUE)
 ## Automated grouping
 
 In examples described above, we had to manually group features into aspects. 
-Aspect importance provides group_variables() - function that automatically groups features for us, based on the features correlation. Function only works on numeric variables.  
+Aspect importance provides `group_variables()` - function that automatically groups features for us, based on the features correlation. Function only works on numeric variables.  
 
-Below, we test aspect importance function on another dataset. But this time we build aspect list by running run group_variables() (with cut off level set on 0.6). As a result, we get a list of variables groups (aspects) where absolute value of features' pairwise correlation is at least at 0.6.
+Below, we test aspect importance function on another dataset. But this time we build aspect list by running run `group_variables()` (with cut off level set on 0.6). As a result, we get a list of variables groups (aspects) where absolute value of features' pairwise correlation is at least at 0.6.
 
 
-```{r import apartments}
+```{r import apartments, eval=FALSE}
 library(DALEX)
 data("apartments")
 apartments_num <- apartments[,unlist(lapply(apartments, is.numeric))] 
@@ -214,7 +225,7 @@ predict(model_apartments, new_observation_apartments)
 ```
 
 
-```{r}
+```{r eval=FALSE}
 explain_apartments <- explain(model_apartments, 
                                data = apartments_no_target,
                                y = apartments$m2.price, 

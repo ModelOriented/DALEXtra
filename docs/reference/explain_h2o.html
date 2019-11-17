@@ -146,10 +146,20 @@ One of those tools, we would like to make more accessible is H2O.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>explain_h2o</span>(<span class='no'>model</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>weights</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>predict_function</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>residual_function</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>,
-  <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>precalculate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>colorize</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>model_info</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>explain_h2o</span>(
+  <span class='no'>model</span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>weights</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>predict_function</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>residual_function</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>...</span>,
+  <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>precalculate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>colorize</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>model_info</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -213,15 +223,23 @@ One of those tools, we would like to make more accessible is H2O.</p>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"DALEXtra"</span>)
 <span class='no'>titanic_test</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_test.csv"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))
 <span class='no'>titanic_train</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_train.csv"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))
-<span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.init.html'>h2o.init</a></span>()</div><div class='output co'>#&gt;  Connection successful!
+<span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.init.html'>h2o.init</a></span>()</div><div class='output co'>#&gt; 
+#&gt; H2O is not running yet, starting it now...
+#&gt; 
+#&gt; Note:  In case of errors look at the following log files:
+#&gt;     C:\Users\szyna\AppData\Local\Temp\Rtmp0KdeOZ/h2o_szyna_started_from_r.out
+#&gt;     C:\Users\szyna\AppData\Local\Temp\Rtmp0KdeOZ/h2o_szyna_started_from_r.err
+#&gt; 
+#&gt; 
+#&gt; Starting H2O JVM and connecting: . Connection successful!
 #&gt; 
 #&gt; R is connected to the H2O cluster: 
-#&gt;     H2O cluster uptime:         13 minutes 381 milliseconds 
+#&gt;     H2O cluster uptime:         6 seconds 392 milliseconds 
 #&gt;     H2O cluster timezone:       Europe/Belgrade 
 #&gt;     H2O data parsing timezone:  UTC 
 #&gt;     H2O cluster version:        3.24.0.5 
-#&gt;     H2O cluster version age:    4 months and 27 days !!! 
-#&gt;     H2O cluster name:           H2O_started_from_R_szyna_ssh825 
+#&gt;     H2O cluster version age:    4 months and 29 days !!! 
+#&gt;     H2O cluster name:           H2O_started_from_R_szyna_mgn766 
 #&gt;     H2O cluster total nodes:    1 
 #&gt;     H2O cluster total memory:   1.97 GB 
 #&gt;     H2O cluster total cores:    4 
@@ -233,7 +251,7 @@ One of those tools, we would like to make more accessible is H2O.</p>
 #&gt;     H2O Internal Security:      FALSE 
 #&gt;     H2O API Extensions:         Amazon S3, Algos, AutoML, Core V3, Core V4 
 #&gt;     R Version:                  R version 3.6.1 (2019-07-05) </div><div class='output co'>#&gt; <span class='warning'>Warning: </span>
-#&gt; <span class='warning'>Your H2O cluster version is too old (4 months and 27 days)!</span>
+#&gt; <span class='warning'>Your H2O cluster version is too old (4 months and 29 days)!</span>
 #&gt; <span class='warning'>Please download and install the latest version from http://h2o.ai/download/</span></div><div class='output co'>#&gt; </div><div class='input'><span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.no_progress.html'>h2o.no_progress</a></span>()
 <span class='no'>titanic_h2o</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.h2o.html'>as.h2o</a></span>(<span class='no'>titanic_train</span>)
 <span class='no'>titanic_h2o</span>[<span class='st'>"survived"</span>] <span class='kw'>&lt;-</span> <span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.factor.html'>as.factor</a></span>(<span class='no'>titanic_h2o</span>[<span class='st'>"survived"</span>])
@@ -250,12 +268,12 @@ One of those tools, we would like to make more accessible is H2O.</p>
 <span class='fu'>explain_h2o</span>(<span class='no'>model</span>, <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>], <span class='no'>titanic_test</span>[,<span class='fl'>18</span>])</div><div class='output co'>#&gt;  Connection successful!
 #&gt; 
 #&gt; R is connected to the H2O cluster: 
-#&gt;     H2O cluster uptime:         13 minutes 5 seconds 
+#&gt;     H2O cluster uptime:         14 seconds 214 milliseconds 
 #&gt;     H2O cluster timezone:       Europe/Belgrade 
 #&gt;     H2O data parsing timezone:  UTC 
 #&gt;     H2O cluster version:        3.24.0.5 
-#&gt;     H2O cluster version age:    4 months and 27 days !!! 
-#&gt;     H2O cluster name:           H2O_started_from_R_szyna_ssh825 
+#&gt;     H2O cluster version age:    4 months and 29 days !!! 
+#&gt;     H2O cluster name:           H2O_started_from_R_szyna_mgn766 
 #&gt;     H2O cluster total nodes:    1 
 #&gt;     H2O cluster total memory:   1.97 GB 
 #&gt;     H2O cluster total cores:    4 
@@ -267,7 +285,7 @@ One of those tools, we would like to make more accessible is H2O.</p>
 #&gt;     H2O Internal Security:      FALSE 
 #&gt;     H2O API Extensions:         Amazon S3, Algos, AutoML, Core V3, Core V4 
 #&gt;     R Version:                  R version 3.6.1 (2019-07-05) </div><div class='output co'>#&gt; <span class='warning'>Warning: </span>
-#&gt; <span class='warning'>Your H2O cluster version is too old (4 months and 27 days)!</span>
+#&gt; <span class='warning'>Your H2O cluster version is too old (4 months and 29 days)!</span>
 #&gt; <span class='warning'>Please download and install the latest version from http://h2o.ai/download/</span></div><div class='output co'>#&gt; 
 #&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  H2OBinomialModel  ( <span style='color: #BBBB00;'> default </span><span> )
@@ -292,7 +310,7 @@ One of those tools, we would like to make more accessible is H2O.</p>
 #&gt; 2                0                  0                   0                    1
 #&gt;   fare sibsp parch
 #&gt; 1 7.13     0     0
-#&gt; 2 7.13     0     0</div><div class='input'><span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.shutdown.html'>h2o.shutdown</a></span>(<span class='kw'>prompt</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div></span></pre>
+#&gt; 2 7.13     0     0</div><div class='input'><span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.shutdown.html'>h2o.shutdown</a></span>(<span class='kw'>prompt</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] TRUE</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
