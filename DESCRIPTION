@@ -24,7 +24,7 @@ Description: Provides wrapper of various machine learning models.
   including those created using 'python' 'scikit-learn' and 'keras' libraries, 'java` 'h2o' library and
   `mljar` API. Important part of the package is Champion-Challenger analysys and innovative approach
   to model performance across subsets of test data presented in Funnel Plot. 
-  Third branch of 'DALEXtra' package is apect importance analysys
+  Third branch of 'DALEXtra' package is aspect importance analysis
   that provides instance-level explanations for the groups of explanatory variables.
 Depends: 
   R (>= 3.5.0),

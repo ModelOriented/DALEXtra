@@ -1,7 +1,7 @@
 library(DALEX)
 library(reticulate)
 
-# helper function to skip tests if we don't have the 'shap' module
+# helper function to skip tests if we don't have the conda
 skip_if_no_conda <- function() {
   tryCatch(conda_binary(),
            error = function(e){
