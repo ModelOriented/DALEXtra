@@ -39,18 +39,15 @@
 #'
 #' @examples
 #' library("DALEX")
-#' library("ingredients")
 #'
-#' titanic_imputed$country <- NULL
-#'
-#' model_titanic_glm <- glm(survived == "yes" ~
+#' model_titanic_glm <- glm(survived == 1 ~
 #'                          class+gender+age+sibsp+parch+fare+embarked,
 #'                          data = titanic_imputed,
 #'                          family = "binomial")
 #'
 #' explain_titanic_glm <- explain(model_titanic_glm,
 #'                                data = titanic_imputed[,-8],
-#'                                y = titanic_imputed$survived == "yes",
+#'                                y = titanic_imputed$survived == 1,
 #'                                verbose = FALSE)
 #'
 #' aspects <- list(wealth = c("class", "fare"),
@@ -70,7 +67,7 @@
 #'
 #' explain_titanic_rf <- explain(model_titanic_rf,
 #'                               data = titanic_imputed[,-8],
-#'                               y = titanic_imputed$survived == "yes",
+#'                               y = titanic_imputed$survived == 1,
 #'                               verbose = FALSE)
 #'
 #' aspect_importance(explain_titanic_rf,
@@ -210,16 +207,14 @@ aspect_importance.default <- function(x, data, predict_function = predict,
 #' @examples
 #' library("DALEX")
 #'
-#' titanic_imputed$country <- NULL
-#'
-#' model_titanic_glm <- glm(survived == "yes" ~
+#' model_titanic_glm <- glm(survived == 1 ~
 #'                          class+gender+age+sibsp+parch+fare+embarked,
 #'                          data = titanic_imputed,
 #'                          family = "binomial")
 #'
 #' explain_titanic_glm <- explain(model_titanic_glm,
 #'                                data = titanic_imputed[,-8],
-#'                                y = titanic_imputed$survived == "yes",
+#'                                y = titanic_imputed$survived == 1,
 #'                                verbose = FALSE)
 #'
 #' aspects <- list(wealth = c("class", "fare"),
@@ -334,13 +329,13 @@ lime <- function(x, ...) {
 #' @examples
 #' library("DALEX")
 #'
-#' model_titanic_glm <- glm(survived == "yes" ~ class + gender + age +
+#' model_titanic_glm <- glm(survived == 1 ~ class + gender + age +
 #'                          sibsp + parch + fare + embarked,
 #'                          data = titanic_imputed,
 #'                          family = "binomial")
 #'
-#' aspect_importance_single(model_titanic_glm, data = titanic_imputed[,-9],
-#'                          new_observation = titanic_imputed[1,-9])
+#' aspect_importance_single(model_titanic_glm, data = titanic_imputed[,-8],
+#'                          new_observation = titanic_imputed[1,-8])
 #'
 #' @export
 
