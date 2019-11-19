@@ -54,12 +54,12 @@ one feature).
 \examples{
 library("DALEX")
 
-model_titanic_glm <- glm(survived == "yes" ~ class + gender + age +
+model_titanic_glm <- glm(survived == 1 ~ class + gender + age +
                          sibsp + parch + fare + embarked,
                          data = titanic_imputed,
                          family = "binomial")
 
-aspect_importance_single(model_titanic_glm, data = titanic_imputed[,-9],
-                         new_observation = titanic_imputed[1,-9])
+aspect_importance_single(model_titanic_glm, data = titanic_imputed[,-8],
+                         new_observation = titanic_imputed[1,-8])
 
 }

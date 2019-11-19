@@ -67,18 +67,15 @@ linear model or lasso.
 }
 \examples{
 library("DALEX")
-library("ingredients")
 
-titanic_imputed$country <- NULL
-
-model_titanic_glm <- glm(survived == "yes" ~
+model_titanic_glm <- glm(survived == 1 ~
                          class+gender+age+sibsp+parch+fare+embarked,
                          data = titanic_imputed,
                          family = "binomial")
 
 explain_titanic_glm <- explain(model_titanic_glm,
                                data = titanic_imputed[,-8],
-                               y = titanic_imputed$survived == "yes",
+                               y = titanic_imputed$survived == 1,
                                verbose = FALSE)
 
 aspects <- list(wealth = c("class", "fare"),
@@ -98,7 +95,7 @@ model_titanic_rf <- randomForest(survived ~ class + gender + age + sibsp +
 
 explain_titanic_rf <- explain(model_titanic_rf,
                               data = titanic_imputed[,-8],
-                              y = titanic_imputed$survived == "yes",
+                              y = titanic_imputed$survived == 1,
                               verbose = FALSE)
 
 aspect_importance(explain_titanic_rf,
