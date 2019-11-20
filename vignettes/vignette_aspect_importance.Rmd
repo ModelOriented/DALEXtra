@@ -29,12 +29,11 @@ At the beginning, we download `titanic_imputed` dataset and build logistic regre
 ```{r read titanic data}
 library("DALEX")
 titanic <- titanic_imputed
-titanic$country <- NULL
 titanic_without_target <- titanic[,colnames(titanic)!="survived"]
 head(titanic)
 
 model_titanic_glm <-
-  glm(survived == "yes" ~ class + gender + age + sibsp + parch + fare + embarked,
+  glm(survived == 1 ~ class + gender + age + sibsp + parch + fare + embarked,
       titanic,
       family = "binomial")
 
@@ -97,7 +96,7 @@ Aspect_importance() could be also called using `DALEX` explainer as we show belo
 ```{r Calculating aspect importance with explainer}
 explain_titanic_glm <- explain(model_titanic_glm, 
                       data = titanic_without_target,
-                      y = titanic$survived == "yes", 
+                      y = titanic$survived == 1, 
                       predict_function = predict,
                       label = "Logistic Regression", 
                       verbose = FALSE)
@@ -113,7 +112,7 @@ Now, we prepare random forest model for the `titanic` dataset.
 
 ```{r  Random forest model for Titanic survival}
 library("randomForest")
-model_titanic_rf <- randomForest(factor(survived) == "yes" ~ gender + age + class + embarked + fare + sibsp + parch,  data = titanic)
+model_titanic_rf <- randomForest(factor(survived) == 1 ~ gender + age + class + embarked + fare + sibsp + parch,  data = titanic)
 predict(model_titanic_rf, passenger)
 ```
 

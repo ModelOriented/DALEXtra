@@ -2,7 +2,7 @@ context("Check aspect_importance() functions")
 
 test_that("check output for aspects importance (glm, default)",{
   library("DALEX")
-  library("ingredients")
+  library("DALEXtra")
 
   aspect_importance_titanic_glm <- aspect_importance(titanic_glm_model, titanic_data,
                                                      new_observation = titanic_new_observation,
@@ -15,7 +15,7 @@ test_that("check output for aspects importance (glm, default)",{
 
 test_that("check output for aspects importance (lm, binom)",{
   library("DALEX")
-  library("ingredients")
+  library("DALEXtra")
 
   if (getRversion() >= "3.6")
   {
@@ -33,7 +33,7 @@ test_that("check output for aspects importance (lm, binom)",{
 
 test_that("check output for aspects importance (additional parameters)",{
   library("DALEX")
-  library("ingredients")
+  library("DALEXtra")
 
   if (getRversion() >= "3.6")
   {
@@ -60,7 +60,7 @@ test_that("check output for aspects importance (additional parameters)",{
 
 test_that("check aspects_importance for explainer",{
   library("DALEX")
-  library("ingredients")
+  library("DALEXtra")
 
   titanic_without_target <- titanic_data[,colnames(titanic_data)!="survived"]
 
@@ -78,7 +78,7 @@ test_that("check aspects_importance for explainer",{
 
 test_that("check plot for aspects importance",{
   library("DALEX")
-  library("ingredients")
+  library("DALEXtra")
 
   aspect_importance_apartments <- aspect_importance(apartments_lm_model, apartments,
                                                     new_observation = apartments_new_observation,
@@ -89,7 +89,7 @@ test_that("check plot for aspects importance",{
 
 test_that("check plot (facets) for aspects importance",{
   library("DALEX")
-  library("ingredients")
+  library("DALEXtra")
 
   aspect_importance_apartments1 <- aspect_importance(apartments_lm_model, apartments,
                                                     new_observation = apartments_new_observation,
@@ -112,7 +112,7 @@ test_that("check plot (facets) for aspects importance",{
 
 test_that("check alias for aspect_importance",{
   library("DALEX")
-  library("ingredients")
+  library("DALEXtra")
 
 
   aspect_importance_apartments <- lime(apartments_lm_model, apartments,
@@ -124,7 +124,7 @@ test_that("check alias for aspect_importance",{
 
 test_that("plot for aspect_importance works",{
   library("DALEX")
-  library("ingredients")
+  library("DALEXtra")
 
   aspect_importance_apartments <- aspect_importance(apartments_lm_model, apartments,
                                                     new_observation = apartments_new_observation,
@@ -137,7 +137,7 @@ test_that("plot for aspect_importance works",{
 
 test_that("check for aspect_importance with lasso",{
   library("DALEX")
-  library("ingredients")
+  library("DALEXtra")
 
   aspect_importance_apartments <- aspect_importance(apartments_lm_model, apartments,
                                                     new_observation = apartments_new_observation,
@@ -155,7 +155,7 @@ test_that("check for aspect_importance with lasso",{
 
 test_that("check for aspect_importance with show_cor",{
   library("DALEX")
-  library("ingredients")
+  library("DALEXtra")
 
   aspect_list_apartments_num <- group_variables(
     apartments_num[,!colnames(apartments_num) == "m2.price"], 0.5)
@@ -173,7 +173,7 @@ test_that("check for aspect_importance with show_cor",{
 
 test_that("check get_sample function with binom",{
   library("DALEX")
-  library("ingredients")
+  library("DALEXtra")
 
   x <- get_sample(100,4,"binom")
   expect_true(ncol(x) == 4)
@@ -185,7 +185,7 @@ test_that("check get_sample function with binom",{
 
 test_that("check get_sample function with default sampling",{
   library("DALEX")
-  library("ingredients")
+  library("DALEXtra")
 
   x <- get_sample(50,10,"default")
   expect_true(ncol(x) == 10)
@@ -196,7 +196,7 @@ test_that("check get_sample function with default sampling",{
 
 test_that("check group_variables function",{
   library("DALEX")
-  library("ingredients")
+  library("DALEXtra")
 
   aspect_list <- group_variables(apartments_num, 0.52, draw_tree = TRUE,
                                  draw_abline = TRUE)
@@ -208,7 +208,7 @@ test_that("check group_variables function",{
 
 test_that("check plot_group_variables function",{
   library("DALEX")
-  library("ingredients")
+  library("DALEXtra")
 
   apartments_hc <- hclust(as.dist(1 - abs(cor(apartments_num, method = "spearman"))))
   p <- plot_group_variables(apartments_hc, p = 0.5, draw_abline = TRUE)
@@ -219,7 +219,7 @@ test_that("check plot_group_variables function",{
 
 test_that("check aspect_importance_single function",{
   library("DALEX")
-  library("ingredients")
+  library("DALEXtra")
 
   aspect_importance_titanic_single <-
     aspect_importance_single(x = apartments_lm_model,
@@ -234,7 +234,7 @@ test_that("check aspect_importance_single function",{
 
 test_that("check aspect_importance_single.explainer function",{
   library("DALEX")
-  library("ingredients")
+  library("DALEXtra")
 
   titanic_without_target <- titanic_data[,colnames(titanic_data)!="survived"]
 
@@ -252,7 +252,7 @@ test_that("check aspect_importance_single.explainer function",{
 
 test_that("check custom_tree_cutting function",{
   library("DALEX")
-  library("ingredients")
+  library("DALEXtra")
 
   apartments_hc <- hclust(as.dist(1 - abs(cor(apartments_num, method = "spearman"))))
   aspect_list <- custom_tree_cutting(apartments_hc, 0.6)
@@ -267,7 +267,7 @@ test_that("check custom_tree_cutting function",{
 
 test_that("check plot_aspects_importance_grouping function",{
   library("DALEX")
-  library("ingredients")
+  library("DALEXtra")
 
   p1 <- plot_aspects_importance_grouping(x = apartments_num_lm_model,
                                         data = apartments_num_mod,
@@ -285,7 +285,7 @@ test_that("check plot_aspects_importance_grouping function",{
 
 test_that("check triplot function",{
   library("DALEX")
-  library("ingredients")
+  library("DALEXtra")
 
   p <- triplot(x = apartments_num_lm_model,
                data = apartments_num_mod, new_observation = apartments_num_new_observation)
@@ -295,7 +295,7 @@ test_that("check triplot function",{
 
 test_that("check triplot.explainer function",{
   library("DALEX")
-  library("ingredients")
+  library("DALEXtra")
 
   apartments_explainer <- explain(model = apartments_num_lm_model,
                                   data = apartments_num_mod,

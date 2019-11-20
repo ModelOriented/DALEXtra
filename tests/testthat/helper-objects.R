@@ -3,9 +3,8 @@
 # helper objects for aspect_importance tests
 # titanic
 titanic_data <- titanic_imputed
-titanic_data$country <- NULL
 
-titanic_glm_model <- glm(survived == "yes" ~ class+gender+age+sibsp+parch+fare+embarked,
+titanic_glm_model <- glm(survived == 1 ~ class+gender+age+sibsp+parch+fare+embarked,
                          titanic_data, family = "binomial")
 
 titanic_new_observation <- data.frame(
