@@ -221,8 +221,8 @@ plot(feature_importance(explainer))
 describe(feature_importance(explainer))
 ```
 
-    ## The number of important variables for scikitlearn_model's prediction is 3 out of 17. 
-    ##  Variables gender.female, gender.male, age have the highest importantance.
+    ## The number of important variables for scikitlearn_model's prediction is 2 out of 17. 
+    ##  Variables gender.male, gender.female have the highest importantance.
 
 ``` r
 library(iBreakDown)

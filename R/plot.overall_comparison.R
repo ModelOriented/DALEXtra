@@ -59,7 +59,6 @@ plot.overall_comparison <- function(x, ...) {
   data <- overall_comparison
   p <- do.call(plot, data$radar)
 
-  data$accordance$Label <- toupper(data$accordance$Label)
   q <- ggplot(data = data$accordance, aes(x = data$accordance$Champion, y = data$accordance$Challenger, colour = data$accordance$Label)) +
     geom_point() +
     geom_abline(slope = 1, intercept = 0, size = 1, color = "#371ea3", show.legend = TRUE) +
