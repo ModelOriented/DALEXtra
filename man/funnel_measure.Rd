@@ -4,11 +4,18 @@
 \alias{funnel_measure}
 \title{Caluculate difference in performance in models across different categories}
 \usage{
-funnel_measure(champion, challengers,
-  measure_function = DALEX::loss_root_mean_square, nbins = 5,
-  partition_data = champion$data, cutoff = 0.01,
-  cutoff_name = "Other", factor_conversion_threshold = 7,
-  show_info = TRUE, categories = NULL)
+funnel_measure(
+  champion,
+  challengers,
+  measure_function = DALEX::loss_root_mean_square,
+  nbins = 5,
+  partition_data = champion$data,
+  cutoff = 0.01,
+  cutoff_name = "Other",
+  factor_conversion_threshold = 7,
+  show_info = TRUE,
+  categories = NULL
+)
 }
 \arguments{
 \item{champion}{- explainer of champion model.}

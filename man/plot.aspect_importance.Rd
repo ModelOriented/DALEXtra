@@ -4,9 +4,15 @@
 \alias{plot.aspect_importance}
 \title{Function for plotting aspect_importance results}
 \usage{
-\method{plot}{aspect_importance}(x, ..., bar_width = 10,
-  aspects_on_axis = TRUE, add_importance = FALSE,
-  digits_to_round = 2, text_size = 3)
+\method{plot}{aspect_importance}(
+  x,
+  ...,
+  bar_width = 10,
+  aspects_on_axis = TRUE,
+  add_importance = FALSE,
+  digits_to_round = 2,
+  text_size = 3
+)
 }
 \arguments{
 \item{x}{object of aspect_importance class}

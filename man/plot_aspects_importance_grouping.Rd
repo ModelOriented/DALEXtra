@@ -4,10 +4,19 @@
 \alias{plot_aspects_importance_grouping}
 \title{Function plots tree with aspect importance values}
 \usage{
-plot_aspects_importance_grouping(x, data, predict_function = predict,
-  new_observation, N = 100, clust_method = "complete",
-  absolute_value = FALSE, cumulative_max = FALSE, show_labels = TRUE,
-  axis_lab_size = 10, text_size = 3)
+plot_aspects_importance_grouping(
+  x,
+  data,
+  predict_function = predict,
+  new_observation,
+  N = 100,
+  clust_method = "complete",
+  absolute_value = FALSE,
+  cumulative_max = FALSE,
+  show_labels = TRUE,
+  axis_lab_size = 10,
+  text_size = 3
+)
 }
 \arguments{
 \item{x}{a model to be explained}

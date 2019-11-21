@@ -4,8 +4,13 @@
 \alias{training_test_comparison}
 \title{Compare performance of model between training and test set}
 \usage{
-training_test_comparison(champion, challengers, training_data, training_y,
-  measure_function = DALEX::loss_root_mean_square)
+training_test_comparison(
+  champion,
+  challengers,
+  training_data,
+  training_y,
+  measure_function = DALEX::loss_root_mean_square
+)
 }
 \arguments{
 \item{champion}{- explainer of champion model.}

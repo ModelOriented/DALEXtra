@@ -1,12 +1,18 @@
+DALEXtra 0.2.0
+----------------------------------------------------------------
+* Rebuilded `plot.overall_comparison()` (I lack words that could describe Your greatness, Ania!).
+* New README and DESCRIPTION. They are more accurate now.
+* Small fixes to `funnel_measure()` that imporves it's stability.
+
 DALEXtra 0.1.11
 ----------------------------------------------------------------
-* New plot function for `funnel_measure()` objects. (Thanks Anna Kozak, You are awsome!)
-* New tests for `funnel_measure()` and `plot.funnel_measure()` (Once again You are awsome, Ania!)
+* New plot function for `funnel_measure()` objects. (Thanks Anna Kozak, You are awesome!).
+* New tests for `funnel_measure()` and `plot.funnel_measure()` (Once again You are awesome, Ania!).
 
 DALEXtra 0.1.10
 ----------------------------------------------------------------
-* Added `aspect_importnace` from `ingredients  ([#19](https://github.com/ModelOriented/ingredients/issues/19))
-* Support for mlr3 added
+* Added `aspect_importnace` from `ingredients`  ([#19](https://github.com/ModelOriented/ingredients/issues/19))
+* Support for `mlr3` added
 * DALEXtra now depends DALEX (0.4.9)
 
 DALEXtra 0.1.9

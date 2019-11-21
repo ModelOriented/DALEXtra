@@ -8,13 +8,28 @@
 \usage{
 aspect_importance_single(x, ...)
 
-\method{aspect_importance_single}{explainer}(x, new_observation, N = 100,
-  sample_method = "default", n_var = 0, f = 2, ...)
+\method{aspect_importance_single}{explainer}(
+  x,
+  new_observation,
+  N = 100,
+  sample_method = "default",
+  n_var = 0,
+  f = 2,
+  ...
+)
 
-\method{aspect_importance_single}{default}(x, data,
-  predict_function = predict, new_observation, N = 100,
-  label = class(x)[1], sample_method = "default", n_var = 0, f = 2,
-  ...)
+\method{aspect_importance_single}{default}(
+  x,
+  data,
+  predict_function = predict,
+  new_observation,
+  N = 100,
+  label = class(x)[1],
+  sample_method = "default",
+  n_var = 0,
+  f = 2,
+  ...
+)
 }
 \arguments{
 \item{x}{an explainer created with the \code{DALEX::explain()} function

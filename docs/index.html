@@ -19,7 +19,11 @@
   there are more and more new ideas for explaining black-box models, 
   that are implemented in R. 
   DALEXtra creates DALEX Biecek (2018) &lt;arXiv:1806.08915&gt; explainer for many type of models
-  including those created using python scikit-learn and keras libraries.">
+  including those created using python scikit-learn and keras libraries, java` h2o library and
+  `mljar` API. Important part of the package is Champion-Challenger analysys and innovative approach
+  to model performance across subsets of test data presented in Funnel Plot. 
+  Third branch of DALEXtra' package is apect importance analysys
+  that provides instance-level explanations for the groups of explanatory variables.">
 <meta property="og:image" content="/logo.png">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -50,7 +54,7 @@
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/">MI^2 DataLab</a> </span>
-          <span class="version version-default">0.1.9</span>
+          <span class="version version-default">0.2.0</span>
         </div>
       </div>
     </div>
@@ -64,6 +68,18 @@
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/vignette_aspect_importance.html">Aspect importance function examples</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="news/index.html">Changelog</a>
@@ -95,11 +111,31 @@
 <a href="#dalextra" class="anchor"></a>DALEXtra <img src="reference/figures/logo.png" align="right" width="150">
 </h1></div>
 
-<div id="overview" class="section level2">
-<h2 class="hasAnchor">
-<a href="#overview" class="anchor"></a>Overview</h2>
-<p>The <code>DALEXtra</code> package is an extension pack for <a href="https://modeloriented.github.io/DALEX">DALEX</a> package. This package provides easy to use connectors for models created with scikitlearn, keras, H2O, mljar and mlr.</p>
 </div>
+<div id="overview" class="section level1">
+<h1 class="hasAnchor">
+<a href="#overview" class="anchor"></a>Overview</h1>
+<p>The <code>DALEXtra</code> package is an extension pack for <a href="https://modeloriented.github.io/DALEX">DALEX</a> package. It contains various tools for XAI (eXplainable Artificial Intelligence) that can help us inspect and improve our model. Functionalities of the <code>DALEXtra</code> could be divided into three areas.</p>
+<ul>
+<li>Champion-Challenger analysis
+<ul>
+<li>Lets us compare two or more Machine-Learning models, determinate which one is better and improve both of them.</li>
+<li>Funnel Plot of performance measures as an innovative approach to measure comparison.</li>
+<li>Automatic HTML report.</li>
+</ul>
+</li>
+<li>Cross langauge comaprison
+<ul>
+<li>Creating explainers for models created in different languges so they can be explained using R tools like <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a> family.</li>
+<li>Currently supported are <strong>Python</strong> <em>scikit-learn</em> and <em>keras</em>, <strong>Java</strong> <em>h2o</em> and <em>mljar</em>, <strong>R</strong> <em>mlr</em> and <em>mlr3</em>.</li>
+</ul>
+</li>
+<li>Aspect Importance analysis
+<ul>
+<li>Provides instance-level explanations for the groups of explanatory variables.</li>
+</ul>
+</li>
+</ul>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -109,15 +145,58 @@
 devtools::install_github("ModelOriented/DALEX")
 # install.packages("devtools")
 devtools::install_github("ModelOriented/DALEXtra")</code></pre>
-<p>Package <code>reticulate</code> will be downloaded along with <code>DALEXtra</code> but if you seek for it’s latest version it can be downloaded here</p>
-<pre><code><a href="https://rdrr.io/pkg/devtools/man/reexports.html">devtools::install_github("rstudio/reticulate")</a></code></pre>
+<p>or latest CRAN version</p>
+<pre><code>install.packages("DALEX")
+install.packages("DALEXtra")</code></pre>
 <p>Other packages useful with explanations.</p>
 <pre><code>devtools::install_github("ModelOriented/ingredients")
 devtools::install_github("ModelOriented/iBreakDown")
 devtools::install_github("ModelOriented/shapper")
 devtools::install_github("ModelOriented/auditor")</code></pre>
-<p>Above packages can be used along with <code>explain</code> object to create explanations (ingredients, iBreakDown, shapper) or audit our model (audiotr).</p>
+<p>Above packages can be used along with <code>explain</code> object to create explanations (ingredients, iBreakDown, shapper) or audit our model (auditor).</p>
 </div>
+</div>
+<div id="champion-challenger-analysis" class="section level1">
+<h1 class="hasAnchor">
+<a href="#champion-challenger-analysis" class="anchor"></a>Champion-Challenger analysis</h1>
+<p>Without aby doubt, comaprison of models, espacially black-box ones is very important use case nowadays. Every day new models are being created and we need tools that can allow us to determinate which one is better. For this purpose we present Champion-Challenger analysis. It is set of functions that creates comaprisons of models and later can be gathered up to created one report with generic comments. Example of report can be found <a href="http://htmlpreview.github.io/?https://github.com/ModelOriented/DALEXtra/blob/master/inst/ChampionChallenger/DALEXtra_example_of_report.html">here</a>. As you can see any explenation that has generic <code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code> function can be plotted.</p>
+<div id="funnel-plot" class="section level2">
+<h2 class="hasAnchor">
+<a href="#funnel-plot" class="anchor"></a>Funnel Plot</h2>
+<p>Core of our analysis is funnel plot. It lets us find subsets of data where one of models is significantly better than other ones. That ability is insanely usefull, when we have models that have similiar overall performance and we want to know which one should we use.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"> <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"mlr"</span>)</a>
+<a class="sourceLine" id="cb4-2" title="2"> <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"DALEXtra"</span>)</a>
+<a class="sourceLine" id="cb4-3" title="3"> task &lt;-<span class="st"> </span>mlr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/mlr/man/RegrTask.html">makeRegrTask</a></span>(</a>
+<a class="sourceLine" id="cb4-4" title="4">   <span class="dt">id =</span> <span class="st">"R"</span>,</a>
+<a class="sourceLine" id="cb4-5" title="5">   <span class="dt">data =</span> apartments,</a>
+<a class="sourceLine" id="cb4-6" title="6">   <span class="dt">target =</span> <span class="st">"m2.price"</span></a>
+<a class="sourceLine" id="cb4-7" title="7"> )</a>
+<a class="sourceLine" id="cb4-8" title="8"> learner_lm &lt;-<span class="st"> </span>mlr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/mlr/man/makeLearner.html">makeLearner</a></span>(</a>
+<a class="sourceLine" id="cb4-9" title="9">   <span class="st">"regr.lm"</span></a>
+<a class="sourceLine" id="cb4-10" title="10"> )</a>
+<a class="sourceLine" id="cb4-11" title="11"> model_lm &lt;-<span class="st"> </span>mlr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/mlr/man/train.html">train</a></span>(learner_lm, task)</a>
+<a class="sourceLine" id="cb4-12" title="12"> explainer_lm &lt;-<span class="st"> </span><span class="kw"><a href="reference/explain_mlr.html">explain_mlr</a></span>(model_lm, apartmentsTest, apartmentsTest<span class="op">$</span>m2.price, <span class="dt">label =</span> <span class="st">"LM"</span>, </a>
+<a class="sourceLine" id="cb4-13" title="13">                             <span class="dt">verbose =</span> <span class="ot">FALSE</span>, <span class="dt">precalculate =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb4-14" title="14"></a>
+<a class="sourceLine" id="cb4-15" title="15"> learner_rf &lt;-<span class="st"> </span>mlr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/mlr/man/makeLearner.html">makeLearner</a></span>(</a>
+<a class="sourceLine" id="cb4-16" title="16">   <span class="st">"regr.randomForest"</span></a>
+<a class="sourceLine" id="cb4-17" title="17"> )</a>
+<a class="sourceLine" id="cb4-18" title="18"> model_rf &lt;-<span class="st"> </span>mlr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/mlr/man/train.html">train</a></span>(learner_rf, task)</a>
+<a class="sourceLine" id="cb4-19" title="19"> explainer_rf &lt;-<span class="st"> </span><span class="kw"><a href="reference/explain_mlr.html">explain_mlr</a></span>(model_rf, apartmentsTest, apartmentsTest<span class="op">$</span>m2.price, <span class="dt">label =</span> <span class="st">"RF"</span>,</a>
+<a class="sourceLine" id="cb4-20" title="20">                             <span class="dt">verbose =</span> <span class="ot">FALSE</span>, <span class="dt">precalculate =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb4-21" title="21"></a>
+<a class="sourceLine" id="cb4-22" title="22"> plot_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/funnel_measure.html">funnel_measure</a></span>(explainer_lm, explainer_rf, </a>
+<a class="sourceLine" id="cb4-23" title="23">                             <span class="dt">partition_data =</span> <span class="kw"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(apartmentsTest, </a>
+<a class="sourceLine" id="cb4-24" title="24">                                                    <span class="st">"m2.per.room"</span> =<span class="st"> </span>apartmentsTest<span class="op">$</span>surface<span class="op">/</span>apartmentsTest<span class="op">$</span>no.rooms),</a>
+<a class="sourceLine" id="cb4-25" title="25">                             <span class="dt">nbins =</span> <span class="dv">5</span>, <span class="dt">measure_function =</span> DALEX<span class="op">::</span>loss_root_mean_square, <span class="dt">show_info =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(plot_data)[[<span class="dv">1</span>]]</a></code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" width="1152"> Such situation is shown in the following plot. Both, <code>LM</code> and <code>RF</code> models have smiliar RMSE, but Funnel Plot shows that if we want to predict expensive or cheap apartemnts, we definetly should use <code>LM</code> while <code>RF</code> for average priced apartments. Also without any doubt <code>LM</code> is much better than <code>RF</code> for <code>Srodmiescie</code> district. Following use case show us how powerfull tool can Funnel Plot be, for example we can compund two or models into one based of areas acquired from the Plot and thus improve our models. One another advantage of Funnel Plot is that it doesn’t require model to be fitted with Variables shown on the plot, as you can see, <code>m2.per.room</code> is an artificial variable.</p>
+</div>
+</div>
+<div id="cross-langauge-comaprison" class="section level1">
+<h1 class="hasAnchor">
+<a href="#cross-langauge-comaprison" class="anchor"></a>Cross langauge comaprison</h1>
+<p>Here we will present short use case for our package and its compatibility with Python.</p>
 <div id="how-to-setup-anaconda" class="section level2">
 <h2 class="hasAnchor">
 <a href="#how-to-setup-anaconda" class="anchor"></a>How to setup Anaconda</h2>
@@ -134,79 +213,130 @@ devtools::install_github("ModelOriented/auditor")</code></pre>
 <a href="#unix" class="anchor"></a>Unix</h3>
 <p>While using unix-like OS, adding conda to PATH is not required.</p>
 </div>
-</div>
-<div id="demo" class="section level2">
-<h2 class="hasAnchor">
-<a href="#demo" class="anchor"></a>Demo</h2>
-<p>Here we will present short use case for our package and its compatibility with Python</p>
 <div id="loading-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#loading-data" class="anchor"></a>Loading data</h3>
 <p>First we need provide the data, explainer is useless without them. Thing is Python object does not store training data so always have to provide dataset. Feel free to use those attached to <code>DALEX</code> package or those stored in <code>DALEXtra</code> files.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">titanic_test &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"titanic_test.csv"</span>, <span class="dt">package =</span> <span class="st">"DALEXtra"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">titanic_test &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"titanic_test.csv"</span>, <span class="dt">package =</span> <span class="st">"DALEXtra"</span>))</a></code></pre></div>
 <p>Keep in mind that dataframe includes target variable (18th column) and scikit-learn models cannot work with it.</p>
 </div>
 <div id="creating-explainer" class="section level3">
 <h3 class="hasAnchor">
 <a href="#creating-explainer" class="anchor"></a>Creating explainer</h3>
 <p>Creating exlainer from scikit-learn Python model is very simple thanks to <code>DALEXtra</code>. The only thing you need to provide is path to pickle and, if necessary, something that lets recognize Python environment. It may be a .yml file with packages specification, name of existing conda environment or path to Python virtual environment. Execution of <code>scikitlearn_explain</code> only with .pkl file and data will cause usage of default Python.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(DALEXtra)</a>
-<a class="sourceLine" id="cb5-2" title="2">explainer &lt;-<span class="st"> </span><span class="kw"><a href="reference/explain_scikitlearn.html">explain_scikitlearn</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"scikitlearn.pkl"</span>, <span class="dt">package =</span> <span class="st">"DALEXtra"</span>),</a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="dt">yml =</span> <span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"testing_environment.yml"</span>, <span class="dt">package =</span> <span class="st">"DALEXtra"</span>), </a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="dt">data =</span> titanic_test[,<span class="dv">1</span><span class="op">:</span><span class="dv">17</span>], <span class="dt">y =</span> titanic_test<span class="op">$</span>survived)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(DALEXtra)</a>
+<a class="sourceLine" id="cb7-2" title="2">explainer &lt;-<span class="st"> </span><span class="kw"><a href="reference/explain_scikitlearn.html">explain_scikitlearn</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"scikitlearn.pkl"</span>, <span class="dt">package =</span> <span class="st">"DALEXtra"</span>),</a>
+<a class="sourceLine" id="cb7-3" title="3"><span class="dt">yml =</span> <span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"testing_environment.yml"</span>, <span class="dt">package =</span> <span class="st">"DALEXtra"</span>), </a>
+<a class="sourceLine" id="cb7-4" title="4"><span class="dt">data =</span> titanic_test[,<span class="dv">1</span><span class="op">:</span><span class="dv">17</span>], <span class="dt">y =</span> titanic_test<span class="op">$</span>survived, <span class="dt">colorize =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>## Preparation of a new explainer is initiated
-##   -&gt; model label       :  scikitlearn_model  ( [33m default [39m )
+##   -&gt; model label       :  scikitlearn_model  (  default  )
 ##   -&gt; data              :  524  rows  17  cols 
 ##   -&gt; target variable   :  524  values 
-##   -&gt; predict function  :  yhat.scikitlearn_model  will be used ( [33m default [39m )
+##   -&gt; predict function  :  yhat.scikitlearn_model  will be used (  default  )
 ##   -&gt; predicted values  :  numerical, min =  0.02086126 , mean =  0.288584 , max =  0.9119996  
-##   -&gt; residual function :  difference between y and yhat ( [33m default [39m )
+##   -&gt; residual function :  difference between y and yhat (  default  )
 ##   -&gt; residuals         :  numerical, min =  -0.8669431 , mean =  0.02248468 , max =  0.9791387  
-##   -&gt; model_info        :  model_info not specified, assuming type: regression ( [33m default [39m ) 
-##   -&gt; model_info        :  package: Model of class: sklearn.ensemble.gradient_boosting.GradientBoostingClassifier package unrecognized Unknown ( [33m default [39m ) 
-##  [32m A new explainer has been created! [39m</code></pre>
+##   -&gt; model_info        :  package reticulate , ver. 1.13 , task classification (  default  ) 
+##   A new explainer has been created!</code></pre>
+<p>Now with explainer ready we can use any of <a href="https://github.com/ModelOriented/DrWhy/blob/master/README.md">DrWhy.Ai</a> universe tools to make explanations. Here is a small demo.</p>
 </div>
 <div id="creating-explanations" class="section level3">
 <h3 class="hasAnchor">
 <a href="#creating-explanations" class="anchor"></a>Creating explanations</h3>
-<p>Now with explainer ready we can use any of <a href="https://github.com/ModelOriented/DrWhy/blob/master/README.md">DrWhy.ai</a> universe tools to make explanations. Here is a small demo.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(DALEX)</a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw">model_performance</span>(explainer))</a></code></pre></div>
-<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ingredients)</a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw">feature_importance</span>(explainer))</a></code></pre></div>
-<p><img src="index_files/figure-html/unnamed-chunk-3-2.png" width="700"></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">describe</span>(<span class="kw">feature_importance</span>(explainer))</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(DALEX)</a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw">model_performance</span>(explainer))</a></code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ingredients)</a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw">feature_importance</span>(explainer))</a></code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-5-2.png" width="700"></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">describe</span>(<span class="kw">feature_importance</span>(explainer))</a></code></pre></div>
 <pre><code>## The number of important variables for scikitlearn_model's prediction is 3 out of 17. 
-##  Variables gender.female, gender.male, age have the highest importantance.</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(iBreakDown)</a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw">break_down</span>(explainer, titanic_test[<span class="dv">2</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">17</span>]))</a></code></pre></div>
-<p><img src="index_files/figure-html/unnamed-chunk-3-3.png" width="700"></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">describe</span>(<span class="kw">break_down</span>(explainer, titanic_test[<span class="dv">2</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">17</span>]))</a></code></pre></div>
+##  Variables gender.female, gender.male, class.1st have the highest importantance.</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(iBreakDown)</a>
+<a class="sourceLine" id="cb13-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw">break_down</span>(explainer, titanic_test[<span class="dv">2</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">17</span>]))</a></code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-5-3.png" width="700"></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">describe</span>(<span class="kw">break_down</span>(explainer, titanic_test[<span class="dv">2</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">17</span>]))</a></code></pre></div>
 <pre><code>## Scikitlearn_model predicts, that the prediction for the selected instance is 0.132 which is lower than the average model prediction.
 ##  
 ## The most important variables that decrease the prediction are class.3rd, gender.female. 
 ## The most important variable that increase the prediction is age.
 ##  
 ## Other variables are with less importance. The contribution of all other variables is -0.108 .</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(shapper)</a>
-<a class="sourceLine" id="cb14-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw">shap</span>(explainer, titanic_test[<span class="dv">2</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">17</span>]))</a></code></pre></div>
-<p><img src="index_files/figure-html/unnamed-chunk-3-4.png" width="700"></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(auditor)</a>
-<a class="sourceLine" id="cb15-2" title="2">eval &lt;-<span class="st"> </span><span class="kw">model_evaluation</span>(explainer)</a>
-<a class="sourceLine" id="cb15-3" title="3"><span class="kw">plot_roc</span>(eval)</a></code></pre></div>
-<p><img src="index_files/figure-html/unnamed-chunk-3-5.png" width="700"></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># Predictions with newdata</span></a>
-<a class="sourceLine" id="cb16-2" title="2"><span class="kw"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(explainer, titanic_test[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">17</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(auditor)</a>
+<a class="sourceLine" id="cb16-2" title="2">eval &lt;-<span class="st"> </span><span class="kw">model_evaluation</span>(explainer)</a>
+<a class="sourceLine" id="cb16-3" title="3"><span class="kw">plot_roc</span>(eval)</a></code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-5-4.png" width="700"></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="co"># Predictions with newdata</span></a>
+<a class="sourceLine" id="cb17-2" title="2"><span class="kw"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(explainer, titanic_test[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">17</span>])</a></code></pre></div>
 <pre><code>##  [1] 0.3565896 0.1321947 0.7638813 0.1037486 0.1265221 0.2949228 0.1421281
 ##  [8] 0.1421281 0.4154695 0.1321947</code></pre>
 </div>
 </div>
-<div id="acknowledgments" class="section level2">
-<h2 class="hasAnchor">
-<a href="#acknowledgments" class="anchor"></a>Acknowledgments</h2>
-<p>Work on this package was financially supported by the ‘NCN Opus grant 2016/21/B/ST6/02176’.</p>
 </div>
+<div id="aspect-importance" class="section level1">
+<h1 class="hasAnchor">
+<a href="#aspect-importance" class="anchor"></a>Aspect importance</h1>
+<p>Aspect importance function provides instance-level explanations for the groups of explanatory variables. It enables grouping predictors into entities called aspects. Afterwards, it can calculate the contribution of those aspects to the prediction.</p>
+<p>To illustrate how the function works, we use titanic example. We build random forest model, group features into aspects and choose new observation to be explained. Then we build <code>DALEX</code> explainer and use it to call aspect importance function. Finally, we print and plot function results. We can observe that <code>personal</code> (<code>age</code> and <code>gender</code>) variables have the biggest contribution to the prediction. This contribution is of a positive type.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"DALEX"</span>)</a>
+<a class="sourceLine" id="cb19-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"randomForest"</span>)</a>
+<a class="sourceLine" id="cb19-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"DALEXtra"</span>)</a>
+<a class="sourceLine" id="cb19-4" title="4">titanic &lt;-<span class="st"> </span>titanic_imputed</a>
+<a class="sourceLine" id="cb19-5" title="5">titanic<span class="op">$</span>country &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb19-6" title="6">titanic_without_target &lt;-<span class="st"> </span>titanic[,<span class="kw"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(titanic)<span class="op">!=</span><span class="st">"survived"</span>]</a>
+<a class="sourceLine" id="cb19-7" title="7">aspects_titanic &lt;-</a>
+<a class="sourceLine" id="cb19-8" title="8"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
+<a class="sourceLine" id="cb19-9" title="9">    <span class="dt">wealth =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"class"</span>, <span class="st">"fare"</span>),</a>
+<a class="sourceLine" id="cb19-10" title="10">    <span class="dt">family =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"sibsp"</span>, <span class="st">"parch"</span>),</a>
+<a class="sourceLine" id="cb19-11" title="11">    <span class="dt">personal =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age"</span>, <span class="st">"gender"</span>),</a>
+<a class="sourceLine" id="cb19-12" title="12">    <span class="dt">embarked =</span> <span class="st">"embarked"</span></a>
+<a class="sourceLine" id="cb19-13" title="13">  )</a>
+<a class="sourceLine" id="cb19-14" title="14">passenger &lt;-<span class="st"> </span>titanic_without_target[<span class="dv">4</span>,]</a>
+<a class="sourceLine" id="cb19-15" title="15">model_titanic_rf &lt;-<span class="st"> </span><span class="kw">randomForest</span>(<span class="kw"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(survived) <span class="op">==</span><span class="st"> "yes"</span> <span class="op">~</span><span class="st"> </span>gender <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb19-16" title="16"><span class="st">                                   </span>class <span class="op">+</span><span class="st"> </span>embarked <span class="op">+</span><span class="st"> </span>fare <span class="op">+</span><span class="st"> </span>sibsp <span class="op">+</span><span class="st"> </span>parch,  </a>
+<a class="sourceLine" id="cb19-17" title="17">                                 <span class="dt">data =</span> titanic)</a>
+<a class="sourceLine" id="cb19-18" title="18"><span class="kw"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(model_titanic_rf, passenger)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">explain_titanic_rf &lt;-<span class="st"> </span><span class="kw">explain</span>(model_titanic_rf, </a>
+<a class="sourceLine" id="cb20-2" title="2">                               <span class="dt">data =</span> titanic_without_target,</a>
+<a class="sourceLine" id="cb20-3" title="3">                               <span class="dt">y =</span> titanic<span class="op">$</span>survived <span class="op">==</span><span class="st"> "yes"</span>, </a>
+<a class="sourceLine" id="cb20-4" title="4">                               <span class="dt">predict_function =</span> predict,</a>
+<a class="sourceLine" id="cb20-5" title="5">                               <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb20-6" title="6">titanic_rf_ai &lt;-<span class="st"> </span><span class="kw"><a href="reference/aspect_importance.html">aspect_importance</a></span>(<span class="dt">x =</span> explain_titanic_rf, </a>
+<a class="sourceLine" id="cb20-7" title="7">                                   <span class="dt">new_observation =</span> passenger, </a>
+<a class="sourceLine" id="cb20-8" title="8">                                   <span class="dt">aspects =</span> aspects_titanic)</a>
+<a class="sourceLine" id="cb20-9" title="9">titanic_rf_ai</a>
+<a class="sourceLine" id="cb20-10" title="10"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(titanic_rf_ai, <span class="dt">add_importance =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div id="automated-grouping" class="section level2">
+<h2 class="hasAnchor">
+<a href="#automated-grouping" class="anchor"></a>Automated grouping</h2>
+<p>In examples described above, we had to manually group features into aspects. Aspect importance provides <code><a href="reference/group_variables.html">group_variables()</a></code> - function that automatically groups features for us, based on the features correlation. Function only works on numeric variables.</p>
+<p>Below, we test aspect importance function on another dataset. But this time we build aspect list by running run <code><a href="reference/group_variables.html">group_variables()</a></code> (with cut off level set on 0.6). As a result, we get a list of variables groups (aspects) where absolute value of features’ pairwise correlation is at least at 0.6.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(DALEX)</a>
+<a class="sourceLine" id="cb21-2" title="2"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"apartments"</span>)</a>
+<a class="sourceLine" id="cb21-3" title="3">apartments_num &lt;-<span class="st"> </span>apartments[,<span class="kw"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(apartments, is.numeric))] </a>
+<a class="sourceLine" id="cb21-4" title="4">apartments_no_target &lt;-<span class="st"> </span>apartments_num[,<span class="op">-</span><span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb21-5" title="5">new_observation_apartments &lt;-<span class="st"> </span>apartments_num[<span class="dv">10</span>,]</a>
+<a class="sourceLine" id="cb21-6" title="6">model_apartments &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(m2.price <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> apartments_num)</a>
+<a class="sourceLine" id="cb21-7" title="7">aspects_apartments &lt;-<span class="st"> </span><span class="kw"><a href="reference/group_variables.html">group_variables</a></span>(apartments_no_target, <span class="fl">0.6</span>)</a>
+<a class="sourceLine" id="cb21-8" title="8"><span class="kw"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(model_apartments, new_observation_apartments)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">explain_apartments &lt;-<span class="st"> </span><span class="kw">explain</span>(model_apartments, </a>
+<a class="sourceLine" id="cb22-2" title="2">                               <span class="dt">data =</span> apartments_no_target,</a>
+<a class="sourceLine" id="cb22-3" title="3">                               <span class="dt">y =</span> apartments<span class="op">$</span>m2.price, </a>
+<a class="sourceLine" id="cb22-4" title="4">                               <span class="dt">predict_function =</span> predict,</a>
+<a class="sourceLine" id="cb22-5" title="5">                               <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb22-6" title="6">apartments_ai &lt;-<span class="st"> </span><span class="kw"><a href="reference/aspect_importance.html">aspect_importance</a></span>(<span class="dt">x =</span> explain_apartments, </a>
+<a class="sourceLine" id="cb22-7" title="7">                                   <span class="dt">new_observation =</span> new_observation_apartments, </a>
+<a class="sourceLine" id="cb22-8" title="8">                                   <span class="dt">aspects =</span> aspects_apartments, </a>
+<a class="sourceLine" id="cb22-9" title="9">                                   <span class="dt">N =</span> <span class="dv">1000</span>, <span class="dt">show_cor =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb22-10" title="10">apartments_ai</a>
+<a class="sourceLine" id="cb22-11" title="11"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(apartments_ai, <span class="dt">aspects_on_axis =</span> <span class="ot">FALSE</span>, <span class="dt">add_importance =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb22-12" title="12">     <span class="dt">digits_to_round =</span> <span class="dv">0</span>)</a></code></pre></div>
+</div>
+</div>
+<div id="acknowledgments" class="section level1">
+<h1 class="hasAnchor">
+<a href="#acknowledgments" class="anchor"></a>Acknowledgments</h1>
+<p>Work on this package was financially supported by the ‘NCN Opus grant 2016/21/B/ST6/02176’.</p>
 </div>
   </div>
 
@@ -233,6 +363,8 @@ devtools::install_github("ModelOriented/auditor")</code></pre>
 <ul class="list-unstyled">
 <li>Szymon Maksymiuk <br><small class="roles"> Author, maintainer </small>  </li>
 <li>Przemyslaw Biecek <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-8423-1823" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" alt="ORCID"></a> </li>
+<li>Katarzyna Pekala <br><small class="roles"> Author </small>  </li>
+<li><a href="authors.html">All authors...</a></li>
 </ul>
 </div>
 
@@ -254,7 +386,7 @@ devtools::install_github("ModelOriented/auditor")</code></pre>
 
       <footer><div class="author">
   <p>
-    Developed by Szymon Maksymiuk, Przemyslaw Biecek.
+    Developed by Szymon Maksymiuk, Przemyslaw Biecek, Katarzyna Pekala.
     Site built by <a href="https://pkgdown.r-lib.org">pkgdown</a>.
   </p>
 </div>

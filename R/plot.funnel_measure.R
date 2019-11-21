@@ -81,7 +81,7 @@ plot.funnel_measure <- function(x, ..., dot_size = 0.5){
         ylab(paste("Champion (", champion_label, ") and Challengers measure difference", sep = "")) +
         xlab("") +
         labs(title = "Funnel Plot",
-             subtitle = paste("For every colour, dot on the right side of violet line means that Champion (",
+             subtitle = paste("For every category, dot on the right side of violet line means that Champion (",
                               champion_label,
                               ") is better. \nDot on the left means that one of the Challengers is better than Champion (",
                               champion_label,
@@ -97,5 +97,6 @@ plot.funnel_measure <- function(x, ..., dot_size = 0.5){
         coord_flip()
 
     })
+    names(p) <- unlist(lapply(challenger_label, function(x){paste0("challanger_", x)}))
     p
 }

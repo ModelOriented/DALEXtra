@@ -242,7 +242,9 @@ funnel_measure <-
       } else {
         stop(paste("Not recognizable column type"), col_names[col_index])
       }
-      setTxtProgressBar(pb, col_index)
+
+      if (show_info) setTxtProgressBar(pb, col_index)
+
       col_index <- col_index + 1
     }
     if (is.null(categories)) {
@@ -266,9 +268,10 @@ funnel_measure <-
         }
       }
     }
-    ret[ret$Category == "",]$Category <- other_variables
-
-
+    # Check if they are Variables without category
+    if (length(ret[ret$Category == "",]$Category) > 0){
+      ret[ret$Category == "",]$Category <- "Other Variables"
+    }
     ret <- list(data = ret, models_info = models_info)
     names(ret$data$Label) <- NULL
     class(ret) <- c("funnel_measure")

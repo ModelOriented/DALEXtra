@@ -8,17 +8,36 @@
 \usage{
 triplot(x, ...)
 
-\method{triplot}{explainer}(x, new_observation, N = 500,
-  clust_method = "complete", absolute_value = FALSE,
-  cumulative_max = FALSE, add_importance_labels = TRUE,
-  show_axis_y_duplicated_labels = FALSE, axis_lab_size = 10,
-  text_size = 3, ...)
+\method{triplot}{explainer}(
+  x,
+  new_observation,
+  N = 500,
+  clust_method = "complete",
+  absolute_value = FALSE,
+  cumulative_max = FALSE,
+  add_importance_labels = TRUE,
+  show_axis_y_duplicated_labels = FALSE,
+  axis_lab_size = 10,
+  text_size = 3,
+  ...
+)
 
-\method{triplot}{default}(x, data, predict_function = predict,
-  new_observation, N = 500, clust_method = "complete",
-  absolute_value = FALSE, cumulative_max = FALSE,
-  add_importance_labels = TRUE, show_axis_y_duplicated_labels = FALSE,
-  abbrev_labels = 0, axis_lab_size = 10, text_size = 3, ...)
+\method{triplot}{default}(
+  x,
+  data,
+  predict_function = predict,
+  new_observation,
+  N = 500,
+  clust_method = "complete",
+  absolute_value = FALSE,
+  cumulative_max = FALSE,
+  add_importance_labels = TRUE,
+  show_axis_y_duplicated_labels = FALSE,
+  abbrev_labels = 0,
+  axis_lab_size = 10,
+  text_size = 3,
+  ...
+)
 }
 \arguments{
 \item{x}{an explainer created with the \code{DALEX::explain()} function

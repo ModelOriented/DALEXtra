@@ -4,10 +4,23 @@
 \alias{explain_scikitlearn}
 \title{Wrapper for Python Scikit-Learn Models}
 \usage{
-explain_scikitlearn(path, yml = NULL, condaenv = NULL, env = NULL,
-  data = NULL, y = NULL, weights = NULL, predict_function = NULL,
-  residual_function = NULL, ..., label = NULL, verbose = TRUE,
-  precalculate = TRUE, colorize = TRUE, model_info = NULL)
+explain_scikitlearn(
+  path,
+  yml = NULL,
+  condaenv = NULL,
+  env = NULL,
+  data = NULL,
+  y = NULL,
+  weights = NULL,
+  predict_function = NULL,
+  residual_function = NULL,
+  ...,
+  label = NULL,
+  verbose = TRUE,
+  precalculate = TRUE,
+  colorize = TRUE,
+  model_info = NULL
+)
 }
 \arguments{
 \item{path}{a path to the pickle file. Can be used without other arguments if you are sure that active Python version match pickle version.}

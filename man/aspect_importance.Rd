@@ -10,14 +10,32 @@ selected observation}
 \usage{
 aspect_importance(x, ...)
 
-\method{aspect_importance}{explainer}(x, new_observation, aspects,
-  N = 100, sample_method = "default", n_var = 0, f = 2,
-  show_cor = FALSE, ...)
+\method{aspect_importance}{explainer}(
+  x,
+  new_observation,
+  aspects,
+  N = 100,
+  sample_method = "default",
+  n_var = 0,
+  f = 2,
+  show_cor = FALSE,
+  ...
+)
 
-\method{aspect_importance}{default}(x, data, predict_function = predict,
-  new_observation, aspects, N = 100, label = class(x)[1],
-  sample_method = "default", n_var = 0, f = 2, show_cor = FALSE,
-  ...)
+\method{aspect_importance}{default}(
+  x,
+  data,
+  predict_function = predict,
+  new_observation,
+  aspects,
+  N = 100,
+  label = class(x)[1],
+  sample_method = "default",
+  n_var = 0,
+  f = 2,
+  show_cor = FALSE,
+  ...
+)
 
 lime(x, ...)
 }

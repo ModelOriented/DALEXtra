@@ -10,6 +10,7 @@ reference:
     - explain_h2o
     - explain_keras
     - explain_mlr
+    - explain_mlr3
     - explain_mljar
   - title: Addapters for yhat
     desc: Specfic versions of the generic yhat function
@@ -20,6 +21,19 @@ reference:
     - yhat.H2OBinomialModel
     - yhat.keras
     - yhat.mljar_model
+    - yhat.LearnerRegr
+    - yhat.LearnerClassif
+  - title: Addapters for model_info
+    desc: Specfic versions of the generic model_info function
+    contents:
+    - model_info.scikitlearn_model
+    - model_info.WrappedModel
+    - model_info.H2ORegressionModel
+    - model_info.H2OBinomialModel
+    - model_info.keras
+    - model_info.mljar_model
+    - model_info.LearnerRegr
+    - model_info.LearnerClassif
   - title: Champion Challenger
     desc: Function used for Champion Challenger analysys
     contents:
@@ -33,6 +47,18 @@ reference:
     - training_test_comparison
     - print.training_test_comparison
     - plot.training_test_comparison
+  - title: Aspect importance
+    desc: Function used for Aspect Importance analysys
+    contents:
+    - aspect_importance
+    - aspect_importance_single
+    - plot.aspect_importance
+    - get_sample
+    - group_variables
+    - plot_aspects_importance_grouping
+    - plot_group_variables
+    - lime
+    - triplot
   - title: Misc
     contents:
     - print.scikitlearn_set

@@ -4,8 +4,13 @@
 \alias{group_variables}
 \title{Groups numeric features into aspects}
 \usage{
-group_variables(x, p = 0.5, clust_method = "complete",
-  draw_tree = FALSE, draw_abline = TRUE)
+group_variables(
+  x,
+  p = 0.5,
+  clust_method = "complete",
+  draw_tree = FALSE,
+  draw_abline = TRUE
+)
 }
 \arguments{
 \item{x}{dataframe with only numeric columns}
