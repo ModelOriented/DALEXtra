@@ -29,9 +29,9 @@ yhat.WrappedModel <- function(X.model, newdata, ...) {
          "classif" = {
            pred <- predict(X.model, newdata = newdata)
            if ("truth" %in% colnames(pred$data)){
-             response <- pred$data[, 2]
+             response <- pred$data[, 3]
            } else {
-             response <- pred$data[, 1]
+             response <- pred$data[, 2]
            }
            response
          },
