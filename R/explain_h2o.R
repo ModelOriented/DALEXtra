@@ -66,7 +66,6 @@ explain_h2o <-
       y <- as.numeric(as.vector(y))
     }
 
-    h2o::h2o.init()
     explain(
       model,
       data = data,
