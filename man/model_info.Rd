@@ -6,7 +6,6 @@
 \alias{model_info.H2OBinomialModel}
 \alias{model_info.scikitlearn_model}
 \alias{model_info.keras}
-\alias{model_info.mljar_model}
 \alias{model_info.LearnerRegr}
 \alias{model_info.LearnerClassif}
 \title{Exract info from model}
@@ -20,8 +19,6 @@
 \method{model_info}{scikitlearn_model}(model, ...)
 
 \method{model_info}{keras}(model, ...)
-
-\method{model_info}{mljar_model}(model, ...)
 
 \method{model_info}{LearnerRegr}(model, ...)
 
@@ -38,7 +35,6 @@ Currently supported packages are:
 \item \code{h2o} models created with \code{h2o} package
 \item \code{scikit-learn} models created with \code{scikit-learn} pyhton library and accesed via \code{reticulate}
 \item \code{keras} models created with \code{keras} pyhton library and accesed via \code{reticulate}
-\item \code{mljar} models created with \code{mljar} API and accesed via \code{mljar} R package
 \item \code{mlr3} models created with \code{mlr3} package
 }}
 }

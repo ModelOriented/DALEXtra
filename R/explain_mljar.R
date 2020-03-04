@@ -42,63 +42,62 @@
 #' explainer <- explain_mljar(model, project_title = "Project title",
 #'                            verbose = FALSE, precalculate = FALSE)
 #' }
-#' @rdname explain_mljar
-#' @export
 
-explain_mljar <-
-  function(model,
-           project_title,
-           data = NULL,
-           y = NULL,
-           weights = NULL,
-           predict_function = NULL,
-           residual_function = NULL,
-           ...,
-           label = NULL,
-           verbose = TRUE,
-           precalculate = TRUE,
-           colorize = TRUE,
-           model_info = NULL) {
 
-    if (!"MLJAR_TOKEN" %in% names(Sys.getenv())) {
-      stop(
-        "In order to use this function it is necessary to ad \"MLJAR_TOEKN\" to Your environmental variables. For more info see How to is it? section at https://github.com/mljar/mljar-api-python/blob/master/README.md"
-      )
-    }
-
-    # Temporary solution until new version of mljar arrive on CRAN
-    class(model) <- "mljar_model"
-
-    # If model was created in current session of system, we may try to extract data
-    if (is.null(data)) {
-      message("Data not specified, trying extract default...")
-      err <-
-        try(data <- read.csv(mljar::get_datasets(model$hid)$datasets[[1]]$file_name),
-            silent = TRUE)
-      if (class(err) == "try-error") {
-        stop("Extracting default data failed")
-      } else {
-        message("Done")
-        if (is.null(y)) {
-          y <- data["target"]
-        }
-      }
-    }
-
-    # mljar does not store information about project title and we cannot do predictions without it. Therefore we expand model with that field
-    model$project <- project_title
-    explain(
-      model,
-      data = data,
-      y = y,
-      weights = weights,
-      predict_function = predict_function,
-      residual_function = residual_function,
-      ...,
-      label = label,
-      verbose = verbose,
-      precalculate = precalculate,
-      colorize = colorize,
-      model_info = model_info
-    )
-  }
+# explain_mljar <-
+#   function(model,
+#            project_title,
+#            data = NULL,
+#            y = NULL,
+#            weights = NULL,
+#            predict_function = NULL,
+#            residual_function = NULL,
+#            ...,
+#            label = NULL,
+#            verbose = TRUE,
+#            precalculate = TRUE,
+#            colorize = TRUE,
+#            model_info = NULL) {
+#
+#     if (!"MLJAR_TOKEN" %in% names(Sys.getenv())) {
+#       stop(
+#         "In order to use this function it is necessary to ad \"MLJAR_TOEKN\" to Your environmental variables. For more info see How to is it? section at https://github.com/mljar/mljar-api-python/blob/master/README.md"
+#       )
+#     }
+#
+#     # Temporary solution until new version of mljar arrive on CRAN
+#     class(model) <- "mljar_model"
+#
+#     # If model was created in current session of system, we may try to extract data
+#     if (is.null(data)) {
+#       message("Data not specified, trying extract default...")
+#       err <-
+#         try(data <- read.csv(mljar::get_datasets(model$hid)$datasets[[1]]$file_name),
+#             silent = TRUE)
+#       if (class(err) == "try-error") {
+#         stop("Extracting default data failed")
+#       } else {
+#         message("Done")
+#         if (is.null(y)) {
+#           y <- data["target"]
+#         }
+#       }
+#     }
+#
+#     # mljar does not store information about project title and we cannot do predictions without it. Therefore we expand model with that field
+#     model$project <- project_title
+#     explain(
+#       model,
+#       data = data,
+#       y = y,
+#       weights = weights,
+#       predict_function = predict_function,
+#       residual_function = residual_function,
+#       ...,
+#       label = label,
+#       verbose = verbose,
+#       precalculate = precalculate,
+#       colorize = colorize,
+#       model_info = model_info
+#     )
+#   }

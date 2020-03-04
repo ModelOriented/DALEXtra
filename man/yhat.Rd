@@ -6,7 +6,6 @@
 \alias{yhat.H2OBinomialModel}
 \alias{yhat.scikitlearn_model}
 \alias{yhat.keras}
-\alias{yhat.mljar_model}
 \alias{yhat.LearnerRegr}
 \alias{yhat.LearnerClassif}
 \title{Wrapper over the predict function}
@@ -20,8 +19,6 @@
 \method{yhat}{scikitlearn_model}(X.model, newdata, ...)
 
 \method{yhat}{keras}(X.model, newdata, ...)
-
-\method{yhat}{mljar_model}(X.model, newdata, ...)
 
 \method{yhat}{LearnerRegr}(X.model, newdata, ...)
 
@@ -49,7 +46,6 @@ Currently supported packages are:
 \item \code{h2o} see more in \code{\link{explain_h2o}}
 \item \code{scikit-learn} see more in \code{\link{explain_scikitlearn}}
 \item \code{keras} see more in \code{\link{explain_keras}}
-\item \code{mljar} see more in \code{\link{explain_mljar}}
 \item \code{mlr3} see more in \code{\link{explain_mlr3}}
 }
 }

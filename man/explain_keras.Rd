@@ -19,7 +19,8 @@ explain_keras(
   verbose = TRUE,
   precalculate = TRUE,
   colorize = TRUE,
-  model_info = NULL
+  model_info = NULL,
+  type = NULL
 )
 }
 \arguments{
@@ -47,11 +48,13 @@ explain_keras(
 
 \item{verbose}{bool that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.}
 
-\item{precalculate}{if TRUE (default) then 'predicted_values' and 'residuals' are calculated when explainer is created. This will happenn also if 'verbose' is TRUE.}
+\item{precalculate}{if TRUE (default) then 'predicted_values' and 'residuals' are calculated when explainer is created.}
 
 \item{colorize}{if TRUE (default) then \code{WARNINGS}, \code{ERRORS} and \code{NOTES} are colorized. Will work only in the R console.}
 
 \item{model_info}{a named list (\code{package}, \code{version}, \code{type}) containg information about model. If \code{NULL}, \code{DALEX} will seek for information on it's own.}
+
+\item{type}{type of a model, either \code{classification} or \code{regression}. If not specified then \code{type} will be extracted from \code{model_info}.}
 }
 \value{
 An object of the class 'explainer'.

@@ -13,7 +13,6 @@
 #' \item \code{h2o} models created with \code{h2o} package
 #' \item \code{scikit-learn} models created with \code{scikit-learn} pyhton library and accesed via \code{reticulate}
 #' \item \code{keras} models created with \code{keras} pyhton library and accesed via \code{reticulate}
-#' \item \code{mljar} models created with \code{mljar} API and accesed via \code{mljar} R package
 #' \item \code{mlr3} models created with \code{mlr3} package
 #' }
 #'
@@ -32,9 +31,9 @@ model_info.WrappedModel <- function(model, ...) {
          },
          stop("Model is not explainable mlr object"))
   package_wrapper <- "mlr"
-  ver_wrapper <- as.character(utils::packageVersion("mlr"))
+  ver_wrapper <- get_pkg_ver_safe(package_wrapper)
   package <- model$learner$package
-  ver <- as.character(utils::packageVersion(package))
+  ver <- get_pkg_ver_safe(package)
   model_info <- list(package = c(wrapper = package_wrapper, package = package), ver = c(wrapper = ver_wrapper, package = ver), type = type)
   class(model_info) <- "model_info"
   model_info
@@ -52,7 +51,7 @@ model_info.h2o <- function(model, ...) {
     stop("Model is not explainable h2o object")
   )
   package_wrapper <- "h2o"
-  ver_wrapper <- as.character(utils::packageVersion("h2o"))
+  ver_wrapper <- get_pkg_ver_safe(package_wrapper)
   package <- model@algorithm
   ver <- "unkown"
   model_info <- list(package = c(wrapper = package_wrapper, package = package), ver = c(wrapper = ver_wrapper, package = ver), type = type)
@@ -77,7 +76,7 @@ model_info.scikitlearn_model <- function(model, ...) {
     type <- "regression"
   }
   package_wrapper <- "reticulate"
-  ver_wrapper <- as.character(utils::packageVersion("reticulate"))
+  ver_wrapper <- get_pkg_ver_safe(package_wrapper)
   package <- "scikit-learn"
   ver <- "unkown"
   model_info <- list(package = c(wrapper = package_wrapper, package = package), ver = c(wrapper = ver_wrapper, package = ver), type = type)
@@ -94,7 +93,7 @@ model_info.keras <- function(model, ...) {
     type <- "regression"
   }
   package_wrapper <- "reticulate"
-  ver_wrapper <- as.character(utils::packageVersion("reticulate"))
+  ver_wrapper <- get_pkg_ver_safe(package_wrapper)
   package <- "keras"
   ver <- "unkown"
   model_info <- list(package = c(wrapper = package_wrapper, package = package), ver = c(wrapper = ver_wrapper, package = ver), type = type)
@@ -102,27 +101,26 @@ model_info.keras <- function(model, ...) {
   model_info
 }
 
-#' @rdname model_info
-#' @export
-model_info.mljar_model <- function(model, ...) {
-  type <- "regression"
-  package_wrapper <- "mljar"
-  ver_wrapper <- as.character(utils::packageVersion("mljar"))
-  package <- "mljar"
-  ver <- "unkown"
-  model_info <- list(package = c(wrapper = package_wrapper, package = package), ver = c(wrapper = ver_wrapper, package = ver), type = type)
-  class(model_info) <- "model_info"
-  model_info
-}
+
+# model_info.mljar_model <- function(model, ...) {
+#   type <- "regression"
+#   package_wrapper <- "mljar"
+#   ver_wrapper <- as.character(utils::packageVersion("mljar"))
+#   package <- "mljar"
+#   ver <- "unkown"
+#   model_info <- list(package = c(wrapper = package_wrapper, package = package), ver = c(wrapper = ver_wrapper, package = ver), type = type)
+#   class(model_info) <- "model_info"
+#   model_info
+# }
 
 #' @rdname model_info
 #' @export
 model_info.LearnerRegr <- function(model, ...) {
   type <- "regression"
   package_wrapper <- "mlr3"
-  ver_wrapper <- as.character(utils::packageVersion("mlr3"))
+  ver_wrapper <- get_pkg_ver_safe(package_wrapper)
   package <- model$packages
-  ver <- as.character(utils::packageVersion(package))
+  ver <- get_pkg_ver_safe(package)
   model_info <- list(package = c(wrapper = package_wrapper, package = package), ver = c(wrapper = ver_wrapper, package = ver), type = type)
   class(model_info) <- "model_info"
   model_info
@@ -133,11 +131,19 @@ model_info.LearnerRegr <- function(model, ...) {
 model_info.LearnerClassif <- function(model, ...) {
   type <- "classification"
   package_wrapper <- "mlr3"
-  ver_wrapper <- as.character(utils::packageVersion("mlr3"))
+  ver_wrapper <- get_pkg_ver_safe(package_wrapper)
   package <- model$packages
-  ver <- as.character(utils::packageVersion(package))
+  ver <- get_pkg_ver_safe(package)
   model_info <- list(package = c(wrapper = package_wrapper, package = package), ver = c(wrapper = ver_wrapper, package = ver), type = type)
   class(model_info) <- "model_info"
   model_info
+}
+
+get_pkg_ver_safe <- function(package) {
+  ver <- try(as.character(utils::packageVersion(package)), silent = TRUE)
+  if (class(ver) == "try-error") {
+    ver <- "Unknown"
+  }
+  ver
 }
 

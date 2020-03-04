@@ -14,9 +14,10 @@
 #' @param ... other parameters
 #' @param label character - the name of the model. By default it's extracted from the 'class' attribute of the model
 #' @param verbose if TRUE (default) then diagnostic messages will be printed.
-#' @param precalculate if TRUE (default) then 'predicted_values' and 'residuals' are calculated when explainer is created. This will happenn also if 'verbose' is TRUE
+#' @param precalculate if TRUE (default) then 'predicted_values' and 'residuals' are calculated when explainer is created.
 #' @param colorize if TRUE (default) then \code{WARNINGS}, \code{ERRORS} and \code{NOTES} are colorized. Will work only in the R console.
 #' @param model_info a named list (\code{package}, \code{version}, \code{type}) containg information about model. If \code{NULL}, \code{DALEX} will seek for information on it's own.
+#' @param type type of a model, either \code{classification} or \code{regression}. If not specified then \code{type} will be extracted from \code{model_info}.
 #'
 #' @return explainer object (\code{\link[DALEX]{explain}}) ready to work with DALEX
 #'
@@ -56,7 +57,8 @@ explain_mlr3 <-
            verbose = TRUE,
            precalculate = TRUE,
            colorize = TRUE,
-           model_info = NULL
+           model_info = NULL,
+           type = NULL
            ) {
     explain(
       model,
@@ -70,7 +72,8 @@ explain_mlr3 <-
       verbose = verbose,
       precalculate = precalculate,
       colorize = colorize,
-      model_info = model_info
+      model_info = model_info,
+      type = type
     )
 
 

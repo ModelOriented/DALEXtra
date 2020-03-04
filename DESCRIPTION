@@ -1,6 +1,6 @@
 Package: DALEXtra
 Title: Extension for 'DALEX' Package
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: 
     c(person(given = "Szymon",
            family = "Maksymiuk",
@@ -28,10 +28,11 @@ Description: Provides wrapper of various machine learning models.
   that provides instance-level explanations for the groups of explanatory variables.
 Depends: 
   R (>= 3.5.0),
-  DALEX (>= 0.4.9)
+  DALEX (>= 1.0.0)
 License: GPL
+Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.0.0
+RoxygenNote: 7.0.2
 Imports: 
   reticulate,
   ggplot2,
@@ -44,7 +45,6 @@ Suggests:
   gbm,
   ggrepel,
   h2o,
-  mljar,
   mlr,
   mlr3,
   randomForest,
