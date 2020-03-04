@@ -84,7 +84,7 @@ Output can be easily shown with print or plot function." />
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/">MI^2 DataLab</a> </span>
-          <span class="version version-default">0.2.0</span>
+          <span class="version version-default">0.2.1</span>
         </div>
       </div>
     </div>
@@ -197,17 +197,18 @@ Order of parameters is important and should be (y, y_hat). By default it is RMSE
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>DALEXtra</span>)
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>DALEXtra</span>)
 <span class='no'>titanic_train</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_train.csv"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))
 <span class='no'>titanic_test</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_test.csv"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))
 <span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.init.html'>h2o.init</a></span>()</div><div class='output co'>#&gt;  Connection successful!
 #&gt; 
 #&gt; R is connected to the H2O cluster: 
-#&gt;     H2O cluster uptime:         51 seconds 309 milliseconds 
+#&gt;     H2O cluster uptime:         1 minutes 6 seconds 
 #&gt;     H2O cluster timezone:       Europe/Belgrade 
 #&gt;     H2O data parsing timezone:  UTC 
 #&gt;     H2O cluster version:        3.24.0.5 
-#&gt;     H2O cluster version age:    4 months and 29 days !!! 
+#&gt;     H2O cluster version age:    8 months and 14 days !!! 
 #&gt;     H2O cluster name:           H2O_started_from_R_szyna_ssh825 
 #&gt;     H2O cluster total nodes:    1 
 #&gt;     H2O cluster total memory:   1.97 GB 
@@ -219,8 +220,8 @@ Order of parameters is important and should be (y, y_hat). By default it is RMSE
 #&gt;     H2O Connection proxy:       NA 
 #&gt;     H2O Internal Security:      FALSE 
 #&gt;     H2O API Extensions:         Amazon S3, Algos, AutoML, Core V3, Core V4 
-#&gt;     R Version:                  R version 3.6.1 (2019-07-05) </div><div class='output co'>#&gt; <span class='warning'>Warning: </span>
-#&gt; <span class='warning'>Your H2O cluster version is too old (4 months and 29 days)!</span>
+#&gt;     R Version:                  R version 3.6.3 (2020-02-29) </div><div class='output co'>#&gt; <span class='warning'>Warning: </span>
+#&gt; <span class='warning'>Your H2O cluster version is too old (8 months and 14 days)!</span>
 #&gt; <span class='warning'>Please download and install the latest version from http://h2o.ai/download/</span></div><div class='output co'>#&gt; </div><div class='input'><span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.no_progress.html'>h2o.no_progress</a></span>()
 <span class='no'>titanic_h2o</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.h2o.html'>as.h2o</a></span>(<span class='no'>titanic_train</span>)
 <span class='no'>titanic_h2o</span>[<span class='st'>"survived"</span>] <span class='kw'>&lt;-</span> <span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.factor.html'>as.factor</a></span>(<span class='no'>titanic_h2o</span>[<span class='st'>"survived"</span>])
@@ -234,37 +235,15 @@ Order of parameters is important and should be (y, y_hat). By default it is RMSE
   <span class='kw'>min_rows</span> <span class='kw'>=</span>  <span class='fl'>12</span>,
   <span class='kw'>learn_rate</span> <span class='kw'>=</span> <span class='fl'>0.001</span>
 )
-<span class='no'>explainer_h2o</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='explain_h2o.html'>explain_h2o</a></span>(<span class='no'>model</span>, <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>], <span class='no'>titanic_test</span>[,<span class='fl'>18</span>])</div><div class='output co'>#&gt;  Connection successful!
-#&gt; 
-#&gt; R is connected to the H2O cluster: 
-#&gt;     H2O cluster uptime:         55 seconds 735 milliseconds 
-#&gt;     H2O cluster timezone:       Europe/Belgrade 
-#&gt;     H2O data parsing timezone:  UTC 
-#&gt;     H2O cluster version:        3.24.0.5 
-#&gt;     H2O cluster version age:    4 months and 29 days !!! 
-#&gt;     H2O cluster name:           H2O_started_from_R_szyna_ssh825 
-#&gt;     H2O cluster total nodes:    1 
-#&gt;     H2O cluster total memory:   1.97 GB 
-#&gt;     H2O cluster total cores:    4 
-#&gt;     H2O cluster allowed cores:  4 
-#&gt;     H2O cluster healthy:        TRUE 
-#&gt;     H2O Connection ip:          localhost 
-#&gt;     H2O Connection port:        54321 
-#&gt;     H2O Connection proxy:       NA 
-#&gt;     H2O Internal Security:      FALSE 
-#&gt;     H2O API Extensions:         Amazon S3, Algos, AutoML, Core V3, Core V4 
-#&gt;     R Version:                  R version 3.6.1 (2019-07-05) </div><div class='output co'>#&gt; <span class='warning'>Warning: </span>
-#&gt; <span class='warning'>Your H2O cluster version is too old (4 months and 29 days)!</span>
-#&gt; <span class='warning'>Please download and install the latest version from http://h2o.ai/download/</span></div><div class='output co'>#&gt; 
-#&gt; Preparation of a new explainer is initiated
+<span class='no'>explainer_h2o</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='explain_h2o.html'>explain_h2o</a></span>(<span class='no'>model</span>, <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>], <span class='no'>titanic_test</span>[,<span class='fl'>18</span>])</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  H2OBinomialModel  ( <span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; data              :  524  rows  17  cols 
 #&gt;   -&gt; target variable   :  524  values 
+#&gt;   -&gt; model_info        :  package h2o , ver. 3.24.0.5 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; predict function  :  yhat.H2OBinomialModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; predicted values  :  numerical, min =  0.1994385 , mean =  0.3299534 , max =  0.5876636  
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -0.5847857 , mean =  -0.01888466 , max =  0.8005615  
-#&gt;   -&gt; model_info        :  package h2o , ver. 3.24.0.5 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 <span class='no'>explainer_scikit</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='explain_scikitlearn.html'>explain_scikitlearn</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>,
                                                     <span class='st'>"scikitlearn.pkl"</span>,
@@ -277,19 +256,19 @@ Order of parameters is important and should be (y, y_hat). By default it is RMSE
 #&gt;   -&gt; model label       :  scikitlearn_model  ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; data              :  524  rows  17  cols 
 #&gt;   -&gt; target variable   :  524  values 
+#&gt;   -&gt; model_info        :  package reticulate , ver. 1.14 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; predict function  :  yhat.scikitlearn_model  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; predicted values  :  numerical, min =  0.02086126 , mean =  0.288584 , max =  0.9119996  
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -0.8669431 , mean =  0.02248468 , max =  0.9791387  
-#&gt;   -&gt; model_info        :  package reticulate , ver. 1.13 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr"</span>)
-<span class='no'>task</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mlr/man/ClassifTask.html'>makeClassifTask</a></span>(
+<span class='no'>task</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://mlr.mlr-org.com/reference/ClassifTask.html'>makeClassifTask</a></span>(
   <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"R"</span>,
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>titanic_train</span>,
   <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"survived"</span>
 )
-<span class='no'>learner</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mlr/man/makeLearner.html'>makeLearner</a></span>(
+<span class='no'>learner</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://mlr.mlr-org.com/reference/makeLearner.html'>makeLearner</a></span>(
   <span class='st'>"classif.gbm"</span>,
   <span class='kw'>par.vals</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
     <span class='kw'>distribution</span> <span class='kw'>=</span> <span class='st'>"bernoulli"</span>,
@@ -302,21 +281,22 @@ Order of parameters is important and should be (y, y_hat). By default it is RMSE
   ),
   <span class='kw'>predict.type</span> <span class='kw'>=</span> <span class='st'>"prob"</span>
 )
-<span class='no'>gbm</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mlr/man/train.html'>train</a></span>(<span class='no'>learner</span>, <span class='no'>task</span>)
+<span class='no'>gbm</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://mlr.mlr-org.com/reference/train.html'>train</a></span>(<span class='no'>learner</span>, <span class='no'>task</span>)
 <span class='no'>explainer_mlr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='explain_mlr.html'>explain_mlr</a></span>(<span class='no'>gbm</span>, <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>], <span class='no'>titanic_test</span>[,<span class='fl'>18</span>])</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  WrappedModel  ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; data              :  524  rows  17  cols 
 #&gt;   -&gt; target variable   :  524  values 
+#&gt;   -&gt; model_info        :  package mlr , ver. 2.17.0 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; predicted values  :  numerical, min =  0.2702506 , mean =  0.3321378 , max =  0.5649298  
+#&gt;   -&gt; predicted values  :  numerical, min =  0.4350702 , mean =  0.6678622 , max =  0.7297494  
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; residuals         :  numerical, min =  -0.5649298 , mean =  -0.02106908 , max =  0.7297069  
-#&gt;   -&gt; model_info        :  package mlr , ver. 2.14.0 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; residuals         :  numerical, min =  -0.7297494 , mean =  -0.3567935 , max =  0.5649298  
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 <span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'>training_test_comparison</span>(<span class='no'>explainer_scikit</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>explainer_h2o</span>, <span class='no'>explainer_mlr</span>),
                                  <span class='kw'>training_data</span> <span class='kw'>=</span> <span class='no'>titanic_train</span>[,-<span class='fl'>18</span>],
                                  <span class='kw'>training_y</span> <span class='kw'>=</span> <span class='no'>titanic_train</span>[,<span class='fl'>18</span>])
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>data</span>)</div><div class='img'><img src='trainig_test_comparison-1.png' alt='' width='700' height='433' /></div></span></pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>data</span>)</div><div class='img'><img src='trainig_test_comparison-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

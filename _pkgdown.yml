@@ -11,7 +11,6 @@ reference:
     - explain_keras
     - explain_mlr
     - explain_mlr3
-    - explain_mljar
   - title: Addapters for yhat
     desc: Specfic versions of the generic yhat function
     contents:
@@ -20,7 +19,6 @@ reference:
     - yhat.H2ORegressionModel
     - yhat.H2OBinomialModel
     - yhat.keras
-    - yhat.mljar_model
     - yhat.LearnerRegr
     - yhat.LearnerClassif
   - title: Addapters for model_info
@@ -31,7 +29,6 @@ reference:
     - model_info.H2ORegressionModel
     - model_info.H2OBinomialModel
     - model_info.keras
-    - model_info.mljar_model
     - model_info.LearnerRegr
     - model_info.LearnerClassif
   - title: Champion Challenger
