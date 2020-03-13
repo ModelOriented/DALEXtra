@@ -18,23 +18,22 @@ tags:
 affiliations:
 - index: 1
   name: Faculty of Mathematics and Information Science, Warsaw University of Technology
+output: pdf_document
 ---
 
 # Introduction
 
-We have came to the point where machine learning predictive models usage is wider than even researchers of the past
-could expect. Business, health care and many others relay to some extend on constantly changing models. Unfortunately constatantly new appliances and need of improvement lead to more and more complicated balck-boxes. That is why we seek for tools dedicated to Explainable Artifital Inteligence (XAI) that will help us to understand predictions. Good examples of such software are `DALEX` [@DALEX] R package or `lime` [@lime] and `shap` [@NIPS2017_7062] Python libraries. 
+We have come to the point where machine learning predictive models usage is wider than even researchers of the past could expect. Business [@Business], health care and many others relay to some extend on constantly changing models. Unfortunately constantly new appliances and need for improvement lead to more and more complicated black-boxes. That is why we seek for tools dedicated to Explainable Artificial Intelligence (XAI) that will help us to understand predictions. Good examples of such software are `DALEX` [@DALEX] R package or `lime` [@lime] and `shap` [@NIPS2017_7062] Python libraries. 
 
-Growing popularity of machine learning, has sped up software development in that area. Developers took as their objective to make training models faster and smoother. R libraries `mlr`[@mlr] and `caret`[@caret], Python `scikit-learn`[@sklearn], or Java `h2o`[@h2o] made today's researchers life easier than ever before. Unfortuantely such a fast grow in many directions, that were determinated by variety of used programming language, made it hard to compare two deeply models that was build using different enviroments.
+The growing popularity of machine learning has sped up software development in that area. Developers took as their objective to make training models faster and smoother. R libraries `mlr`[@mlr] and `caret`[@caret], Python `scikit-learn`[@sklearn], or Java `h2o`[@h2o] made today's machine learning experts life easier than ever before. It is no longer hard to quickly make a decent model, even without sophisticated knowledge about machine learning. What is challenging nowadays is to understand what stands behind the model's decisions. This is exactly is the motivation for development of Explainable Artificial Intelligence (XAI) tool, like `DAELX`[@DALEX].
 
-Comaprison of Machine Learing models is tedious and not always well defined task. It is becasue there are many ways where such anlysis could go. Comaprison of profiles of vriables in our model (`ingredients`[@ingredients]), relative importance of that features `lime` [@lime] or analysis of residuals or measurements functions (`auditor`[@auditor]).
-All of mentioned above technics are legitimate approach that can, but not always will, let us to determinate which models is the best.
+Comparison of Machine Learning models is tedious and not always a well-defined task. It is because there are many ways where such analysis could go. On top of that, fast development conducted in many directions, that were determined by variety of used programming language, made it hard to compare the behavior of models that was build using different environments. We can of course compare measurements but it is next to impossible to compare explanations. Therefore we need a unified way to analyze profiles of variables in our model (`ingredients`[@ingredients]), the relative importance of features `lime` [@lime] or residuals of model (`auditor`[@auditor]). All of mentioned above technics are a legitimate approach that can, but not always will, let us determine which model is the best.
 
-The `DALEXtra` serves as an extension for `DALEX`[@DALEX] R package. One of it applications is to provide dedicated API that wrapps models created using various Machine Learning libraries in order to explain them using DrWhy.ai[@drwhy] family. That is necessery to perform Champion-Challenger anlysis that will be covered in future paragraphs.
+The `DALEXtra` serves as an extension for `DALEX`[@DALEX] R package. One of its applications is to provide dedicated API that wraps models created using various Machine Learning libraries in order to explain them using DrWhy.ai[@drwhy] family. That is necessary to perform Champion-Challenger analysis that will be covered in future paragraphs.
 
 # Funnel Plot
 
-Funnel plot is a new way to present various metrics scores of predictive model. It stands as as a contrast to global approach where we calculate measurements and plot them together. Instead of that, we do calculate metrics on subsets of our dataset, that are determinated by variable distribution. Every numerics variable is being divided by number of bins, stated by the user, according to empirical distribution. For categorical vlaues, each level frequent than cutoff will determinate different subset. Calculations can be made with any type of measurement function with a property that lower score indicates better performance (such as MSE or 1-AUC).
+The Funnel Plot is a new way to present various metrics scores of predictive model. It stands as a contrast to a global approach where we calculate measurements and plot them together. Instead of that, we do calculate metrics on subsets of our dataset, that are determined by variable distribution. Every numerics variable is being divided into bins, which number is stated by the user, according to empirical distribution. For categorical values, each level more frequent than cutoff will determine a different subset. Calculations can be made with any type of measurement function with a property that lower score indicates better performance (such as MSE or 1-AUC).
 
 ## Code example
 
@@ -52,34 +51,31 @@ Funnel plot is a new way to present various metrics scores of predictive model. 
  learner_rf <- mlr::makeLearner("regr.randomForest" )
  model_rf <- mlr::train(learner_rf, task)
  explainer_rf <- explain_mlr(model_rf, apartmentsTest, apartmentsTest$m2.price, label = "RF")
- funnel_plot_data <- funnel_measure(explainer_lm, explainer_gbm,
+ funnel_plot_data <- funnel_measure(explainer_lm, explainer_rf,
                              nbins = 5, measure_function = DALEX::loss_root_mean_square)
  plot(funnel_plot_data)
 
 ```
 
-Fig1 [description]
+![Funnel Plot. For every variable, dot on the right side of the violet line means
+that Linear Model (Champion model) is better for given subset. Dot on the left means that Random Forest model (Challenger model) is better. Values one the edges of the plot indicates subset that caused maximum deviation in measure difference for each side.](funnel_plot_example.png)
 
 # Champion-challenger
 
-Champion-challenger analysis is prediction oritented way to presnted how given model (Champion) behaves in comparison to other (possibly many Challengers). DALEXtra package allows user to create a report in an automatics way using three different already implemented sections and one deafult.
+Champion-challenger analysis is a prediction oriented way to present how a given model (Champion) behaves in comparison to other (possibly many Challengers). DALEXtra package allows users to create a report in an automatics way using three different already implemented sections and one default.
 
   - **Funnel Plot** described in the previous paragraph.
 
-  - **Overall comaprison** section that aims to visualize global behaviour of our model taking into consideration whole
-  dataset. In fact it consists out of two sections
-     - **Radar Plot** Plots scores scaled to [0,1] compartment using radar type gemoetry. It represents global approach
-     when we are taking into consideration scores over whole datasets.
+  - **Overall comparison** section that aims to visualize the global behavior of our model taking into consideration whole dataset. In fact, it consists of two sections
+     - **Radar Plot** Plots scores scaled to [0,1] compartment using radar type geometry. It represents a global approach where we are taking into consideration scores over the whole datasets. [@auditor]
      - **Accordance Plot** for each observation it plots Champion response at OX axis and challengers responses at OY
-     axis possibly using colours to distinguish models
+     axis possibly using colors to distinguish models
      
-  - **Training-test comparison** plot presents relation between score that models achieved using test dataset and
-  training datset. Champion and Challengers are distinguished using different colours. It helps to prevent over-fitting
+  - **Training-test comparison** plot presents the relation between a score that models achieved using test dataset and training dataset. Champion and Challengers are distinguished using different colors. It helps to prevent over-fitting
   
-  - **Default section** besides implemented sections we can pase any other object on which `plot` method can be used. 
-  (eg. `iBreakDown`[@iBreakDown]. It will be included in the report as independent section. 
-
-
+  - **Default section** besides implemented sections we can pass any other object on which `plot` method can be used. 
+  (eg. `iBreakDown`[@iBreakDown]. It will be included in the report as an independent section. 
+  
 # Integration
 
 # Conclusions
