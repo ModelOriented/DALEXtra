@@ -47,12 +47,15 @@ The Funnel Plot is a new way to present various metrics scores of predictive mod
  )
  learner_lm <- mlr::makeLearner("regr.lm")
  model_lm <- mlr::train(learner_lm, task)
- explainer_lm <- explain_mlr(model_lm, apartmentsTest, apartmentsTest$m2.price, label = "LM")
+ explainer_lm <- explain_mlr(model_lm, apartmentsTest, apartmentsTest$m2.price, 
+                             label = "LM")
  learner_rf <- mlr::makeLearner("regr.randomForest" )
  model_rf <- mlr::train(learner_rf, task)
- explainer_rf <- explain_mlr(model_rf, apartmentsTest, apartmentsTest$m2.price, label = "RF")
+ explainer_rf <- explain_mlr(model_rf, apartmentsTest, apartmentsTest$m2.price, 
+                             label = "RF")
  funnel_plot_data <- funnel_measure(explainer_lm, explainer_rf,
-                             nbins = 5, measure_function = DALEX::loss_root_mean_square)
+                             nbins = 5, 
+                             measure_function = DALEX::loss_root_mean_square)
  plot(funnel_plot_data)
 
 ```
