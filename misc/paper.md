@@ -81,7 +81,23 @@ Champion-challenger analysis is a prediction oriented way to present how a given
   
 # Integration
 
+R and Python frameworks for machine learning are developing rapidly. Therefore it happens that machine learning experts seek to cross them together in order to get the best model. That is the motivation for the second pillar of the DALEXtra package, availability to import a Python machine learning model and explain it using DALEX tools or do whatever the user intends to. Thanks to `reticulate`[@reticulate] package, DALEXtra can get predictions out of Python model and import them into R. All that functionalities are encapsulated in one function `explain_scikit` (accordingly `explain_keras`) where we have to just pass a pickle file with saved Python model and, if it is necessary, a .yml file that specifies an Anaconda virtual environment. A function will also extract a set of hyperparameters and save in an `explainer` object. 
+
+## Code example
+
+Please keep in mind that `system.files` function extracts data form package files. 
+
+```
+explainer <- explain_scikitlearn(
+system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
+yml = system.file("extdata", "testing_environment.yml", package = "DALEXtra"),
+data = titanic_test[,1:17], y = titanic_test$survived)
+
+```
+
 # Conclusions
+
+The `DALEXtra` package is easy and intuitive to compare models even if they were built using various environments. It also provides dedicated wrappers that allow users to explain and therefore understand their models. All the above enhance makes machine learning experts' life easier. A comprehensive guide to how to use DALEXtra with python can be found in the [vignette](https://raw.githack.com/pbiecek/DALEX_docs/master/vignettes/How_to_use_DALEXtra_to_explain_and_visualize_scikitlearn_models.html) and on [GitHub](https://github.com/ModelOriented/DALEXtra).
 
 # Acknowledgments
 
