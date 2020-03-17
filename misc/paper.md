@@ -85,7 +85,7 @@ R and Python frameworks for machine learning are developing rapidly. Therefore i
 
 ## Code example
 
-Please keep in mind that `system.files` function extracts data form package files. 
+Please keep in mind that `system.file` function extracts data form package files. 
 
 ```
 explainer <- explain_scikitlearn(
