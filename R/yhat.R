@@ -92,6 +92,9 @@ yhat.scikitlearn_model <- function(X.model, newdata, ...) {
 yhat.keras <- function(X.model, newdata, ...) {
   if ("predict_proba" %in% names(X.model)) {
     pred <-  X.model$predict_proba(newdata)
+    if (ncol(pred) == 1) {
+      pred <- as.numeric(pred)
+    }
   } else {
     pred <-  X.model$predict(newdata)
   }
