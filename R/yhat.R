@@ -114,6 +114,10 @@ yhat.LearnerRegr <- function(X.model, newdata, ...) {
 #' @rdname yhat
 #' @export
 yhat.LearnerClassif <- function(X.model, newdata, ...) {
-  predict(X.model, newdata = newdata, predict_type = "prob", ...)[,1]
+  pred <- X.model$predict_newdata(newdata)
+  
+  # return probabilities for class: 1
+  prob <- pred$prob
+  response <- prob[,2]
+  response
 }
-
