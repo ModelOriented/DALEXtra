@@ -16,6 +16,7 @@ before_install:
   - conda config --set always_yes yes --set changeps1 no
   - export MLJAR_TOKEN=example
   - export JAVA=example
+  - export CONDA_TEST=example
 
 
 r_github_packages:
