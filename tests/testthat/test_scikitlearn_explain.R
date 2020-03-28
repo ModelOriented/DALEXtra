@@ -3,7 +3,7 @@ context("explain_scikitlearn")
 source("objects_for_tests.R")
 
 test_that("creating explainer", {
-  skip_if_no_conda()
+  skip_because_conda_conf_needed()
   if(!"myenv" %in% reticulate::conda_list()$name){
        create_env(system.file("extdata", "testing_environment.yml", package = "DALEXtra"))
   }
@@ -34,7 +34,7 @@ test_that("if check", {
 })
 
 test_that("wrong env",{
-  skip_if_no_conda()
+  skip_because_conda_conf_needed()
           expect_error(explain_scikitlearn(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
                                            condaenv = conda_list()$name[1]))
 
@@ -42,7 +42,7 @@ test_that("wrong env",{
 
 test_that("env change error", {
 
-  skip_if_no_conda()
+  skip_because_conda_conf_needed()
   if(!"myenv" %in% reticulate::conda_list()$name){
     create_env(system.file("extdata", "testing_environment.yml", package = "DALEXtra"))
   }

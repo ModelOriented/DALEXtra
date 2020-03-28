@@ -3,7 +3,7 @@ context("explain_keras")
 source("objects_for_tests.R")
 
 test_that("creating explainer", {
- skip_if_no_conda()
+ skip_because_conda_conf_needed()
  create_env(system.file("extdata", "testing_environment.yml", package = "DALEXtra"))
  test_data <- read.csv("https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.data.csv", sep = ",")
  explainer_1 <- explain_keras(system.file("extdata", "keras.pkl", package = "DALEXtra"),

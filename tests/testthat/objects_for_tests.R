@@ -2,11 +2,10 @@ library(DALEX)
 library(reticulate)
 
 # helper function to skip tests if we don't have the conda
-skip_if_no_conda <- function() {
-  tryCatch(conda_binary(),
-           error = function(e){
-             skip("conda is necessery for tests")
-           })
+skip_because_conda_conf_needed <- function() {
+  if (!"CONDA_TEST" %in% names(Sys.getenv())) {
+    skip("Conda test env needed for tests")
+  }
 }
 skip_if_windows <- function() {
   if (.Platform$OS.type == "windows")

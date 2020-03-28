@@ -3,7 +3,7 @@ context("create_env")
 source("objects_for_tests.R")
 
 test_that("creating env", {
-  skip_if_no_conda()
+  skip_because_conda_conf_needed()
   reticulate::use_condaenv("myenv")
   if ("myenv" %in% reticulate::conda_list()$name) {
     reticulate::conda_remove("myenv")
@@ -23,7 +23,7 @@ test_that("creating env", {
 
 })
 test_that("if check", {
-  skip_if_no_conda()
+  skip_because_conda_conf_needed()
   reticulate::use_condaenv("myenv")
   if (.Platform$OS.type == "unix") {
     expect_success(expect_message(create_env(yml = system.file("extdata", "testing_environment.yml", package = "DALEXtra")),
@@ -36,7 +36,7 @@ test_that("if check", {
 })
 
 test_that("errors checks", {
-  skip_if_no_conda()
+  skip_because_conda_conf_needed()
   skip_if_windows()
   if ("myenv" %in% reticulate::conda_list()$name) {
     reticulate::conda_remove("myenv")
