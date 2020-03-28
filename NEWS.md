@@ -3,6 +3,7 @@ DALEXtra 0.2.1
 * Removed h2o::init() from explain_h2o()
 * Removed mljar support as mljar package is not available for R 3.6.2
 * Ajusted to DALEX 1.0
+* fixed `yhat.LearnerClassif()` returning wrong column of probabilities 
 
 DALEXtra 0.2.0
 ----------------------------------------------------------------
