@@ -165,11 +165,9 @@ This functions allow user to create conda virtual environment based on provided 
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='kw pkg'>DALEXtra</span><span class='kw ns'>:::</span><span class='fu'>is_conda</span>()) {
-  <span class='fu'>create_env</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"testing_environment.yml"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))
-} <span class='kw'>else</span> {
-  <span class='st'>"conda is required"</span>
-}</div><div class='output co'>#&gt; <span class='message'>There already exists environment named the same as it is specified in .yml file - myenv. It will be used</span></div><div class='output co'>#&gt; [1] "myenv"</div></pre>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+  <span class='fu'>create_env</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"testing_environment.yml"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))</div><div class='output co'>#&gt; <span class='message'>There already exists environment named the same as it is specified in .yml file - myenv. It will be used</span></div><div class='output co'>#&gt; [1] "myenv"</div><div class='input'># }
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

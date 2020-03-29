@@ -281,22 +281,13 @@ If .yml file seems not to work, virtual env can be created manually using anacon
 #&gt;   -&gt; target variable   :  767  values 
 #&gt;   -&gt; model_info        :  package reticulate , ver. 1.14 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; predict function  :  yhat.keras  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; predicted values  :  predict function returns multiple columns:  1  ( </span><span style='color: #BB0000;'> WARNING </span><span> ) some of functionalities may not work 
+#&gt;   -&gt; predicted values  :  numerical, min =  0.0006659329 , mean =  0.4633349 , max =  0.9935235  
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -0.9620994 , mean =  -0.1152253 , max =  0.9141646  
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>   <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='fu'>model_performance</span>(<span class='no'>explainer</span>))</div><div class='img'><img src='explain_keras-1.png' alt='' width='700' height='433' /></div><div class='input'>
    <span class='co'># Predictions with newdata</span>
-   <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>explainer</span>, <span class='no'>test_data</span>[<span class='fl'>1</span>:<span class='fl'>10</span>,<span class='fl'>1</span>:<span class='fl'>8</span>])</div><div class='output co'>#&gt;            [,1]
-#&gt;  [1,] 0.1804936
-#&gt;  [2,] 0.9571114
-#&gt;  [3,] 0.1365495
-#&gt;  [4,] 0.9309345
-#&gt;  [5,] 0.3601864
-#&gt;  [6,] 0.1650713
-#&gt;  [7,] 0.7250848
-#&gt;  [8,] 0.9752285
-#&gt;  [9,] 0.2601734
-#&gt; [10,] 0.2772140</div><div class='input'>
+   <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>explainer</span>, <span class='no'>test_data</span>[<span class='fl'>1</span>:<span class='fl'>10</span>,<span class='fl'>1</span>:<span class='fl'>8</span>])</div><div class='output co'>#&gt;  [1] 0.1804936 0.9571114 0.1365495 0.9309345 0.3601864 0.1650713 0.7250848
+#&gt;  [8] 0.9752285 0.2601734 0.2772140</div><div class='input'>
 # }
 
 </div></span></pre>

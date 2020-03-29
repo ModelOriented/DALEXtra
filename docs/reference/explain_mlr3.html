@@ -232,19 +232,16 @@ One of those tools, which is one of the most popular one is mlr3 package. We wou
 #&gt; <span class='message'>    benchmark, resample</span></div><div class='input'><span class='no'>titanic_imputed</span>$<span class='no'>survived</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span>(<span class='no'>titanic_imputed</span>$<span class='no'>survived</span>)
 <span class='no'>task_classif</span> <span class='kw'>&lt;-</span> <span class='no'>TaskClassif</span>$<span class='fu'>new</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"1"</span>, <span class='kw'>backend</span> <span class='kw'>=</span> <span class='no'>titanic_imputed</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"survived"</span>)
 <span class='no'>learner_classif</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"classif.rpart"</span>, <span class='kw'>predict_type</span> <span class='kw'>=</span> <span class='st'>"prob"</span>)
-<span class='no'>learner_classif</span>$<span class='fu'>train</span>(<span class='no'>task_classif</span>)
-<span class='fu'>explain_mlr3</span>(<span class='no'>learner_classif</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>titanic_imputed</span>,
+<span class='no'>learner_classif</span>$<span class='fu'>train</span>(<span class='no'>task_classif</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: brak argumentów w max; zwracanie wartości -Inf</span></div><div class='output co'>#&gt; <span class='error'>Error in 1:numclass: wynikiem byłby zbyt długi wektor</span></div><div class='input'><span class='fu'>explain_mlr3</span>(<span class='no'>learner_classif</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>titanic_imputed</span>,
              <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span>(<span class='no'>titanic_imputed</span>$<span class='no'>survived</span>)))</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  R6  ( <span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; data              :  2207  rows  8  cols 
 #&gt;   -&gt; target variable   :  2207  values 
-#&gt;   -&gt; data              :  A column identical to the target variable `y` has been found in the `data`.  ( </span><span style='color: #BB0000;'> WARNING </span><span> )
-#&gt;   -&gt; data              :  It is highly recommended to pass `data` without the target variable column
-#&gt;   -&gt; model_info        :  package mlr3 , ver. 0.1.4 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; model_info        :  package mlr3 , ver. 0.1.8.9000 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; predict function  :  yhat.LearnerClassif  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; predicted values  :  numerical, min =  0.07326007 , mean =  0.6778432 , max =  0.9444444  
+#&gt;   -&gt; predicted values  :  the predict_function returns an error when executed ( </span><span style='color: #BB0000;'> WARNING </span><span> ) 
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; residuals         :  numerical, min =  -0.9444444 , mean =  -0.3556865 , max =  0.9267399  
+#&gt;   -&gt; residuals         :  the residual_function returns an error when executed ( </span><span style='color: #BB0000;'> WARNING </span><span> ) 
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='output co'>#&gt; Model label:  R6 
 #&gt; Model class:  LearnerClassifRpart,LearnerClassif,Learner,R6 
 #&gt; Data head  :
@@ -259,13 +256,11 @@ One of those tools, which is one of the most popular one is mlr3 package. We wou
 #&gt;   -&gt; model label       :  R6  ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; data              :  1000  rows  6  cols 
 #&gt;   -&gt; target variable   :  1000  values 
-#&gt;   -&gt; data              :  A column identical to the target variable `y` has been found in the `data`.  ( </span><span style='color: #BB0000;'> WARNING </span><span> )
-#&gt;   -&gt; data              :  It is highly recommended to pass `data` without the target variable column
-#&gt;   -&gt; model_info        :  package mlr3 , ver. 0.1.4 , task regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; model_info        :  package mlr3 , ver. 0.1.8.9000 , task regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; predict function  :  yhat.LearnerRegr  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; predicted values  :  numerical, min =  2289.664 , mean =  3487.019 , max =  5737.175  
+#&gt;   -&gt; predicted values  :  the predict_function returns an error when executed ( </span><span style='color: #BB0000;'> WARNING </span><span> ) 
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; residuals         :  numerical, min =  -1044.133 , mean =  4.321552e-14 , max =  1080.867  
+#&gt;   -&gt; residuals         :  the residual_function returns an error when executed ( </span><span style='color: #BB0000;'> WARNING </span><span> ) 
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='output co'>#&gt; Model label:  R6 
 #&gt; Model class:  LearnerRegrRpart,LearnerRegr,Learner,R6 
 #&gt; Data head  :
