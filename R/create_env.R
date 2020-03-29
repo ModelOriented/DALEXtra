@@ -13,10 +13,8 @@
 #'
 #'
 #' @examples
-#' if(DALEXtra:::is_conda()) {
+#' \donttest{
 #'   create_env(system.file("extdata", "testing_environment.yml", package = "DALEXtra"))
-#' } else {
-#'   "conda is required"
 #' }
 #' @rdname create_env
 #' @export

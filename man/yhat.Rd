@@ -4,6 +4,7 @@
 \alias{yhat.WrappedModel}
 \alias{yhat.H2ORegressionModel}
 \alias{yhat.H2OBinomialModel}
+\alias{yhat.H2OMultinomialModel}
 \alias{yhat.scikitlearn_model}
 \alias{yhat.keras}
 \alias{yhat.LearnerRegr}
@@ -15,6 +16,8 @@
 \method{yhat}{H2ORegressionModel}(X.model, newdata, ...)
 
 \method{yhat}{H2OBinomialModel}(X.model, newdata, ...)
+
+\method{yhat}{H2OMultinomialModel}(X.model, newdata, ...)
 
 \method{yhat}{scikitlearn_model}(X.model, newdata, ...)
 

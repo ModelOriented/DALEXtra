@@ -104,8 +104,7 @@ and compare it with other models, using R tools like DALEX. This function create
 exported from Python via pickle file.
 }
 \examples{
-library("DALEXtra")
-if(DALEXtra:::is_conda()) {
+\donttest{
    # Explainer build (Keep in mind that 18th column is target)
    titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
    # Keep in mind that when pickle is being built and loaded,
@@ -118,8 +117,6 @@ if(DALEXtra:::is_conda()) {
    # Predictions with newdata
    predict(explainer, titanic_test[1:10,1:17])
 
-} else {
-  print('Conda is required.')
 }
 
 }
