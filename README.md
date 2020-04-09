@@ -30,7 +30,7 @@ could be divided into three areas.
         [DrWhy.AI](https://github.com/ModelOriented/DrWhy) family.
       - Currently supported are **Python** *scikit-learn* and *keras*,
         **Java** *h2o* and *mljar*, **R** *mlr* and *mlr3*.
-      - [Viggnette](https://raw.githack.com/pbiecek/DALEX_docs/master/vignettes/How-to-use-DALEXtra-to-explain-and-visualize-scikitlearn-models.html) that explains how to explain Python models
+      - [Vignette](https://raw.githack.com/pbiecek/DALEX_docs/master/vignettes/How-to-use-DALEXtra-to-explain-and-visualize-scikitlearn-models.html) that explains how to explain Python models
   - Aspect Importance analysis
       - Provides instance-level explanations for the groups of
         explanatory variables.
