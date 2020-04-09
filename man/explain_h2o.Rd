@@ -57,6 +57,40 @@ One of those tools, we would like to make more accessible is H2O.
 }
 \examples{
 \donttest{
+
+# load packages and data
+library(h2o)
+library(DALEXtra)
+library(modelStudio)
+
+data <- DALEX::titanic_imputed
+
+# init h2o
+h2o::h2o.init()
+
+# split the data
+h2o_split <- h2o.splitFrame(as.h2o(data))
+train <- h2o_split[[1]]
+test <- as.data.frame(h2o_split[[2]])
+
+# h2o automl takes target as factor
+train$survived <- as.factor(train$survived)
+
+# fit a model
+automl <- h2o.automl(y = "survived",
+                     training_frame = train,
+                     max_runtime_secs = 30)
+model <- automl@leader
+
+# stop h2o progress printing
+h2o.no_progress()
+
+# create an explainer for the model
+explainer <- explain_h2o(model,
+                         data = test,
+                         y = test$survived,
+                         label = "h2o")
+                         
 library("DALEXtra")
 titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
 titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
