@@ -61,12 +61,11 @@ One of those tools, we would like to make more accessible is H2O.
 # load packages and data
 library(h2o)
 library(DALEXtra)
-library(modelStudio)
 
 data <- DALEX::titanic_imputed
 
 # init h2o
-h2o::h2o.init()
+h2o.init()
 
 # split the data
 h2o_split <- h2o.splitFrame(as.h2o(data))
@@ -80,22 +79,19 @@ train$survived <- as.factor(train$survived)
 automl <- h2o.automl(y = "survived",
                      training_frame = train,
                      max_runtime_secs = 30)
-model <- automl@leader
 
 # stop h2o progress printing
 h2o.no_progress()
 
 # create an explainer for the model
-explainer <- explain_h2o(model,
+explainer <- explain_h2o(automl,
                          data = test,
                          y = test$survived,
                          label = "h2o")
-                         
-library("DALEXtra")
+
+
 titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
 titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
-h2o::h2o.init()
-h2o::h2o.no_progress()
 titanic_h2o <- h2o::as.h2o(titanic_train)
 titanic_h2o["survived"] <- h2o::as.factor(titanic_h2o["survived"])
 titanic_test_h2o <- h2o::as.h2o(titanic_test)
@@ -109,6 +105,7 @@ min_rows =  12,
 learn_rate = 0.001
 )
 explain_h2o(model, titanic_test[,1:17], titanic_test[,18])
+
 h2o::h2o.shutdown(prompt = FALSE)
 }
 }

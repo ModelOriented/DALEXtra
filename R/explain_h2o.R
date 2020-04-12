@@ -31,12 +31,11 @@
 #' # load packages and data
 #' library(h2o)
 #' library(DALEXtra)
-#' library(modelStudio)
 #' 
 #' data <- DALEX::titanic_imputed
 #' 
 #' # init h2o
-#' h2o::h2o.init()
+#' h2o.init()
 #' 
 #' # split the data
 #' h2o_split <- h2o.splitFrame(as.h2o(data))
@@ -59,12 +58,10 @@
 #'                          data = test,
 #'                          y = test$survived,
 #'                          label = "h2o")
-#'                          
-#' library("DALEXtra")
+#'
+#' 
 #' titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
 #' titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
-#' h2o::h2o.init()
-#' h2o::h2o.no_progress()
 #' titanic_h2o <- h2o::as.h2o(titanic_train)
 #' titanic_h2o["survived"] <- h2o::as.factor(titanic_h2o["survived"])
 #' titanic_test_h2o <- h2o::as.h2o(titanic_test)
@@ -78,6 +75,7 @@
 #' learn_rate = 0.001
 #' )
 #' explain_h2o(model, titanic_test[,1:17], titanic_test[,18])
+#' 
 #' h2o::h2o.shutdown(prompt = FALSE)
 #' }
 #' @rdname explain_h2o
