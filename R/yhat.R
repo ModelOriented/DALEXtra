@@ -128,7 +128,7 @@ yhat.keras <- function(X.model, newdata, ...) {
 #' @rdname yhat
 #' @export
 yhat.LearnerRegr <- function(X.model, newdata, ...) {
-  X.model$predict_newdata(newdata, ...)
+  X.model$predict_newdata(newdata, ...)$response
 }
 
 #' @rdname yhat
