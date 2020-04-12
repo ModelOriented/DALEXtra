@@ -25,11 +25,28 @@ output: pdf_document
 
 We have come to the point where machine learning predictive models usage is wider than even researchers of the past could expect. Business [@Business], health care and many others relay to some extend on constantly changing models. Unfortunately constantly new appliances and need for improvement lead to more and more complicated black-boxes. That is why we seek for tools dedicated to Explainable Artificial Intelligence (XAI) that will help us to understand predictions. Good examples of such software are `DALEX` [@DALEX] R package or `lime` [@lime] and `shap` [@NIPS2017_7062] Python libraries. 
 
-The growing popularity of machine learning has sped up software development in that area. Developers took as their objective to make training models faster and smoother. R libraries `mlr`[@mlr] and `caret`[@caret], Python `scikit-learn`[@sklearn], or Java `h2o`[@h2o] made today's machine learning experts life easier than ever before. It is no longer hard to quickly make a decent model, even without sophisticated knowledge about machine learning. What is challenging nowadays is to understand what stands behind the model's decisions. This is exactly is the motivation for development of Explainable Artificial Intelligence (XAI) tool, like `DAELX`[@DALEX].
-
 Comparison of Machine Learning models is tedious and not always a well-defined task. It is because there are many ways where such analysis could go. On top of that, fast development conducted in many directions, that were determined by variety of used programming language, made it hard to compare the behavior of models that was build using different environments. We can of course compare measurements but it is next to impossible to compare explanations. Therefore we need a unified way to analyze profiles of variables in our model (`ingredients`[@ingredients]), the relative importance of features `lime` [@lime] or residuals of model (`auditor`[@auditor]). All of mentioned above technics are a legitimate approach that can, but not always will, let us determine which model is the best.
 
 The `DALEXtra` serves as an extension for `DALEX`[@DALEX] R package. One of its applications is to provide dedicated API that wraps models created using various Machine Learning libraries in order to explain them using DrWhy.ai[@drwhy] family. That is necessary to perform Champion-Challenger analysis that will be covered in future paragraphs.
+
+
+# Comparison of explanations
+
+The growing popularity of machine learning has sped up software development in that area. Developers took as their objective to make training models faster and smoother. R libraries `mlr`[@mlr] and `caret`[@caret], Python `scikit-learn`[@sklearn], or Java `h2o`[@h2o] made today's machine learning experts life easier than ever before. It is no longer hard to quickly make a decent model, even without sophisticated knowledge about machine learning. What is challenging nowadays is to understand what stands behind the model's decisions. This is exactly the motivation for the development of Explainable Artificial Intelligence (XAI) tools. Unfortunately due to huge diversity among frameworks used to train specific models it is hard to compare explanations of two models. Let's take for example model created using mlr and scikit-learn wrappers. Although they can use the same training algorithm (eg. randomForest), the software makes the difference. Various tools for explanations support only specific types of frameworks, and because of that it is impossible to smoothly compare every two models using them. It requires rearranging models, making them behave like the ones that are supported by the given XAI tool. Such a task requires time and what is worse, specific knowledge about how those tools work, what makes data scientist job harder. That is the motivation why explainable machine learning libraries should support a variety of frameworks on their own.
+
+
+
+|               | mlr (R) | mlr3 (R) | parsnip (R) | caret (R) | mlr (Python) | keras (Python) | scikit-learn (Python) | h2o (Java) |
+|:-------------:|:-------:|:--------:|:-----------:|:---------:|:------------:|:--------------:|:---------------------:|:----------:|
+|    DALEXtra   |    x    |     x    |      x      |     x     |     DODAM    |        x       |           x           |      x     |
+|   interpretML |    -    |     -    |      -      |     -     |       -      |        -       |           x           |      -     |
+|    fscaret    |    -    |     -    |      -      |     x     |       -      |        -       |           -           |      -     |
+|      iml      |    x    |     x    |      -      |     x     |       -      |        x       |           -           |      x     |
+|      eli5     |    -    |     -    |      -      |     -     |       -      |        x       |           x           |      -     |
+|    lime (R)   |    x    |     x    |      x      |     x     |       -      |        x       |           -           |      x     |
+| lime (Python) |    -    |     -    |      -      |     -     |       x      |        x       |           x           |      x     |
+|      shap     |    -    |     -    |      -      |     -     |       -      |        x       |           x           |      -     |
+|     Skater    |         |          |             |           |              |                |                       |            |
 
 # Funnel Plot
 
