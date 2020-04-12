@@ -26,16 +26,15 @@ test_that("creating explainer classif", {
   explainer <- explain_h2o(model, titanic_test[,1:17], titanic_test[,18])
   expect_is(explainer, "explainer")
   expect_is(explainer$y_hat, "numeric")
-  h2o::h2o.shutdown(prompt = FALSE)
+  # h2o::h2o.shutdown(prompt = FALSE)
 })
 
 test_that("creating explainer regr", {
   skip_if_no_java()
   titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
   titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
-  library("DALEX")
-  h2o::h2o.init()
-  h2o::h2o.no_progress()
+  # h2o::h2o.init()
+  # h2o::h2o.no_progress()
   titanic_h2o <- h2o::as.h2o(titanic_train)
   titanic_h2o["survived"] <- h2o::as.factor(titanic_h2o["survived"])
   titanic_test_h2o <- h2o::as.h2o(titanic_test)
@@ -50,7 +49,7 @@ test_that("creating explainer regr", {
   explainer <- explain_h2o(model, predict_function = yhat, titanic_test, titanic_test$fare)
   expect_is(explainer, "explainer")
   expect_is(explainer$y_hat, "numeric")
-  h2o::h2o.shutdown(prompt = FALSE)
+  # h2o::h2o.shutdown(prompt = FALSE)
 })
 
 test_that("automl example", {
@@ -58,7 +57,7 @@ test_that("automl example", {
   data <- DALEX::titanic_imputed
 
   # init h2o
-  h2o::h2o.init()
+  # h2o::h2o.init()
 
   # split the data
   h2o_split <- h2o::h2o.splitFrame(h2o::as.h2o(data))
@@ -81,19 +80,18 @@ test_that("automl example", {
                                      data = test,
                                      y = test$survived,
                                      label = "h2o")
-  
-  testthat::expect_is(explainer, "explainer")
-  testthat::expect_false(class(explainer$model)=="H2OAutoML")
-  h2o::h2o.shutdown(prompt = FALSE)
+
+  expect_is(explainer, "explainer")
+  expect_false(class(explainer$model)=="H2OAutoML")
+  # h2o::h2o.shutdown(prompt = FALSE)
 })
 
 test_that("y is numeric", {
   skip_if_no_java()
   titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
   titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
-  library("DALEX")
-  h2o::h2o.init()
-  h2o::h2o.no_progress()
+  # h2o::h2o.init()
+  # h2o::h2o.no_progress()
   titanic_h2o <- h2o::as.h2o(titanic_train)
   titanic_h2o["survived"] <- h2o::as.factor(titanic_h2o["survived"])
   titanic_test_h2o <- h2o::as.h2o(titanic_test)
