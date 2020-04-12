@@ -37,28 +37,35 @@ could be divided into three areas.
 
 ## Installation
 
-    # Install the development version from GitHub:
-    
-    # it is recommended to install latest version of DALEX from GitHub
-    devtools::install_github("ModelOriented/DALEX")
-    # install.packages("devtools")
-    devtools::install_github("ModelOriented/DALEXtra")
+``` r
+# Install the development version from GitHub:
+
+# it is recommended to install latest version of DALEX from GitHub
+devtools::install_github("ModelOriented/DALEX")
+# install.packages("devtools")
+devtools::install_github("ModelOriented/DALEXtra")
+```
 
 or latest CRAN version
 
-    install.packages("DALEX")
-    install.packages("DALEXtra")
+``` r
+install.packages("DALEX")
+install.packages("DALEXtra")
+```
 
 Other packages useful with explanations.
 
-    devtools::install_github("ModelOriented/ingredients")
-    devtools::install_github("ModelOriented/iBreakDown")
-    devtools::install_github("ModelOriented/shapper")
-    devtools::install_github("ModelOriented/auditor")
+``` r
+devtools::install_github("ModelOriented/ingredients")
+devtools::install_github("ModelOriented/iBreakDown")
+devtools::install_github("ModelOriented/shapper")
+devtools::install_github("ModelOriented/auditor")
+devtools::install_github("ModelOriented/modelStudio")
+```
 
 Above packages can be used along with `explain` object to create
-explanations (ingredients, iBreakDown, shapper) or audit our model
-(auditor).
+explanations (ingredients, iBreakDown, shapper), audit our model
+(auditor) or automate the model exploration process (modelStudio).
 
 # Champion-Challenger analysis
 
@@ -112,17 +119,17 @@ overall performance and we want to know which one should we use.
 plot(plot_data)[[1]]
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- --> Such
-situation is shown in the following plot. Both, `LM` and `RF` models
-have smiliar RMSE, but Funnel Plot shows that if we want to predict
-expensive or cheap apartemnts, we definetly should use `LM` while `RF`
-for average priced apartments. Also without any doubt `LM` is much
-better than `RF` for `Srodmiescie` district. Following use case show us
-how powerfull tool can Funnel Plot be, for example we can compund two or
-models into one based of areas acquired from the Plot and thus improve
-our models. One another advantage of Funnel Plot is that it doesn’t
-require model to be fitted with Variables shown on the plot, as you can
-see, `m2.per.room` is an artificial variable.
+<img src="README_files/figure-gfm/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
+Such situation is shown in the following plot. Both, `LM` and `RF`
+models have smiliar RMSE, but Funnel Plot shows that if we want to
+predict expensive or cheap apartemnts, we definetly should use `LM`
+while `RF` for average priced apartments. Also without any doubt `LM` is
+much better than `RF` for `Srodmiescie` district. Following use case
+show us how powerfull tool can Funnel Plot be, for example we can
+compund two or models into one based of areas acquired from the Plot and
+thus improve our models. One another advantage of Funnel Plot is that it
+doesn’t require model to be fitted with Variables shown on the plot, as
+you can see, `m2.per.room` is an artificial variable.
 
 # Cross langauge comaprison
 
@@ -143,12 +150,16 @@ Python no matter which version was downloaded first.
 ### Windows
 
 Crucial thing is adding conda to PATH environment variable when using
-Windows. You can do it during installation, by marking this
+Windows. You can do it during the installation, by marking this
 checkbox.
+
+<center>
 
 ![](https://raw.githubusercontent.com/ModelOriented/DALEXtra/master/README_files/figure-gfm/anaconda2.png)
 
-or, if conda is already installed, by following [those
+</center>
+
+or, if conda is already installed, follow [those
 instructions](https://stackoverflow.com/a/44597801/9717584).
 
 ### Unix
@@ -160,8 +171,7 @@ While using unix-like OS, adding conda to PATH is not required.
 First we need provide the data, explainer is useless without them. Thing
 is Python object does not store training data so always have to provide
 dataset. Feel free to use those attached to `DALEX` package or those
-stored in `DALEXtra`
-files.
+stored in `DALEXtra` files.
 
 ``` r
 titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
@@ -191,11 +201,11 @@ data = titanic_test[,1:17], y = titanic_test$survived, colorize = FALSE)
     ##   -> model label       :  scikitlearn_model  (  default  )
     ##   -> data              :  524  rows  17  cols 
     ##   -> target variable   :  524  values 
+    ##   -> model_info        :  package reticulate , ver. 1.14 , task classification (  default  ) 
     ##   -> predict function  :  yhat.scikitlearn_model  will be used (  default  )
     ##   -> predicted values  :  numerical, min =  0.02086126 , mean =  0.288584 , max =  0.9119996  
     ##   -> residual function :  difference between y and yhat (  default  )
     ##   -> residuals         :  numerical, min =  -0.8669431 , mean =  0.02248468 , max =  0.9791387  
-    ##   -> model_info        :  package reticulate , ver. 1.13 , task classification (  default  ) 
     ##   A new explainer has been created!
 
 Now with explainer ready we can use any of
@@ -209,39 +219,38 @@ library(DALEX)
 plot(model_performance(explainer))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+<img src="README_files/figure-gfm/unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
 
 ``` r
 library(ingredients)
 plot(feature_importance(explainer))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-5-2.png)<!-- -->
+<img src="README_files/figure-gfm/unnamed-chunk-8-2.png" style="display: block; margin: auto;" />
 
 ``` r
 describe(feature_importance(explainer))
 ```
 
-    ## The number of important variables for scikitlearn_model's prediction is 2 out of 17. 
-    ##  Variables gender.male, gender.female have the highest importantance.
+    ## The number of important variables for scikitlearn_model's prediction is 3 out of 17. 
+    ##  Variables gender.female, gender.male, age have the highest importantance.
 
 ``` r
 library(iBreakDown)
 plot(break_down(explainer, titanic_test[2, 1:17]))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-5-3.png)<!-- -->
+<img src="README_files/figure-gfm/unnamed-chunk-8-3.png" style="display: block; margin: auto;" />
 
 ``` r
 describe(break_down(explainer, titanic_test[2, 1:17]))
 ```
 
     ## Scikitlearn_model predicts, that the prediction for the selected instance is 0.132 which is lower than the average model prediction.
-    ##  
-    ## The most important variables that decrease the prediction are class.3rd, gender.female. 
-    ## The most important variable that increase the prediction is age.
-    ##  
-    ## Other variables are with less importance. The contribution of all other variables is -0.108 .
+    ## 
+    ## The most important variable that decrease the prediction is class.3rd.
+    ## 
+    ## Other variables are with less importance. The contribution of all other variables is -0.108.
 
 ``` r
 library(auditor)
@@ -249,7 +258,7 @@ eval <- model_evaluation(explainer)
 plot_roc(eval)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-5-4.png)<!-- -->
+<img src="README_files/figure-gfm/unnamed-chunk-8-4.png" style="display: block; margin: auto;" />
 
 ``` r
 # Predictions with newdata
@@ -349,5 +358,5 @@ plot(apartments_ai, aspects_on_axis = FALSE, add_importance = TRUE,
 
 # Acknowledgments
 
-Work on this package was financially supported by the ‘NCN Opus grant
-2016/21/B/ST6/02176’.
+Work on this package was financially supported by the `NCN Opus
+grant 2016/21/B/ST6/02176`.

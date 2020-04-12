@@ -1,3 +1,7 @@
+DALEXtra 0.2.2
+----------------------------------------------------------------
+* `explain_h2o()` now supports `model` as `H2OAutoML`
+
 DALEXtra 0.2.1
 ----------------------------------------------------------------
 * Removed h2o::init() from explain_h2o()

@@ -3,7 +3,7 @@ output: github_document
 ---
 
 ```{r setup, include=FALSE, message=FALSE, warning=TRUE}
-knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.align = 'center')
 ```
 
 # DALEXtra <img src="man/figures/logo.png" align="right" width="150"/>
@@ -32,7 +32,7 @@ The `DALEXtra` package is an extension pack for [DALEX](https://modeloriented.gi
 
 ## Installation
 
-```
+```{r eval = FALSE}
 # Install the development version from GitHub:
 
 # it is recommended to install latest version of DALEX from GitHub
@@ -42,21 +42,22 @@ devtools::install_github("ModelOriented/DALEXtra")
 ```
 or latest CRAN version
 
-```
+```{r eval = FALSE}
 install.packages("DALEX")
 install.packages("DALEXtra")
 ```
 
 Other packages useful with explanations.
 
-```
+```{r eval = FALSE}
 devtools::install_github("ModelOriented/ingredients")
 devtools::install_github("ModelOriented/iBreakDown")
 devtools::install_github("ModelOriented/shapper")
 devtools::install_github("ModelOriented/auditor")
+devtools::install_github("ModelOriented/modelStudio")
 ```
 
-Above packages can be used along with `explain` object to create explanations (ingredients, iBreakDown, shapper) or audit our model (auditor).
+Above packages can be used along with `explain` object to create explanations (ingredients, iBreakDown, shapper), audit our model (auditor) or automate the model exploration process (modelStudio). 
 
 # Champion-Challenger analysis
 
@@ -112,11 +113,15 @@ In order to be able to use some features associated with `DALEXtra`, Anaconda in
 
 ### Windows 
 
-Crucial thing is adding conda to PATH environment variable when using Windows. You can do it during installation, by marking this checkbox.
+Crucial thing is adding conda to PATH environment variable when using Windows. You can do it during the installation, by marking this checkbox.
+
+<center>
 
 ![](https://raw.githubusercontent.com/ModelOriented/DALEXtra/master/README_files/figure-gfm/anaconda2.png)
 
-or, if conda is already installed, by following [those instructions](https://stackoverflow.com/a/44597801/9717584).
+</center>
+
+or, if conda is already installed, follow [those instructions](https://stackoverflow.com/a/44597801/9717584).
 
 ### Unix
 
@@ -242,5 +247,5 @@ plot(apartments_ai, aspects_on_axis = FALSE, add_importance = TRUE,
 
 # Acknowledgments
 
-Work on this package was financially supported by the 'NCN Opus grant 2016/21/B/ST6/02176'.
+Work on this package was financially supported by the `NCN Opus grant 2016/21/B/ST6/02176`.
     
