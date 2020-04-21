@@ -79,7 +79,7 @@ jobs:
         if: runner.os == 'Windows'
         run: |
          curl https://cran.r-project.org/bin/windows/contrib/3.6/RCurl_1.98-1.1.zip > RCurl_1.98-1.1.zip
-         tar -xf RCurl_1.98-1.1.zip -C D:/a/_temp/Library/
+         PowerShell Expand-Archive -Path "RCurl_1.98-1.1.zip" -DestinationPath "D:/a/_temp/Library/"
 
       - name: Install dependencies
         run: |
