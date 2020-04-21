@@ -62,28 +62,8 @@ jobs:
           key: ${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('.github/depends.Rds') }}
           restore-keys: ${{ runner.os }}-r-${{ matrix.config.r }}-
 
-      - name: Install system dependencies Linux
-        if: runner.os == 'Linux'
-        env:
-          RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
-        run: |
-          conda
-
-      - name: Install system dependencies OS
-        if: runner.os == 'macOS'
-        run: |
-          conda
-
-      - name: Install system dependencies OS
-        if: runner.os == 'Windows'
-        run: |
-          conda
-
-
       - name: Install dependencies
         run: |
-          options(install.packages.compile.from.source = "always")
-          install.packages(c("glmnet", "RCurl"), dependencies = TRUE, type = "both")
           remotes::install_deps(dependencies = TRUE)
           remotes::install_github("ModelOriented/ingredients")
           remotes::install_github("ModelOriented/iBreakDown")
