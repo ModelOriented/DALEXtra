@@ -88,7 +88,6 @@ jobs:
           remotes::install_github("ModelOriented/iBreakDown")
           remotes::install_github("ModelOriented/DALEX")
           remotes::install_cran("rcmdcheck")
-
         shell: Rscript {0}
 
       - name: Check
