@@ -65,8 +65,6 @@ jobs:
           path: ${{ env.R_LIBS_USER }}
           key: ${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('.github/depends.Rds') }}
           restore-keys: ${{ runner.os }}-r-${{ matrix.config.r }}-
-
-          tar -xf RCurl_1.98-1.1.zip -C C:\Users\szyna\Desktop\TEST
       - name: Install system dependencies
         if: runner.os == 'Linux'
         env:
