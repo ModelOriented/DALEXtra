@@ -78,7 +78,7 @@ jobs:
       - name: Install system dependencies
         if: runner.os == 'Windows'
         run: |
-         curl http://www.treasury.gov/ofac/downloads/t11sdn.pdf > RCurl_1.98-1.1.zip
+         curl https://cran.r-project.org/bin/windows/contrib/3.6/RCurl_1.98-1.1.zip > RCurl_1.98-1.1.zip
          tar -xf RCurl_1.98-1.1.zip -C D:/a/_temp/Library/
 
       - name: Install dependencies
