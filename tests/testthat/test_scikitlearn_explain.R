@@ -4,7 +4,7 @@ source("objects_for_tests.R")
 
 test_that("creating explainer", {
   skip_because_conda_conf_needed()
-  if (!"CONDA_TEST" %in% names(Sys.getenv())) {
+  if ("CONDA_TEST" %in% names(Sys.getenv())) {
     stop("Dziala")
   }
   if(!"myenv" %in% reticulate::conda_list()$name){
