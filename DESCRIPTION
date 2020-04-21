@@ -42,17 +42,18 @@ Imports:
   ggdendro,
   gridExtra
 Suggests:
-  auditor,
-  ingredients,
-  gbm,
-  ggrepel,
-  h2o,
-  mlr,
-  mlr3,
-  randomForest,
-  rmarkdown,
-  rpart,
-  xgboost,
-  testthat
+    auditor,
+    ingredients,
+    gbm,
+    ggrepel,
+    h2o,
+    mlr,
+    mlr3,
+    randomForest,
+    rmarkdown,
+    rpart,
+    xgboost,
+    testthat,
+    covr
 URL: https://ModelOriented.github.io/DALEXtra/, https://github.com/ModelOriented/DALEXtra
 BugReports: https://github.com/ModelOriented/DALEXtra/issues
