@@ -1,8 +1,8 @@
 
 # DALEXtra <img src="man/figures/logo.png" align="right" width="150"/>
 
-[![Build
-Status](https://travis-ci.org/ModelOriented/DALEXtra.svg?branch=master)](https://travis-ci.org/ModelOriented/DALEXtra)
+[![R build
+status](https://github.com/maksymiuks/DALEXtra/workflows/R-CMD-check/badge.svg)](https://github.com/maksymiuks/DALEXtra/actions?query=workflow%3AR-CMD-check)
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/ModelOriented/DALEXtra/master.svg)](https://codecov.io/github/ModelOriented/DALEXtra?branch=master)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/DALEXtra)](https://cran.r-project.org/package=DALEXtra)
@@ -30,7 +30,6 @@ could be divided into three areas.
         [DrWhy.AI](https://github.com/ModelOriented/DrWhy) family.
       - Currently supported are **Python** *scikit-learn* and *keras*,
         **Java** *h2o* and *mljar*, **R** *mlr* and *mlr3*.
-      - [Vignette](https://raw.githack.com/pbiecek/DALEX_docs/master/vignettes/How-to-use-DALEXtra-to-explain-and-visualize-scikitlearn-models.html) that explains how to explain Python models
   - Aspect Importance analysis
       - Provides instance-level explanations for the groups of
         explanatory variables.
@@ -171,7 +170,8 @@ While using unix-like OS, adding conda to PATH is not required.
 First we need provide the data, explainer is useless without them. Thing
 is Python object does not store training data so always have to provide
 dataset. Feel free to use those attached to `DALEX` package or those
-stored in `DALEXtra` files.
+stored in `DALEXtra`
+files.
 
 ``` r
 titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
@@ -201,7 +201,7 @@ data = titanic_test[,1:17], y = titanic_test$survived, colorize = FALSE)
     ##   -> model label       :  scikitlearn_model  (  default  )
     ##   -> data              :  524  rows  17  cols 
     ##   -> target variable   :  524  values 
-    ##   -> model_info        :  package reticulate , ver. 1.14 , task classification (  default  ) 
+    ##   -> model_info        :  package reticulate , ver. 1.15 , task classification (  default  ) 
     ##   -> predict function  :  yhat.scikitlearn_model  will be used (  default  )
     ##   -> predicted values  :  numerical, min =  0.02086126 , mean =  0.288584 , max =  0.9119996  
     ##   -> residual function :  difference between y and yhat (  default  )
@@ -232,7 +232,7 @@ plot(feature_importance(explainer))
 describe(feature_importance(explainer))
 ```
 
-    ## The number of important variables for scikitlearn_model's prediction is 3 out of 17. 
+    ## The number of important variables for scikitlearn_model's prediction is 4 out of 17. 
     ##  Variables gender.female, gender.male, age have the highest importantance.
 
 ``` r

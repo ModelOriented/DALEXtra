@@ -16,3 +16,5 @@ README_files
 README.rmd
 ^CRAN-RELEASE$
 cran-comments.md
+^codecov\.yml$
+^\.github$
