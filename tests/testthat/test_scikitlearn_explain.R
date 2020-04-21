@@ -3,9 +3,6 @@ context("explain_scikitlearn")
 source("objects_for_tests.R")
 
 test_that("creating explainer", {
-  if ("CONDA_TEST" %in% names(Sys.getenv())) {
-    stop("Dziala")
-  }
   skip_because_conda_conf_needed()
   if(!"myenv" %in% reticulate::conda_list()$name){
        create_env(system.file("extdata", "testing_environment.yml", package = "DALEXtra"))
