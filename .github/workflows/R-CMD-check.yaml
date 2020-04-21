@@ -73,12 +73,7 @@ jobs:
       - name: Install system dependencies OS
         if: runner.os == 'macOS'
         run: |
-          export PATH="$HOME/miniconda/bin:$PATH"
-          hash -r
-          conda config --set always_yes yes --set changeps1 no
-          export MLJAR_TOKEN=example
-          export JAVA=example
-          export CONDA_TEST=example
+          conda
 
 
       - name: Install dependencies
@@ -88,7 +83,7 @@ jobs:
           remotes::install_github("ModelOriented/iBreakDown")
           remotes::install_github("ModelOriented/DALEX")
           remotes::install_cran("rcmdcheck")
-          install.pacakges("glmnet")
+          install.packages("glmnet")
         shell: Rscript {0}
 
       - name: Check
