@@ -70,7 +70,7 @@ jobs:
       - name: Install dependencies
         if: runner.os == 'Windows'
         run: |
-          install.packages("RCurl", type = "source")
+          install.packages("https://cran.r-project.org/bin/windows/contrib/3.6/RCurl_1.98-1.1.zip", repos = NULL)
           remotes::install_deps(dependencies = TRUE)
           remotes::install_github("ModelOriented/ingredients")
           remotes::install_github("ModelOriented/iBreakDown")
