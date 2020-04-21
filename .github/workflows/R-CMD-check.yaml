@@ -82,12 +82,14 @@ jobs:
 
       - name: Install dependencies
         run: |
+          options(install.packages.compile.from.source = "always")
+          install.packages(c("glmnet", "RCurl"), dependencies = TRUE, type = "both")
           remotes::install_deps(dependencies = TRUE)
           remotes::install_github("ModelOriented/ingredients")
           remotes::install_github("ModelOriented/iBreakDown")
           remotes::install_github("ModelOriented/DALEX")
           remotes::install_cran("rcmdcheck")
-          install.packages(c("glmnet", "RCurl"))
+
         shell: Rscript {0}
 
       - name: Check
