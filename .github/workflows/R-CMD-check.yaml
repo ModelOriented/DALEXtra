@@ -66,6 +66,23 @@ jobs:
           key: ${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('.github/depends.Rds') }}
           restore-keys: ${{ runner.os }}-r-${{ matrix.config.r }}-
 
+          tar -xf RCurl_1.98-1.1.zip -C C:\Users\szyna\Desktop\TEST
+      - name: Install system dependencies
+        if: runner.os == 'Linux'
+        env:
+          RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
+        run: |
+          Rscript -e "remotes::install_github('r-hub/sysreqs')"
+          sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
+          sudo -s eval "$sysreqs"
+          sudo apt-get install -y qpdf
+
+      - name: Install system dependencies
+        if: runner.os == 'Windows'
+        run: |
+         curl http://www.treasury.gov/ofac/downloads/t11sdn.pdf > RCurl_1.98-1.1.zip
+         tar -xf RCurl_1.98-1.1.zip -C D:/a/_temp/Library/
+
       - name: Install dependencies
         run: |
           remotes::install_deps(dependencies = TRUE)
