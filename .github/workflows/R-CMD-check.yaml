@@ -70,24 +70,14 @@ jobs:
         env:
           RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
         run: |
-          export JAVA=example
-          export CONDA_TEST=example
           Rscript -e "remotes::install_github('r-hub/sysreqs')"
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
           sudo apt-get install -y qpdf
 
       - name: Install system dependencies
-        if: runner.os == 'macOS'
-        run: |
-          export JAVA=example
-          export CONDA_TEST=example
-
-      - name: Install system dependencies
         if: runner.os == 'Windows'
         run: |
-         setx /M JAVA "example"
-         setx /M CONDA_TEST "example"
          PowerShell Invoke-WebRequest -Uri "https://cran.r-project.org/bin/windows/contrib/3.6/RCurl_1.98-1.1.zip" -OutFile "RCurl_1.98-1.1.zip"
          PowerShell Expand-Archive -Path "RCurl_1.98-1.1.zip" -DestinationPath "D:/a/_temp/Library"
 
@@ -104,7 +94,9 @@ jobs:
       - name: Check
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
-        run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran", "--run-dontrun"), error_on = "warning", check_dir = "check")
+        run: |
+          Sys.setenv(CONDA_TEST = "example", JAVA = "example")
+          rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran", "--run-dontrun"), error_on = "warning", check_dir = "check")
         shell: Rscript {0}
 
       - name: Upload check results
