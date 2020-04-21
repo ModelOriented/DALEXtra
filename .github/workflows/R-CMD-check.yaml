@@ -74,16 +74,16 @@ jobs:
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
           sudo apt-get install -y qpdf
-          - export JAVA=example
-          - export CONDA_TEST=example
+          export JAVA=example
+          export CONDA_TEST=example
 
       - name: Install system dependencies
         if: runner.os == 'macOS'
         env:
           RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
         run: |
-          - export JAVA=example
-          - export CONDA_TEST=example
+          export JAVA=example
+          export CONDA_TEST=example
 
       - name: Install system dependencies
         if: runner.os == 'Windows'
