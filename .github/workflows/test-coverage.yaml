@@ -2,6 +2,7 @@ on:
   push:
     branches:
       - master
+      - dev-codecov
   pull_request:
     branches:
       - master
@@ -10,13 +11,24 @@ name: test-coverage
 
 jobs:
   test-coverage:
-    runs-on: macOS-latest
+    runs-on: ubuntu-16.04
     steps:
+      - uses: actions/checkout@master
+      - uses: r-lib/actions/setup-pandoc@v1
+        with:
+          pandoc-version: '2.7.3' # The pandoc version to download (if necessary) and use.
+      - run: echo "# Test" | pandoc -t html
       - uses: actions/checkout@v2
-
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      - uses: s-weigand/setup-conda@v1
+        with:
+          activate-conda: false
+      - run: conda --version
+      - run: which python
       - uses: r-lib/actions/setup-r@master
-
-      - uses: r-lib/actions/setup-pandoc@master
 
       - name: Query dependencies
         run: |
@@ -30,14 +42,27 @@ jobs:
           path: ${{ env.R_LIBS_USER }}
           key: macOS-r-3.6-${{ hashFiles('.github/depends.Rds') }}
           restore-keys: macOS-r-3.6-
+      - name: Install system dependencies
+        env:
+          RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
+        run: |
+          Rscript -e "remotes::install_github('r-hub/sysreqs')"
+          sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
+          sudo -s eval "$sysreqs"
+          sudo apt-get install -y qpdf
 
       - name: Install dependencies
         run: |
           install.packages(c("remotes"))
           remotes::install_deps(dependencies = TRUE)
+          remotes::install_github("ModelOriented/ingredients")
+          remotes::install_github("ModelOriented/iBreakDown")
+          remotes::install_github("ModelOriented/DALEX")
           remotes::install_cran("covr")
         shell: Rscript {0}
 
       - name: Test coverage
-        run: covr::codecov()
+        run: |
+          Sys.setenv(CONDA_TEST = "example", JAVA = "example")
+          covr::codecov()
         shell: Rscript {0}
