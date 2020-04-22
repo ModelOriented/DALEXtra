@@ -46,8 +46,6 @@ jobs:
         run: |
           install.packages(c("remotes"))
           remotes::install_deps(dependencies = TRUE)
-          remotes::install_github("ModelOriented/ingredients")
-          remotes::install_github("ModelOriented/iBreakDown")
           remotes::install_github("ModelOriented/DALEX")
           remotes::install_cran("covr")
         shell: Rscript {0}
