@@ -1,5 +1,7 @@
 context("funnel_measure")
 
+
+test_that("funnel_measure parameters", {
 library("mlr")
 task <- makeRegrTask(
   id = "R",
@@ -31,28 +33,23 @@ funnel_measure(explainer_lm, list(explainer_rf, explainer_gbm),
 
 
 
-test_that("funnel_measure parameters", {
+
   expect_error(funnel_measure(model_lm, list(explainer_rf, explainer_gbm),
-                              nbins = 5, measure_function = DALEX::loss_root_mean_square)
-  )
-})
+                              nbins = 5, measure_function = DALEX::loss_root_mean_square))
 
-test_that("funnel_measure parameters", {
   expect_true(is.list(funnel_measure(explainer_lm, list(explainer_rf, explainer_gbm),
-                                     nbins = 5, measure_function = DALEX::loss_root_mean_square)
-  ))
-})
+                                     nbins = 5, measure_function = DALEX::loss_root_mean_square)))
 
-test_that("funnel_measure parameters", {
   expect_identical(class(funnel_measure(explainer_lm, list(explainer_rf, explainer_gbm),
                                         nbins = 5, measure_function = DALEX::loss_root_mean_square)
   ), "funnel_measure")
-})
 
-test_that("funnel_plot", {
   plot_data <- funnel_measure(explainer_lm, list(explainer_rf, explainer_gbm),
                               nbins = 5, measure_function = DALEX::loss_root_mean_square)
   expect_is(plot(plot_data), "list")
+
 })
+
+
 
 

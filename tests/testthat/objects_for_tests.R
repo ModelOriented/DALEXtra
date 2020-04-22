@@ -23,3 +23,10 @@ skip_if_no_java <- function() {
     skip("JAVA entry needed for tests")
   }
 }
+
+skip_if_osx <- function() {
+# Needed becasue conda cannot remove pacakges while github actions osx build
+  if (Sys.info()["sysname"] == "Darwin") {
+    skip("Cannot test it with osx")
+  }
+}
