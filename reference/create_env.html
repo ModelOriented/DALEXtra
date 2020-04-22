@@ -178,9 +178,9 @@ This functions allow user to create conda virtual environment based on provided 
     <p>Name of created virtual env.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-  <span class='fu'>create_env</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"testing_environment.yml"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))</div><div class='output co'>#&gt; <span class='error'>Error in create_env(system.file("extdata", "testing_environment.yml",     package = "DALEXtra")): Conda not found</span></div><div class='input'># }
-</div></pre>
+    <pre class="examples"><span class='co'># \donttest{</span>
+  <span class='fu'>create_env</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"testing_environment.yml"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

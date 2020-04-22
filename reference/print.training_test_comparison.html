@@ -174,33 +174,16 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+    <pre class="examples"><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>DALEXtra</span>)
 <span class='no'>titanic_train</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_train.csv"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))
 <span class='no'>titanic_test</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_test.csv"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))
-<span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.init.html'>h2o.init</a></span>()</div><div class='output co'>#&gt;  Connection successful!
-#&gt; 
-#&gt; R is connected to the H2O cluster: 
-#&gt;     H2O cluster uptime:         26 seconds 441 milliseconds 
-#&gt;     H2O cluster timezone:       UTC 
-#&gt;     H2O data parsing timezone:  UTC 
-#&gt;     H2O cluster version:        3.30.0.1 
-#&gt;     H2O cluster version age:    18 days  
-#&gt;     H2O cluster name:           H2O_started_from_R_runner_ssh825 
-#&gt;     H2O cluster total nodes:    1 
-#&gt;     H2O cluster total memory:   2.66 GB 
-#&gt;     H2O cluster total cores:    4 
-#&gt;     H2O cluster allowed cores:  4 
-#&gt;     H2O cluster healthy:        TRUE 
-#&gt;     H2O Connection ip:          localhost 
-#&gt;     H2O Connection port:        54321 
-#&gt;     H2O Connection proxy:       NA 
-#&gt;     H2O Internal Security:      FALSE 
-#&gt;     H2O API Extensions:         Amazon S3, XGBoost, Algos, AutoML, Core V3, TargetEncoder, Core V4 
-#&gt;     R Version:                  R version 3.6.3 (2020-02-29) 
-#&gt; </div><div class='input'><span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.no_progress.html'>h2o.no_progress</a></span>()
-<span class='no'>titanic_h2o</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.h2o.html'>as.h2o</a></span>(<span class='no'>titanic_train</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='input'><span class='no'>titanic_h2o</span>[<span class='st'>"survived"</span>] <span class='kw'>&lt;-</span> <span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.factor.html'>as.factor</a></span>(<span class='no'>titanic_h2o</span>[<span class='st'>"survived"</span>])
-<span class='no'>titanic_test_h2o</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.h2o.html'>as.h2o</a></span>(<span class='no'>titanic_test</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='input'><span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.gbm.html'>h2o.gbm</a></span>(
+<span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.init.html'>h2o.init</a></span>()
+<span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.no_progress.html'>h2o.no_progress</a></span>()
+<span class='no'>titanic_h2o</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.h2o.html'>as.h2o</a></span>(<span class='no'>titanic_train</span>)
+<span class='no'>titanic_h2o</span>[<span class='st'>"survived"</span>] <span class='kw'>&lt;-</span> <span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.factor.html'>as.factor</a></span>(<span class='no'>titanic_h2o</span>[<span class='st'>"survived"</span>])
+<span class='no'>titanic_test_h2o</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.h2o.html'>as.h2o</a></span>(<span class='no'>titanic_test</span>)
+<span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>h2o</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.gbm.html'>h2o.gbm</a></span>(
   <span class='kw'>training_frame</span> <span class='kw'>=</span> <span class='no'>titanic_h2o</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='st'>"survived"</span>,
   <span class='kw'>distribution</span> <span class='kw'>=</span> <span class='st'>"bernoulli"</span>,
@@ -209,14 +192,8 @@
   <span class='kw'>min_rows</span> <span class='kw'>=</span>  <span class='fl'>12</span>,
   <span class='kw'>learn_rate</span> <span class='kw'>=</span> <span class='fl'>0.001</span>
 )
-<span class='no'>explainer_h2o</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='explain_h2o.html'>explain_h2o</a></span>(<span class='no'>model</span>, <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>], <span class='no'>titanic_test</span>[,<span class='fl'>18</span>])</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
-#&gt;   -&gt; model label       :  H2OBinomialModel  ( <span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; data              :  524  rows  17  cols 
-#&gt;   -&gt; target variable   :  524  values 
-#&gt;   -&gt; model_info        :  package h2o , ver. 3.30.0.1 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
-#&gt;   -&gt; predict function  :  yhat.H2OBinomialModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )</div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt;   -&gt; predicted values  :  numerical, min =  0.4123364 , mean =  0.6700466 , max =  0.8005615  
-#&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )</div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt;   -&gt; residuals         :  numerical, min =  -0.8005615 , mean =  -0.3589779 , max =  0.5876636  
-#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
+<span class='no'>explainer_h2o</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='explain_h2o.html'>explain_h2o</a></span>(<span class='no'>model</span>, <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>], <span class='no'>titanic_test</span>[,<span class='fl'>18</span>])
+
 <span class='no'>explainer_scikit</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='explain_scikitlearn.html'>explain_scikitlearn</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>,
                                                     <span class='st'>"scikitlearn.pkl"</span>,
                                                     <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>),
@@ -224,7 +201,8 @@
                                                           <span class='st'>"testing_environment.yml"</span>,
                                                           <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>),
                                         <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>],
-                                        <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>titanic_test</span>$<span class='no'>survived</span>)</div><div class='output co'>#&gt; <span class='error'>Error in create_env(yml, condaenv): Conda not found</span></div><div class='input'>
+                                        <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>titanic_test</span>$<span class='no'>survived</span>)
+
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr"</span>)
 <span class='no'>task</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://mlr.mlr-org.com/reference/ClassifTask.html'>makeClassifTask</a></span>(
   <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"R"</span>,
@@ -245,200 +223,13 @@
   <span class='kw'>predict.type</span> <span class='kw'>=</span> <span class='st'>"prob"</span>
 )
 <span class='no'>gbm</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://mlr.mlr-org.com/reference/train.html'>train</a></span>(<span class='no'>learner</span>, <span class='no'>task</span>)
-<span class='no'>explainer_mlr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='explain_mlr.html'>explain_mlr</a></span>(<span class='no'>gbm</span>, <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>], <span class='no'>titanic_test</span>[,<span class='fl'>18</span>])</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
-#&gt;   -&gt; model label       :  WrappedModel  ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; data              :  524  rows  17  cols 
-#&gt;   -&gt; target variable   :  524  values 
-#&gt;   -&gt; model_info        :  package mlr , ver. 2.17.1 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
-#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; predicted values  :  numerical, min =  0.4352853 , mean =  0.6677554 , max =  0.7298008  
-#&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; residuals         :  numerical, min =  -0.7298008 , mean =  -0.3566867 , max =  0.5647147  
-#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
+<span class='no'>explainer_mlr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='explain_mlr.html'>explain_mlr</a></span>(<span class='no'>gbm</span>, <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>], <span class='no'>titanic_test</span>[,<span class='fl'>18</span>])
+
 <span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='trainig_test_comparison.html'>training_test_comparison</a></span>(<span class='no'>explainer_scikit</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>explainer_h2o</span>, <span class='no'>explainer_mlr</span>),
                                  <span class='kw'>training_data</span> <span class='kw'>=</span> <span class='no'>titanic_train</span>[,-<span class='fl'>18</span>],
-                                 <span class='kw'>training_y</span> <span class='kw'>=</span> <span class='no'>titanic_train</span>[,<span class='fl'>18</span>])</div><div class='output co'>#&gt; <span class='error'>Error in training_test_comparison(explainer_scikit, list(explainer_h2o,     explainer_mlr), training_data = titanic_train[, -18], training_y = titanic_train[,     18]): object 'explainer_scikit' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>data</span>)</div><div class='output co'>#&gt; function (..., list = character(), package = NULL, lib.loc = NULL, 
-#&gt;     verbose = getOption("verbose"), envir = .GlobalEnv, overwrite = TRUE) 
-#&gt; {
-#&gt;     fileExt &lt;- function(x) {
-#&gt;         db &lt;- grepl("\\.[^.]+\\.(gz|bz2|xz)$", x)
-#&gt;         ans &lt;- sub(".*\\.", "", x)
-#&gt;         ans[db] &lt;- sub(".*\\.([^.]+\\.)(gz|bz2|xz)$", "\\1\\2", 
-#&gt;             x[db])
-#&gt;         ans
-#&gt;     }
-#&gt;     names &lt;- c(as.character(substitute(list(...))[-1L]), list)
-#&gt;     if (!is.null(package)) {
-#&gt;         if (!is.character(package)) 
-#&gt;             stop("'package' must be a character string or NULL")
-#&gt;         if (any(package %in% "base")) 
-#&gt;             warning("datasets have been moved from package 'base' to package 'datasets'")
-#&gt;         if (any(package %in% "stats")) 
-#&gt;             warning("datasets have been moved from package 'stats' to package 'datasets'")
-#&gt;         package[package %in% c("base", "stats")] &lt;- "datasets"
-#&gt;     }
-#&gt;     paths &lt;- find.package(package, lib.loc, verbose = verbose)
-#&gt;     if (is.null(lib.loc)) 
-#&gt;         paths &lt;- c(path.package(package, TRUE), if (!length(package)) getwd(), 
-#&gt;             paths)
-#&gt;     paths &lt;- unique(normalizePath(paths[file.exists(paths)]))
-#&gt;     paths &lt;- paths[dir.exists(file.path(paths, "data"))]
-#&gt;     dataExts &lt;- tools:::.make_file_exts("data")
-#&gt;     if (length(names) == 0L) {
-#&gt;         db &lt;- matrix(character(), nrow = 0L, ncol = 4L)
-#&gt;         for (path in paths) {
-#&gt;             entries &lt;- NULL
-#&gt;             packageName &lt;- if (file_test("-f", file.path(path, 
-#&gt;                 "DESCRIPTION"))) 
-#&gt;                 basename(path)
-#&gt;             else "."
-#&gt;             if (file_test("-f", INDEX &lt;- file.path(path, "Meta", 
-#&gt;                 "data.rds"))) {
-#&gt;                 entries &lt;- readRDS(INDEX)
-#&gt;             }
-#&gt;             else {
-#&gt;                 dataDir &lt;- file.path(path, "data")
-#&gt;                 entries &lt;- tools::list_files_with_type(dataDir, 
-#&gt;                   "data")
-#&gt;                 if (length(entries)) {
-#&gt;                   entries &lt;- unique(tools::file_path_sans_ext(basename(entries)))
-#&gt;                   entries &lt;- cbind(entries, "")
-#&gt;                 }
-#&gt;             }
-#&gt;             if (NROW(entries)) {
-#&gt;                 if (is.matrix(entries) &amp;&amp; ncol(entries) == 2L) 
-#&gt;                   db &lt;- rbind(db, cbind(packageName, dirname(path), 
-#&gt;                     entries))
-#&gt;                 else warning(gettextf("data index for package %s is invalid and will be ignored", 
-#&gt;                   sQuote(packageName)), domain = NA, call. = FALSE)
-#&gt;             }
-#&gt;         }
-#&gt;         colnames(db) &lt;- c("Package", "LibPath", "Item", "Title")
-#&gt;         footer &lt;- if (missing(package)) 
-#&gt;             paste0("Use ", sQuote(paste("data(package =", ".packages(all.available = TRUE))")), 
-#&gt;                 "\n", "to list the data sets in all *available* packages.")
-#&gt;         else NULL
-#&gt;         y &lt;- list(title = "Data sets", header = NULL, results = db, 
-#&gt;             footer = footer)
-#&gt;         class(y) &lt;- "packageIQR"
-#&gt;         return(y)
-#&gt;     }
-#&gt;     paths &lt;- file.path(paths, "data")
-#&gt;     for (name in names) {
-#&gt;         found &lt;- FALSE
-#&gt;         for (p in paths) {
-#&gt;             tmp_env &lt;- if (overwrite) 
-#&gt;                 envir
-#&gt;             else new.env()
-#&gt;             if (file_test("-f", file.path(p, "Rdata.rds"))) {
-#&gt;                 rds &lt;- readRDS(file.path(p, "Rdata.rds"))
-#&gt;                 if (name %in% names(rds)) {
-#&gt;                   found &lt;- TRUE
-#&gt;                   if (verbose) 
-#&gt;                     message(sprintf("name=%s:\t found in Rdata.rds", 
-#&gt;                       name), domain = NA)
-#&gt;                   thispkg &lt;- sub(".*/([^/]*)/data$", "\\1", p)
-#&gt;                   thispkg &lt;- sub("_.*$", "", thispkg)
-#&gt;                   thispkg &lt;- paste0("package:", thispkg)
-#&gt;                   objs &lt;- rds[[name]]
-#&gt;                   lazyLoad(file.path(p, "Rdata"), envir = tmp_env, 
-#&gt;                     filter = function(x) x %in% objs)
-#&gt;                   break
-#&gt;                 }
-#&gt;                 else if (verbose) 
-#&gt;                   message(sprintf("name=%s:\t NOT found in names() of Rdata.rds, i.e.,\n\t%s\n", 
-#&gt;                     name, paste(names(rds), collapse = ",")), 
-#&gt;                     domain = NA)
-#&gt;             }
-#&gt;             if (file_test("-f", file.path(p, "Rdata.zip"))) {
-#&gt;                 warning("zipped data found for package ", sQuote(basename(dirname(p))), 
-#&gt;                   ".\nThat is defunct, so please re-install the package.", 
-#&gt;                   domain = NA)
-#&gt;                 if (file_test("-f", fp &lt;- file.path(p, "filelist"))) 
-#&gt;                   files &lt;- file.path(p, scan(fp, what = "", quiet = TRUE))
-#&gt;                 else {
-#&gt;                   warning(gettextf("file 'filelist' is missing for directory %s", 
-#&gt;                     sQuote(p)), domain = NA)
-#&gt;                   next
-#&gt;                 }
-#&gt;             }
-#&gt;             else {
-#&gt;                 files &lt;- list.files(p, full.names = TRUE)
-#&gt;             }
-#&gt;             files &lt;- files[grep(name, files, fixed = TRUE)]
-#&gt;             if (length(files) &gt; 1L) {
-#&gt;                 o &lt;- match(fileExt(files), dataExts, nomatch = 100L)
-#&gt;                 paths0 &lt;- dirname(files)
-#&gt;                 paths0 &lt;- factor(paths0, levels = unique(paths0))
-#&gt;                 files &lt;- files[order(paths0, o)]
-#&gt;             }
-#&gt;             if (length(files)) {
-#&gt;                 for (file in files) {
-#&gt;                   if (verbose) 
-#&gt;                     message("name=", name, ":\t file= ...", .Platform$file.sep, 
-#&gt;                       basename(file), "::\t", appendLF = FALSE, 
-#&gt;                       domain = NA)
-#&gt;                   ext &lt;- fileExt(file)
-#&gt;                   if (basename(file) != paste0(name, ".", ext)) 
-#&gt;                     found &lt;- FALSE
-#&gt;                   else {
-#&gt;                     found &lt;- TRUE
-#&gt;                     zfile &lt;- file
-#&gt;                     zipname &lt;- file.path(dirname(file), "Rdata.zip")
-#&gt;                     if (file.exists(zipname)) {
-#&gt;                       Rdatadir &lt;- tempfile("Rdata")
-#&gt;                       dir.create(Rdatadir, showWarnings = FALSE)
-#&gt;                       topic &lt;- basename(file)
-#&gt;                       rc &lt;- .External(C_unzip, zipname, topic, 
-#&gt;                         Rdatadir, FALSE, TRUE, FALSE, FALSE)
-#&gt;                       if (rc == 0L) 
-#&gt;                         zfile &lt;- file.path(Rdatadir, topic)
-#&gt;                     }
-#&gt;                     if (zfile != file) 
-#&gt;                       on.exit(unlink(zfile))
-#&gt;                     switch(ext, R = , r = {
-#&gt;                       library("utils")
-#&gt;                       sys.source(zfile, chdir = TRUE, envir = tmp_env)
-#&gt;                     }, RData = , rdata = , rda = load(zfile, 
-#&gt;                       envir = tmp_env), TXT = , txt = , tab = , 
-#&gt;                       tab.gz = , tab.bz2 = , tab.xz = , txt.gz = , 
-#&gt;                       txt.bz2 = , txt.xz = assign(name, read.table(zfile, 
-#&gt;                         header = TRUE, as.is = FALSE), envir = tmp_env), 
-#&gt;                       CSV = , csv = , csv.gz = , csv.bz2 = , 
-#&gt;                       csv.xz = assign(name, read.table(zfile, 
-#&gt;                         header = TRUE, sep = ";", as.is = FALSE), 
-#&gt;                         envir = tmp_env), found &lt;- FALSE)
-#&gt;                   }
-#&gt;                   if (found) 
-#&gt;                     break
-#&gt;                 }
-#&gt;                 if (verbose) 
-#&gt;                   message(if (!found) 
-#&gt;                     "*NOT* ", "found", domain = NA)
-#&gt;             }
-#&gt;             if (found) 
-#&gt;                 break
-#&gt;         }
-#&gt;         if (!found) {
-#&gt;             warning(gettextf("data set %s not found", sQuote(name)), 
-#&gt;                 domain = NA)
-#&gt;         }
-#&gt;         else if (!overwrite) {
-#&gt;             for (o in ls(envir = tmp_env, all.names = TRUE)) {
-#&gt;                 if (exists(o, envir = envir, inherits = FALSE)) 
-#&gt;                   warning(gettextf("an object named %s already exists and will not be overwritten", 
-#&gt;                     sQuote(o)))
-#&gt;                 else assign(o, get(o, envir = tmp_env, inherits = FALSE), 
-#&gt;                   envir = envir)
-#&gt;             }
-#&gt;             rm(tmp_env)
-#&gt;         }
-#&gt;     }
-#&gt;     invisible(names)
-#&gt; }
-#&gt; &lt;bytecode: 0x7fdbd69d1930&gt;
-#&gt; &lt;environment: namespace:utils&gt;</div><div class='input'># }
-</div></span></pre>
+                                 <span class='kw'>training_y</span> <span class='kw'>=</span> <span class='no'>titanic_train</span>[,<span class='fl'>18</span>])
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>data</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

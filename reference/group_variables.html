@@ -197,18 +197,9 @@ see <code><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></code> method
     <p>list of aspects</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"DALEX"</span>)
+    <pre class="examples"><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"DALEX"</span>)
 <span class='no'>dragons_data</span> <span class='kw'>&lt;-</span> <span class='no'>dragons</span>[,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>3</span>,<span class='fl'>4</span>,<span class='fl'>7</span>,<span class='fl'>8</span>)]
-<span class='fu'>group_variables</span>(<span class='no'>dragons_data</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>clust_method</span> <span class='kw'>=</span> <span class='st'>"complete"</span>)</div><div class='output co'>#&gt; $aspect.group1
-#&gt; [1] "height" "weight"
-#&gt; 
-#&gt; $aspect.group2
-#&gt; [1] "scars"       "life_length"
-#&gt; 
-#&gt; $aspect.group3
-#&gt; [1] "number_of_lost_teeth"
-#&gt; </div><div class='input'>
-</div></pre>
+<span class='fu'>group_variables</span>(<span class='no'>dragons_data</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>clust_method</span> <span class='kw'>=</span> <span class='st'>"complete"</span>)</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

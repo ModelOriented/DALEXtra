@@ -230,15 +230,13 @@ value of children and node aspect importance values</p></td>
     <p>ggplot</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>DALEX</span>)
+    <pre class="examples"><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>DALEX</span>)
 <span class='no'>apartments_num</span> <span class='kw'>&lt;-</span> <span class='no'>apartments</span>[,<span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='no'>apartments</span>, <span class='no'>is.numeric</span>))]
 <span class='no'>apartments_num_lm_model</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span>(<span class='no'>m2.price</span> ~ <span class='no'>.</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>apartments_num</span>)
 <span class='no'>apartments_num_new_observation</span> <span class='kw'>&lt;-</span> <span class='no'>apartments_num</span>[<span class='fl'>2</span>,-<span class='fl'>1</span>]
 <span class='no'>apartments_num_mod</span> <span class='kw'>&lt;-</span> <span class='no'>apartments_num</span>[,-<span class='fl'>1</span>]
 <span class='fu'>plot_aspects_importance_grouping</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>apartments_num_lm_model</span>,
-<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>apartments_num_mod</span>, <span class='kw'>new_observation</span> <span class='kw'>=</span> <span class='no'>apartments_num_new_observation</span>)</div><div class='img'><img src='plot_aspects_importance_grouping-1.png' alt='' width='700' height='433' /></div><div class='input'>
-
-</div></pre>
+<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>apartments_num_mod</span>, <span class='kw'>new_observation</span> <span class='kw'>=</span> <span class='no'>apartments_num_new_observation</span>)</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
