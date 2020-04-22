@@ -2,7 +2,6 @@ on:
   push:
     branches:
       - master
-      - dev-codecov
   pull_request:
     branches:
       - master
@@ -11,6 +10,7 @@ name: test-coverage
 
 jobs:
   test-coverage:
+
     runs-on: ubuntu-16.04
     steps:
       - uses: actions/checkout@master
@@ -29,12 +29,12 @@ jobs:
       - run: conda --version
       - run: which python
       - uses: r-lib/actions/setup-r@master
-
       - name: Query dependencies
         run: |
           install.packages('remotes')
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
         shell: Rscript {0}
+
 
       - name: Install system dependencies
         if: runner.os == 'Linux'
@@ -45,8 +45,7 @@ jobs:
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
           sudo apt-get install -y qpdf
-
-
+          
       - name: Cache R packages
         uses: actions/cache@v1
         with:
