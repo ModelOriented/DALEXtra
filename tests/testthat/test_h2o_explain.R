@@ -9,7 +9,6 @@ test_that("creating explainer classif", {
   titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
   titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
   library("DALEX")
-  h2o::h2o.init()
   h2o::h2o.no_progress()
   titanic_h2o <- h2o::as.h2o(titanic_train)
   titanic_h2o["survived"] <- h2o::as.factor(titanic_h2o["survived"])
