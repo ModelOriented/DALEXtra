@@ -5,7 +5,7 @@ on:
 name: pkgdown
 
 jobs:
-  test-coverage:
+  pkgdown:
     runs-on: ubuntu-16.04
     steps:
       - uses: actions/checkout@master
@@ -52,7 +52,8 @@ jobs:
       - name: Install dependencies
         run: |
           remotes::install_deps(dependencies = TRUE)
-          remotes::install_cran("covr")
+          remotes::install_dev("pkgdown")
+          remotes::install_github("ModelOriented/DrWhyTemplate")
         shell: Rscript {0}
 
 
