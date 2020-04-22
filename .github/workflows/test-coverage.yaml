@@ -42,15 +42,6 @@ jobs:
           path: ${{ env.R_LIBS_USER }}
           key: macOS-r-3.6-${{ hashFiles('.github/depends.Rds') }}
           restore-keys: macOS-r-3.6-
-      - name: Install system dependencies
-        env:
-          RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
-        run: |
-          Rscript -e "remotes::install_github('r-hub/sysreqs')"
-          sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
-          sudo -s eval "$sysreqs"
-          sudo apt-get install -y qpdf
-
       - name: Install dependencies
         run: |
           install.packages(c("remotes"))
