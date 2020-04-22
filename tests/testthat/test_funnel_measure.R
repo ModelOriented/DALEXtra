@@ -2,7 +2,7 @@ context("funnel_measure")
 
 
 test_that("funnel_measure parameters", {
-skip_if_osx()
+
 library("mlr")
 task <- makeRegrTask(
   id = "R",
