@@ -5,7 +5,6 @@ source("objects_for_tests.R")
 
 
 test_that("creating explainer classif", {
-  skip_if_osx()
   skip_if_no_java()
   titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
   titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
@@ -31,7 +30,6 @@ test_that("creating explainer classif", {
 })
 
 test_that("creating explainer regr", {
-  skip_if_osx()
   skip_if_no_java()
   titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
   titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
@@ -55,7 +53,6 @@ test_that("creating explainer regr", {
 })
 
 test_that("automl example", {
-  skip_if_osx()
   skip_if_no_java()
   data <- DALEX::titanic_imputed
 
@@ -90,7 +87,6 @@ test_that("automl example", {
 })
 
 test_that("y is numeric", {
-  skip_if_osx()
   skip_if_no_java()
   titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
   titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
@@ -115,7 +111,6 @@ test_that("y is numeric", {
 })
 
 test_that("Assert when no h2o",{
-  skip_if_osx()
   titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
   titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
   expect_error(yhat.H2OBinomialModel("b", titanic_test))
