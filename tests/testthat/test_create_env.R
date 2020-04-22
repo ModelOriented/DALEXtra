@@ -39,6 +39,7 @@ test_that("if check", {
 test_that("errors checks", {
   skip_because_conda_conf_needed()
   skip_if_windows()
+  skip_if_osx()
   if ("myenv" %in% reticulate::conda_list()$name) {
     reticulate::conda_remove("myenv")
   }
