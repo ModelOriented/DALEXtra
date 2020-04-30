@@ -297,7 +297,7 @@ If .yml file seems not to work, virtual env can be created manually using anacon
    <span class='no'>explainer</span> <span class='kw'>&lt;-</span> <span class='fu'>explain_scikitlearn</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"scikitlearn.pkl"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>),
    <span class='kw'>yml</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"testing_environment.yml"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>),
    <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>], <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>titanic_test</span>$<span class='no'>survived</span>)
-   <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='fu'>model_performance</span>(<span class='no'>explainer</span>))
+   <span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='fu'>model_performance</span>(<span class='no'>explainer</span>))
 
    <span class='co'># Predictions with newdata</span>
    <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>explainer</span>, <span class='no'>titanic_test</span>[<span class='fl'>1</span>:<span class='fl'>10</span>,<span class='fl'>1</span>:<span class='fl'>17</span>])

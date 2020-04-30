@@ -165,7 +165,7 @@
 <div id="champion-challenger-analysis" class="section level1">
 <h1 class="hasAnchor">
 <a href="#champion-challenger-analysis" class="anchor"></a>Champion-Challenger analysis</h1>
-<p>Without aby doubt, comaprison of models, espacially black-box ones is very important use case nowadays. Every day new models are being created and we need tools that can allow us to determinate which one is better. For this purpose we present Champion-Challenger analysis. It is set of functions that creates comaprisons of models and later can be gathered up to created one report with generic comments. Example of report can be found <a href="http://htmlpreview.github.io/?https://github.com/ModelOriented/DALEXtra/blob/master/inst/ChampionChallenger/DALEXtra_example_of_report.html">here</a>. As you can see any explenation that has generic <code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code> function can be plotted.</p>
+<p>Without aby doubt, comaprison of models, espacially black-box ones is very important use case nowadays. Every day new models are being created and we need tools that can allow us to determinate which one is better. For this purpose we present Champion-Challenger analysis. It is set of functions that creates comaprisons of models and later can be gathered up to created one report with generic comments. Example of report can be found <a href="http://htmlpreview.github.io/?https://github.com/ModelOriented/DALEXtra/blob/master/inst/ChampionChallenger/DALEXtra_example_of_report.html">here</a>. As you can see any explenation that has generic <code><a href="https://rdrr.io/r/base/plot.html">plot()</a></code> function can be plotted.</p>
 <div id="funnel-plot" class="section level2">
 <h2 class="hasAnchor">
 <a href="#funnel-plot" class="anchor"></a>Funnel Plot</h2>
@@ -195,7 +195,7 @@
                              <span class="kw">partition_data</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="no">apartmentsTest</span>,
                                                     <span class="st">"m2.per.room"</span> <span class="kw">=</span> <span class="no">apartmentsTest</span>$<span class="no">surface</span>/<span class="no">apartmentsTest</span>$<span class="no">no.rooms</span>),
                              <span class="kw">nbins</span> <span class="kw">=</span> <span class="fl">5</span>, <span class="kw">measure_function</span> <span class="kw">=</span> <span class="kw pkg">DALEX</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/DALEX/man/loss_functions.html">loss_root_mean_square</a></span>, <span class="kw">show_info</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></div>
-<div class="sourceCode" id="cb5"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">plot_data</span>)<span class="kw">[[</span><span class="fl">1</span>]]</pre></div>
+<div class="sourceCode" id="cb5"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">plot_data</span>)<span class="kw">[[</span><span class="fl">1</span>]]</pre></div>
 <p><img src="README_files/figure-gfm/unnamed-chunk-5-1.png" style="display: block; margin: auto;"> Such situation is shown in the following plot. Both, <code>LM</code> and <code>RF</code> models have smiliar RMSE, but Funnel Plot shows that if we want to predict expensive or cheap apartemnts, we definetly should use <code>LM</code> while <code>RF</code> for average priced apartments. Also without any doubt <code>LM</code> is much better than <code>RF</code> for <code>Srodmiescie</code> district. Following use case show us how powerfull tool can Funnel Plot be, for example we can compund two or models into one based of areas acquired from the Plot and thus improve our models. One another advantage of Funnel Plot is that it doesn’t require model to be fitted with Variables shown on the plot, as you can see, <code>m2.per.room</code> is an artificial variable.</p>
 </div>
 </div>
@@ -252,18 +252,18 @@
 <h3 class="hasAnchor">
 <a href="#creating-explanations" class="anchor"></a>Creating explanations</h3>
 <div class="sourceCode" id="cb9"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">DALEX</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/DALEX/man/model_performance.html">model_performance</a></span>(<span class="no">explainer</span>))</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/DALEX/man/model_performance.html">model_performance</a></span>(<span class="no">explainer</span>))</pre></div>
 <p><img src="README_files/figure-gfm/unnamed-chunk-8-1.png" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb10"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ingredients</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/ingredients/man/feature_importance.html">feature_importance</a></span>(<span class="no">explainer</span>))</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/ingredients/man/feature_importance.html">feature_importance</a></span>(<span class="no">explainer</span>))</pre></div>
 <p><img src="README_files/figure-gfm/unnamed-chunk-8-2.png" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb11"><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/ingredients/man/describe.html">describe</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/ingredients/man/feature_importance.html">feature_importance</a></span>(<span class="no">explainer</span>))</pre></div>
 <div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">## The number of important variables for scikitlearn_model's prediction is 4 out of 17. </span></span>
 <span id="cb12-2"><a href="#cb12-2"></a><span class="co">##  Variables gender.female, gender.male, age have the highest importantance.</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">iBreakDown</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="fu">break_down</span>(<span class="no">explainer</span>, <span class="no">titanic_test</span>[<span class="fl">2</span>, <span class="fl">1</span>:<span class="fl">17</span>]))</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/iBreakDown/man/break_down.html">break_down</a></span>(<span class="no">explainer</span>, <span class="no">titanic_test</span>[<span class="fl">2</span>, <span class="fl">1</span>:<span class="fl">17</span>]))</pre></div>
 <p><img src="README_files/figure-gfm/unnamed-chunk-8-3.png" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb14"><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/ingredients/man/describe.html">describe</a></span>(<span class="fu">break_down</span>(<span class="no">explainer</span>, <span class="no">titanic_test</span>[<span class="fl">2</span>, <span class="fl">1</span>:<span class="fl">17</span>]))</pre></div>
+<div class="sourceCode" id="cb14"><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/iBreakDown/man/describe.html">describe</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/iBreakDown/man/break_down.html">break_down</a></span>(<span class="no">explainer</span>, <span class="no">titanic_test</span>[<span class="fl">2</span>, <span class="fl">1</span>:<span class="fl">17</span>]))</pre></div>
 <div class="sourceCode" id="cb15"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">## Scikitlearn_model predicts, that the prediction for the selected instance is 0.132 which is lower than the average model prediction.</span></span>
 <span id="cb15-2"><a href="#cb15-2"></a><span class="co">## </span></span>
 <span id="cb15-3"><a href="#cb15-3"></a><span class="co">## The most important variable that decrease the prediction is class.3rd.</span></span>
@@ -312,7 +312,7 @@
                                    <span class="kw">new_observation</span> <span class="kw">=</span> <span class="no">passenger</span>,
                                    <span class="kw">aspects</span> <span class="kw">=</span> <span class="no">aspects_titanic</span>)
 <span class="no">titanic_rf_ai</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">titanic_rf_ai</span>, <span class="kw">add_importance</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">titanic_rf_ai</span>, <span class="kw">add_importance</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></div>
 <div id="automated-grouping" class="section level2">
 <h2 class="hasAnchor">
 <a href="#automated-grouping" class="anchor"></a>Automated grouping</h2>
@@ -336,7 +336,7 @@
                                    <span class="kw">aspects</span> <span class="kw">=</span> <span class="no">aspects_apartments</span>,
                                    <span class="kw">N</span> <span class="kw">=</span> <span class="fl">1000</span>, <span class="kw">show_cor</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 <span class="no">apartments_ai</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">apartments_ai</span>, <span class="kw">aspects_on_axis</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="kw">add_importance</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
+<span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">apartments_ai</span>, <span class="kw">aspects_on_axis</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="kw">add_importance</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
      <span class="kw">digits_to_round</span> <span class="kw">=</span> <span class="fl">0</span>)</pre></div>
 </div>
 </div>
