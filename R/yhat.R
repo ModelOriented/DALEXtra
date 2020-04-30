@@ -36,7 +36,7 @@ yhat.WrappedModel <- function(X.model, newdata, ...) {
 
            } else {
              if (ncol(pred$data) == 3) {
-               response <- pred$data[, 3]
+               response <- pred$data[, 2]
              } else {
                response <- pred$data[, -ncol(pred$data)]
              }
