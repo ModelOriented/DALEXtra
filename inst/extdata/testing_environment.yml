@@ -22,4 +22,6 @@ dependencies:
   - wheel=0.33.4
   - pandas=0.24.2
   - keras=2.2.4
+  - py-xgboost=0.90
+  - libxgboost=0.90
 

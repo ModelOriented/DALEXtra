@@ -21,7 +21,7 @@
 
 #' @rdname model_info
 #' @export
-model_info.WrappedModel <- function(model, ...) {
+model_info.WrappedModel <- function(model, is_multiclass = FALSE, ...) {
   switch(model$task.desc$type,
          "classif" = {
            type <- "classification"
@@ -39,7 +39,7 @@ model_info.WrappedModel <- function(model, ...) {
   model_info
 }
 
-model_info.h2o <- function(model, ...) {
+model_info.h2o <- function(model, is_multiclass = FALSE, ...) {
   switch(
     class(model),
     "H2ORegressionModel" = {
@@ -47,6 +47,9 @@ model_info.h2o <- function(model, ...) {
     },
     "H2OBinomialModel" = {
       type <- "classification"
+    },
+    "H2OMultinomialModel" = {
+      type <- "multiclass"
     },
     stop("Model is not explainable h2o object")
   )
@@ -69,10 +72,16 @@ model_info.H2OBinomialModel <- model_info.h2o
 
 #' @rdname model_info
 #' @export
-model_info.scikitlearn_model <- function(model, ...) {
-  if ("predict_proba" %in% names(model)) {
+model_info.H2OMultinomialModel <- model_info.h2o
+
+#' @rdname model_info
+#' @export
+model_info.scikitlearn_model <- function(model, is_multiclass = FALSE, ...) {
+  if ("predict_proba" %in% names(model) & is_multiclass) {
+    type <- "multiclass"
+  } else if ("predict_proba" %in% names(model) & !is_multiclass) {
     type <- "classification"
-  } else {
+  }else {
     type <- "regression"
   }
   package_wrapper <- "reticulate"
@@ -86,10 +95,12 @@ model_info.scikitlearn_model <- function(model, ...) {
 
 #' @rdname model_info
 #' @export
-model_info.keras <- function(model, ...) {
-  if ("predict_proba" %in% names(model)) {
+model_info.keras <- function(model, is_multiclass = FALSE, ...) {
+  if ("predict_proba" %in% names(model) & is_multiclass) {
+    type <- "multiclass"
+  } else if ("predict_proba" %in% names(model) & !is_multiclass) {
     type <- "classification"
-  } else {
+  }else {
     type <- "regression"
   }
   package_wrapper <- "reticulate"
@@ -102,7 +113,7 @@ model_info.keras <- function(model, ...) {
 }
 
 
-# model_info.mljar_model <- function(model, ...) {
+# model_info.mljar_model <- function(model, is_multiclass = FALSE, ...) {
 #   type <- "regression"
 #   package_wrapper <- "mljar"
 #   ver_wrapper <- as.character(utils::packageVersion("mljar"))
@@ -115,7 +126,7 @@ model_info.keras <- function(model, ...) {
 
 #' @rdname model_info
 #' @export
-model_info.LearnerRegr <- function(model, ...) {
+model_info.LearnerRegr <- function(model, is_multiclass = FALSE, ...) {
   type <- "regression"
   package_wrapper <- "mlr3"
   ver_wrapper <- get_pkg_ver_safe(package_wrapper)
@@ -128,7 +139,7 @@ model_info.LearnerRegr <- function(model, ...) {
 
 #' @rdname model_info
 #' @export
-model_info.LearnerClassif <- function(model, ...) {
+model_info.LearnerClassif <- function(model, is_multiclass = FALSE, ...) {
   type <- "classification"
   package_wrapper <- "mlr3"
   ver_wrapper <- get_pkg_ver_safe(package_wrapper)

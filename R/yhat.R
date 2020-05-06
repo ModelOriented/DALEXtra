@@ -61,20 +61,27 @@ yhat.h2o <- function(X.model, newdata, ...) {
       }
       as.vector(h2o::h2o.predict(X.model, newdata = newdata))
     },
+
     "H2OBinomialModel" = {
       if (!class(newdata) == "H2OFrame") {
         newdata <- h2o::as.h2o(newdata)
       }
-      res <- as.data.frame(h2o::h2o.predict(X.model, newdata = newdata))
-      res[,2]
+      ret <- as.data.frame(h2o::h2o.predict(X.model, newdata = newdata))
+      if ("predict" %in% colnames(ret)) {
+        ret <- ret [,3]
+      } else {
+        ret <- ret[,2]
+      }
+      ret
 
     },
     "H2OMultinomialModel" = {
       if (!class(newdata) == "H2OFrame") {
         newdata <- h2o::as.h2o(newdata)
       }
-      res <- as.data.frame(h2o::h2o.predict(X.model, newdata = newdata))
-      res[,-1]
+      ret <- as.data.frame(h2o::h2o.predict(X.model, newdata = newdata))
+      colnames(ret) <- normalize_names(colnames(ret))
+      ret[,-1]
     },
     stop("Model is not explainable h2o object")
   )
@@ -99,6 +106,8 @@ yhat.scikitlearn_model <- function(X.model, newdata, ...) {
     pred <-  X.model$predict_proba(newdata)
     if (ncol(pred) == 2) {
       pred <- pred[,2]
+    } else {
+      colnames(pred) <- 0:(ncol(pred)-1)
     }
 
   } else {
@@ -114,6 +123,10 @@ yhat.keras <- function(X.model, newdata, ...) {
     pred <-  X.model$predict_proba(newdata)
     if (ncol(pred) == 1) {
       pred <- as.numeric(pred)
+    } else if (ncol(pred) == 2) {
+      pred <- as.numeric(pred[,2])
+    } else {
+      colnames(pred) <- 0:(ncol(pred)-1)
     }
   } else {
     pred <-  X.model$predict(newdata)
@@ -142,4 +155,17 @@ yhat.LearnerClassif <- function(X.model, newdata, ...) {
     response <- response[,2]
   }
   response
+}
+
+normalize_names <- function(names) {
+  ret <- sapply(names, FUN = function(x) {
+    tmp <- strsplit(x, "p")
+    if (!is.na(tmp[[1]][2])) {
+      return(tmp[[1]][2])
+    } else {
+      return(x)
+    }
+  })
+  names(ret) <- NULL
+  ret
 }
