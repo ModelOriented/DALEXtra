@@ -1,3 +1,9 @@
+DALEXtra 0.2.3
+----------------------------------------------------------------
+* DALEXtra now supports multiclass classification (accordingly to DALEX >= 1.2.2)
+* `funnel_mesure` recognizes type of the task and applies proper loss_function
+* `yhat.WrappedModel` returns factor response if `predict.type` is not `prob`.
+
 DALEXtra 0.2.2
 ----------------------------------------------------------------
 * `explain_h2o()` now supports `model` as `H2OAutoML`

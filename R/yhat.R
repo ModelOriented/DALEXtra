@@ -27,11 +27,15 @@ yhat.WrappedModel <- function(X.model, newdata, ...) {
   switch(X.model$task.desc$type,
          "classif" = {
            pred <- predict(X.model, newdata = newdata)
+           if (X.model$learner$predict.type != "prob") {
+             return(pred$data$response)
+           }
            if ("truth" %in% colnames(pred$data)){
              if (ncol(pred$data) == 4) {
                response <- pred$data[, 3]
              } else {
                response <- pred$data[, -c(1, ncol(pred$data))]
+               names(response) <- normalize_mlr_names(names(response))
              }
 
            } else {
@@ -39,6 +43,7 @@ yhat.WrappedModel <- function(X.model, newdata, ...) {
                response <- pred$data[, 2]
              } else {
                response <- pred$data[, -ncol(pred$data)]
+               names(response) <- normalize_mlr_names(names(response))
              }
            }
            response
@@ -80,7 +85,7 @@ yhat.h2o <- function(X.model, newdata, ...) {
         newdata <- h2o::as.h2o(newdata)
       }
       ret <- as.data.frame(h2o::h2o.predict(X.model, newdata = newdata))
-      colnames(ret) <- normalize_names(colnames(ret))
+      colnames(ret) <- normalize_h2o_names(colnames(ret))
       ret[,-1]
     },
     stop("Model is not explainable h2o object")
@@ -157,9 +162,22 @@ yhat.LearnerClassif <- function(X.model, newdata, ...) {
   response
 }
 
-normalize_names <- function(names) {
+normalize_h2o_names <- function(names) {
   ret <- sapply(names, FUN = function(x) {
     tmp <- strsplit(x, "p")
+    if (!is.na(tmp[[1]][2])) {
+      return(tmp[[1]][2])
+    } else {
+      return(x)
+    }
+  })
+  names(ret) <- NULL
+  ret
+}
+
+normalize_mlr_names <- function(names) {
+  ret <- sapply(names, FUN = function(x) {
+    tmp <- strsplit(x, "prob.")
     if (!is.na(tmp[[1]][2])) {
       return(tmp[[1]][2])
     } else {

@@ -30,6 +30,9 @@
 \arguments{
 \item{model}{- model object}
 
+\item{is_multiclass}{- if TRUE and task is classification, then multitask classification is set. Else is omitted. If \code{model_info}
+was executed withing \code{explain} function. DALEX will recognize subtype on it's own. @param is_multiclass}
+
 \item{...}{- another arguments
 
 Currently supported packages are:

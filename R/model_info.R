@@ -5,6 +5,8 @@
 #' are stored
 #'
 #' @param model - model object
+#' @param is_multiclass - if TRUE and task is classification, then multitask classification is set. Else is omitted. If \code{model_info}
+#' was executed withing \code{explain} function. DALEX will recognize subtype on it's own. @param is_multiclass
 #' @param ... - another arguments
 #'
 #' Currently supported packages are:
@@ -22,14 +24,13 @@
 #' @rdname model_info
 #' @export
 model_info.WrappedModel <- function(model, is_multiclass = FALSE, ...) {
-  switch(model$task.desc$type,
-         "classif" = {
-           type <- "classification"
-         },
-         "regr" = {
-           type <- "regression"
-         },
-         stop("Model is not explainable mlr object"))
+  if (model$task.desc$type == "classif" & is_multiclass) {
+    type <- "multiclass"
+  } else if (model$task.desc$type == "classif" & !is_multiclass) {
+    type <- "classification"
+  } else {
+    type <- "regression"
+  }
   package_wrapper <- "mlr"
   ver_wrapper <- get_pkg_ver_safe(package_wrapper)
   package <- model$learner$package
@@ -140,7 +141,11 @@ model_info.LearnerRegr <- function(model, is_multiclass = FALSE, ...) {
 #' @rdname model_info
 #' @export
 model_info.LearnerClassif <- function(model, is_multiclass = FALSE, ...) {
-  type <- "classification"
+  if (is_multiclass) {
+    type <- "multiclass"
+  } else {
+    type <- "classification"
+  }
   package_wrapper <- "mlr3"
   ver_wrapper <- get_pkg_ver_safe(package_wrapper)
   package <- model$packages

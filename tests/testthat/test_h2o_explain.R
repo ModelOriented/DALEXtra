@@ -105,7 +105,7 @@ test_that("y is numeric", {
     learn_rate = 0.001
   )
   explainer <- explain_h2o(model, titanic_test[,1:17], titanic_test_h2o["survived"])
-  expect_is(explainer$y, "numeric")
+  expect_false(class(explainer$y[1] == "H2OFrame"))
   h2o::h2o.shutdown(prompt = FALSE)
 
 })
