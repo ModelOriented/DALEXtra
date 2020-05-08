@@ -87,7 +87,7 @@ test_that("automl example", {
 })
 
 test_that("y is numeric", {
-  skip_if_no_java()
+  #skip_if_no_java()
   titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
   titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
   # h2o::h2o.init()
@@ -105,7 +105,7 @@ test_that("y is numeric", {
     learn_rate = 0.001
   )
   explainer <- explain_h2o(model, titanic_test[,1:17], titanic_test_h2o["survived"])
-  expect_false(class(explainer$y[1] == "H2OFrame"))
+  expect_false(class(explainer$y[1]) == "H2OFrame")
   h2o::h2o.shutdown(prompt = FALSE)
 
 })
