@@ -343,7 +343,7 @@ set_measure_function <- function(champion, challengers) {
   })) & champion$model_info$type == "classification") {
     measure_function <- loss_one_minus_auc
   } else if (all(sapply(challengers, function(x){
-    x$model_info$type == "classification"
+    x$model_info$type == "regression"
   })) & champion$model_info$type == "regression") {
     measure_function <- loss_root_mean_square
   } else {

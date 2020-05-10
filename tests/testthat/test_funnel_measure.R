@@ -86,13 +86,13 @@ funnel_measure(explainer_lm, list(explainer_rf, explainer_gbm),
 
 test_that("funnel_measure_classif", {
   expect_error(funnel_measure(explainer_rf_classif, explainer_rpart_classif,
-                              nbins = 5))
+                              nbins = 5), NA)
 
 })
 
 test_that("funnel_measure_classif", {
   expect_error(funnel_measure(explainer_rf_multiclassif, explainer_rpart_multiclassif,
-                              nbins = 5))
+                              nbins = 5), NA)
 
 })
 
