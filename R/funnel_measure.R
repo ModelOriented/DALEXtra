@@ -10,7 +10,8 @@
 #' @param challengers - explainer of challenger model or list of explainers.
 #' @param measure_function - measure function that calculates performance of model based on true observation and prediction.
 #'                           Order of parameters is important and should be (y, y_hat). The measure calculated by the function
-#'                           should have the property that lower score value indicates better model. By default it is RMSE.
+#'                           should have the property that lower score value indicates better model. If NULL, RMSE will be used for regression,
+#'                           one minus auc for classification and crossentropy for multiclass classification.
 #' @param nbins - Number of qunatiles (partition points) for numeric columns. In case when more than one qunatile have the same value, there will be less partition points.
 #' @param partition_data - Data by which test dataset will be paritioned for computation. Can be either data.frame or character vector.
 #'                         When second is passed, it has to indicate names of columns that will be extracted fromm test data.
@@ -79,7 +80,7 @@
 funnel_measure <-
   function(champion,
            challengers,
-           measure_function = DALEX::loss_root_mean_square,
+           measure_function = NULL,
            nbins = 5,
            partition_data = champion$data,
            cutoff = 0.01,
@@ -103,9 +104,14 @@ funnel_measure <-
 
     if (any(sapply(challengers, function(x) {
       class(x) != "explainer"
-    })) & class(champion) != "explainer") {
+    })) | class(champion) != "explainer") {
       stop("Champion and all of challengers has to be explainer objects")
     }
+
+    if (is.null(measure_function)) {
+      measure_function <- set_measure_function(champion, challengers)
+    }
+
 
     models_info <- data.frame(label = champion$label, class = class(champion$model)[1], type = "Champion", stringsAsFactors = FALSE)
     for (e in challengers) {
@@ -322,3 +328,5 @@ print.funnel_measure <- function(x, ...) {
   cat("Models Info\n")
   print(head(x$models_info))
 }
+
+

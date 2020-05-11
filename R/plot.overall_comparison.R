@@ -52,20 +52,18 @@
 #' }
 
 plot.overall_comparison <- function(x, ...) {
-  overall_comparison <- x
+  data <- x
   if (!requireNamespace("auditor")) {
     stop("Please download auditor package to access that functionallity")
   }
-  data <- overall_comparison
   p <- do.call(plot, data$radar)
-
   q <- ggplot(data = data$accordance, aes(x = data$accordance$Champion, y = data$accordance$Challenger, colour = data$accordance$Label)) +
     geom_point() +
     geom_abline(slope = 1, intercept = 0, size = 1, color = "#371ea3", show.legend = TRUE) +
     labs(x = "Champion response",
          y = "Challenger response",
          colour = "Challengers") +
-    scale_color_manual(values = c(colors_discrete_drwhy(length(unique(data$accordance$Label))))) +
+    scale_color_manual(values = colors_discrete_drwhy(length(unique(data$accordance$Label))+1)) +
     theme_drwhy()
 
   list("radar_plot" = p, "accordance_plot" = q)

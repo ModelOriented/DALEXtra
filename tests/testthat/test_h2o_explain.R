@@ -23,7 +23,7 @@ test_that("creating explainer classif", {
     min_rows =  12,
     learn_rate = 0.001
   )
-  explainer <- explain_h2o(model, titanic_test[,1:17], titanic_test[,18])
+  explainer <- explain_h2o(model, titanic_test[,1:17], titanic_test[,18], verbose = FALSE)
   expect_is(explainer, "explainer")
   expect_is(explainer$y_hat, "numeric")
   # h2o::h2o.shutdown(prompt = FALSE)
@@ -46,7 +46,7 @@ test_that("creating explainer regr", {
     min_rows =  12,
     learn_rate = 0.001
   )
-  explainer <- explain_h2o(model, predict_function = yhat, titanic_test, titanic_test$fare)
+  explainer <- explain_h2o(model, predict_function = yhat, titanic_test, titanic_test$fare, verbose = FALSE)
   expect_is(explainer, "explainer")
   expect_is(explainer$y_hat, "numeric")
   # h2o::h2o.shutdown(prompt = FALSE)
@@ -79,7 +79,7 @@ test_that("automl example", {
   explainer <- DALEXtra::explain_h2o(automl,
                                      data = test,
                                      y = test$survived,
-                                     label = "h2o")
+                                     label = "h2o", verbose = FALSE)
 
   expect_is(explainer, "explainer")
   expect_false(class(explainer$model)=="H2OAutoML")
@@ -87,7 +87,7 @@ test_that("automl example", {
 })
 
 test_that("y is numeric", {
-  skip_if_no_java()
+  #skip_if_no_java()
   titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
   titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
   # h2o::h2o.init()
@@ -104,8 +104,8 @@ test_that("y is numeric", {
     min_rows =  12,
     learn_rate = 0.001
   )
-  explainer <- explain_h2o(model, titanic_test[,1:17], titanic_test_h2o["survived"])
-  expect_is(explainer$y, "numeric")
+  explainer <- explain_h2o(model, titanic_test[,1:17], titanic_test_h2o["survived"], verbose = FALSE)
+  expect_false(class(explainer$y[1]) == "H2OFrame")
   h2o::h2o.shutdown(prompt = FALSE)
 
 })

@@ -32,6 +32,8 @@ jobs:
           install.packages("remotes")
           remotes::install_deps(dependencies = TRUE)
           remotes::install_dev("pkgdown")
+          remotes::install_github("ModelOriented/DALEX")
+          remotes::install_github("ModelOriented/auditor")
           remotes::install_github("ModelOriented/DrWhyTemplate")
         shell: Rscript {0}
 
