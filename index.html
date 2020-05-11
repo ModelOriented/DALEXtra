@@ -196,7 +196,7 @@
                                                     <span class="st">"m2.per.room"</span> <span class="kw">=</span> <span class="no">apartmentsTest</span>$<span class="no">surface</span>/<span class="no">apartmentsTest</span>$<span class="no">no.rooms</span>),
                              <span class="kw">nbins</span> <span class="kw">=</span> <span class="fl">5</span>, <span class="kw">measure_function</span> <span class="kw">=</span> <span class="kw pkg">DALEX</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/DALEX/man/loss_functions.html">loss_root_mean_square</a></span>, <span class="kw">show_info</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></div>
 <div class="sourceCode" id="cb5"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">plot_data</span>)<span class="kw">[[</span><span class="fl">1</span>]]</pre></div>
-<p><img src="README_files/figure-gfm/unnamed-chunk-5-1.png" style="display: block; margin: auto;"> Such situation is shown in the following plot. Both, <code>LM</code> and <code>RF</code> models have smiliar RMSE, but Funnel Plot shows that if we want to predict expensive or cheap apartemnts, we definetly should use <code>LM</code> while <code>RF</code> for average priced apartments. Also without any doubt <code>LM</code> is much better than <code>RF</code> for <code>Srodmiescie</code> district. Following use case show us how powerfull tool can Funnel Plot be, for example we can compund two or models into one based of areas acquired from the Plot and thus improve our models. One another advantage of Funnel Plot is that it doesn’t require model to be fitted with Variables shown on the plot, as you can see, <code>m2.per.room</code> is an artificial variable.</p>
+<p><img src="reference/figures/unnamed-chunk-5-1.png" style="display: block; margin: auto;"> Such situation is shown in the following plot. Both, <code>LM</code> and <code>RF</code> models have smiliar RMSE, but Funnel Plot shows that if we want to predict expensive or cheap apartemnts, we definetly should use <code>LM</code> while <code>RF</code> for average priced apartments. Also without any doubt <code>LM</code> is much better than <code>RF</code> for <code>Srodmiescie</code> district. Following use case show us how powerfull tool can Funnel Plot be, for example we can compund two or models into one based of areas acquired from the Plot and thus improve our models. One another advantage of Funnel Plot is that it doesn’t require model to be fitted with Variables shown on the plot, as you can see, <code>m2.per.room</code> is an artificial variable.</p>
 </div>
 </div>
 <div id="cross-langauge-comaprison" class="section level1">
@@ -240,9 +240,9 @@
 <span id="cb8-2"><a href="#cb8-2"></a><span class="co">##   -&gt; model label       :  scikitlearn_model  (  default  )</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a><span class="co">##   -&gt; data              :  524  rows  17  cols </span></span>
 <span id="cb8-4"><a href="#cb8-4"></a><span class="co">##   -&gt; target variable   :  524  values </span></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="co">##   -&gt; model_info        :  package reticulate , ver. 1.15 , task classification (  default  ) </span></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="co">##   -&gt; predict function  :  yhat.scikitlearn_model  will be used (  default  )</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="co">##   -&gt; predicted values  :  numerical, min =  0.02086126 , mean =  0.288584 , max =  0.9119996  </span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="co">##   -&gt; predict function  :  yhat.scikitlearn_model  will be used (  default  )</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="co">##   -&gt; predicted values  :  numerical, min =  0.02086126 , mean =  0.288584 , max =  0.9119996  </span></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="co">##   -&gt; model_info        :  package reticulate , ver. 1.15 , task classification (  default  ) </span></span>
 <span id="cb8-8"><a href="#cb8-8"></a><span class="co">##   -&gt; residual function :  difference between y and yhat (  default  )</span></span>
 <span id="cb8-9"><a href="#cb8-9"></a><span class="co">##   -&gt; residuals         :  numerical, min =  -0.8669431 , mean =  0.02248468 , max =  0.9791387  </span></span>
 <span id="cb8-10"><a href="#cb8-10"></a><span class="co">##   A new explainer has been created!</span></span></code></pre></div>
@@ -253,16 +253,16 @@
 <a href="#creating-explanations" class="anchor"></a>Creating explanations</h3>
 <div class="sourceCode" id="cb9"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">DALEX</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/DALEX/man/model_performance.html">model_performance</a></span>(<span class="no">explainer</span>))</pre></div>
-<p><img src="README_files/figure-gfm/unnamed-chunk-8-1.png" style="display: block; margin: auto;"></p>
+<p><img src="reference/figures/unnamed-chunk-8-1.png" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb10"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ingredients</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/ingredients/man/feature_importance.html">feature_importance</a></span>(<span class="no">explainer</span>))</pre></div>
-<p><img src="README_files/figure-gfm/unnamed-chunk-8-2.png" style="display: block; margin: auto;"></p>
+<p><img src="reference/figures/unnamed-chunk-8-2.png" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb11"><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/ingredients/man/describe.html">describe</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/ingredients/man/feature_importance.html">feature_importance</a></span>(<span class="no">explainer</span>))</pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">## The number of important variables for scikitlearn_model's prediction is 4 out of 17. </span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="co">##  Variables gender.female, gender.male, age have the highest importantance.</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">## The number of important variables for scikitlearn_model's prediction is 2 out of 17. </span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co">##  Variables gender.female, gender.male have the highest importantance.</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">iBreakDown</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/iBreakDown/man/break_down.html">break_down</a></span>(<span class="no">explainer</span>, <span class="no">titanic_test</span>[<span class="fl">2</span>, <span class="fl">1</span>:<span class="fl">17</span>]))</pre></div>
-<p><img src="README_files/figure-gfm/unnamed-chunk-8-3.png" style="display: block; margin: auto;"></p>
+<p><img src="reference/figures/unnamed-chunk-8-3.png" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb14"><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/iBreakDown/man/describe.html">describe</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/iBreakDown/man/break_down.html">break_down</a></span>(<span class="no">explainer</span>, <span class="no">titanic_test</span>[<span class="fl">2</span>, <span class="fl">1</span>:<span class="fl">17</span>]))</pre></div>
 <div class="sourceCode" id="cb15"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">## Scikitlearn_model predicts, that the prediction for the selected instance is 0.132 which is lower than the average model prediction.</span></span>
 <span id="cb15-2"><a href="#cb15-2"></a><span class="co">## </span></span>
@@ -272,7 +272,7 @@
 <div class="sourceCode" id="cb16"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">auditor</span>)
 <span class="no">eval</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/auditor/man/model_evaluation.html">model_evaluation</a></span>(<span class="no">explainer</span>)
 <span class="fu"><a href="https://rdrr.io/pkg/auditor/man/plot_roc.html">plot_roc</a></span>(<span class="no">eval</span>)</pre></div>
-<p><img src="README_files/figure-gfm/unnamed-chunk-8-4.png" style="display: block; margin: auto;"></p>
+<p><img src="reference/figures/unnamed-chunk-8-4.png" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb17"><pre class="r"><span class="co"># Predictions with newdata</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="no">explainer</span>, <span class="no">titanic_test</span>[<span class="fl">1</span>:<span class="fl">10</span>, <span class="fl">1</span>:<span class="fl">17</span>])</pre></div>
 <div class="sourceCode" id="cb18"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co">##  [1] 0.3565896 0.1321947 0.7638813 0.1037486 0.1265221 0.2949228 0.1421281</span></span>
