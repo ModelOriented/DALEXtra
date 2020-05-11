@@ -3,7 +3,7 @@ output: github_document
 ---
 
 ```{r setup, include=FALSE, message=FALSE, warning=TRUE}
-knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.align = 'center')
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.align = 'center', fig.path = "man/figures/")
 ```
 
 # DALEXtra <img src="man/figures/logo.png" align="right" width="150"/>

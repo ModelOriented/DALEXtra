@@ -118,7 +118,7 @@ overall performance and we want to know which one should we use.
 plot(plot_data)[[1]]
 ```
 
-<img src="README_files/figure-gfm/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
 Such situation is shown in the following plot. Both, `LM` and `RF`
 models have smiliar RMSE, but Funnel Plot shows that if we want to
 predict expensive or cheap apartemnts, we definetly should use `LM`
@@ -201,9 +201,9 @@ data = titanic_test[,1:17], y = titanic_test$survived, colorize = FALSE)
     ##   -> model label       :  scikitlearn_model  (  default  )
     ##   -> data              :  524  rows  17  cols 
     ##   -> target variable   :  524  values 
-    ##   -> model_info        :  package reticulate , ver. 1.15 , task classification (  default  ) 
     ##   -> predict function  :  yhat.scikitlearn_model  will be used (  default  )
     ##   -> predicted values  :  numerical, min =  0.02086126 , mean =  0.288584 , max =  0.9119996  
+    ##   -> model_info        :  package reticulate , ver. 1.15 , task classification (  default  ) 
     ##   -> residual function :  difference between y and yhat (  default  )
     ##   -> residuals         :  numerical, min =  -0.8669431 , mean =  0.02248468 , max =  0.9791387  
     ##   A new explainer has been created!
@@ -219,28 +219,28 @@ library(DALEX)
 plot(model_performance(explainer))
 ```
 
-<img src="README_files/figure-gfm/unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
 
 ``` r
 library(ingredients)
 plot(feature_importance(explainer))
 ```
 
-<img src="README_files/figure-gfm/unnamed-chunk-8-2.png" style="display: block; margin: auto;" />
+<img src="man/figures/unnamed-chunk-8-2.png" style="display: block; margin: auto;" />
 
 ``` r
 describe(feature_importance(explainer))
 ```
 
-    ## The number of important variables for scikitlearn_model's prediction is 4 out of 17. 
-    ##  Variables gender.female, gender.male, age have the highest importantance.
+    ## The number of important variables for scikitlearn_model's prediction is 2 out of 17. 
+    ##  Variables gender.female, gender.male have the highest importantance.
 
 ``` r
 library(iBreakDown)
 plot(break_down(explainer, titanic_test[2, 1:17]))
 ```
 
-<img src="README_files/figure-gfm/unnamed-chunk-8-3.png" style="display: block; margin: auto;" />
+<img src="man/figures/unnamed-chunk-8-3.png" style="display: block; margin: auto;" />
 
 ``` r
 describe(break_down(explainer, titanic_test[2, 1:17]))
@@ -258,7 +258,7 @@ eval <- model_evaluation(explainer)
 plot_roc(eval)
 ```
 
-<img src="README_files/figure-gfm/unnamed-chunk-8-4.png" style="display: block; margin: auto;" />
+<img src="man/figures/unnamed-chunk-8-4.png" style="display: block; margin: auto;" />
 
 ``` r
 # Predictions with newdata
