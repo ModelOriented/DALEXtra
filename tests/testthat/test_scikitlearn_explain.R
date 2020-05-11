@@ -9,11 +9,11 @@ test_that("creating explainer", {
   }
     titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
     explainer_1 <- explain_scikitlearn(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
-    condaenv = "myenv", data = titanic_test[,1:17], y = titanic_test$survived)
+    condaenv = "myenv", data = titanic_test[,1:17], y = titanic_test$survived, verbose = FALSE)
 
     explainer_2 <- explain_scikitlearn(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
                                      yml = system.file("extdata", "testing_environment.yml", package = "DALEXtra"),
-                                     data = titanic_test[,1:17], y = titanic_test$survived)
+                                     data = titanic_test[,1:17], y = titanic_test$survived, verbose = FALSE)
 
     expect_is(explainer_1, "explainer")
     expect_is(explainer_1$y_hat, "numeric")

@@ -88,6 +88,7 @@ jobs:
           remotes::install_github("ModelOriented/ingredients")
           remotes::install_github("ModelOriented/iBreakDown")
           remotes::install_github("ModelOriented/DALEX")
+          remotes::install_github("ModelOriented/auditor")
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
 

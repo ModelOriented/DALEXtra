@@ -27,7 +27,7 @@ test_that("creating explainer classif", {
     predict.type = "prob"
   )
   gbm <- mlr::train(learner, task)
-  explainer <- explain_mlr(gbm, titanic_test[,1:17], titanic_test[,18])
+  explainer <- explain_mlr(gbm, titanic_test[,1:17], titanic_test[,18], verbose = FALSE)
   expect_is(explainer, "explainer")
   expect_is(explainer$y_hat, "numeric")
 
@@ -54,7 +54,7 @@ test_that("creating explainer regr", {
     )
   )
   gbm <- mlr::train(learner, task)
-  explainer <- explain_mlr(gbm, data = titanic_test, predict_function = yhat, y = titanic_test$fare)
+  explainer <- explain_mlr(gbm, data = titanic_test, predict_function = yhat, y = titanic_test$fare, verbose = FALSE)
   expect_is(explainer, "explainer")
   expect_is(explainer$y_hat, "numeric")
 

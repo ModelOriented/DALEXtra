@@ -7,11 +7,11 @@ test_that("creating explainer", {
  create_env(system.file("extdata", "testing_environment.yml", package = "DALEXtra"))
  test_data <- read.csv("https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.data.csv", sep = ",")
  explainer_1 <- explain_keras(system.file("extdata", "keras.pkl", package = "DALEXtra"),
-                                    condaenv = "myenv", data = test_data[,1:8], y = test_data[,9])
+                                    condaenv = "myenv", data = test_data[,1:8], y = test_data[,9], verbose = FALSE)
 
  explainer_2 <- explain_keras(system.file("extdata", "keras.pkl", package = "DALEXtra"),
                                     yml = system.file("extdata", "testing_environment.yml", package = "DALEXtra"),
-                                    data = test_data[,1:8], y = test_data[,9])
+                                    data = test_data[,1:8], y = test_data[,9], verbose = FALSE)
 
  expect_is(explainer_1, "explainer")
  expect_is(explainer_1$y_hat, "numeric")
