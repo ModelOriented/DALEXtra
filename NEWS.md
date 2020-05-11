@@ -1,7 +1,7 @@
 DALEXtra 0.2.3
 ----------------------------------------------------------------
 * DALEXtra now supports multiclass classification (accordingly to DALEX >= 1.2.2)
-* `funnel_mesure` recognizes type of the task and applies proper loss_function
+* `funnel_mesure` and `training_test_comparison` recognizes type of the task and applies proper loss_function
 * `yhat.WrappedModel` returns factor response if `predict.type` is not `prob`.
 
 DALEXtra 0.2.2
