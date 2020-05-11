@@ -92,7 +92,7 @@ training_test_comparison <- function(champion,
                                      challengers,
                                      training_data,
                                      training_y,
-                                     measure_function = DALEX::loss_root_mean_square) {
+                                     measure_function = NULL) {
 
   if (class(challengers) == "explainer") {
     challengers <- list(challengers)
@@ -100,12 +100,16 @@ training_test_comparison <- function(champion,
 
   if (any(sapply(challengers, function(x) {
     class(x) != "explainer"
-  })) & class(champion) != "explainer") {
+  })) | class(champion) != "explainer") {
     stop("Champion and all of challengers has to be explainer objects")
   }
 
   if (is.null(champion$data)) {
     stop("Data argument has to be passed with explainer")
+  }
+
+  if (is.null(measure_function)) {
+    measure_function <- set_measure_function(champion, challengers)
   }
 
   ret <- data.frame()

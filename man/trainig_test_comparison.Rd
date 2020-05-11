@@ -9,7 +9,7 @@ training_test_comparison(
   challengers,
   training_data,
   training_y,
-  measure_function = DALEX::loss_root_mean_square
+  measure_function = NULL
 )
 }
 \arguments{

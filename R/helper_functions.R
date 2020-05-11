@@ -73,3 +73,22 @@ is_conda <- function() {
   conda <- try(reticulate::conda_binary(), silent = TRUE)
   class(conda) != "try-error"
 }
+
+set_measure_function <- function(champion, challengers) {
+  if (all(sapply(challengers, function(x){
+    x$model_info$type == "multiclass"
+  })) & champion$model_info$type == "multiclass") {
+    measure_function <- loss_cross_entropy
+  } else if (all(sapply(challengers, function(x){
+    x$model_info$type == "classification"
+  })) & champion$model_info$type == "classification") {
+    measure_function <- loss_one_minus_auc
+  } else if (all(sapply(challengers, function(x){
+    x$model_info$type == "regression"
+  })) & champion$model_info$type == "regression") {
+    measure_function <- loss_root_mean_square
+  } else {
+    stop("Champion and all of challengers don't share same task type")
+  }
+  measure_function
+}

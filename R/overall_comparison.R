@@ -57,7 +57,7 @@ overall_comparison <- function(champion, challengers, type) {
   }
   if (any(sapply(challengers, function(x) {
     class(x) != "explainer"
-  })) & class(champion) != "explainer") {
+  })) | class(champion) != "explainer") {
     stop("Champion and all of challengers has to be explainer objects")
   }
 
