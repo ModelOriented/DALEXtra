@@ -1,6 +1,7 @@
-DALEXtra 1.3
+DALEXtra 1.3.0
 ----------------------------------------------------------------
 * In `explain_h2o` data parameter will bo converted to data.frame if H2OFrame object was passed.
+* Aspect importance related functions set deprecated. Will be removed with next release.
 
 DALEXtra 0.2.3
 ----------------------------------------------------------------

@@ -111,6 +111,7 @@ aspect_importance.default <- function(x, data, predict_function = predict,
                                       sample_method = "default", n_var = 0,
                                       f = 2, show_cor = FALSE, ...) {
 
+  warning("Function is deprecated. Please use triplot package")
   # look only for common variables in data and new observation
   if ("data.frame" %in% class(data)) {
     common_variables <- intersect(colnames(new_observation), colnames(data))
@@ -376,6 +377,8 @@ aspect_importance_single.default <- function(x, data,
                                              n_var = 0,
                                              f = 2, ...) {
 
+  warning("Function is deprecated. Please use triplot package")
+
   #create aspect list
   single_aspect_list <- vector("list", length(colnames(data)))
   names(single_aspect_list) <- colnames(data)
@@ -431,6 +434,8 @@ aspect_importance_single.default <- function(x, data,
 #' @rdname get_sample
 
 get_sample <- function(n, p, sample_method = c("default", "binom"), f = 2) {
+  warning("Function is deprecated. Please use triplot package")
+
   sample_method <- match.arg(sample_method)
   stopifnot(n > 0, p > 0, f > 0)
   x <- matrix(0, n, p)
@@ -476,6 +481,8 @@ get_sample <- function(n, p, sample_method = c("default", "binom"), f = 2) {
 
 group_variables <- function(x, p = 0.5, clust_method = "complete",
                             draw_tree = FALSE, draw_abline = TRUE) {
+  warning("Function is deprecated. Please use triplot package")
+
   stopifnot(all(sapply(x, is.numeric)))
   stopifnot(p >= 0, p <= 1)
 
@@ -523,6 +530,8 @@ group_variables <- function(x, p = 0.5, clust_method = "complete",
 
 plot_group_variables <- function(x, p, show_labels = TRUE, draw_abline = TRUE,
                                  axis_lab_size = 10, text_size = 3) {
+  warning("Function is deprecated. Please use triplot package")
+
   stopifnot(p >= 0, p <= 1)
   stopifnot(class(x) == "hclust")
 
@@ -590,6 +599,8 @@ plot_group_variables <- function(x, p, show_labels = TRUE, draw_abline = TRUE,
 #' @noRd
 
 custom_tree_cutting <- function(x, h) {
+  warning("Function is deprecated. Please use triplot package")
+
   val <- NULL
   clust_list <- cutree(x, h = 1 - h)
 
@@ -658,6 +669,8 @@ plot_aspects_importance_grouping <- function(x, data,
                                              show_labels = TRUE,
                                              axis_lab_size = 10,
                                              text_size = 3) {
+  warning("Function is deprecated. Please use triplot package")
+
 
   #building additional objects
   y <- xend <- yend <- yend_val <- NULL
@@ -880,6 +893,8 @@ triplot.default <- function(x, data, predict_function = predict, new_observation
                             axis_lab_size = 10,
                             text_size = 3,
                             ...) {
+  warning("Function is deprecated. Please use triplot package")
+
 
   stopifnot(all(sapply(data, is.numeric)))
 
