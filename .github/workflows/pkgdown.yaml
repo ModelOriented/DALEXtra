@@ -3,7 +3,7 @@ on:
     branches:
       - master
 
-name: test-coverage
+name: pkgdown
 
 jobs:
   pkgdown:
@@ -52,7 +52,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          install.packages(c("remotes", "ps"))
+          install.packages(c("ps"))
+          remotes::install_cran("curl")
           remotes::install_deps(dependencies = TRUE)
           remotes::install_dev("pkgdown")
           remotes::install_github("ModelOriented/DALEX")
