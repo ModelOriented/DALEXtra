@@ -1,6 +1,6 @@
 Package: DALEXtra
 Title: Extension for 'DALEX' Package
-Version: 0.2.3
+Version: 1.3
 Authors@R: 
     c(person(given = "Szymon",
            family = "Maksymiuk",
@@ -30,7 +30,7 @@ Description: Provides wrapper of various machine learning models.
   that provides instance-level explanations for the groups of explanatory variables.
 Depends: 
   R (>= 3.5.0),
-  DALEX (>= 1.0.0)
+  DALEX (>= 1.3)
 License: GPL
 Encoding: UTF-8
 LazyData: true
