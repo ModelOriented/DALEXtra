@@ -6,7 +6,7 @@ on:
 name: test-coverage
 
 jobs:
-  test-coverage:
+  pkgdown:
 
     runs-on: ubuntu-16.04
     steps:
