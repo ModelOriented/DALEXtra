@@ -1,6 +1,10 @@
+DALEXtra 1.3
+----------------------------------------------------------------
+* In `explain_h2o` data parameter will bo converted to data.frame if H2OFrame object was passed.
+
 DALEXtra 0.2.3
 ----------------------------------------------------------------
-* DALEXtra now supports multiclass classification (accordingly to DALEX >= 1.2.2)
+* DALEXtra now supports multiclass classification (accordingly to DALEX >= 1.3)
 * `funnel_mesure` and `training_test_comparison` recognizes type of the task and applies proper loss_function
 * `yhat.WrappedModel` returns factor response if `predict.type` is not `prob`.
 

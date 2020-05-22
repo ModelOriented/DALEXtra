@@ -105,6 +105,11 @@ explain_h2o <-
       model <- model@leader
     }
 
+    if (class(data) == "H2OFrame") {
+      data <- as.data.frame(data)
+    }
+
+
     explain(
       model,
       data = data,
