@@ -192,9 +192,108 @@ Function doesn't allow the returned matrix to have rows with only zeros.</p>
     <p>a binary matrix</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"> <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
- <span class='fu'>get_sample</span>(<span class='fl'>100</span>,<span class='fl'>6</span>,<span class='st'>"binom"</span>,<span class='fl'>3</span>)
-}</pre>
+    <pre class="examples"><div class='input'> <span class='co'># \dontrun{</span>
+ <span class='fu'>get_sample</span>(<span class='fl'>100</span>,<span class='fl'>6</span>,<span class='st'>"binom"</span>,<span class='fl'>3</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt;        [,1] [,2] [,3] [,4] [,5] [,6]
+#&gt;   [1,]    0    0    1    0    1    0
+#&gt;   [2,]    0    1    1    1    0    0
+#&gt;   [3,]    1    0    1    1    1    0
+#&gt;   [4,]    1    0    0    1    0    1
+#&gt;   [5,]    0    0    0    0    1    1
+#&gt;   [6,]    0    1    0    0    1    0
+#&gt;   [7,]    0    1    1    0    0    1
+#&gt;   [8,]    0    0    0    0    0    1
+#&gt;   [9,]    0    1    1    0    0    0
+#&gt;  [10,]    0    1    0    0    0    1
+#&gt;  [11,]    0    1    1    0    1    1
+#&gt;  [12,]    0    1    1    0    1    0
+#&gt;  [13,]    1    1    1    0    0    1
+#&gt;  [14,]    0    0    0    1    0    1
+#&gt;  [15,]    0    0    0    1    0    1
+#&gt;  [16,]    1    0    1    0    1    0
+#&gt;  [17,]    0    1    1    1    0    1
+#&gt;  [18,]    1    0    1    1    0    0
+#&gt;  [19,]    1    0    0    1    0    0
+#&gt;  [20,]    0    1    1    0    0    0
+#&gt;  [21,]    1    0    0    0    1    0
+#&gt;  [22,]    0    0    0    1    1    0
+#&gt;  [23,]    1    1    1    1    0    1
+#&gt;  [24,]    0    0    1    1    1    1
+#&gt;  [25,]    0    1    0    1    1    0
+#&gt;  [26,]    1    1    0    0    1    0
+#&gt;  [27,]    0    1    1    0    1    1
+#&gt;  [28,]    0    1    1    1    1    0
+#&gt;  [29,]    0    0    0    0    1    1
+#&gt;  [30,]    0    0    0    0    0    1
+#&gt;  [31,]    0    0    1    1    0    1
+#&gt;  [32,]    1    0    1    1    1    1
+#&gt;  [33,]    1    1    0    0    0    0
+#&gt;  [34,]    0    1    0    0    1    0
+#&gt;  [35,]    0    1    0    0    1    0
+#&gt;  [36,]    1    0    0    1    0    0
+#&gt;  [37,]    0    0    0    1    1    0
+#&gt;  [38,]    0    1    0    1    1    0
+#&gt;  [39,]    0    1    1    0    0    0
+#&gt;  [40,]    1    1    0    1    0    1
+#&gt;  [41,]    0    1    1    0    1    0
+#&gt;  [42,]    1    0    0    1    0    0
+#&gt;  [43,]    0    0    1    0    0    0
+#&gt;  [44,]    0    1    0    0    0    1
+#&gt;  [45,]    0    1    0    1    0    1
+#&gt;  [46,]    1    0    1    1    1    0
+#&gt;  [47,]    0    0    1    0    1    1
+#&gt;  [48,]    1    0    0    0    1    0
+#&gt;  [49,]    0    1    0    0    1    0
+#&gt;  [50,]    0    1    0    0    0    0
+#&gt;  [51,]    1    0    1    0    1    1
+#&gt;  [52,]    0    1    1    0    1    1
+#&gt;  [53,]    0    1    0    0    1    1
+#&gt;  [54,]    0    1    1    0    0    0
+#&gt;  [55,]    1    0    1    1    1    1
+#&gt;  [56,]    0    0    0    0    1    1
+#&gt;  [57,]    0    1    0    1    0    0
+#&gt;  [58,]    1    0    0    1    0    1
+#&gt;  [59,]    1    1    0    0    1    0
+#&gt;  [60,]    0    1    0    0    1    1
+#&gt;  [61,]    1    0    0    0    1    0
+#&gt;  [62,]    1    0    0    1    0    0
+#&gt;  [63,]    0    1    0    1    0    0
+#&gt;  [64,]    0    0    0    0    1    1
+#&gt;  [65,]    0    0    0    0    1    1
+#&gt;  [66,]    0    1    0    1    1    1
+#&gt;  [67,]    1    0    0    1    0    0
+#&gt;  [68,]    1    0    1    0    1    0
+#&gt;  [69,]    1    1    1    0    0    0
+#&gt;  [70,]    0    0    0    1    1    1
+#&gt;  [71,]    1    1    0    0    1    0
+#&gt;  [72,]    0    1    1    0    0    1
+#&gt;  [73,]    0    0    1    0    0    0
+#&gt;  [74,]    1    0    0    1    0    1
+#&gt;  [75,]    1    1    0    0    0    1
+#&gt;  [76,]    0    0    1    0    0    0
+#&gt;  [77,]    1    0    0    0    1    1
+#&gt;  [78,]    1    0    0    0    1    1
+#&gt;  [79,]    0    0    0    1    0    1
+#&gt;  [80,]    0    0    0    0    1    0
+#&gt;  [81,]    1    0    0    0    0    1
+#&gt;  [82,]    0    1    1    0    0    0
+#&gt;  [83,]    1    0    1    0    0    1
+#&gt;  [84,]    0    1    0    1    1    0
+#&gt;  [85,]    0    1    0    0    1    0
+#&gt;  [86,]    0    0    0    1    1    0
+#&gt;  [87,]    0    0    1    1    1    0
+#&gt;  [88,]    0    1    1    0    0    1
+#&gt;  [89,]    1    1    0    0    1    1
+#&gt;  [90,]    1    1    0    0    1    0
+#&gt;  [91,]    0    1    0    0    0    1
+#&gt;  [92,]    1    1    0    1    0    1
+#&gt;  [93,]    0    0    0    1    1    1
+#&gt;  [94,]    0    0    1    1    1    0
+#&gt;  [95,]    1    1    0    0    1    0
+#&gt;  [96,]    1    0    0    0    0    1
+#&gt;  [97,]    0    1    0    1    1    0
+#&gt;  [98,]    0    0    0    0    0    1
+#&gt;  [99,]    0    0    1    0    0    1
+#&gt; [100,]    1    0    1    0    1    0</div><div class='input'><span class='co'># }</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

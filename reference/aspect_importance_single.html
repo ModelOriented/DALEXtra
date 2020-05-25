@@ -242,7 +242,7 @@ attribute of the model.</p></td>
   describes aspects' importance.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"DALEX"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"DALEX"</span>)
 
 <span class='no'>model_titanic_glm</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/glm.html'>glm</a></span>(<span class='no'>survived</span> <span class='kw'>==</span> <span class='fl'>1</span> ~ <span class='no'>class</span> + <span class='no'>gender</span> + <span class='no'>age</span> +
                          <span class='no'>sibsp</span> + <span class='no'>parch</span> + <span class='no'>fare</span> + <span class='no'>embarked</span>,
@@ -250,7 +250,15 @@ attribute of the model.</p></td>
                          <span class='kw'>family</span> <span class='kw'>=</span> <span class='st'>"binomial"</span>)
 
 <span class='fu'>aspect_importance_single</span>(<span class='no'>model_titanic_glm</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>titanic_imputed</span>[,-<span class='fl'>8</span>],
-                         <span class='kw'>new_observation</span> <span class='kw'>=</span> <span class='no'>titanic_imputed</span>[<span class='fl'>1</span>,-<span class='fl'>8</span>])</pre>
+                         <span class='kw'>new_observation</span> <span class='kw'>=</span> <span class='no'>titanic_imputed</span>[<span class='fl'>1</span>,-<span class='fl'>8</span>])</div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt;    aspects importance        new observation
+#&gt; 4    class   -0.49881            class = 3rd
+#&gt; 2   gender   -0.31263          gender = male
+#&gt; 3      age   -0.25447               age = 42
+#&gt; 7    sibsp    0.18191              sibsp = 0
+#&gt; 6     fare    0.14664            fare = 7.11
+#&gt; 5 embarked    0.08260 embarked = Southampton
+#&gt; 8    parch   -0.06596              parch = 0</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

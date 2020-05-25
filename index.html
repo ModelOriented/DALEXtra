@@ -132,7 +132,7 @@
 <li>Cross langauge comaprison
 <ul>
 <li>Creating explainers for models created in different languges so they can be explained using R tools like <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a> family.</li>
-<li>Currently supported are <strong>Python</strong> <em>scikit-learn</em> and <em>keras</em>, <strong>Java</strong> <em>h2o</em> and <em>mljar</em>, <strong>R</strong> <em>mlr</em> and <em>mlr3</em>.</li>
+<li>Currently supported are <strong>Python</strong> <em>scikit-learn</em> and <em>keras</em>, <strong>Java</strong> <em>h2o</em> and <em>mljar</em>, <strong>R</strong> <em>xgboost</em>, <em>mlr</em> and <em>mlr3</em>.</li>
 </ul>
 </li>
 <li>Aspect Importance analysis
@@ -258,8 +258,8 @@
 <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/ingredients/man/feature_importance.html">feature_importance</a></span>(<span class="no">explainer</span>))</pre></div>
 <p><img src="reference/figures/unnamed-chunk-8-2.png" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb11"><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/ingredients/man/describe.html">describe</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/ingredients/man/feature_importance.html">feature_importance</a></span>(<span class="no">explainer</span>))</pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">## The number of important variables for scikitlearn_model's prediction is 2 out of 17. </span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="co">##  Variables gender.female, gender.male have the highest importantance.</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">## The number of important variables for scikitlearn_model's prediction is 4 out of 17. </span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co">##  Variables gender.female, gender.male, age have the highest importantance.</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">iBreakDown</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/iBreakDown/man/break_down.html">break_down</a></span>(<span class="no">explainer</span>, <span class="no">titanic_test</span>[<span class="fl">2</span>, <span class="fl">1</span>:<span class="fl">17</span>]))</pre></div>
 <p><img src="reference/figures/unnamed-chunk-8-3.png" style="display: block; margin: auto;"></p>

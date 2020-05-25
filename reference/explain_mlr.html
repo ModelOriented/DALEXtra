@@ -238,7 +238,7 @@ One of those tools, which is one of the most popular one is mlr package. We woul
     <p>explainer object (<code><a href='https://rdrr.io/pkg/DALEX/man/explain.html'>explain</a></code>) ready to work with DALEX</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"DALEXtra"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"DALEXtra"</span>)
 <span class='no'>titanic_test</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_test.csv"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))
 <span class='no'>titanic_train</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_train.csv"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr"</span>)
@@ -261,7 +261,31 @@ One of those tools, which is one of the most popular one is mlr package. We woul
   <span class='kw'>predict.type</span> <span class='kw'>=</span> <span class='st'>"prob"</span>
 )
 <span class='no'>gbm</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://mlr.mlr-org.com/reference/train.html'>train</a></span>(<span class='no'>learner</span>, <span class='no'>task</span>)
-<span class='fu'>explain_mlr</span>(<span class='no'>gbm</span>, <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>], <span class='no'>titanic_test</span>[,<span class='fl'>18</span>])</pre>
+<span class='fu'>explain_mlr</span>(<span class='no'>gbm</span>, <span class='no'>titanic_test</span>[,<span class='fl'>1</span>:<span class='fl'>17</span>], <span class='no'>titanic_test</span>[,<span class='fl'>18</span>])</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+#&gt;   -&gt; model label       :  WrappedModel  ( <span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; data              :  524  rows  17  cols 
+#&gt;   -&gt; target variable   :  524  values 
+#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; predicted values  :  numerical, min =  0.4362386 , mean =  0.6677306 , max =  0.7301657  
+#&gt;   -&gt; model_info        :  package mlr , ver. 2.17.1 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; residuals         :  numerical, min =  -0.7301657 , mean =  -0.3566619 , max =  0.5637614  
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='output co'>#&gt; Model label:  WrappedModel 
+#&gt; Model class:  WrappedModel 
+#&gt; Data head  :
+#&gt;   gender.female gender.male age class.1st class.2nd class.3rd class.deck.crew
+#&gt; 1             1           0  16         0         0         1               0
+#&gt; 2             0           1  25         0         0         1               0
+#&gt;   class.engineering.crew class.restaurant.staff class.victualling.crew
+#&gt; 1                      0                      0                      0
+#&gt; 2                      0                      0                      0
+#&gt;   embarked.Belfast embarked.Cherbourg embarked.Queenstown embarked.Southampton
+#&gt; 1                0                  0                   0                    1
+#&gt; 2                0                  0                   0                    1
+#&gt;   fare sibsp parch
+#&gt; 1 7.13     0     0
+#&gt; 2 7.13     0     0</div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

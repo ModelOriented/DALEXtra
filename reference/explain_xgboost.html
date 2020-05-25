@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Wrapper for Python Keras Models — explain_keras • DALEXtra</title>
+<title>Create explainer from your xgboost model — explain_xgboost • DALEXtra</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -52,10 +52,10 @@
 
 
 
-<meta property="og:title" content="Wrapper for Python Keras Models — explain_keras" />
-<meta property="og:description" content="Keras models may be loaded into R environment like any other Python object. This function helps to inspect performance of Python model
-and compare it with other models, using R tools like DALEX. This function creates an object that is easily accessible R version of Keras model
-exported from Python via pickle file." />
+<meta property="og:title" content="Create explainer from your xgboost model — explain_xgboost" />
+<meta property="og:description" content="DALEX is designed to work with various black-box models like tree ensembles, linear models, neural networks etc.
+Unfortunately R packages that create such models are very inconsistent. Different tools use different interfaces to train, validate and use models.
+One of those tools, we would like to make more accessible is xgboost." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -149,22 +149,19 @@ exported from Python via pickle file." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Wrapper for Python Keras Models</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ModelOriented/DALEXtra/blob/master/R/explain_keras.R'><code>R/explain_keras.R</code></a></small>
-    <div class="hidden name"><code>explain_keras.Rd</code></div>
+    <h1>Create explainer from your xgboost model</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ModelOriented/DALEXtra/blob/master/R/explain_xgboost.R'><code>R/explain_xgboost.R</code></a></small>
+    <div class="hidden name"><code>explain_xgboost.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Keras models may be loaded into R environment like any other Python object. This function helps to inspect performance of Python model
-and compare it with other models, using R tools like DALEX. This function creates an object that is easily accessible R version of Keras model
-exported from Python via pickle file.</p>
+    <p>DALEX is designed to work with various black-box models like tree ensembles, linear models, neural networks etc.
+Unfortunately R packages that create such models are very inconsistent. Different tools use different interfaces to train, validate and use models.
+One of those tools, we would like to make more accessible is xgboost.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>explain_keras</span>(
-  <span class='no'>path</span>,
-  <span class='kw'>yml</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>condaenv</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>env</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <pre class="usage"><span class='fu'>explain_xgboost</span>(
+  <span class='no'>model</span>,
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>weights</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -176,35 +173,24 @@ exported from Python via pickle file.</p>
   <span class='kw'>precalculate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>colorize</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>model_info</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>encode_function</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>path</th>
-      <td><p>a path to the pickle file. Can be used without other arguments if you are sure that active Python version match pickle version.</p></td>
-    </tr>
-    <tr>
-      <th>yml</th>
-      <td><p>a path to the yml file. Conda virtual env will be recreated from this file. If OS is Windows conda has to be added to the PATH first</p></td>
-    </tr>
-    <tr>
-      <th>condaenv</th>
-      <td><p>If yml param is provided, a path to the main conda folder. If yml is null, a name of existing conda environment.</p></td>
-    </tr>
-    <tr>
-      <th>env</th>
-      <td><p>A path to python virtual environment.</p></td>
+      <th>model</th>
+      <td><p>object - a model to be explained</p></td>
     </tr>
     <tr>
       <th>data</th>
-      <td><p>test data set that will be passed to <code><a href='https://rdrr.io/pkg/DALEX/man/explain.html'>explain</a></code>.</p></td>
+      <td><p>data.frame or matrix - data that was used for fitting. If not provided then will be extracted from the model. Data should be passed without target column (this shall be provided as the <code>y</code> argument). NOTE: If target variable is present in the <code>data</code>, some of the functionalities my not work properly.</p></td>
     </tr>
     <tr>
       <th>y</th>
-      <td><p>vector that will be passed to <code><a href='https://rdrr.io/pkg/DALEX/man/explain.html'>explain</a></code>.</p></td>
+      <td><p>numeric vector with outputs / scores. If provided then it shall have the same size as <code>data</code>. For classif task has to be numerci in range [0, nclasses)</p></td>
     </tr>
     <tr>
       <th>weights</th>
@@ -212,11 +198,11 @@ exported from Python via pickle file.</p>
     </tr>
     <tr>
       <th>predict_function</th>
-      <td><p>predict function that will be passed into <code><a href='https://rdrr.io/pkg/DALEX/man/explain.html'>explain</a></code>. If NULL, default will be used.</p></td>
+      <td><p>function that takes two arguments: model and new data and returns numeric vector with predictions</p></td>
     </tr>
     <tr>
       <th>residual_function</th>
-      <td><p>residual function that will be passed into <code><a href='https://rdrr.io/pkg/DALEX/man/explain.html'>explain</a></code>. If NULL, default will be used.</p></td>
+      <td><p>function that takes three arguments: model, data and response vector y. It should return a numeric vector with model residuals for given data. If not provided, response residuals (\(y-\hat{y}\)) are calculated.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -224,11 +210,11 @@ exported from Python via pickle file.</p>
     </tr>
     <tr>
       <th>label</th>
-      <td><p>label that will be passed into <code><a href='https://rdrr.io/pkg/DALEX/man/explain.html'>explain</a></code>. If NULL, default will be used.</p></td>
+      <td><p>character - the name of the model. By default it's extracted from the 'class' attribute of the model</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>bool that will be passed into <code><a href='https://rdrr.io/pkg/DALEX/man/explain.html'>explain</a></code>. If NULL, default will be used.</p></td>
+      <td><p>if TRUE (default) then diagnostic messages will be printed</p></td>
     </tr>
     <tr>
       <th>precalculate</th>
@@ -246,62 +232,60 @@ exported from Python via pickle file.</p>
       <th>type</th>
       <td><p>type of a model, either <code>classification</code> or <code>regression</code>. If not specified then <code>type</code> will be extracted from <code>model_info</code>.</p></td>
     </tr>
+    <tr>
+      <th>encode_function</th>
+      <td><p>fuction(data, ...) that if executed with <code>data</code> parameters returns encoded dataframe that was used to fit model. Xgboost does not handle factors on it's own so such function is needed to aquire better explanations.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An object of the class 'explainer'.</p>
-<p><b>Example of Python code avialble at documentation <code><a href='explain_scikitlearn.html'>explain_scikitlearn</a></code></b><br /></p>
-<p><b>Errors use case</b><br />
-Here is shortened version of solution for specific errors <br />
-<br />
-<b>There already exists environment with a name specified by given .yml file</b><br />
-If you provide .yml file that in its header contatins name exact to name of environment that already exists, existing will be set active without changing it. <br />
-You have two ways of solving that issue. Both connected with anaconda prompt. First is removing conda env with command: <br />
-<code>conda env remove --name myenv</code><br />
-And execute function once again. Second is updating env via: <br />
-<code>conda env create -f environment.yml</code><br />
-<br />
-<b>Conda cannot find specified packages at channels you have provided.</b><br />
-That error may be casued by a lot of things. One of those is that specified version is too old to be avaialble from offcial conda repo.
-Edit Your .yml file and add link to proper repository at channels section.<br />
-<br />
-Issue may be also connected with the platform. If model was created on the platform with different OS yo may need to remove specific version from .yml file.<br />
-<code>- numpy=1.16.4=py36h19fb1c0_0</code><br />
-<code>- numpy-base=1.16.4=py36hc3f5095_0</code><br />
-In the example above You have to remove <code>=py36h19fb1c0_0</code> and <code>=py36hc3f5095_0</code> <br />
-If some packages are not availbe for anaconda at all, use pip statement<br />
-<br />
-If .yml file seems not to work, virtual env can be created manually using anaconda promt. <br />
-<code>conda create -n name_of_env python=3.4</code> <br />
-<code>conda install -n name_of_env name_of_package=0.20</code> <br /></p>
+    <p>explainer object (<code><a href='https://rdrr.io/pkg/DALEX/man/explain.html'>explain</a></code>) ready to work with DALEX</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"DALEXtra"</span>)
-<span class='co'># \donttest{</span>
-   <span class='co'># Explainer build (Keep in mind that 9th column is target)</span>
-   <span class='no'>test_data</span> <span class='kw'>&lt;-</span>
-   <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(
-   <span class='st'>"https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.data.csv"</span>,
-   <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>","</span>)
-   <span class='co'># Keep in mind that when pickle is being built and loaded,</span>
-   <span class='co'># not only Python version but libraries versions has to match aswell</span>
-   <span class='no'>explainer</span> <span class='kw'>&lt;-</span> <span class='fu'>explain_keras</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"keras.pkl"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>),
-   <span class='kw'>conda</span> <span class='kw'>=</span> <span class='st'>"myenv"</span>,
-   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>test_data</span>[,<span class='fl'>1</span>:<span class='fl'>8</span>], <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>test_data</span>[,<span class='fl'>9</span>])</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
-#&gt;   -&gt; model label       :  keras  ( <span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; data              :  767  rows  8  cols 
-#&gt;   -&gt; target variable   :  767  values 
-#&gt;   -&gt; predict function  :  yhat.keras  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; predicted values  :  numerical, min =  0.0006659329 , mean =  0.4633349 , max =  0.9935234  
-#&gt;   -&gt; model_info        :  package reticulate , ver. 1.15 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"xgboost"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"DALEXtra"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr"</span>)
+<span class='co'># 8th column is target that has to be omitted in X data</span>
+<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='fu'><a href='https://mlr.mlr-org.com/reference/createDummyFeatures.html'>createDummyFeatures</a></span>(<span class='no'>titanic_imputed</span>[,-<span class='fl'>8</span>]))
+<span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/xgboost/man/xgb.train.html'>xgboost</a></span>(<span class='no'>data</span>, <span class='no'>titanic_imputed</span>$<span class='no'>survived</span>, <span class='kw'>nrounds</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+                 <span class='kw'>params</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>objective</span> <span class='kw'>=</span> <span class='st'>"binary:logistic"</span>),
+                <span class='kw'>prediction</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1]	train-error:0.168555 
+#&gt; [2]	train-error:0.166289 
+#&gt; [3]	train-error:0.166742 
+#&gt; [4]	train-error:0.165383 
+#&gt; [5]	train-error:0.159946 
+#&gt; [6]	train-error:0.157680 
+#&gt; [7]	train-error:0.154508 
+#&gt; [8]	train-error:0.154961 
+#&gt; [9]	train-error:0.155415 
+#&gt; [10]	train-error:0.155415 </div><div class='input'><span class='co'># explainer with encode functiom</span>
+<span class='no'>explainer_1</span> <span class='kw'>&lt;-</span> <span class='fu'>explain_xgboost</span>(<span class='no'>model</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>titanic_imputed</span>[,-<span class='fl'>8</span>],
+                               <span class='no'>titanic_imputed</span>$<span class='no'>survived</span>,
+                               <span class='kw'>encode_function</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>data</span>) {
+ <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='fu'><a href='https://mlr.mlr-org.com/reference/createDummyFeatures.html'>createDummyFeatures</a></span>(<span class='no'>data</span>))
+})</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+#&gt;   -&gt; model label       :  xgb.Booster  ( <span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; data              :  2207  rows  7  cols 
+#&gt;   -&gt; target variable   :  2207  values 
+#&gt;   -&gt; predict function  :  yhat.xgb.Booster  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; predicted values  :  numerical, min =  0.04738454 , mean =  0.3272404 , max =  0.9705966  
+#&gt;   -&gt; model_info        :  package xgboost , ver. 1.0.0.2 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; residuals         :  numerical, min =  -0.9620993 , mean =  -0.1152253 , max =  0.9141644  
-#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>   <span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='fu'>model_performance</span>(<span class='no'>explainer</span>))</div><div class='img'><img src='explain_keras-1.png' alt='' width='700' height='433' /></div><div class='input'>
-   <span class='co'># Predictions with newdata</span>
-   <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>explainer</span>, <span class='no'>test_data</span>[<span class='fl'>1</span>:<span class='fl'>10</span>,<span class='fl'>1</span>:<span class='fl'>8</span>])</div><div class='output co'>#&gt;  [1] 0.1804933 0.9571114 0.1365494 0.9309344 0.3601863 0.1650710 0.7250850
-#&gt;  [8] 0.9752285 0.2601736 0.2772151</div><div class='input'>
-<span class='co'># }</span></div></span></pre>
+#&gt;   -&gt; residuals         :  numerical, min =  -0.8105438 , mean =  -0.005083592 , max =  0.9452911  
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='fu'>predict_parts</span>(<span class='no'>explainer_1</span>, <span class='no'>titanic_imputed</span>[<span class='fl'>1</span>,-<span class='fl'>8</span>]))</div><div class='img'><img src='explain_xgboost-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># explainer without encode function</span>
+<span class='no'>explainer_2</span> <span class='kw'>&lt;-</span> <span class='fu'>explain_xgboost</span>(<span class='no'>model</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>data</span>, <span class='no'>titanic_imputed</span>$<span class='no'>survived</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+#&gt;   -&gt; model label       :  xgb.Booster  ( </span><span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; data              :  2207  rows  17  cols 
+#&gt;   -&gt; target variable   :  2207  values 
+#&gt;   -&gt; predict function  :  yhat.xgb.Booster  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; predicted values  :  numerical, min =  0.04738454 , mean =  0.3272404 , max =  0.9705966  
+#&gt;   -&gt; model_info        :  package xgboost , ver. 1.0.0.2 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; residuals         :  numerical, min =  -0.8105438 , mean =  -0.005083592 , max =  0.9452911  
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='fu'>predict_parts</span>(<span class='no'>explainer_2</span>, <span class='no'>data</span>[<span class='fl'>1</span>,,<span class='kw'>drop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>]))</div><div class='img'><img src='explain_xgboost-2.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

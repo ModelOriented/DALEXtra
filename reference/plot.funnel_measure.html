@@ -183,7 +183,7 @@ It uses data created with 'funnel_measure' function.</p>
     <p>ggplot object</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># \donttest{</span>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr"</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"DALEXtra"</span>)
 <span class='no'>task</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://mlr.mlr-org.com/reference/RegrTask.html'>makeRegrTask</a></span>(
@@ -195,25 +195,48 @@ It uses data created with 'funnel_measure' function.</p>
   <span class='st'>"regr.lm"</span>
 )
 <span class='no'>model_lm</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://mlr.mlr-org.com/reference/train.html'>train</a></span>(<span class='no'>learner_lm</span>, <span class='no'>task</span>)
-<span class='no'>explainer_lm</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='explain_mlr.html'>explain_mlr</a></span>(<span class='no'>model_lm</span>, <span class='no'>apartmentsTest</span>, <span class='no'>apartmentsTest</span>$<span class='no'>m2.price</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"LM"</span>)
-
+<span class='no'>explainer_lm</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='explain_mlr.html'>explain_mlr</a></span>(<span class='no'>model_lm</span>, <span class='no'>apartmentsTest</span>, <span class='no'>apartmentsTest</span>$<span class='no'>m2.price</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"LM"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+#&gt;   -&gt; model label       :  LM 
+#&gt;   -&gt; data              :  9000  rows  6  cols 
+#&gt;   -&gt; target variable   :  9000  values 
+#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( <span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; predicted values  :  numerical, min =  1792.597 , mean =  3506.836 , max =  6241.447  
+#&gt;   -&gt; model_info        :  package mlr , ver. 2.17.1 , task regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; residuals         :  numerical, min =  -257.2555 , mean =  4.687686 , max =  472.356  
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 <span class='no'>learner_rf</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://mlr.mlr-org.com/reference/makeLearner.html'>makeLearner</a></span>(
   <span class='st'>"regr.randomForest"</span>
 )
 <span class='no'>model_rf</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://mlr.mlr-org.com/reference/train.html'>train</a></span>(<span class='no'>learner_rf</span>, <span class='no'>task</span>)
-<span class='no'>explainer_rf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='explain_mlr.html'>explain_mlr</a></span>(<span class='no'>model_rf</span>, <span class='no'>apartmentsTest</span>, <span class='no'>apartmentsTest</span>$<span class='no'>m2.price</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"RF"</span>)
-
+<span class='no'>explainer_rf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='explain_mlr.html'>explain_mlr</a></span>(<span class='no'>model_rf</span>, <span class='no'>apartmentsTest</span>, <span class='no'>apartmentsTest</span>$<span class='no'>m2.price</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"RF"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+#&gt;   -&gt; model label       :  RF 
+#&gt;   -&gt; data              :  9000  rows  6  cols 
+#&gt;   -&gt; target variable   :  9000  values 
+#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; predicted values  :  numerical, min =  1973.925 , mean =  3507.769 , max =  5772.283  
+#&gt;   -&gt; model_info        :  package mlr , ver. 2.17.1 , task regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; residuals         :  numerical, min =  -690.5902 , mean =  3.754873 , max =  1311.645  
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 <span class='no'>learner_gbm</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://mlr.mlr-org.com/reference/makeLearner.html'>makeLearner</a></span>(
   <span class='st'>"regr.gbm"</span>
 )
 <span class='no'>model_gbm</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://mlr.mlr-org.com/reference/train.html'>train</a></span>(<span class='no'>learner_gbm</span>, <span class='no'>task</span>)
-<span class='no'>explainer_gbm</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='explain_mlr.html'>explain_mlr</a></span>(<span class='no'>model_gbm</span>, <span class='no'>apartmentsTest</span>, <span class='no'>apartmentsTest</span>$<span class='no'>m2.price</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"GBM"</span>)
-
+<span class='no'>explainer_gbm</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='explain_mlr.html'>explain_mlr</a></span>(<span class='no'>model_gbm</span>, <span class='no'>apartmentsTest</span>, <span class='no'>apartmentsTest</span>$<span class='no'>m2.price</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"GBM"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+#&gt;   -&gt; model label       :  GBM 
+#&gt;   -&gt; data              :  9000  rows  6  cols 
+#&gt;   -&gt; target variable   :  9000  values 
+#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; predicted values  :  numerical, min =  2115.758 , mean =  3502.258 , max =  6055.129  
+#&gt;   -&gt; model_info        :  package mlr , ver. 2.17.1 , task regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; residuals         :  numerical, min =  -512.7577 , mean =  9.265594 , max =  778.5281  
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 
 <span class='no'>plot_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='funnel_measure.html'>funnel_measure</a></span>(<span class='no'>explainer_lm</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>explainer_rf</span>, <span class='no'>explainer_gbm</span>),
-                            <span class='kw'>nbins</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>measure_function</span> <span class='kw'>=</span> <span class='kw pkg'>DALEX</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/DALEX/man/loss_functions.html'>loss_root_mean_square</a></span>)
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>plot_data</span>)
-<span class='co'># }</span></pre>
+                            <span class='kw'>nbins</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>measure_function</span> <span class='kw'>=</span> <span class='kw pkg'>DALEX</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/DALEX/man/loss_functions.html'>loss_root_mean_square</a></span>)</div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |============                                                          |  17%  |                                                                              |=======================                                               |  33%  |                                                                              |===================================                                   |  50%  |                                                                              |===============================================                       |  67%  |                                                                              |==========================================================            |  83%  |                                                                              |======================================================================| 100%</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>plot_data</span>)</div><div class='output co'>#&gt; $challanger_RF</div><div class='img'><img src='plot.funnel_measure-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; $challanger_GBM</div><div class='img'><img src='plot.funnel_measure-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; </div><div class='input'><span class='co'># }</span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

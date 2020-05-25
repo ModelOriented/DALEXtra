@@ -238,20 +238,50 @@ One of those tools, which is one of the most popular one is mlr3 package. We wou
     <p>explainer object (<code><a href='https://rdrr.io/pkg/DALEX/man/explain.html'>explain</a></code>) ready to work with DALEX</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"DALEXtra"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3</span>)
-<span class='no'>titanic_imputed</span>$<span class='no'>survived</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span>(<span class='no'>titanic_imputed</span>$<span class='no'>survived</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"DALEXtra"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘mlr3’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:mlr’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    benchmark, resample</span></div><div class='input'><span class='no'>titanic_imputed</span>$<span class='no'>survived</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span>(<span class='no'>titanic_imputed</span>$<span class='no'>survived</span>)
 <span class='no'>task_classif</span> <span class='kw'>&lt;-</span> <span class='no'>TaskClassif</span>$<span class='fu'>new</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"1"</span>, <span class='kw'>backend</span> <span class='kw'>=</span> <span class='no'>titanic_imputed</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"survived"</span>)
 <span class='no'>learner_classif</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"classif.rpart"</span>, <span class='kw'>predict_type</span> <span class='kw'>=</span> <span class='st'>"prob"</span>)
 <span class='no'>learner_classif</span>$<span class='fu'>train</span>(<span class='no'>task_classif</span>)
 <span class='fu'>explain_mlr3</span>(<span class='no'>learner_classif</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>titanic_imputed</span>,
-             <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span>(<span class='no'>titanic_imputed</span>$<span class='no'>survived</span>)))
-
+             <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span>(<span class='no'>titanic_imputed</span>$<span class='no'>survived</span>)))</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+#&gt;   -&gt; model label       :  R6  ( <span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; data              :  2207  rows  8  cols 
+#&gt;   -&gt; target variable   :  2207  values 
+#&gt;   -&gt; predict function  :  yhat.LearnerClassif  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; predicted values  :  numerical, min =  0.05555556 , mean =  0.3221568 , max =  0.9267399  
+#&gt;   -&gt; model_info        :  package mlr3 , ver. 0.2.0 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; residuals         :  numerical, min =  -0.9267399 , mean =  1.858834e-17 , max =  0.9444444  
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='output co'>#&gt; Model label:  R6 
+#&gt; Model class:  LearnerClassifRpart,LearnerClassif,Learner,R6 
+#&gt; Data head  :
+#&gt;   gender age class    embarked  fare sibsp parch survived
+#&gt; 1   male  42   3rd Southampton  7.11     0     0        0
+#&gt; 2   male  13   3rd Southampton 20.05     0     2        0</div><div class='input'>
 
 <span class='no'>task_regr</span> <span class='kw'>&lt;-</span> <span class='no'>TaskRegr</span>$<span class='fu'>new</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"2"</span>, <span class='kw'>backend</span> <span class='kw'>=</span> <span class='no'>apartments</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"m2.price"</span>)
 <span class='no'>learner_regr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"regr.rpart"</span>)
 <span class='no'>learner_regr</span>$<span class='fu'>train</span>(<span class='no'>task_regr</span>)
-<span class='fu'>explain_mlr3</span>(<span class='no'>learner_regr</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>apartments</span>, <span class='no'>apartments</span>$<span class='no'>m2.price</span>)</pre>
+<span class='fu'>explain_mlr3</span>(<span class='no'>learner_regr</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>apartments</span>, <span class='no'>apartments</span>$<span class='no'>m2.price</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+#&gt;   -&gt; model label       :  R6  ( </span><span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; data              :  1000  rows  6  cols 
+#&gt;   -&gt; target variable   :  1000  values 
+#&gt;   -&gt; predict function  :  yhat.LearnerRegr  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; predicted values  :  numerical, min =  2289.664 , mean =  3487.019 , max =  5737.175  
+#&gt;   -&gt; model_info        :  package mlr3 , ver. 0.2.0 , task regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; residuals         :  numerical, min =  -1044.133 , mean =  4.321552e-14 , max =  1080.867  
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='output co'>#&gt; Model label:  R6 
+#&gt; Model class:  LearnerRegrRpart,LearnerRegr,Learner,R6 
+#&gt; Data head  :
+#&gt;   m2.price construction.year surface floor no.rooms    district
+#&gt; 1     5897              1953      25     3        1 Srodmiescie
+#&gt; 2     1818              1992     143     9        5     Bielany</div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
