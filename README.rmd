@@ -26,7 +26,7 @@ The `DALEXtra` package is an extension pack for [DALEX](https://modeloriented.gi
     + Automatic HTML report.
 * Cross langauge comaprison
     + Creating explainers for models created in different languges so they can be explained using R tools like [DrWhy.AI](https://github.com/ModelOriented/DrWhy) family.
-    + Currently supported are **Python** *scikit-learn* and *keras*, **Java** *h2o* and *mljar*, **R** *mlr* and *mlr3*.
+    + Currently supported are **Python** *scikit-learn* and *keras*, **Java** *h2o* and *mljar*, **R** *xgboost*, *mlr* and *mlr3*.
 * Aspect Importance analysis
     + Provides instance-level explanations for the groups of explanatory variables.
 

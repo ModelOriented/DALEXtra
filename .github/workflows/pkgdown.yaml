@@ -40,6 +40,8 @@ jobs:
           sudo apt-get install -y git
           sudo apt-get install -y qpdf
           sudo apt-get install -y libcurl4-openssl-dev
+          git config --global user.email "sz.maksymiuk@gmail.com"
+          git config --global user.name "Szymon"
 
 #          Rscript -e "remotes::install_github('r-hub/sysreqs')"
 #          sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")

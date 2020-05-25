@@ -164,10 +164,10 @@ model_info.xgb.Booster <- function(model, is_multiclass = FALSE, ...) {
     type <- "multiclass"
   } else if (task == "binary") {
     type <- "classification"
-  } else if (task == "regr") {
+  } else if (task == "reg") {
     type <- "regression"
   } else {
-    stop("Task has to be either multi, binary or regr")
+    stop("Task has to be either multi, binary or reg")
   }
   package <- "xgboost"
   ver <- get_pkg_ver_safe(package)

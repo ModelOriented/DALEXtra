@@ -27,8 +27,26 @@
 #'
 #'
 #' @examples
-#' \donttest{
-#' }
+#' library("xgboost")
+#' library("DALEXtra")
+#' library("mlr")
+#' # 8th column is target that has to be omitted in X data
+#' data <- as.matrix(createDummyFeatures(titanic_imputed[,-8]))
+#' model <- xgboost(data, titanic_imputed$survived, nrounds = 10,
+#'                  params = list(objective = "binary:logistic"),
+#'                 prediction = TRUE)
+#' # explainer with encode functiom
+#' explainer_1 <- explain_xgboost(model, data = titanic_imputed[,-8],
+#'                                titanic_imputed$survived,
+#'                                encode_function = function(data) {
+#'  as.matrix(createDummyFeatures(data))
+#' })
+#' plot(predict_parts(explainer_1, titanic_imputed[1,-8]))
+#'
+#' # explainer without encode function
+#' explainer_2 <- explain_xgboost(model, data = data, titanic_imputed$survived)
+#' plot(predict_parts(explainer_2, data[1,,drop = FALSE]))
+#'
 #' @rdname explain_xgboost
 #' @export
 

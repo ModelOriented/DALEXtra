@@ -29,7 +29,7 @@ could be divided into three areas.
         they can be explained using R tools like
         [DrWhy.AI](https://github.com/ModelOriented/DrWhy) family.
       - Currently supported are **Python** *scikit-learn* and *keras*,
-        **Java** *h2o* and *mljar*, **R** *mlr* and *mlr3*.
+        **Java** *h2o* and *mljar*, **R** *xgboost*, *mlr* and *mlr3*.
   - Aspect Importance analysis
       - Provides instance-level explanations for the groups of
         explanatory variables.
@@ -232,8 +232,8 @@ plot(feature_importance(explainer))
 describe(feature_importance(explainer))
 ```
 
-    ## The number of important variables for scikitlearn_model's prediction is 2 out of 17. 
-    ##  Variables gender.female, gender.male have the highest importantance.
+    ## The number of important variables for scikitlearn_model's prediction is 4 out of 17. 
+    ##  Variables gender.female, gender.male, age have the highest importantance.
 
 ``` r
 library(iBreakDown)
