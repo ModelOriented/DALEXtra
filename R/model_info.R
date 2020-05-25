@@ -16,6 +16,7 @@
 #' \item \code{scikit-learn} models created with \code{scikit-learn} pyhton library and accesed via \code{reticulate}
 #' \item \code{keras} models created with \code{keras} pyhton library and accesed via \code{reticulate}
 #' \item \code{mlr3} models created with \code{mlr3} package
+#' \item \code{xgboost} models created with \code{xgboost} package
 #' }
 #'
 #' @return A named list of class \code{model_info}
@@ -154,6 +155,27 @@ model_info.LearnerClassif <- function(model, is_multiclass = FALSE, ...) {
   class(model_info) <- "model_info"
   model_info
 }
+
+#' @rdname model_info
+#' @export
+model_info.xgb.Booster <- function(model, is_multiclass = FALSE, ...) {
+  task <- strsplit(model$params$objective, ":", fixed = TRUE)[[1]][1]
+  if (task == "multi") {
+    type <- "multiclass"
+  } else if (task == "binary") {
+    type <- "classification"
+  } else if (task == "regr") {
+    type <- "regression"
+  } else {
+    stop("Task has to be either multi, binary or regr")
+  }
+  package <- "xgboost"
+  ver <- get_pkg_ver_safe(package)
+  model_info <- list(package = package, ver = ver, type = type)
+  class(model_info) <- "model_info"
+  model_info
+}
+
 
 get_pkg_ver_safe <- function(package) {
   ver <- try(as.character(utils::packageVersion(package)), silent = TRUE)

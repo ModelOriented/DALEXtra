@@ -11,6 +11,7 @@
 #' \item \code{scikit-learn} see more in \code{\link{explain_scikitlearn}}
 #' \item \code{keras} see more in \code{\link{explain_keras}}
 #' \item \code{mlr3} see more in \code{\link{explain_mlr3}}
+#' \item \code{xgboost} see more in \code{\link{explain_xgboost}}
 #' }
 #'
 #' @param X.model object - a model to be explained
@@ -161,6 +162,29 @@ yhat.LearnerClassif <- function(X.model, newdata, ...) {
   }
   response
 }
+
+#' @rdname yhat
+#' @export
+yhat.xgb.Booster <- function(X.model, newdata, ...) {
+  if (!is.null(attr(X.model, "encoder"))) {
+    newdata <- attr(X.model, "encoder")(newdata)
+  }
+  if (X.model$params$objective == "multi:softprob") {
+    p <- predict(X.model, newdata, type="response")
+    ret <- matrix(p, ncol = X.model$params$num_class, byrow = TRUE)
+    colnames(ret) <- 0:(X.model$params$num_class-1)
+  } else if (X.model$params$objective == "multi:softprob") {
+    stop("Please use objective\"multi:softmax\" to get probability output")
+  } else if (X.model$params$objective == "binary:logistic") {
+    ret <- predict(X.model, newdata, type="response")
+  } else if (X.model$params$objective == "binary:logitraw" | X.model$params$objective == "binary:hinge") {
+    stop("Please use objective\"binary:logistic\" to get probability output")
+  } else {
+    ret <- predict(X.model, newdata, type="response")
+  }
+  ret
+}
+
 
 normalize_h2o_names <- function(names) {
   ret <- sapply(names, FUN = function(x) {
