@@ -221,10 +221,10 @@ explainers. Keep in mind that type of task has to be specified.</p>
 #&gt;   -&gt; data              :  9000  rows  6  cols 
 #&gt;   -&gt; target variable   :  9000  values 
 #&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; predicted values  :  numerical, min =  1989.813 , mean =  3506.405 , max =  5789.607  
+#&gt;   -&gt; predicted values  :  numerical, min =  1970.317 , mean =  3506.766 , max =  5796.683  
 #&gt;   -&gt; model_info        :  package mlr , ver. 2.17.1 , task regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; residuals         :  numerical, min =  -706.6237 , mean =  5.118458 , max =  1264.453  
+#&gt;   -&gt; residuals         :  numerical, min =  -742.2349 , mean =  4.757205 , max =  1255.925  
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 <span class='no'>learner_gbm</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mlr</span><span class='kw ns'>::</span><span class='fu'><a href='https://mlr.mlr-org.com/reference/makeLearner.html'>makeLearner</a></span>(
   <span class='st'>"regr.gbm"</span>
@@ -235,10 +235,10 @@ explainers. Keep in mind that type of task has to be specified.</p>
 #&gt;   -&gt; data              :  9000  rows  6  cols 
 #&gt;   -&gt; target variable   :  9000  values 
 #&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; predicted values  :  numerical, min =  2105.175 , mean =  3503.874 , max =  6042.302  
+#&gt;   -&gt; predicted values  :  numerical, min =  2111.318 , mean =  3503.178 , max =  6056.674  
 #&gt;   -&gt; model_info        :  package mlr , ver. 2.17.1 , task regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; residuals         :  numerical, min =  -541.4722 , mean =  7.649322 , max =  783.9101  
+#&gt;   -&gt; residuals         :  numerical, min =  -508.3178 , mean =  8.345777 , max =  724.3891  
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 <span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'>overall_comparison</span>(<span class='no'>explainer_lm</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>explainer_gbm</span>, <span class='no'>explainer_rf</span>), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"regression"</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>data</span>)</div><div class='output co'>#&gt; $radar_plot</div><div class='img'><img src='overall_comparison-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 

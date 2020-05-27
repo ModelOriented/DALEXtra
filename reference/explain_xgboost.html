@@ -269,22 +269,22 @@ One of those tools, we would like to make more accessible is xgboost.</p>
 #&gt;   -&gt; data              :  2207  rows  7  cols 
 #&gt;   -&gt; target variable   :  2207  values 
 #&gt;   -&gt; predict function  :  yhat.xgb.Booster  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; predicted values  :  numerical, min =  0.04738454 , mean =  0.3272404 , max =  0.9705966  
+#&gt;   -&gt; predicted values  :  the predict_function returns an error when executed ( </span><span style='color: #BB0000;'> WARNING </span><span> ) 
 #&gt;   -&gt; model_info        :  package xgboost , ver. 1.0.0.2 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; residuals         :  numerical, min =  -0.8105438 , mean =  -0.005083592 , max =  0.9452911  
-#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='fu'>predict_parts</span>(<span class='no'>explainer_1</span>, <span class='no'>titanic_imputed</span>[<span class='fl'>1</span>,-<span class='fl'>8</span>]))</div><div class='img'><img src='explain_xgboost-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt;   -&gt; residuals         :  the residual_function returns an error when executed ( </span><span style='color: #BB0000;'> WARNING </span><span> ) 
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='fu'>predict_parts</span>(<span class='no'>explainer_1</span>, <span class='no'>titanic_imputed</span>[<span class='fl'>1</span>,-<span class='fl'>8</span>]))</div><div class='output co'>#&gt; <span class='error'>Error in 0:(X.model$params$num_class - 1): argument of length 0</span></div><div class='input'>
 <span class='co'># explainer without encode function</span>
 <span class='no'>explainer_2</span> <span class='kw'>&lt;-</span> <span class='fu'>explain_xgboost</span>(<span class='no'>model</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>data</span>, <span class='no'>titanic_imputed</span>$<span class='no'>survived</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  xgb.Booster  ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; data              :  2207  rows  17  cols 
 #&gt;   -&gt; target variable   :  2207  values 
 #&gt;   -&gt; predict function  :  yhat.xgb.Booster  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; predicted values  :  numerical, min =  0.04738454 , mean =  0.3272404 , max =  0.9705966  
+#&gt;   -&gt; predicted values  :  the predict_function returns an error when executed ( </span><span style='color: #BB0000;'> WARNING </span><span> ) 
 #&gt;   -&gt; model_info        :  package xgboost , ver. 1.0.0.2 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; residuals         :  numerical, min =  -0.8105438 , mean =  -0.005083592 , max =  0.9452911  
-#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='fu'>predict_parts</span>(<span class='no'>explainer_2</span>, <span class='no'>data</span>[<span class='fl'>1</span>,,<span class='kw'>drop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>]))</div><div class='img'><img src='explain_xgboost-2.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt;   -&gt; residuals         :  the residual_function returns an error when executed ( </span><span style='color: #BB0000;'> WARNING </span><span> ) 
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='fu'>predict_parts</span>(<span class='no'>explainer_2</span>, <span class='no'>data</span>[<span class='fl'>1</span>,,<span class='kw'>drop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>]))</div><div class='output co'>#&gt; <span class='error'>Error in 0:(X.model$params$num_class - 1): argument of length 0</span></div><div class='input'>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
