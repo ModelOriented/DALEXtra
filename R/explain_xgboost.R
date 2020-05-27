@@ -19,6 +19,7 @@
 #' @param model_info a named list (\code{package}, \code{version}, \code{type}) containg information about model. If \code{NULL}, \code{DALEX} will seek for information on it's own.
 #' @param type type of a model, either \code{classification} or \code{regression}. If not specified then \code{type} will be extracted from \code{model_info}.
 #' @param encode_function fuction(data, ...) that if executed with \code{data} parameters returns encoded dataframe that was used to fit model. Xgboost does not handle factors on it's own so such function is needed to aquire better explanations.
+#' @param true_labels vecotr of \code{y} before encoding.
 #'
 #' @return explainer object (\code{\link[DALEX]{explain}}) ready to work with DALEX
 #'
@@ -64,9 +65,15 @@ explain_xgboost <-
            colorize = TRUE,
            model_info = NULL,
            type = NULL,
-           encode_function = NULL) {
+           encode_function = NULL,
+           true_labels = NULL) {
 
     attr(model, "encoder") <- encode_function
+    if (!is.null(true_labels)) {
+      attr(model, "true_labels") <- true_labels
+      y <- true_labels
+    }
+
 
     explain(
       model,

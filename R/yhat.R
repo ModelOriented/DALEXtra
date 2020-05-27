@@ -169,10 +169,16 @@ yhat.xgb.Booster <- function(X.model, newdata, ...) {
   if (!is.null(attr(X.model, "encoder"))) {
     newdata <- attr(X.model, "encoder")(newdata)
   }
+  if (!is.null(attr(X.model, "true_labels"))) {
+    col_names <- levels(as.factor(attr(X.model, "true_labels")))
+  } else {
+    col_names <- 0:(X.model$params$num_class-1)
+  }
+
   if (X.model$params$objective == "multi:softprob") {
     p <- predict(X.model, newdata, type="response")
     ret <- matrix(p, ncol = X.model$params$num_class, byrow = TRUE)
-    colnames(ret) <- 0:(X.model$params$num_class-1)
+    colnames(ret) <- col_names
   } else if (X.model$params$objective == "multi:softprob") {
     stop("Please use objective\"multi:softmax\" to get probability output")
   } else if (X.model$params$objective == "binary:logistic") {

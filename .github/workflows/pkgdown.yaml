@@ -41,7 +41,7 @@ jobs:
           sudo apt-get install -y qpdf
           sudo apt-get install -y libcurl4-openssl-dev
           git config --global user.email "sz.maksymiuk@gmail.com"
-          git config --global user.name "Szymon"
+          git config --global user.name "maksymiuks"
 
 #          Rscript -e "remotes::install_github('r-hub/sysreqs')"
 #          sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
@@ -70,5 +70,5 @@ jobs:
         run: R CMD INSTALL .
 
       - name: Deploy package
-        run: pkgdown::deploy_to_branch(new_process = FALSE, run_dont_run = TRUE)
+        run: pkgdown::deploy_to_branch(new_process = FALSE)
         shell: Rscript {0}
