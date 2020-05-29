@@ -18,7 +18,8 @@ explain_xgboost(
   colorize = TRUE,
   model_info = NULL,
   type = NULL,
-  encode_function = NULL
+  encode_function = NULL,
+  true_labels = NULL
 )
 }
 \arguments{
@@ -49,6 +50,8 @@ explain_xgboost(
 \item{type}{type of a model, either \code{classification} or \code{regression}. If not specified then \code{type} will be extracted from \code{model_info}.}
 
 \item{encode_function}{fuction(data, ...) that if executed with \code{data} parameters returns encoded dataframe that was used to fit model. Xgboost does not handle factors on it's own so such function is needed to aquire better explanations.}
+
+\item{true_labels}{vecotr of \code{y} before encoding.}
 }
 \value{
 explainer object (\code{\link[DALEX]{explain}}) ready to work with DALEX
