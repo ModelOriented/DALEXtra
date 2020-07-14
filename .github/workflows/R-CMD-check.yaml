@@ -2,9 +2,12 @@ on:
   push:
     branches:
       - master
-      - 'dev-*'
+      - 'dev*'
       - 'fix*'
-      - '!doc'
+      - 'issue*'
+      - 'doc*'
+      - 'gh-actions'
+      - 'githubactions'
   pull_request:
     branches:
       - master

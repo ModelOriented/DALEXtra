@@ -158,6 +158,16 @@ model_info.LearnerClassif <- function(model, is_multiclass = FALSE, ...) {
 
 #' @rdname model_info
 #' @export
+model_info.GraphLearner <- function(model, is_multiclass = FALSE, ...) {
+  if ("prob" %in% model$predict_types) {
+    return(model_info.LearnerClassif(model, is_multiclass))
+  } else {
+    return(model_info.LearnerRegr(model, is_multiclass))
+  }
+}
+
+#' @rdname model_info
+#' @export
 model_info.xgb.Booster <- function(model, is_multiclass = FALSE, ...) {
   task <- strsplit(model$params$objective, ":", fixed = TRUE)[[1]][1]
   if (task == "multi") {
