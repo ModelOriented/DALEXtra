@@ -29,7 +29,7 @@
 
 \method{model_info}{LearnerClassif}(model, is_multiclass = FALSE, ...)
 
-\method{model_info}{GraphLearner}(model, is_multiclass = FALSE)
+\method{model_info}{GraphLearner}(model, is_multiclass = FALSE, ...)
 
 \method{model_info}{xgb.Booster}(model, is_multiclass = FALSE, ...)
 }
