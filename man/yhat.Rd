@@ -9,6 +9,7 @@
 \alias{yhat.keras}
 \alias{yhat.LearnerRegr}
 \alias{yhat.LearnerClassif}
+\alias{yhat.GraphLearner}
 \alias{yhat.xgb.Booster}
 \title{Wrapper over the predict function}
 \usage{
@@ -27,6 +28,8 @@
 \method{yhat}{LearnerRegr}(X.model, newdata, ...)
 
 \method{yhat}{LearnerClassif}(X.model, newdata, ...)
+
+\method{yhat}{GraphLearner}(X.model, newdata, ...)
 
 \method{yhat}{xgb.Booster}(X.model, newdata, ...)
 }

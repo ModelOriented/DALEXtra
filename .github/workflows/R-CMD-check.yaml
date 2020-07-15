@@ -2,9 +2,12 @@ on:
   push:
     branches:
       - master
-      - 'dev-*'
+      - 'dev*'
       - 'fix*'
-      - '!doc'
+      - 'issue*'
+      - 'doc*'
+      - 'gh-actions'
+      - 'githubactions'
   pull_request:
     branches:
       - master
@@ -21,8 +24,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: windows-latest, r: '3.6'}
-          - {os: ubuntu-16.04, r: '3.6', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
+          - {os: windows-latest, r: '4.0'}
           - {os: ubuntu-16.04, r: '4.0', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
 
     env:
@@ -90,7 +92,7 @@ jobs:
           remotes::install_github("ModelOriented/iBreakDown")
           remotes::install_github("ModelOriented/DALEX")
           remotes::install_github("ModelOriented/auditor")
-          remotes::install_cran("rcmdcheck")
+          remotes::install_cran(c("rcmdcheck", "XML"))
         shell: Rscript {0}
 
       - name: Check

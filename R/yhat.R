@@ -165,6 +165,22 @@ yhat.LearnerClassif <- function(X.model, newdata, ...) {
 
 #' @rdname yhat
 #' @export
+yhat.GraphLearner <- function(X.model, newdata, ...) {
+  if ("prob" %in% X.model$predict_types) {
+    pred <- X.model$predict_newdata(newdata)
+    # return probabilities for class: 1
+    response <- pred$prob
+    if (ncol(response) == 2) {
+      response <- response[,2]
+    }
+    response
+  } else {
+    X.model$predict_newdata(newdata, ...)$response
+  }
+}
+
+#' @rdname yhat
+#' @export
 yhat.xgb.Booster <- function(X.model, newdata, ...) {
   if (!is.null(attr(X.model, "encoder"))) {
     newdata <- attr(X.model, "encoder")(newdata)

@@ -9,6 +9,7 @@
 \alias{model_info.keras}
 \alias{model_info.LearnerRegr}
 \alias{model_info.LearnerClassif}
+\alias{model_info.GraphLearner}
 \alias{model_info.xgb.Booster}
 \title{Exract info from model}
 \usage{
@@ -27,6 +28,8 @@
 \method{model_info}{LearnerRegr}(model, is_multiclass = FALSE, ...)
 
 \method{model_info}{LearnerClassif}(model, is_multiclass = FALSE, ...)
+
+\method{model_info}{GraphLearner}(model, is_multiclass = FALSE, ...)
 
 \method{model_info}{xgb.Booster}(model, is_multiclass = FALSE, ...)
 }
