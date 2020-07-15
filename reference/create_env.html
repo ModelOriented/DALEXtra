@@ -99,7 +99,7 @@ This functions allow user to create conda virtual environment based on provided 
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/">MI^2 DataLab</a> </span>
-          <span class="version version-default">1.3</span>
+          <span class="version version-default">1.3.1</span>
         </div>
       </div>
     </div>
@@ -158,7 +158,7 @@ This functions allow user to create conda virtual environment based on provided 
 This functions allow user to create conda virtual environment based on provided .yml file.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_env</span>(<span class='no'>yml</span>, <span class='no'>condaenv</span>)</pre>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/create_env.html'>create_env</a></span>(<span class='kw'>yml</span>, <span class='kw'>condaenv</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -182,7 +182,7 @@ This functions allow user to create conda virtual environment based on provided 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-  <span class='fu'>create_env</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"testing_environment.yml"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>))</div><div class='output co'>#&gt; <span class='message'>Path to conda not specified while on unix. Default used. /usr/share/miniconda/bin/..</span></div><div class='output co'>#&gt; <span class='message'>Virtual environment "myenv" is being created. It may take few minutes.</span></div><div class='output co'>#&gt; [1] "myenv"</div><div class='input'><span class='co'># }</span></div></pre>
+  <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/create_env.html'>create_env</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"testing_environment.yml"</span>, package = <span class='st'>"DALEXtra"</span>))</div><div class='output co'>#&gt; <span class='message'>Path to conda not specified while on unix. Default used. /usr/share/miniconda/bin/..</span></div><div class='output co'>#&gt; <span class='message'>Virtual environment "myenv" is being created. It may take few minutes.</span></div><div class='output co'>#&gt; [1] "myenv"</div><div class='input'><span class='co'># }</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

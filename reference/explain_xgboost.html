@@ -100,7 +100,7 @@ One of those tools, we would like to make more accessible is xgboost." />
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/">MI^2 DataLab</a> </span>
-          <span class="version version-default">1.3</span>
+          <span class="version version-default">1.3.1</span>
         </div>
       </div>
     </div>
@@ -160,22 +160,22 @@ Unfortunately R packages that create such models are very inconsistent. Differen
 One of those tools, we would like to make more accessible is xgboost.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>explain_xgboost</span>(
-  <span class='no'>model</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>weights</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>predict_function</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>residual_function</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>precalculate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>colorize</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>model_info</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>encode_function</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>true_labels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_xgboost.html'>explain_xgboost</a></span>(
+  <span class='kw'>model</span>,
+  data = <span class='kw'>NULL</span>,
+  y = <span class='kw'>NULL</span>,
+  weights = <span class='kw'>NULL</span>,
+  predict_function = <span class='kw'>NULL</span>,
+  residual_function = <span class='kw'>NULL</span>,
+  <span class='kw'>...</span>,
+  label = <span class='kw'>NULL</span>,
+  verbose = <span class='fl'>TRUE</span>,
+  precalculate = <span class='fl'>TRUE</span>,
+  colorize = <span class='fl'>TRUE</span>,
+  model_info = <span class='kw'>NULL</span>,
+  type = <span class='kw'>NULL</span>,
+  encode_function = <span class='kw'>NULL</span>,
+  true_labels = <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -248,14 +248,22 @@ One of those tools, we would like to make more accessible is xgboost.</p>
     <p>explainer object (<code><a href='https://rdrr.io/pkg/DALEX/man/explain.html'>explain</a></code>) ready to work with DALEX</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"xgboost"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"DALEXtra"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://github.com/dmlc/xgboost'>"xgboost"</a></span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://ModelOriented.github.io/DALEXtra'>"DALEXtra"</a></span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://mlr.mlr-org.com'>"mlr"</a></span>)
 <span class='co'># 8th column is target that has to be omitted in X data</span>
-<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='fu'><a href='https://mlr.mlr-org.com/reference/createDummyFeatures.html'>createDummyFeatures</a></span>(<span class='no'>titanic_imputed</span>[,-<span class='fl'>8</span>]))
-<span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/xgboost/man/xgb.train.html'>xgboost</a></span>(<span class='no'>data</span>, <span class='no'>titanic_imputed</span>$<span class='no'>survived</span>, <span class='kw'>nrounds</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-                 <span class='kw'>params</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>objective</span> <span class='kw'>=</span> <span class='st'>"binary:logistic"</span>),
-                <span class='kw'>prediction</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1]	train-error:0.168555 
+<span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='fu'><a href='https://mlr.mlr-org.com/reference/createDummyFeatures.html'>createDummyFeatures</a></span>(<span class='kw'>titanic_imputed</span>[,<span class='op'>-</span><span class='fl'>8</span>]))
+<span class='kw'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/xgboost/man/xgb.train.html'>xgboost</a></span>(<span class='kw'>data</span>, <span class='kw'>titanic_imputed</span><span class='op'>$</span><span class='kw'>survived</span>, nrounds = <span class='fl'>10</span>,
+                 params = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(objective = <span class='st'>"binary:logistic"</span>),
+                prediction = <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [11:59:46] WARNING: amalgamation/../src/learner.cc:480: 
+#&gt; Parameters: { prediction } might not be used.
+#&gt; 
+#&gt;   This may not be accurate due to some parameters are only used in language bindings but
+#&gt;   passed down to XGBoost core.  Or some parameters are not used but slip through this
+#&gt;   verification. Please open an issue if you find above cases.
+#&gt; 
+#&gt; 
+#&gt; [1]	train-error:0.168555 
 #&gt; [2]	train-error:0.166289 
 #&gt; [3]	train-error:0.166742 
 #&gt; [4]	train-error:0.165383 
@@ -265,32 +273,31 @@ One of those tools, we would like to make more accessible is xgboost.</p>
 #&gt; [8]	train-error:0.154961 
 #&gt; [9]	train-error:0.155415 
 #&gt; [10]	train-error:0.155415 </div><div class='input'><span class='co'># explainer with encode functiom</span>
-<span class='no'>explainer_1</span> <span class='kw'>&lt;-</span> <span class='fu'>explain_xgboost</span>(<span class='no'>model</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>titanic_imputed</span>[,-<span class='fl'>8</span>],
-                               <span class='no'>titanic_imputed</span>$<span class='no'>survived</span>,
-                               <span class='kw'>encode_function</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>data</span>) {
- <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='fu'><a href='https://mlr.mlr-org.com/reference/createDummyFeatures.html'>createDummyFeatures</a></span>(<span class='no'>data</span>))
+<span class='kw'>explainer_1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_xgboost.html'>explain_xgboost</a></span>(<span class='kw'>model</span>, data = <span class='kw'>titanic_imputed</span>[,<span class='op'>-</span><span class='fl'>8</span>],
+                               <span class='kw'>titanic_imputed</span><span class='op'>$</span><span class='kw'>survived</span>,
+                               encode_function = <span class='fu'>function</span>(<span class='kw'>data</span>) {
+ <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='fu'><a href='https://mlr.mlr-org.com/reference/createDummyFeatures.html'>createDummyFeatures</a></span>(<span class='kw'>data</span>))
 })</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  xgb.Booster  ( <span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; data              :  2207  rows  7  cols 
 #&gt;   -&gt; target variable   :  2207  values 
 #&gt;   -&gt; predict function  :  yhat.xgb.Booster  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; predicted values  :  numerical, min =  0.04738454 , mean =  0.3272404 , max =  0.9705966  
-#&gt;   -&gt; model_info        :  package xgboost , ver. 1.0.0.2 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; model_info        :  package xgboost , ver. 1.1.1.1 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -0.8105438 , mean =  -0.005083592 , max =  0.9452911  
-#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='fu'>predict_parts</span>(<span class='no'>explainer_1</span>, <span class='no'>titanic_imputed</span>[<span class='fl'>1</span>,-<span class='fl'>8</span>]))</div><div class='img'><img src='explain_xgboost-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/DALEX/man/predict_parts.html'>predict_parts</a></span>(<span class='kw'>explainer_1</span>, <span class='kw'>titanic_imputed</span>[<span class='fl'>1</span>,<span class='op'>-</span><span class='fl'>8</span>]))</div><div class='img'><img src='explain_xgboost-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># explainer without encode function</span>
-<span class='no'>explainer_2</span> <span class='kw'>&lt;-</span> <span class='fu'>explain_xgboost</span>(<span class='no'>model</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>data</span>, <span class='no'>titanic_imputed</span>$<span class='no'>survived</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+<span class='kw'>explainer_2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_xgboost.html'>explain_xgboost</a></span>(<span class='kw'>model</span>, data = <span class='kw'>data</span>, <span class='kw'>titanic_imputed</span><span class='op'>$</span><span class='kw'>survived</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  xgb.Booster  ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; data              :  2207  rows  17  cols 
 #&gt;   -&gt; target variable   :  2207  values 
 #&gt;   -&gt; predict function  :  yhat.xgb.Booster  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; predicted values  :  numerical, min =  0.04738454 , mean =  0.3272404 , max =  0.9705966  
-#&gt;   -&gt; model_info        :  package xgboost , ver. 1.0.0.2 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; model_info        :  package xgboost , ver. 1.1.1.1 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -0.8105438 , mean =  -0.005083592 , max =  0.9452911  
-#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='fu'>predict_parts</span>(<span class='no'>explainer_2</span>, <span class='no'>data</span>[<span class='fl'>1</span>,,<span class='kw'>drop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>]))</div><div class='img'><img src='explain_xgboost-2.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></span></pre>
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/DALEX/man/predict_parts.html'>predict_parts</a></span>(<span class='kw'>explainer_2</span>, <span class='kw'>data</span>[<span class='fl'>1</span>,,drop = <span class='fl'>FALSE</span>]))</div><div class='img'><img src='explain_xgboost-2.png' alt='' width='700' height='433' /></div><div class='input'></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

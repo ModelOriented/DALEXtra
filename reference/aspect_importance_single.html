@@ -99,7 +99,7 @@ one feature)." />
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/">MI^2 DataLab</a> </span>
-          <span class="version version-default">1.3</span>
+          <span class="version version-default">1.3.1</span>
         </div>
       </div>
     </div>
@@ -158,31 +158,31 @@ one feature)." />
 one feature).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>aspect_importance_single</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/aspect_importance_single.html'>aspect_importance_single</a></span>(<span class='kw'>x</span>, <span class='kw'>...</span>)
 
 <span class='co'># S3 method for explainer</span>
-<span class='fu'>aspect_importance_single</span>(
-  <span class='no'>x</span>,
-  <span class='no'>new_observation</span>,
-  <span class='kw'>N</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>sample_method</span> <span class='kw'>=</span> <span class='st'>"default"</span>,
-  <span class='kw'>n_var</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>f</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='no'>...</span>
+<span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/aspect_importance_single.html'>aspect_importance_single</a></span>(
+  <span class='kw'>x</span>,
+  <span class='kw'>new_observation</span>,
+  N = <span class='fl'>100</span>,
+  sample_method = <span class='st'>"default"</span>,
+  n_var = <span class='fl'>0</span>,
+  f = <span class='fl'>2</span>,
+  <span class='kw'>...</span>
 )
 
 <span class='co'># S3 method for default</span>
-<span class='fu'>aspect_importance_single</span>(
-  <span class='no'>x</span>,
-  <span class='no'>data</span>,
-  <span class='kw'>predict_function</span> <span class='kw'>=</span> <span class='no'>predict</span>,
-  <span class='no'>new_observation</span>,
-  <span class='kw'>N</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>x</span>)[<span class='fl'>1</span>],
-  <span class='kw'>sample_method</span> <span class='kw'>=</span> <span class='st'>"default"</span>,
-  <span class='kw'>n_var</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>f</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='no'>...</span>
+<span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/aspect_importance_single.html'>aspect_importance_single</a></span>(
+  <span class='kw'>x</span>,
+  <span class='kw'>data</span>,
+  predict_function = <span class='kw'>predict</span>,
+  <span class='kw'>new_observation</span>,
+  N = <span class='fl'>100</span>,
+  label = <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='kw'>x</span>)[<span class='fl'>1</span>],
+  sample_method = <span class='st'>"default"</span>,
+  n_var = <span class='fl'>0</span>,
+  f = <span class='fl'>2</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -208,7 +208,7 @@ variables used in the model, should be without target variable</p></td>
     </tr>
     <tr>
       <th>sample_method</th>
-      <td><p>sampling method in <code><a href='get_sample.html'>get_sample</a></code></p></td>
+      <td><p>sampling method in <code><a href='https://rdrr.io/pkg/DALEXtra/man/get_sample.html'>get_sample</a></code></p></td>
     </tr>
     <tr>
       <th>n_var</th>
@@ -217,7 +217,7 @@ linear regression is used</p></td>
     </tr>
     <tr>
       <th>f</th>
-      <td><p>frequency in in <code><a href='get_sample.html'>get_sample</a></code></p></td>
+      <td><p>frequency in in <code><a href='https://rdrr.io/pkg/DALEXtra/man/get_sample.html'>get_sample</a></code></p></td>
     </tr>
     <tr>
       <th>data</th>
@@ -242,23 +242,22 @@ attribute of the model.</p></td>
   describes aspects' importance.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"DALEX"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://ModelOriented.github.io/DALEX'>"DALEX"</a></span>)
 
-<span class='no'>model_titanic_glm</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/glm.html'>glm</a></span>(<span class='no'>survived</span> <span class='kw'>==</span> <span class='fl'>1</span> ~ <span class='no'>class</span> + <span class='no'>gender</span> + <span class='no'>age</span> +
-                         <span class='no'>sibsp</span> + <span class='no'>parch</span> + <span class='no'>fare</span> + <span class='no'>embarked</span>,
-                         <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>titanic_imputed</span>,
-                         <span class='kw'>family</span> <span class='kw'>=</span> <span class='st'>"binomial"</span>)
+<span class='kw'>model_titanic_glm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/glm.html'>glm</a></span>(<span class='kw'>survived</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>~</span> <span class='kw'>class</span> <span class='op'>+</span> <span class='kw'>gender</span> <span class='op'>+</span> <span class='kw'>age</span> <span class='op'>+</span>
+                         <span class='kw'>sibsp</span> <span class='op'>+</span> <span class='kw'>parch</span> <span class='op'>+</span> <span class='kw'>fare</span> <span class='op'>+</span> <span class='kw'>embarked</span>,
+                         data = <span class='kw'>titanic_imputed</span>,
+                         family = <span class='st'>"binomial"</span>)
 
-<span class='fu'>aspect_importance_single</span>(<span class='no'>model_titanic_glm</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>titanic_imputed</span>[,-<span class='fl'>8</span>],
-                         <span class='kw'>new_observation</span> <span class='kw'>=</span> <span class='no'>titanic_imputed</span>[<span class='fl'>1</span>,-<span class='fl'>8</span>])</div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt;    aspects importance        new observation
+<span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/aspect_importance_single.html'>aspect_importance_single</a></span>(<span class='kw'>model_titanic_glm</span>, data = <span class='kw'>titanic_imputed</span>[,<span class='op'>-</span><span class='fl'>8</span>],
+                         new_observation = <span class='kw'>titanic_imputed</span>[<span class='fl'>1</span>,<span class='op'>-</span><span class='fl'>8</span>])</div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt;    aspects importance        new observation
 #&gt; 4    class   -0.49881            class = 3rd
 #&gt; 2   gender   -0.31263          gender = male
 #&gt; 3      age   -0.25447               age = 42
 #&gt; 7    sibsp    0.18191              sibsp = 0
 #&gt; 6     fare    0.14664            fare = 7.11
 #&gt; 5 embarked    0.08260 embarked = Southampton
-#&gt; 8    parch   -0.06596              parch = 0</div><div class='input'>
-</div></pre>
+#&gt; 8    parch   -0.06596              parch = 0</div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

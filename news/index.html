@@ -97,7 +97,7 @@
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/">MI^2 DataLab</a> </span>
-          <span class="version version-default">1.3</span>
+          <span class="version version-default">1.3.1</span>
         </div>
       </div>
     </div>
@@ -150,14 +150,21 @@
       <small>Source: <a href='https://github.com/ModelOriented/DALEXtra/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="dalextra-131" class="section level2">
+<h2 class="hasAnchor">
+<a href="#dalextra-131" class="anchor"></a>DALEXtra 1.3.1</h2>
+<ul>
+<li>In added <code><a href="https://rdrr.io/pkg/DALEXtra/man/yhat.html">yhat.GraphLearner()</a></code> and <code><a href="https://rdrr.io/pkg/DALEXtra/man/model_info.html">model_info.GraphLearner()</a></code> to handle GraphLearners <code>mlr3</code> objects.</li>
+</ul>
+</div>
     <div id="dalextra-130" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dalextra-130" class="anchor"></a>DALEXtra 1.3.0</h2>
 <ul>
-<li>In <code>explain_h2o</code> data parameter will bo converted to data.frame if H2OFrame object was passed.</li>
+<li>In <code><a href="https://rdrr.io/pkg/DALEXtra/man/explain_h2o.html">explain_h2o()</a></code> data parameter will bo converted to data.frame if H2OFrame object was passed.</li>
 <li>Aspect importance related functions set deprecated. Will be removed with next release.</li>
 <li>
-<code>explain_xgboost</code> function added</li>
+<code><a href="https://rdrr.io/pkg/DALEXtra/man/explain_xgboost.html">explain_xgboost()</a></code> function added</li>
 </ul>
 </div>
     <div id="dalextra-023" class="section level2">
@@ -166,9 +173,9 @@
 <ul>
 <li>DALEXtra now supports multiclass classification (accordingly to DALEX &gt;= 1.3)</li>
 <li>
-<code>funnel_mesure</code> and <code>training_test_comparison</code> recognizes type of the task and applies proper loss_function</li>
+<code>funnel_mesure()</code> and <code><a href="https://rdrr.io/pkg/DALEXtra/man/trainig_test_comparison.html">training_test_comparison()</a></code> recognizes type of the task and applies proper loss_function</li>
 <li>
-<code>yhat.WrappedModel</code> returns factor response if <code>predict.type</code> is not <code>prob</code>.</li>
+<code><a href="https://rdrr.io/pkg/DALEXtra/man/yhat.html">yhat.WrappedModel()</a></code> returns factor response if <code>predict.type</code> is not <code>prob</code>.</li>
 </ul>
 </div>
     <div id="dalextra-022" class="section level2">
@@ -176,7 +183,7 @@
 <a href="#dalextra-022" class="anchor"></a>DALEXtra 0.2.2</h2>
 <ul>
 <li>
-<code><a href="../reference/explain_h2o.html">explain_h2o()</a></code> now supports <code>model</code> as <code>H2OAutoML</code>
+<code><a href="https://rdrr.io/pkg/DALEXtra/man/explain_h2o.html">explain_h2o()</a></code> now supports <code>model</code> as <code>H2OAutoML</code>
 </li>
 </ul>
 </div>
@@ -187,24 +194,24 @@
 <li>Removed h2o::init() from explain_h2o()</li>
 <li>Removed mljar support as mljar package is not available for R 3.6.2</li>
 <li>Ajusted to DALEX 1.0</li>
-<li>fixed <code><a href="../reference/yhat.html">yhat.LearnerClassif()</a></code> returning wrong column of probabilities (PR <a href='https://github.com/ModelOriented/DALEXtra/issues/34'>#34</a>, thanks Hubert!)</li>
+<li>fixed <code><a href="https://rdrr.io/pkg/DALEXtra/man/yhat.html">yhat.LearnerClassif()</a></code> returning wrong column of probabilities (PR <a href='https://github.com/ModelOriented/DALEXtra/issues/34'>#34</a>, thanks Hubert!)</li>
 </ul>
 </div>
     <div id="dalextra-020" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dalextra-020" class="anchor"></a>DALEXtra 0.2.0</h2>
 <ul>
-<li>Rebuilded <code><a href="../reference/plot.overall_comparison.html">plot.overall_comparison()</a></code> (I lack words that could describe Your greatness, Ania!).</li>
+<li>Rebuilded <code><a href="https://rdrr.io/pkg/DALEXtra/man/plot.overall_comparison.html">plot.overall_comparison()</a></code> (I lack words that could describe Your greatness, Ania!).</li>
 <li>New README and DESCRIPTION. They are more accurate now.</li>
-<li>Small fixes to <code><a href="../reference/funnel_measure.html">funnel_measure()</a></code> that imporves it’s stability.</li>
+<li>Small fixes to <code><a href="https://rdrr.io/pkg/DALEXtra/man/funnel_measure.html">funnel_measure()</a></code> that imporves it’s stability.</li>
 </ul>
 </div>
     <div id="dalextra-0111" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dalextra-0111" class="anchor"></a>DALEXtra 0.1.11</h2>
 <ul>
-<li>New plot function for <code><a href="../reference/funnel_measure.html">funnel_measure()</a></code> objects. (Thanks Anna Kozak, You are awesome!).</li>
-<li>New tests for <code><a href="../reference/funnel_measure.html">funnel_measure()</a></code> and <code><a href="../reference/plot.funnel_measure.html">plot.funnel_measure()</a></code> (Once again You are awesome, Ania!).</li>
+<li>New plot function for <code><a href="https://rdrr.io/pkg/DALEXtra/man/funnel_measure.html">funnel_measure()</a></code> objects. (Thanks Anna Kozak, You are awesome!).</li>
+<li>New tests for <code><a href="https://rdrr.io/pkg/DALEXtra/man/funnel_measure.html">funnel_measure()</a></code> and <code><a href="https://rdrr.io/pkg/DALEXtra/man/plot.funnel_measure.html">plot.funnel_measure()</a></code> (Once again You are awesome, Ania!).</li>
 </ul>
 </div>
     <div id="dalextra-0110" class="section level2">
@@ -220,7 +227,7 @@
 <h2 class="hasAnchor">
 <a href="#dalextra-019" class="anchor"></a>DALEXtra 0.1.9</h2>
 <ul>
-<li>Ceiling replaced with round in <code><a href="../reference/funnel_measure.html">funnel_measure()</a></code>
+<li>Ceiling replaced with round in <code><a href="https://rdrr.io/pkg/DALEXtra/man/funnel_measure.html">funnel_measure()</a></code>
 </li>
 </ul>
 </div>
@@ -229,13 +236,13 @@
 <a href="#dalextra-018" class="anchor"></a>DALEXtra 0.1.8</h2>
 <ul>
 <li>
-<code><a href="../reference/champion_challenger.html">champion_challenger()</a></code>.</li>
+<code><a href="https://rdrr.io/pkg/DALEXtra/man/champion_challenger.html">champion_challenger()</a></code>.</li>
 <li>
-<code><a href="../reference/overall_comparison.html">overall_comparison()</a></code> added with generic plot and print functions.</li>
+<code><a href="https://rdrr.io/pkg/DALEXtra/man/overall_comparison.html">overall_comparison()</a></code> added with generic plot and print functions.</li>
 <li>
-<code><a href="../reference/trainig_test_comparison.html">training_test_comparison()</a></code> added with generic plot and print functions.</li>
+<code><a href="https://rdrr.io/pkg/DALEXtra/man/trainig_test_comparison.html">training_test_comparison()</a></code> added with generic plot and print functions.</li>
 <li>
-<code><a href="../reference/funnel_measure.html">funnel_measure()</a></code> added with generic plot and print functions.</li>
+<code><a href="https://rdrr.io/pkg/DALEXtra/man/funnel_measure.html">funnel_measure()</a></code> added with generic plot and print functions.</li>
 <li>test for h2o rebuilded.</li>
 </ul>
 </div>
@@ -244,12 +251,12 @@
 <a href="#dalextra-017" class="anchor"></a>DALEXtra 0.1.7</h2>
 <ul>
 <li>
-<code><a href="../reference/explain_keras.html">explain_keras()</a></code> added.</li>
+<code><a href="https://rdrr.io/pkg/DALEXtra/man/explain_keras.html">explain_keras()</a></code> added.</li>
 <li>
 <code>explain_mljar()</code> added.</li>
 <li>documentation refreshed with links to functions.</li>
 <li>
-<code><a href="../reference/explain_scikitlearn.html">explain_scikitlearn()</a></code> rebuilded. Some of the code was exported to inner functions (helper_functions.R).</li>
+<code><a href="https://rdrr.io/pkg/DALEXtra/man/explain_scikitlearn.html">explain_scikitlearn()</a></code> rebuilded. Some of the code was exported to inner functions (helper_functions.R).</li>
 <li>conda installation in <code>README.md</code>.</li>
 <li>
 <code>scikitlearn_unix.yml</code> file renamed to <code>testing_environment.yml</code>.</li>
@@ -260,10 +267,10 @@
 <a href="#dalextra-016" class="anchor"></a>DALEXtra 0.1.6</h2>
 <ul>
 <li>
-<code><a href="../reference/explain_scikitlearn.html">explain_scikitlearn()</a></code> rebuilded. Now class scikitlearn_model is a additional class for original Python object instead of another object.</li>
-<li>explainers created with <code><a href="../reference/explain_scikitlearn.html">explain_scikitlearn()</a></code> have addidtional field <code>param_set</code>.</li>
+<code><a href="https://rdrr.io/pkg/DALEXtra/man/explain_scikitlearn.html">explain_scikitlearn()</a></code> rebuilded. Now class scikitlearn_model is a additional class for original Python object instead of another object.</li>
+<li>explainers created with <code><a href="https://rdrr.io/pkg/DALEXtra/man/explain_scikitlearn.html">explain_scikitlearn()</a></code> have addidtional field <code>param_set</code>.</li>
 <li>
-<code>yhat()</code> is now generic.</li>
+<code><a href="https://rdrr.io/pkg/DALEX/man/yhat.html">yhat()</a></code> is now generic.</li>
 <li>New examples in <code>README.md</code>.</li>
 </ul>
 </div>
@@ -283,7 +290,7 @@
 <ul>
 <li>yhat.R created. Predict functions are stored there in order to be more accesible.</li>
 <li>
-<code><a href="../reference/explain_h2o.html">explain_h2o()</a></code> and <code><a href="../reference/explain_mlr.html">explain_mlr()</a></code> rebuilded.</li>
+<code><a href="https://rdrr.io/pkg/DALEXtra/man/explain_h2o.html">explain_h2o()</a></code> and <code><a href="https://rdrr.io/pkg/DALEXtra/man/explain_mlr.html">explain_mlr()</a></code> rebuilded.</li>
 </ul>
 </div>
     <div id="dalextra-013" class="section level2">
@@ -301,7 +308,7 @@
 <li>
 <code>scikitlearn_unix.yml</code> file added to external data. This helps testing using linuxlike OS.</li>
 <li>few minor updates in the documentation.</li>
-<li>message in <code><a href="../reference/create_env.html">create_env()</a></code> changed.</li>
+<li>message in <code><a href="https://rdrr.io/pkg/DALEXtra/man/create_env.html">create_env()</a></code> changed.</li>
 </ul>
 </div>
     <div id="dalextra-011" class="section level2">
@@ -309,9 +316,9 @@
 <a href="#dalextra-011" class="anchor"></a>DALEXtra 0.1.1</h2>
 <ul>
 <li>
-<code><a href="../reference/explain_mlr.html">explain_mlr()</a></code> function implemented.</li>
+<code><a href="https://rdrr.io/pkg/DALEXtra/man/explain_mlr.html">explain_mlr()</a></code> function implemented.</li>
 <li>
-<code><a href="../reference/explain_h2o.html">explain_h2o()</a></code> function implemented.</li>
+<code><a href="https://rdrr.io/pkg/DALEXtra/man/explain_h2o.html">explain_h2o()</a></code> function implemented.</li>
 </ul>
 </div>
     <div id="dalextra-01" class="section level2">
@@ -320,9 +327,9 @@
 <ul>
 <li>DALEXtra package is now public.</li>
 <li>
-<code><a href="../reference/explain_scikitlearn.html">explain_scikitlearn()</a></code> function implemented.</li>
+<code><a href="https://rdrr.io/pkg/DALEXtra/man/explain_scikitlearn.html">explain_scikitlearn()</a></code> function implemented.</li>
 <li>
-<code><a href="../reference/create_env.html">create_env()</a></code> function implemented.</li>
+<code><a href="https://rdrr.io/pkg/DALEXtra/man/create_env.html">create_env()</a></code> function implemented.</li>
 </ul>
 </div>
   </div>

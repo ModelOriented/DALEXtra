@@ -105,7 +105,7 @@ linear model or lasso." />
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/">MI^2 DataLab</a> </span>
-          <span class="version version-default">1.3</span>
+          <span class="version version-default">1.3.1</span>
         </div>
       </div>
     </div>
@@ -169,38 +169,38 @@ measures the impact of aspects on the change of prediction by using the
 linear model or lasso.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>aspect_importance</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/aspect_importance.html'>aspect_importance</a></span>(<span class='kw'>x</span>, <span class='kw'>...</span>)
 
 <span class='co'># S3 method for explainer</span>
-<span class='fu'>aspect_importance</span>(
-  <span class='no'>x</span>,
-  <span class='no'>new_observation</span>,
-  <span class='no'>aspects</span>,
-  <span class='kw'>N</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>sample_method</span> <span class='kw'>=</span> <span class='st'>"default"</span>,
-  <span class='kw'>n_var</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>f</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>show_cor</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>
+<span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/aspect_importance.html'>aspect_importance</a></span>(
+  <span class='kw'>x</span>,
+  <span class='kw'>new_observation</span>,
+  <span class='kw'>aspects</span>,
+  N = <span class='fl'>100</span>,
+  sample_method = <span class='st'>"default"</span>,
+  n_var = <span class='fl'>0</span>,
+  f = <span class='fl'>2</span>,
+  show_cor = <span class='fl'>FALSE</span>,
+  <span class='kw'>...</span>
 )
 
 <span class='co'># S3 method for default</span>
-<span class='fu'>aspect_importance</span>(
-  <span class='no'>x</span>,
-  <span class='no'>data</span>,
-  <span class='kw'>predict_function</span> <span class='kw'>=</span> <span class='no'>predict</span>,
-  <span class='no'>new_observation</span>,
-  <span class='no'>aspects</span>,
-  <span class='kw'>N</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>x</span>)[<span class='fl'>1</span>],
-  <span class='kw'>sample_method</span> <span class='kw'>=</span> <span class='st'>"default"</span>,
-  <span class='kw'>n_var</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>f</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>show_cor</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>
+<span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/aspect_importance.html'>aspect_importance</a></span>(
+  <span class='kw'>x</span>,
+  <span class='kw'>data</span>,
+  predict_function = <span class='kw'>predict</span>,
+  <span class='kw'>new_observation</span>,
+  <span class='kw'>aspects</span>,
+  N = <span class='fl'>100</span>,
+  label = <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='kw'>x</span>)[<span class='fl'>1</span>],
+  sample_method = <span class='st'>"default"</span>,
+  n_var = <span class='fl'>0</span>,
+  f = <span class='fl'>2</span>,
+  show_cor = <span class='fl'>FALSE</span>,
+  <span class='kw'>...</span>
 )
 
-<span class='fu'>lime</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/aspect_importance.html'>lime</a></span>(<span class='kw'>x</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -229,7 +229,7 @@ variables used in the model</p></td>
     </tr>
     <tr>
       <th>sample_method</th>
-      <td><p>sampling method in <code><a href='get_sample.html'>get_sample</a></code></p></td>
+      <td><p>sampling method in <code><a href='https://rdrr.io/pkg/DALEXtra/man/get_sample.html'>get_sample</a></code></p></td>
     </tr>
     <tr>
       <th>n_var</th>
@@ -238,7 +238,7 @@ if zero than linear regression is used</p></td>
     </tr>
     <tr>
       <th>f</th>
-      <td><p>frequency in <code><a href='get_sample.html'>get_sample</a></code></p></td>
+      <td><p>frequency in <code><a href='https://rdrr.io/pkg/DALEXtra/man/get_sample.html'>get_sample</a></code></p></td>
     </tr>
     <tr>
       <th>show_cor</th>
@@ -268,47 +268,48 @@ attribute of the model.</p></td>
   that describes aspects' importance.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"DALEX"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://ModelOriented.github.io/DALEX'>"DALEX"</a></span>)
 
-<span class='no'>model_titanic_glm</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/glm.html'>glm</a></span>(<span class='no'>survived</span> <span class='kw'>==</span> <span class='fl'>1</span> ~
-                         <span class='no'>class</span>+<span class='no'>gender</span>+<span class='no'>age</span>+<span class='no'>sibsp</span>+<span class='no'>parch</span>+<span class='no'>fare</span>+<span class='no'>embarked</span>,
-                         <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>titanic_imputed</span>,
-                         <span class='kw'>family</span> <span class='kw'>=</span> <span class='st'>"binomial"</span>)
+<span class='kw'>model_titanic_glm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/glm.html'>glm</a></span>(<span class='kw'>survived</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>~</span>
+                         <span class='kw'>class</span><span class='op'>+</span><span class='kw'>gender</span><span class='op'>+</span><span class='kw'>age</span><span class='op'>+</span><span class='kw'>sibsp</span><span class='op'>+</span><span class='kw'>parch</span><span class='op'>+</span><span class='kw'>fare</span><span class='op'>+</span><span class='kw'>embarked</span>,
+                         data = <span class='kw'>titanic_imputed</span>,
+                         family = <span class='st'>"binomial"</span>)
 
-<span class='no'>explain_titanic_glm</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEX/man/explain.html'>explain</a></span>(<span class='no'>model_titanic_glm</span>,
-                               <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>titanic_imputed</span>[,-<span class='fl'>8</span>],
-                               <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>titanic_imputed</span>$<span class='no'>survived</span> <span class='kw'>==</span> <span class='fl'>1</span>,
-                               <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='kw'>explain_titanic_glm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEX/man/explain.html'>explain</a></span>(<span class='kw'>model_titanic_glm</span>,
+                               data = <span class='kw'>titanic_imputed</span>[,<span class='op'>-</span><span class='fl'>8</span>],
+                               y = <span class='kw'>titanic_imputed</span><span class='op'>$</span><span class='kw'>survived</span> <span class='op'>==</span> <span class='fl'>1</span>,
+                               verbose = <span class='fl'>FALSE</span>)
 
-<span class='no'>aspects</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>wealth</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"class"</span>, <span class='st'>"fare"</span>),
-                <span class='kw'>family</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sibsp"</span>, <span class='st'>"parch"</span>),
-                <span class='kw'>personal</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"gender"</span>, <span class='st'>"age"</span>),
-                <span class='kw'>embarked</span> <span class='kw'>=</span> <span class='st'>"embarked"</span>)
+<span class='kw'>aspects</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(wealth = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"class"</span>, <span class='st'>"fare"</span>),
+                family = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sibsp"</span>, <span class='st'>"parch"</span>),
+                personal = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"gender"</span>, <span class='st'>"age"</span>),
+                embarked = <span class='st'>"embarked"</span>)
 
-<span class='fu'>aspect_importance</span>(<span class='no'>explain_titanic_glm</span>,
-                  <span class='kw'>new_observation</span> <span class='kw'>=</span> <span class='no'>titanic_imputed</span>[<span class='fl'>1</span>,],
-                  <span class='kw'>aspects</span> <span class='kw'>=</span> <span class='no'>aspects</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt;    aspects importance     features
+<span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/aspect_importance.html'>aspect_importance</a></span>(<span class='kw'>explain_titanic_glm</span>,
+                  new_observation = <span class='kw'>titanic_imputed</span>[<span class='fl'>1</span>,],
+                  aspects = <span class='kw'>aspects</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt;    aspects importance     features
 #&gt; 3   family    0.09559 sibsp, parch
 #&gt; 5 embarked    0.07390     embarked
 #&gt; 4 personal   -0.07312  gender, age
 #&gt; 2   wealth   -0.04942  class, fare</div><div class='input'>
 <span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"randomForest"</span>)</div><div class='output co'>#&gt; <span class='message'>randomForest 4.6-14</span></div><div class='output co'>#&gt; <span class='message'>Type rfNews() to see new features/changes/bug fixes.</span></div><div class='input'><span class='no'>model_titanic_rf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/randomForest/man/randomForest.html'>randomForest</a></span>(<span class='no'>survived</span> ~ <span class='no'>class</span> + <span class='no'>gender</span> + <span class='no'>age</span> + <span class='no'>sibsp</span> +
-                                 <span class='no'>parch</span> + <span class='no'>fare</span> + <span class='no'>embarked</span>,
-                                 <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>titanic_imputed</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: The response has five or fewer unique values.  Are you sure you want to do regression?</span></div><div class='input'>
-<span class='no'>explain_titanic_rf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEX/man/explain.html'>explain</a></span>(<span class='no'>model_titanic_rf</span>,
-                              <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>titanic_imputed</span>[,-<span class='fl'>8</span>],
-                              <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>titanic_imputed</span>$<span class='no'>survived</span> <span class='kw'>==</span> <span class='fl'>1</span>,
-                              <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://www.stat.berkeley.edu/~breiman/RandomForests'>"randomForest"</a></span>)</div><div class='output co'>#&gt; <span class='message'>randomForest 4.6-14</span></div><div class='output co'>#&gt; <span class='message'>Type rfNews() to see new features/changes/bug fixes.</span></div><div class='input'><span class='kw'>model_titanic_rf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/randomForest/man/randomForest.html'>randomForest</a></span>(<span class='kw'>survived</span> <span class='op'>~</span> <span class='kw'>class</span> <span class='op'>+</span> <span class='kw'>gender</span> <span class='op'>+</span> <span class='kw'>age</span> <span class='op'>+</span> <span class='kw'>sibsp</span> <span class='op'>+</span>
+                                 <span class='kw'>parch</span> <span class='op'>+</span> <span class='kw'>fare</span> <span class='op'>+</span> <span class='kw'>embarked</span>,
+                                 data = <span class='kw'>titanic_imputed</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: The response has five or fewer unique values.  Are you sure you want to do regression?</span></div><div class='input'>
+<span class='kw'>explain_titanic_rf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEX/man/explain.html'>explain</a></span>(<span class='kw'>model_titanic_rf</span>,
+                              data = <span class='kw'>titanic_imputed</span>[,<span class='op'>-</span><span class='fl'>8</span>],
+                              y = <span class='kw'>titanic_imputed</span><span class='op'>$</span><span class='kw'>survived</span> <span class='op'>==</span> <span class='fl'>1</span>,
+                              verbose = <span class='fl'>FALSE</span>)
 
-<span class='fu'>aspect_importance</span>(<span class='no'>explain_titanic_rf</span>,
-                  <span class='kw'>new_observation</span> <span class='kw'>=</span> <span class='no'>titanic_imputed</span>[<span class='fl'>1</span>,],
-                  <span class='kw'>aspects</span> <span class='kw'>=</span> <span class='no'>aspects</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt;    aspects importance     features
+<span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/aspect_importance.html'>aspect_importance</a></span>(<span class='kw'>explain_titanic_rf</span>,
+                  new_observation = <span class='kw'>titanic_imputed</span>[<span class='fl'>1</span>,],
+                  aspects = <span class='kw'>aspects</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt;    aspects importance     features
 #&gt; 4 personal   -0.09802  gender, age
 #&gt; 5 embarked    0.06540     embarked
 #&gt; 3   family    0.05432 sibsp, parch
 #&gt; 2   wealth   -0.02789  class, fare</div><div class='input'>
-<span class='co'># }</span></div></pre>
+<span class='co'># }</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

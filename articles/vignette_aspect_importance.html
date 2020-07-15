@@ -50,7 +50,7 @@
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/">MI^2 DataLab</a> </span>
-          <span class="version version-default">1.3</span>
+          <span class="version version-default">1.3.1</span>
         </div>
       </div>
     </div>
@@ -96,13 +96,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="vignette_aspect_importance_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Aspect importance function examples</h1>
                         <h4 class="author">Katarzyna Pękala</h4>
             
-            <h4 class="date">2020-05-29</h4>
+            <h4 class="date">2020-07-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ModelOriented/DALEXtra/blob/master/vignettes/vignette_aspect_importance.Rmd"><code>vignettes/vignette_aspect_importance.Rmd</code></a></small>
       <div class="hidden name"><code>vignette_aspect_importance.Rmd</code></div>
@@ -115,10 +115,12 @@
 <h1 class="hasAnchor">
 <a href="#data-and-logistic-regression-model-for-titanic-survival" class="anchor"></a>Data and logistic regression model for Titanic survival</h1>
 <p>Vignette presents the aspect_importance() function on the datasets: <code>titanic_imputed</code> and <code>apartments</code> (both are available in the <code>DALEX</code> package). At the beginning, we download <code>titanic_imputed</code> dataset and build logistic regression model.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"DALEX"</span>)
-<span class="no">titanic</span> <span class="kw">&lt;-</span> <span class="no">titanic_imputed</span>
-<span class="no">titanic_without_target</span> <span class="kw">&lt;-</span> <span class="no">titanic</span>[,<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(<span class="no">titanic</span>)<span class="kw">!=</span><span class="st">"survived"</span>]
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">titanic</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="https://ModelOriented.github.io/DALEX">"DALEX"</a></span>)
+<span class="kw">titanic</span> <span class="op">&lt;-</span> <span class="kw">titanic_imputed</span>
+<span class="kw">titanic_without_target</span> <span class="op">&lt;-</span> <span class="kw">titanic</span>[,<span class="fu"><a href="https://rdrr.io/pkg/h2o/man/colnames.html">colnames</a></span>(<span class="kw">titanic</span>)!=<span class="st">"survived"</span>]
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">titanic</span>)
+</pre></div>
 <pre><code>#&gt;   gender age class    embarked  fare sibsp parch survived
 #&gt; 1   male  42   3rd Southampton  7.11     0     0        0
 #&gt; 2   male  13   3rd Southampton 20.05     0     2        0
@@ -126,10 +128,12 @@
 #&gt; 4 female  39   3rd Southampton 20.05     1     1        1
 #&gt; 5 female  16   3rd Southampton  7.13     0     0        1
 #&gt; 6   male  25   3rd Southampton  7.13     0     0        1</code></pre>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">model_titanic_glm</span> <span class="kw">&lt;-</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(<span class="no">survived</span> <span class="kw">==</span> <span class="fl">1</span> ~ <span class="no">class</span> + <span class="no">gender</span> + <span class="no">age</span> + <span class="no">sibsp</span> + <span class="no">parch</span> + <span class="no">fare</span> + <span class="no">embarked</span>,
-      <span class="no">titanic</span>,
-      <span class="kw">family</span> <span class="kw">=</span> <span class="st">"binomial"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="kw">model_titanic_glm</span> <span class="op">&lt;-</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(<span class="kw">survived</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="kw">class</span> <span class="op">+</span> <span class="kw">gender</span> <span class="op">+</span> <span class="kw">age</span> <span class="op">+</span> <span class="kw">sibsp</span> <span class="op">+</span> <span class="kw">parch</span> <span class="op">+</span> <span class="kw">fare</span> <span class="op">+</span> <span class="kw">embarked</span>,
+      <span class="kw">titanic</span>,
+      family = <span class="st">"binomial"</span>)
+</pre></div>
 </div>
 <div id="preparing-additional-parameters" class="section level1">
 <h1 class="hasAnchor">
@@ -139,32 +143,36 @@
 <li>group features of the dataset into aspects,</li>
 <li>choose observation for which we want to explain aspects’ importance.</li>
 </ul>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">aspects_titanic</span> <span class="kw">&lt;-</span>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="kw">aspects_titanic</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-    <span class="kw">wealth</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"class"</span>, <span class="st">"fare"</span>),
-    <span class="kw">family</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"sibsp"</span>, <span class="st">"parch"</span>),
-    <span class="kw">personal</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age"</span>, <span class="st">"gender"</span>),
-    <span class="kw">embarked</span> <span class="kw">=</span> <span class="st">"embarked"</span>
+    wealth = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"class"</span>, <span class="st">"fare"</span>),
+    family = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"sibsp"</span>, <span class="st">"parch"</span>),
+    personal = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age"</span>, <span class="st">"gender"</span>),
+    embarked = <span class="st">"embarked"</span>
   )
-<span class="no">passenger</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-  <span class="kw">class</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(
+<span class="kw">passenger</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
+  class = <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(
     <span class="st">"3rd"</span>,
-    <span class="kw">levels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"1st"</span>, <span class="st">"2nd"</span>, <span class="st">"3rd"</span>, <span class="st">"deck crew"</span>, <span class="st">"engineering crew"</span>, <span class="st">"restaurant staff"</span>, <span class="st">"victualling crew"</span>)),
-  <span class="kw">gender</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="st">"male"</span>, <span class="kw">levels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"female"</span>, <span class="st">"male"</span>)),
-  <span class="kw">age</span> <span class="kw">=</span> <span class="fl">8</span>,
-  <span class="kw">sibsp</span> <span class="kw">=</span> <span class="fl">0</span>,
-  <span class="kw">parch</span> <span class="kw">=</span> <span class="fl">0</span>,
-  <span class="kw">fare</span> <span class="kw">=</span> <span class="fl">18</span>,
-  <span class="kw">embarked</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(
+    levels = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"1st"</span>, <span class="st">"2nd"</span>, <span class="st">"3rd"</span>, <span class="st">"deck crew"</span>, <span class="st">"engineering crew"</span>, <span class="st">"restaurant staff"</span>, <span class="st">"victualling crew"</span>)),
+  gender = <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="st">"male"</span>, levels = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"female"</span>, <span class="st">"male"</span>)),
+  age = <span class="fl">8</span>,
+  sibsp = <span class="fl">0</span>,
+  parch = <span class="fl">0</span>,
+  fare = <span class="fl">18</span>,
+  embarked = <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(
     <span class="st">"Southampton"</span>,
-    <span class="kw">levels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Belfast"</span>, <span class="st">"Cherbourg"</span>, <span class="st">"Queenstown"</span>, <span class="st">"Southampton"</span>)
+    levels = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Belfast"</span>, <span class="st">"Cherbourg"</span>, <span class="st">"Queenstown"</span>, <span class="st">"Southampton"</span>)
   )
 )
 
-<span class="no">passenger</span></pre></body></html></div>
+<span class="kw">passenger</span>
+</pre></div>
 <pre><code>#&gt;   class gender age sibsp parch fare    embarked
 #&gt; 1   3rd   male   8     0     0   18 Southampton</code></pre>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="no">model_titanic_glm</span>, <span class="no">passenger</span>, <span class="kw">type</span> <span class="kw">=</span> <span class="st">"response"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="kw">model_titanic_glm</span>, <span class="kw">passenger</span>, type = <span class="st">"response"</span>)
+</pre></div>
 <pre><code>#&gt;         1 
 #&gt; 0.1803217</code></pre>
 </div>
@@ -172,33 +180,39 @@
 <h1 class="hasAnchor">
 <a href="#calculating-aspect-importance-logistic-regression" class="anchor"></a>Calculating aspect importance (logistic regression)</h1>
 <p>Now we can call aspect_importance() function and see that features included in <code>wealth</code> (that is <code>class</code> and <code>fare</code>) have the biggest contribution on survival prediction for the passenger. That contribution is of negative type. Rest of the aspects have significantly smaller influence. However, in case of <code>family</code> and <code>personal</code>, it’s a positive type of influence.</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"ggplot2"</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"DALEXtra"</span>)
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="http://ggplot2.tidyverse.org">"ggplot2"</a></span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="https://ModelOriented.github.io/DALEXtra">"DALEXtra"</a></span>)
 
-<span class="no">titanic_glm_ai</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/aspect_importance.html">aspect_importance</a></span>(<span class="no">model_titanic_glm</span>, <span class="no">titanic</span>, <span class="no">predict</span>, <span class="no">passenger</span>, <span class="no">aspects_titanic</span>, <span class="kw">N</span> <span class="kw">=</span> <span class="fl">1000</span>, <span class="kw">label</span> <span class="kw">=</span> <span class="st">"logistic regression"</span>)
+<span class="kw">titanic_glm_ai</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/aspect_importance.html">aspect_importance</a></span>(<span class="kw">model_titanic_glm</span>, <span class="kw">titanic</span>, <span class="kw">predict</span>, <span class="kw">passenger</span>, <span class="kw">aspects_titanic</span>, N = <span class="fl">1000</span>, label = <span class="st">"logistic regression"</span>)
 
-<span class="no">titanic_glm_ai</span></pre></body></html></div>
+<span class="kw">titanic_glm_ai</span>
+</pre></div>
 <pre><code>#&gt;    aspects importance     features
 #&gt; 2   wealth    -0.6916  class, fare
 #&gt; 3   family     0.1648 sibsp, parch
 #&gt; 5 embarked    -0.1353     embarked
 #&gt; 4 personal     0.1109  age, gender</code></pre>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">titanic_glm_ai</span>) + <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span>(<span class="st">"Aspect importance for the selected passenger"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">titanic_glm_ai</span>) <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span>(<span class="st">"Aspect importance for the selected passenger"</span>)
+</pre></div>
 <p><img src="vignette_aspect_importance_files/figure-html/Calculating%20aspect%20importance%20(logistic%20regression)-1.png" width="700"></p>
 </div>
 <div id="calculating-aspect-importance-with-explainer" class="section level1">
 <h1 class="hasAnchor">
 <a href="#calculating-aspect-importance-with-explainer" class="anchor"></a>Calculating aspect importance with explainer</h1>
 <p>Aspect_importance() could be also called using <code>DALEX</code> explainer as we show below.</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">explain_titanic_glm</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DALEX/man/explain.html">explain</a></span>(<span class="no">model_titanic_glm</span>,
-                      <span class="kw">data</span> <span class="kw">=</span> <span class="no">titanic_without_target</span>,
-                      <span class="kw">y</span> <span class="kw">=</span> <span class="no">titanic</span>$<span class="no">survived</span> <span class="kw">==</span> <span class="fl">1</span>,
-                      <span class="kw">predict_function</span> <span class="kw">=</span> <span class="no">predict</span>,
-                      <span class="kw">label</span> <span class="kw">=</span> <span class="st">"Logistic Regression"</span>,
-                      <span class="kw">verbose</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="kw">explain_titanic_glm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DALEX/man/explain.html">explain</a></span>(<span class="kw">model_titanic_glm</span>, 
+                      data = <span class="kw">titanic_without_target</span>,
+                      y = <span class="kw">titanic</span><span class="op">$</span><span class="kw">survived</span> <span class="op">==</span> <span class="fl">1</span>, 
+                      predict_function = <span class="kw">predict</span>,
+                      label = <span class="st">"Logistic Regression"</span>, 
+                      verbose = <span class="fl">FALSE</span>)
 
-<span class="no">titanic_glm_ai</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/aspect_importance.html">aspect_importance</a></span>(<span class="no">explain_titanic_glm</span>, <span class="no">passenger</span>, <span class="no">aspects_titanic</span>, <span class="kw">N</span> <span class="kw">=</span> <span class="fl">1000</span>)
-<span class="no">titanic_glm_ai</span></pre></body></html></div>
+<span class="kw">titanic_glm_ai</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/aspect_importance.html">aspect_importance</a></span>(<span class="kw">explain_titanic_glm</span>, <span class="kw">passenger</span>, <span class="kw">aspects_titanic</span>, N = <span class="fl">1000</span>)
+<span class="kw">titanic_glm_ai</span>
+</pre></div>
 <pre><code>#&gt;    aspects importance     features
 #&gt; 2   wealth    -0.6916  class, fare
 #&gt; 3   family     0.1648 sibsp, parch
@@ -209,9 +223,11 @@
 <h1 class="hasAnchor">
 <a href="#random-forest-model-for-titanic-survival" class="anchor"></a>Random forest model for Titanic survival</h1>
 <p>Now, we prepare random forest model for the <code>titanic</code> dataset.</p>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"randomForest"</span>)
-<span class="no">model_titanic_rf</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/randomForest/man/randomForest.html">randomForest</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="no">survived</span>) <span class="kw">==</span> <span class="fl">1</span> ~ <span class="no">gender</span> + <span class="no">age</span> + <span class="no">class</span> + <span class="no">embarked</span> + <span class="no">fare</span> + <span class="no">sibsp</span> + <span class="no">parch</span>,  <span class="kw">data</span> <span class="kw">=</span> <span class="no">titanic</span>)
-<span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="no">model_titanic_rf</span>, <span class="no">passenger</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="https://www.stat.berkeley.edu/~breiman/RandomForests">"randomForest"</a></span>)
+<span class="kw">model_titanic_rf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/randomForest/man/randomForest.html">randomForest</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="kw">survived</span>) <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="kw">gender</span> <span class="op">+</span> <span class="kw">age</span> <span class="op">+</span> <span class="kw">class</span> <span class="op">+</span> <span class="kw">embarked</span> <span class="op">+</span> <span class="kw">fare</span> <span class="op">+</span> <span class="kw">sibsp</span> <span class="op">+</span> <span class="kw">parch</span>,  data = <span class="kw">titanic</span>)
+<span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="kw">model_titanic_rf</span>, <span class="kw">passenger</span>)
+</pre></div>
 <pre><code>#&gt;         1 
 #&gt; 0.4997378</code></pre>
 </div>
@@ -220,15 +236,19 @@
 <a href="#calculating-aspect-importance-random-forest" class="anchor"></a>Calculating aspect importance (random forest)</h1>
 <p>After calling aspect_importance() we can see why the survival prediction for the passenger in random forest model was much higher (0.5) than in logistic regression case (0.18).</p>
 <p>In this example <code>personal</code> features (<code>age</code> and <code>gender</code>) have the biggest positive influence. Aspects <code>wealth</code> (<code>class</code>, <code>fare</code>) and <code>embarked</code> have both much smaller contribution and those are negative ones. Aspect <code>family</code> has very small influence on the prediction.</p>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="no">titanic_rf_ai</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/aspect_importance.html">aspect_importance</a></span>(<span class="no">model_titanic_rf</span>, <span class="no">titanic</span>, <span class="no">predict</span>, <span class="no">passenger</span>, <span class="no">aspects_titanic</span>, <span class="kw">N</span> <span class="kw">=</span> <span class="fl">1000</span>, <span class="kw">label</span> <span class="kw">=</span> <span class="st">"random forest"</span>)
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="kw">titanic_rf_ai</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/aspect_importance.html">aspect_importance</a></span>(<span class="kw">model_titanic_rf</span>, <span class="kw">titanic</span>, <span class="kw">predict</span>, <span class="kw">passenger</span>, <span class="kw">aspects_titanic</span>, N = <span class="fl">1000</span>, label = <span class="st">"random forest"</span>)
 
-<span class="no">titanic_rf_ai</span></pre></body></html></div>
+<span class="kw">titanic_rf_ai</span>
+</pre></div>
 <pre><code>#&gt;    aspects importance     features
 #&gt; 4 personal    0.16787  age, gender
 #&gt; 2   wealth   -0.03100  class, fare
 #&gt; 5 embarked   -0.02956     embarked
 #&gt; 3   family    0.00882 sibsp, parch</code></pre>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">titanic_rf_ai</span>) + <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span>(<span class="st">"Aspect importance for the selected passenger"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb17"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">titanic_rf_ai</span>) <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span>(<span class="st">"Aspect importance for the selected passenger"</span>)
+</pre></div>
 <p><img src="vignette_aspect_importance_files/figure-html/Calculating%20aspect%20importance%20(random%20forest)-1.png" width="700"></p>
 </div>
 <div id="using-lasso-in-aspect_importance-function" class="section level1">
@@ -237,18 +257,22 @@
 <p>Function aspect_importance() can calculate coefficients (that is aspects’ importance) by using either linear regression or lasso regression. Using lasso, we can control how many nonzero coefficients (nonzero aspects importance values) are present in the final explanation.</p>
 <p>To use aspect_importance() with lasso, we have to provide <code>n_var</code> parameter, which declares how many aspects importance values we would like to get in aspect_importance() results.</p>
 <p>For this example, we use <code>titanic_imputed</code> dataset again and random forest model. With the help of lasso technique, we would like to check the importance of variables’ aspects, while controlling that one of them should be equal to 0. Therefore we call aspect_importance() with <code>n_var</code> parameter set to 3.</p>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="no">titanic_rf_ai_lasso</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/aspect_importance.html">aspect_importance</a></span>(<span class="no">model_titanic_rf</span>, <span class="no">titanic</span>, <span class="no">predict</span>, <span class="no">passenger</span>, <span class="no">aspects_titanic</span>, <span class="kw">N</span> <span class="kw">=</span> <span class="fl">1000</span>, <span class="kw">n_var</span> <span class="kw">=</span> <span class="fl">3</span>)
-<span class="no">titanic_rf_ai_lasso</span></pre></body></html></div>
+<div class="sourceCode" id="cb18"><pre class="downlit">
+<span class="kw">titanic_rf_ai_lasso</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/aspect_importance.html">aspect_importance</a></span>(<span class="kw">model_titanic_rf</span>, <span class="kw">titanic</span>, <span class="kw">predict</span>, <span class="kw">passenger</span>, <span class="kw">aspects_titanic</span>, N = <span class="fl">1000</span>, n_var = <span class="fl">3</span>)
+<span class="kw">titanic_rf_ai_lasso</span>
+</pre></div>
 </div>
 <div id="automated-grouping-features-into-aspects" class="section level1">
 <h1 class="hasAnchor">
 <a href="#automated-grouping-features-into-aspects" class="anchor"></a>Automated grouping features into aspects</h1>
 <p>In examples described above, we had to manually group features into aspects. On <code>apartments</code> dataset, we will test the function that automatically groups features for us (grouping is based on the features correlation). Function only works on numeric variables.</p>
 <p>We import <code>apartments</code> from <code>DALEX</code> package and choose columns with numeric features. Then we fit linear model to the data and choose observation to be explained. Target variable is <code>m2.price</code>.</p>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">DALEX</span>)
+<div class="sourceCode" id="cb19"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://ModelOriented.github.io/DALEX">DALEX</a></span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"apartments"</span>)
-<span class="no">apartments_num</span> <span class="kw">&lt;-</span> <span class="no">apartments</span>[,<span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="no">apartments</span>, <span class="no">is.numeric</span>))] <span class="co">#excluding non numeric features</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">apartments_num</span>)</pre></body></html></div>
+<span class="kw">apartments_num</span> <span class="op">&lt;-</span> <span class="kw">apartments</span>[,<span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="kw">apartments</span>, <span class="kw">is.numeric</span>))] <span class="co">#excluding non numeric features</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">apartments_num</span>)
+</pre></div>
 <pre><code>#&gt;   m2.price construction.year surface floor no.rooms
 #&gt; 1     5897              1953      25     3        1
 #&gt; 2     1818              1992     143     9        5
@@ -256,14 +280,18 @@
 #&gt; 4     3517              1995      93     7        3
 #&gt; 5     3013              1992     144     6        5
 #&gt; 6     5795              1926      61     6        2</code></pre>
-<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="no">apartments_no_target</span> <span class="kw">&lt;-</span> <span class="no">apartments_num</span>[,-<span class="fl">1</span>] <span class="co">#excluding target variable</span>
-<span class="no">new_observation_apartments</span> <span class="kw">&lt;-</span> <span class="no">apartments_num</span>[<span class="fl">1</span>,]
-<span class="no">model_apartments</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">m2.price</span> ~ <span class="no">.</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">apartments_num</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb21"><pre class="downlit">
+<span class="kw">apartments_no_target</span> <span class="op">&lt;-</span> <span class="kw">apartments_num</span>[,<span class="op">-</span><span class="fl">1</span>] <span class="co">#excluding target variable</span>
+<span class="kw">new_observation_apartments</span> <span class="op">&lt;-</span> <span class="kw">apartments_num</span>[<span class="fl">1</span>,]
+<span class="kw">model_apartments</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="kw">m2.price</span> <span class="op">~</span> <span class="kw">.</span>, data = <span class="kw">apartments_num</span>)
+</pre></div>
 <p>We run group_variables() function with cut off level set on 0.6. As a result, we get a list of variables groups (aspects) where absolute value of features’ pairwise correlation is at least at 0.6.</p>
 <p>Afterwards, we call aspect_importance() function with parameter <code>show_cor = TRUE</code>, to check how features are grouped into aspects, what is minimal value of pairwise correlation in each group and to check whether any pair of features is negatively correlated (<code>neg</code>) or not (<code>pos</code>).</p>
-<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="no">aspects_apartments</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/group_variables.html">group_variables</a></span>(<span class="no">apartments_no_target</span>, <span class="fl">0.6</span>)
-<span class="no">apartments_ai</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/aspect_importance.html">aspect_importance</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">model_apartments</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">apartments_no_target</span>, <span class="kw">new_observation</span> <span class="kw">=</span> <span class="no">new_observation_apartments</span>, <span class="kw">aspects</span> <span class="kw">=</span> <span class="no">aspects_apartments</span>, <span class="kw">N</span> <span class="kw">=</span> <span class="fl">500</span>, <span class="kw">show_cor</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-<span class="no">apartments_ai</span></pre></body></html></div>
+<div class="sourceCode" id="cb22"><pre class="downlit">
+<span class="kw">aspects_apartments</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/group_variables.html">group_variables</a></span>(<span class="kw">apartments_no_target</span>, <span class="fl">0.6</span>)
+<span class="kw">apartments_ai</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/aspect_importance.html">aspect_importance</a></span>(x = <span class="kw">model_apartments</span>, data = <span class="kw">apartments_no_target</span>, new_observation = <span class="kw">new_observation_apartments</span>, aspects = <span class="kw">aspects_apartments</span>, N = <span class="fl">500</span>, show_cor = <span class="fl">TRUE</span>)
+<span class="kw">apartments_ai</span>
+</pre></div>
 <pre><code>#&gt;         aspects importance          features   min_cor sign
 #&gt; 3 aspect.group2    680.668 surface, no.rooms 0.9174349  pos
 #&gt; 4 aspect.group3    235.682             floor        NA     
@@ -280,18 +308,22 @@
 </ul>
 <p>Hierarchical aspects importance allows us to check the values of aspects importance for the different levels of variables grouping. Method starts with looking at the aspect importance where every aspect has one, single variable. Afterwards, it iteratively creates bigger aspects by merging the ones with the highest level of absolute correlation into one aspect and calculating it’s contribution to the prediction.</p>
 <p>It should be noted that similarly to <code><a href="../reference/group_variables.html">group_variables()</a></code>, <code><a href="../reference/triplot.html">triplot()</a></code> works for the datasets with only numerical variables.</p>
-<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="fu"><a href="../reference/triplot.html">triplot</a></span>(<span class="no">model_apartments</span>, <span class="no">apartments_no_target</span>,
-        <span class="kw">new_observation</span> <span class="kw">=</span> <span class="no">new_observation_apartments</span>, <span class="kw">N</span> <span class="kw">=</span> <span class="fl">500</span>,
-        <span class="kw">clust_method</span> <span class="kw">=</span> <span class="st">"complete"</span>, <span class="kw">absolute_value</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-        <span class="kw">cumulative_max</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="kw">add_importance_labels</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-        <span class="kw">abbrev_labels</span> <span class="kw">=</span> <span class="fl">15</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb24"><pre class="downlit">
+<span class="fu"><a href="../reference/triplot.html">triplot</a></span>(<span class="kw">model_apartments</span>, <span class="kw">apartments_no_target</span>, 
+        new_observation = <span class="kw">new_observation_apartments</span>, N = <span class="fl">500</span>, 
+        clust_method = <span class="st">"complete"</span>, absolute_value = <span class="fl">FALSE</span>, 
+        cumulative_max = <span class="fl">FALSE</span>, add_importance_labels = <span class="fl">FALSE</span>, 
+        abbrev_labels = <span class="fl">15</span>)
+</pre></div>
 <p><img src="vignette_aspect_importance_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
 </div>
 <div id="session-info" class="section level1">
 <h1 class="hasAnchor">
 <a href="#session-info" class="anchor"></a>Session info</h1>
-<div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()</pre></body></html></div>
-<pre><code>#&gt; R version 4.0.0 (2020-04-24)
+<div class="sourceCode" id="cb25"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()
+</pre></div>
+<pre><code>#&gt; R version 4.0.2 (2020-06-22)
 #&gt; Platform: x86_64-pc-linux-gnu (64-bit)
 #&gt; Running under: Ubuntu 16.04.6 LTS
 #&gt; 
@@ -311,23 +343,24 @@
 #&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
 #&gt; 
 #&gt; other attached packages:
-#&gt; [1] randomForest_4.6-14 DALEXtra_1.3        ggplot2_3.3.1      
+#&gt; [1] randomForest_4.6-14 DALEXtra_1.3.1      ggplot2_3.3.2      
 #&gt; [4] DALEX_1.3.0        
 #&gt; 
 #&gt; loaded via a namespace (and not attached):
-#&gt;  [1] Rcpp_1.0.4.6       compiler_4.0.0     pillar_1.4.4       ingredients_1.2.0 
-#&gt;  [5] iterators_1.0.12   tools_4.0.0        digest_0.6.25      jsonlite_1.6.1    
-#&gt;  [9] lattice_0.20-41    evaluate_0.14      memoise_1.1.0      lifecycle_0.2.0   
-#&gt; [13] tibble_3.0.1       gtable_0.3.0       pkgconfig_2.0.3    rlang_0.4.6       
+#&gt;  [1] Rcpp_1.0.5         compiler_4.0.2     pillar_1.4.6       ingredients_1.3.0 
+#&gt;  [5] iterators_1.0.12   tools_4.0.2        digest_0.6.25      jsonlite_1.7.0    
+#&gt;  [9] evaluate_0.14      memoise_1.1.0      lifecycle_0.2.0    tibble_3.0.3      
+#&gt; [13] gtable_0.3.0       lattice_0.20-41    pkgconfig_2.0.3    rlang_0.4.7       
 #&gt; [17] foreach_1.5.0      Matrix_1.2-18      yaml_2.2.1         pkgdown_1.5.1.9000
-#&gt; [21] xfun_0.14          ggdendro_0.1-20    gridExtra_2.3      withr_2.2.0       
-#&gt; [25] stringr_1.4.0      knitr_1.28         desc_1.2.0         fs_1.4.1          
-#&gt; [29] vctrs_0.3.0        glmnet_4.0         rprojroot_1.3-2    grid_4.0.0        
-#&gt; [33] reticulate_1.16    glue_1.4.1         R6_2.4.1           rmarkdown_2.1     
-#&gt; [37] farver_2.0.3       magrittr_1.5       codetools_0.2-16   backports_1.1.7   
-#&gt; [41] scales_1.1.1       htmltools_0.4.0    ellipsis_0.3.1     MASS_7.3-51.5     
-#&gt; [45] assertthat_0.2.1   shape_1.4.4        colorspace_1.4-1   labeling_0.3      
-#&gt; [49] stringi_1.4.6      munsell_0.5.0      crayon_1.3.4</code></pre>
+#&gt; [21] xfun_0.15          ggdendro_0.1-20    gridExtra_2.3      withr_2.2.0       
+#&gt; [25] stringr_1.4.0      knitr_1.29         desc_1.2.0         fs_1.4.2          
+#&gt; [29] vctrs_0.3.1        glmnet_4.0-2       rprojroot_1.3-2    grid_4.0.2        
+#&gt; [33] reticulate_1.16    glue_1.4.1         R6_2.4.1           survival_3.1-12   
+#&gt; [37] rmarkdown_2.3.2    farver_2.0.3       magrittr_1.5       splines_4.0.2     
+#&gt; [41] codetools_0.2-16   MASS_7.3-51.6      backports_1.1.8    scales_1.1.1      
+#&gt; [45] htmltools_0.5.0    ellipsis_0.3.1     assertthat_0.2.1   shape_1.4.4       
+#&gt; [49] colorspace_1.4-1   labeling_0.3       stringi_1.4.6      munsell_0.5.0     
+#&gt; [53] crayon_1.3.4</code></pre>
 </div>
   </div>
 

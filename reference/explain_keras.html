@@ -100,7 +100,7 @@ exported from Python via pickle file." />
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/">MI^2 DataLab</a> </span>
-          <span class="version version-default">1.3</span>
+          <span class="version version-default">1.3.1</span>
         </div>
       </div>
     </div>
@@ -160,23 +160,23 @@ and compare it with other models, using R tools like DALEX. This function create
 exported from Python via pickle file.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>explain_keras</span>(
-  <span class='no'>path</span>,
-  <span class='kw'>yml</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>condaenv</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>env</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>weights</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>predict_function</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>residual_function</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>precalculate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>colorize</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>model_info</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_keras.html'>explain_keras</a></span>(
+  <span class='kw'>path</span>,
+  yml = <span class='kw'>NULL</span>,
+  condaenv = <span class='kw'>NULL</span>,
+  env = <span class='kw'>NULL</span>,
+  data = <span class='kw'>NULL</span>,
+  y = <span class='kw'>NULL</span>,
+  weights = <span class='kw'>NULL</span>,
+  predict_function = <span class='kw'>NULL</span>,
+  residual_function = <span class='kw'>NULL</span>,
+  <span class='kw'>...</span>,
+  label = <span class='kw'>NULL</span>,
+  verbose = <span class='fl'>TRUE</span>,
+  precalculate = <span class='fl'>TRUE</span>,
+  colorize = <span class='fl'>TRUE</span>,
+  model_info = <span class='kw'>NULL</span>,
+  type = <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -251,7 +251,7 @@ exported from Python via pickle file.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An object of the class 'explainer'.</p>
-<p><b>Example of Python code avialble at documentation <code><a href='explain_scikitlearn.html'>explain_scikitlearn</a></code></b><br /></p>
+<p><b>Example of Python code avialble at documentation <code><a href='https://rdrr.io/pkg/DALEXtra/man/explain_scikitlearn.html'>explain_scikitlearn</a></code></b><br /></p>
 <p><b>Errors use case</b><br />
 Here is shortened version of solution for specific errors <br />
 <br />
@@ -280,18 +280,18 @@ If .yml file seems not to work, virtual env can be created manually using anacon
     <p>Szymon Maksymiuk</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"DALEXtra"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://ModelOriented.github.io/DALEXtra'>"DALEXtra"</a></span>)
 <span class='co'># \donttest{</span>
    <span class='co'># Explainer build (Keep in mind that 9th column is target)</span>
-   <span class='no'>test_data</span> <span class='kw'>&lt;-</span>
+   <span class='kw'>test_data</span> <span class='op'>&lt;-</span>
    <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(
    <span class='st'>"https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.data.csv"</span>,
-   <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>","</span>)
+   sep = <span class='st'>","</span>)
    <span class='co'># Keep in mind that when pickle is being built and loaded,</span>
    <span class='co'># not only Python version but libraries versions has to match aswell</span>
-   <span class='no'>explainer</span> <span class='kw'>&lt;-</span> <span class='fu'>explain_keras</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"keras.pkl"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DALEXtra"</span>),
-   <span class='kw'>conda</span> <span class='kw'>=</span> <span class='st'>"myenv"</span>,
-   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>test_data</span>[,<span class='fl'>1</span>:<span class='fl'>8</span>], <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>test_data</span>[,<span class='fl'>9</span>])</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+   <span class='kw'>explainer</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_keras.html'>explain_keras</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"keras.pkl"</span>, package = <span class='st'>"DALEXtra"</span>),
+   conda = <span class='st'>"myenv"</span>,
+   data = <span class='kw'>test_data</span>[,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>8</span>], y = <span class='kw'>test_data</span>[,<span class='fl'>9</span>])</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  keras  ( <span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; data              :  767  rows  8  cols 
 #&gt;   -&gt; target variable   :  767  values 
@@ -300,11 +300,12 @@ If .yml file seems not to work, virtual env can be created manually using anacon
 #&gt;   -&gt; model_info        :  package reticulate , ver. 1.16 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -0.9620993 , mean =  -0.1152253 , max =  0.9141644  
-#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>   <span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='fu'>model_performance</span>(<span class='no'>explainer</span>))</div><div class='img'><img src='explain_keras-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>   <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/DALEX/man/model_performance.html'>model_performance</a></span>(<span class='kw'>explainer</span>))</div><div class='img'><img src='explain_keras-1.png' alt='' width='700' height='433' /></div><div class='input'>
    <span class='co'># Predictions with newdata</span>
-   <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>explainer</span>, <span class='no'>test_data</span>[<span class='fl'>1</span>:<span class='fl'>10</span>,<span class='fl'>1</span>:<span class='fl'>8</span>])</div><div class='output co'>#&gt;  [1] 0.1804933 0.9571114 0.1365494 0.9309344 0.3601863 0.1650710 0.7250850
+   <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='kw'>explainer</span>, <span class='kw'>test_data</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>8</span>])</div><div class='output co'>#&gt;  [1] 0.1804933 0.9571114 0.1365494 0.9309344 0.3601863 0.1650710 0.7250850
 #&gt;  [8] 0.9752285 0.2601736 0.2772151</div><div class='input'>
-<span class='co'># }</span></div></span></pre>
+<span class='co'># }</span>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -98,7 +98,7 @@
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/">MI^2 DataLab</a> </span>
-          <span class="version version-default">1.3</span>
+          <span class="version version-default">1.3.1</span>
         </div>
       </div>
     </div>
@@ -156,13 +156,13 @@
     <p>Plots tree that illustrates the results of group_variables function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot_group_variables</span>(
-  <span class='no'>x</span>,
-  <span class='no'>p</span>,
-  <span class='kw'>show_labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>draw_abline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>axis_lab_size</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>text_size</span> <span class='kw'>=</span> <span class='fl'>3</span>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/plot_group_variables.html'>plot_group_variables</a></span>(
+  <span class='kw'>x</span>,
+  <span class='kw'>p</span>,
+  show_labels = <span class='fl'>TRUE</span>,
+  draw_abline = <span class='fl'>TRUE</span>,
+  axis_lab_size = <span class='fl'>10</span>,
+  text_size = <span class='fl'>3</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -199,10 +199,10 @@
     <p>tree plot</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"DALEX"</span>)
-<span class='no'>dragons_data</span> <span class='kw'>&lt;-</span> <span class='no'>dragons</span>[,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>3</span>,<span class='fl'>4</span>,<span class='fl'>7</span>,<span class='fl'>8</span>)]
-<span class='fu'><a href='group_variables.html'>group_variables</a></span>(<span class='no'>dragons_data</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>clust_method</span> <span class='kw'>=</span> <span class='st'>"complete"</span>,
-                <span class='kw'>draw_tree</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='img'><img src='plot_group_variables-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; $aspect.group1
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://ModelOriented.github.io/DALEX'>"DALEX"</a></span>)
+<span class='kw'>dragons_data</span> <span class='op'>&lt;-</span> <span class='kw'>dragons</span>[,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>3</span>,<span class='fl'>4</span>,<span class='fl'>7</span>,<span class='fl'>8</span>)]
+<span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/group_variables.html'>group_variables</a></span>(<span class='kw'>dragons_data</span>, p = <span class='fl'>0.7</span>, clust_method = <span class='st'>"complete"</span>,
+                draw_tree = <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='img'><img src='plot_group_variables-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; $aspect.group1
 #&gt; [1] "height" "weight"
 #&gt; 
 #&gt; $aspect.group2
@@ -210,8 +210,7 @@
 #&gt; 
 #&gt; $aspect.group3
 #&gt; [1] "number_of_lost_teeth"
-#&gt; </div><div class='input'>
-</div></pre>
+#&gt; </div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
