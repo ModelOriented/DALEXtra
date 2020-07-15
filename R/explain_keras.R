@@ -59,7 +59,7 @@
 #'
 #' @examples
 #' library("DALEXtra")
-#' \donttest{
+#' \dontrun{
 #'    # Explainer build (Keep in mind that 9th column is target)
 #'    test_data <-
 #'    read.csv(

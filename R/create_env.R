@@ -13,7 +13,7 @@
 #'
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   create_env(system.file("extdata", "testing_environment.yml", package = "DALEXtra"))
 #' }
 #' @rdname create_env

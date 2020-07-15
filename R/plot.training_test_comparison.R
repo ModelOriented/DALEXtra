@@ -14,7 +14,7 @@
 #' @export
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' library(DALEXtra)
 #' titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
 #' titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))

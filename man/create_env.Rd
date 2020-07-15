@@ -19,7 +19,7 @@ Python objects may be loaded into R. However, it requiers versions of the Python
 This functions allow user to create conda virtual environment based on provided .yml file.
 }
 \examples{
-\donttest{
+\dontrun{
   create_env(system.file("extdata", "testing_environment.yml", package = "DALEXtra"))
 }
 }

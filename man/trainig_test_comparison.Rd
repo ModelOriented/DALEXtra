@@ -46,7 +46,7 @@ Response of the model is caluclated based on test data, extracted from the expla
 Output can be easily shown with \code{print} or \code{plot} function.
 }
 \examples{
-\donttest{
+\dontrun{
 library(DALEXtra)
 titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
 titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
