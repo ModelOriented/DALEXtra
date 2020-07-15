@@ -29,7 +29,7 @@ create_env <- function(yml, condaenv = NULL) {
         condaenv
       ))
     } else {
-      stop("Conda not found")
+       stop("Conda not found")
     }
   }
 
