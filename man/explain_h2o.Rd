@@ -67,6 +67,9 @@ data <- DALEX::titanic_imputed
 # init h2o
 h2o.init()
 
+# stop h2o progress printing
+h2o.no_progress()
+
 # split the data
 h2o_split <- h2o.splitFrame(as.h2o(data))
 train <- h2o_split[[1]]
@@ -80,8 +83,6 @@ automl <- h2o.automl(y = "survived",
                      training_frame = train,
                      max_runtime_secs = 30)
 
-# stop h2o progress printing
-h2o.no_progress()
 
 # create an explainer for the model
 explainer <- explain_h2o(automl,
@@ -106,6 +107,6 @@ learn_rate = 0.001
 )
 explain_h2o(model, titanic_test[,1:17], titanic_test[,18])
 
-h2o::h2o.shutdown(prompt = FALSE)
+h2o.shutdown(prompt = FALSE)
 }
 }

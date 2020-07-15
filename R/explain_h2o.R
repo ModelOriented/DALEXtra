@@ -37,6 +37,9 @@
 #' # init h2o
 #' h2o.init()
 #'
+#' # stop h2o progress printing
+#' h2o.no_progress()
+#'
 #' # split the data
 #' h2o_split <- h2o.splitFrame(as.h2o(data))
 #' train <- h2o_split[[1]]
@@ -50,8 +53,6 @@
 #'                      training_frame = train,
 #'                      max_runtime_secs = 30)
 #'
-#' # stop h2o progress printing
-#' h2o.no_progress()
 #'
 #' # create an explainer for the model
 #' explainer <- explain_h2o(automl,
@@ -76,7 +77,7 @@
 #' )
 #' explain_h2o(model, titanic_test[,1:17], titanic_test[,18])
 #'
-#' h2o::h2o.shutdown(prompt = FALSE)
+#' h2o.shutdown(prompt = FALSE)
 #' }
 #' @rdname explain_h2o
 #' @export
