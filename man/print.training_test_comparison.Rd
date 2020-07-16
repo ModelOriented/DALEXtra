@@ -15,60 +15,33 @@
 Print funnel_measure object
 }
 \examples{
-\donttest{
-library(DALEXtra)
-titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
-titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
-h2o::h2o.init()
-h2o::h2o.no_progress()
-titanic_h2o <- h2o::as.h2o(titanic_train)
-titanic_h2o["survived"] <- h2o::as.factor(titanic_h2o["survived"])
-titanic_test_h2o <- h2o::as.h2o(titanic_test)
-model <- h2o::h2o.gbm(
-  training_frame = titanic_h2o,
-  y = "survived",
-  distribution = "bernoulli",
-  ntrees = 500,
-  max_depth = 4,
-  min_rows =  12,
-  learn_rate = 0.001
-)
-explainer_h2o <- explain_h2o(model, titanic_test[,1:17], titanic_test[,18])
-
-explainer_scikit <- explain_scikitlearn(system.file("extdata",
-                                                    "scikitlearn.pkl",
-                                                    package = "DALEXtra"),
-                                        yml = system.file("extdata",
-                                                          "testing_environment.yml",
-                                                          package = "DALEXtra"),
-                                        data = titanic_test[,1:17],
-                                        y = titanic_test$survived)
-
 library("mlr")
-task <- mlr::makeClassifTask(
-  id = "R",
-  data = titanic_train,
-  target = "survived"
+library("DALEXtra")
+task <- mlr::makeRegrTask(
+ id = "R",
+  data = apartments,
+   target = "m2.price"
 )
-learner <- mlr::makeLearner(
-  "classif.gbm",
-  par.vals = list(
-    distribution = "bernoulli",
-    n.trees = 500,
-    interaction.depth = 4,
-    n.minobsinnode = 12,
-    shrinkage = 0.001,
-    bag.fraction = 0.5,
-    train.fraction = 1
-  ),
-  predict.type = "prob"
+ learner_lm <- mlr::makeLearner(
+ "regr.lm"
 )
-gbm <- mlr::train(learner, task)
-explainer_mlr <- explain_mlr(gbm, titanic_test[,1:17], titanic_test[,18])
+model_lm <- mlr::train(learner_lm, task)
+explainer_lm <- explain_mlr(model_lm, apartmentsTest, apartmentsTest$m2.price, label = "LM")
 
-data <- training_test_comparison(explainer_scikit, list(explainer_h2o, explainer_mlr),
-                                 training_data = titanic_train[,-18],
-                                 training_y = titanic_train[,18])
+learner_rf <- mlr::makeLearner(
+"regr.randomForest"
+)
+model_rf <- mlr::train(learner_rf, task)
+explainer_rf <- explain_mlr(model_rf, apartmentsTest, apartmentsTest$m2.price, label = "RF")
+
+learner_gbm <- mlr::makeLearner(
+"regr.gbm"
+)
+model_gbm <- mlr::train(learner_gbm, task)
+explainer_gbm <- explain_mlr(model_gbm, apartmentsTest, apartmentsTest$m2.price, label = "GBM")
+
+data <- training_test_comparison(explainer_lm, list(explainer_gbm, explainer_rf),
+                                 training_data = apartments,
+                                 training_y = apartments$m2.price)
 print(data)
-}
 }

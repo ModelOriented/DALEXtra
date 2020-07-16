@@ -20,8 +20,6 @@
 #' }
 #'
 #' @return A named list of class \code{model_info}
-
-
 #' @rdname model_info
 #' @export
 model_info.WrappedModel <- function(model, is_multiclass = FALSE, ...) {
