@@ -240,7 +240,8 @@ One of those tools, we would like to make more accessible is H2O.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 
-<span class='co'># load packages and data</span>
+
+<span class='co'># # load packages and data</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/h2oai/h2o-3'>h2o</a></span>)</div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>----------------------------------------------------------------------</span>
 #&gt; <span class='message'></span>
@@ -262,25 +263,25 @@ One of those tools, we would like to make more accessible is H2O.</p>
 #&gt; <span class='message'>    colnames&lt;-, ifelse, is.character, is.factor, is.numeric, log,</span>
 #&gt; <span class='message'>    log10, log1p, log2, round, signif, trunc</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://ModelOriented.github.io/DALEXtra'>DALEXtra</a></span>)
 
-<span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='kw'>DALEX</span>::<span class='kw'><a href='https://rdrr.io/pkg/DALEX/man/titanic.html'>titanic_imputed</a></span>
+<span class='co'># data &lt;- DALEX::titanic_imputed</span>
 
 <span class='co'># init h2o</span>
-<span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.init.html'>h2o.init</a></span>()</div><div class='output co'>#&gt; 
+ <span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.init.html'>h2o.init</a></span>()</div><div class='output co'>#&gt; 
 #&gt; H2O is not running yet, starting it now...
 #&gt; 
 #&gt; Note:  In case of errors look at the following log files:
-#&gt;     /tmp/Rtmps7mfiS/file43372f6bce3f/h2o_runner_started_from_r.out
-#&gt;     /tmp/Rtmps7mfiS/file433713ee350b/h2o_runner_started_from_r.err
+#&gt;     /tmp/RtmphajMKt/file43bb2eebd366/h2o_runner_started_from_r.out
+#&gt;     /tmp/RtmphajMKt/file43bb2ffab309/h2o_runner_started_from_r.err
 #&gt; 
 #&gt; 
-#&gt; Starting H2O JVM and connecting: .... Connection successful!
+#&gt; Starting H2O JVM and connecting: ... Connection successful!
 #&gt; 
 #&gt; R is connected to the H2O cluster: 
-#&gt;     H2O cluster uptime:         2 seconds 928 milliseconds 
+#&gt;     H2O cluster uptime:         2 seconds 691 milliseconds 
 #&gt;     H2O cluster timezone:       UTC 
 #&gt;     H2O data parsing timezone:  UTC 
 #&gt;     H2O cluster version:        3.30.0.1 
-#&gt;     H2O cluster version age:    3 months and 11 days !!! 
+#&gt;     H2O cluster version age:    3 months and 12 days !!! 
 #&gt;     H2O cluster name:           H2O_started_from_R_runner_tjh847 
 #&gt;     H2O cluster total nodes:    1 
 #&gt;     H2O cluster total memory:   1.51 GB 
@@ -293,34 +294,30 @@ One of those tools, we would like to make more accessible is H2O.</p>
 #&gt;     H2O Internal Security:      FALSE 
 #&gt;     H2O API Extensions:         Amazon S3, XGBoost, Algos, AutoML, Core V3, TargetEncoder, Core V4 
 #&gt;     R Version:                  R version 4.0.2 (2020-06-22) </div><div class='output co'>#&gt; <span class='warning'>Warning: </span>
-#&gt; <span class='warning'>Your H2O cluster version is too old (3 months and 11 days)!</span>
+#&gt; <span class='warning'>Your H2O cluster version is too old (3 months and 12 days)!</span>
 #&gt; <span class='warning'>Please download and install the latest version from http://h2o.ai/download/</span></div><div class='output co'>#&gt; </div><div class='input'>
 <span class='co'># stop h2o progress printing</span>
-<span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.no_progress.html'>h2o.no_progress</a></span>()
+ <span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.no_progress.html'>h2o.no_progress</a></span>()
 
 <span class='co'># split the data</span>
-<span class='kw'>h2o_split</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.splitFrame.html'>h2o.splitFrame</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.h2o.html'>as.h2o</a></span>(<span class='kw'>data</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='input'><span class='kw'>train</span> <span class='op'>&lt;-</span> <span class='kw'>h2o_split</span>[[<span class='fl'>1</span>]]
-<span class='kw'>test</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='kw'>h2o_split</span>[[<span class='fl'>2</span>]])
-
+<span class='co'># h2o_split &lt;- h2o.splitFrame(as.h2o(data))</span>
+<span class='co'># train &lt;- h2o_split[[1]]</span>
+<span class='co'># test &lt;- as.data.frame(h2o_split[[2]])</span>
 <span class='co'># h2o automl takes target as factor</span>
-<span class='kw'>train</span><span class='op'>$</span><span class='kw'>survived</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.factor.html'>as.factor</a></span>(<span class='kw'>train</span><span class='op'>$</span><span class='kw'>survived</span>)
+<span class='co'># train$survived &lt;- as.factor(train$survived)</span>
 
 <span class='co'># fit a model</span>
-<span class='kw'>automl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.automl.html'>h2o.automl</a></span>(y = <span class='st'>"survived"</span>,
-                     training_frame = <span class='kw'>train</span>,
-                     max_runtime_secs = <span class='fl'>30</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='input'>
+<span class='co'># automl &lt;- h2o.automl(y = "survived",</span>
+<span class='co'>#                   training_frame = train,</span>
+<span class='co'>#                    max_runtime_secs = 30)</span>
+
 
 <span class='co'># create an explainer for the model</span>
-<span class='kw'>explainer</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_h2o.html'>explain_h2o</a></span>(<span class='kw'>automl</span>,
-                         data = <span class='kw'>test</span>,
-                         y = <span class='kw'>test</span><span class='op'>$</span><span class='kw'>survived</span>,
-                         label = <span class='st'>"h2o"</span>)</div><div class='output co'>#&gt; <span class='message'>`model` argument is a H2OAutoML class object. model@leader will be extracted.</span></div><div class='output co'>#&gt; Preparation of a new explainer is initiated
-#&gt;   -&gt; model label       :  h2o 
-#&gt;   -&gt; data              :  561  rows  8  cols 
-#&gt;   -&gt; target variable   :  561  values 
-#&gt;   -&gt; predict function  :  yhat.H2OBinomialModel  will be used ( <span style='color: #BBBB00;'> default </span><span> )</div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt;   -&gt; predicted values  :  numerical, min =  0.07344248 , mean =  0.3254261 , max =  0.934203  </div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt;   -&gt; model_info        :  package h2o , ver. 3.30.0.1 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
-#&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )</div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt;   -&gt; residuals         :  numerical, min =  -0.9294263 , mean =  -0.01170061 , max =  0.9037547  
-#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
+<span class='co'># explainer &lt;- explain_h2o(automl,</span>
+<span class='co'>#                        data = test,</span>
+<span class='co'>#                         y = test$survived,</span>
+<span class='co'>#                          label = "h2o")</span>
+
 
 <span class='kw'>titanic_test</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_test.csv"</span>, package = <span class='st'>"DALEXtra"</span>))
 <span class='kw'>titanic_train</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_train.csv"</span>, package = <span class='st'>"DALEXtra"</span>))
@@ -335,7 +332,7 @@ min_rows =  <span class='fl'>12</span>,
 learn_rate = <span class='fl'>0.001</span>
 )
 <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_h2o.html'>explain_h2o</a></span>(<span class='kw'>model</span>, <span class='kw'>titanic_test</span>[,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>17</span>], <span class='kw'>titanic_test</span>[,<span class='fl'>18</span>])</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
-#&gt;   -&gt; model label       :  H2OBinomialModel  ( </span><span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; model label       :  H2OBinomialModel  ( <span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; data              :  524  rows  17  cols 
 #&gt;   -&gt; target variable   :  524  values 
 #&gt;   -&gt; predict function  :  yhat.H2OBinomialModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )</div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt;   -&gt; predicted values  :  numerical, min =  0.1994385 , mean =  0.3299534 , max =  0.5876636  </div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt;   -&gt; model_info        :  package h2o , ver. 3.30.0.1 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 

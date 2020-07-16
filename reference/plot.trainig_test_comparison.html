@@ -179,107 +179,60 @@ training_test_comparison object. Green line indicates y = x line." />
     <p>ggplot object</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://ModelOriented.github.io/DALEXtra'>DALEXtra</a></span>)
-<span class='kw'>titanic_train</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_train.csv"</span>, package = <span class='st'>"DALEXtra"</span>))
-<span class='kw'>titanic_test</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_test.csv"</span>, package = <span class='st'>"DALEXtra"</span>))
-<span class='kw'>h2o</span>::<span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.init.html'>h2o.init</a></span>()</div><div class='output co'>#&gt; 
-#&gt; H2O is not running yet, starting it now...
-#&gt; 
-#&gt; Note:  In case of errors look at the following log files:
-#&gt;     /tmp/Rtmps7mfiS/file433738911fbe/h2o_runner_started_from_r.out
-#&gt;     /tmp/Rtmps7mfiS/file43371962f598/h2o_runner_started_from_r.err
-#&gt; 
-#&gt; 
-#&gt; Starting H2O JVM and connecting: .. Connection successful!
-#&gt; 
-#&gt; R is connected to the H2O cluster: 
-#&gt;     H2O cluster uptime:         2 seconds 377 milliseconds 
-#&gt;     H2O cluster timezone:       UTC 
-#&gt;     H2O data parsing timezone:  UTC 
-#&gt;     H2O cluster version:        3.30.0.1 
-#&gt;     H2O cluster version age:    3 months and 11 days !!! 
-#&gt;     H2O cluster name:           H2O_started_from_R_runner_ssh825 
-#&gt;     H2O cluster total nodes:    1 
-#&gt;     H2O cluster total memory:   1.65 GB 
-#&gt;     H2O cluster total cores:    1 
-#&gt;     H2O cluster allowed cores:  1 
-#&gt;     H2O cluster healthy:        TRUE 
-#&gt;     H2O Connection ip:          localhost 
-#&gt;     H2O Connection port:        54321 
-#&gt;     H2O Connection proxy:       NA 
-#&gt;     H2O Internal Security:      FALSE 
-#&gt;     H2O API Extensions:         Amazon S3, XGBoost, Algos, AutoML, Core V3, TargetEncoder, Core V4 
-#&gt;     R Version:                  R version 4.0.2 (2020-06-22) </div><div class='output co'>#&gt; <span class='warning'>Warning: </span>
-#&gt; <span class='warning'>Your H2O cluster version is too old (3 months and 11 days)!</span>
-#&gt; <span class='warning'>Please download and install the latest version from http://h2o.ai/download/</span></div><div class='output co'>#&gt; </div><div class='input'><span class='kw'>h2o</span>::<span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.no_progress.html'>h2o.no_progress</a></span>()
-<span class='kw'>titanic_h2o</span> <span class='op'>&lt;-</span> <span class='kw'>h2o</span>::<span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.h2o.html'>as.h2o</a></span>(<span class='kw'>titanic_train</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='input'><span class='kw'>titanic_h2o</span>[<span class='st'>"survived"</span>] <span class='op'>&lt;-</span> <span class='kw'>h2o</span>::<span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.factor.html'>as.factor</a></span>(<span class='kw'>titanic_h2o</span>[<span class='st'>"survived"</span>])
-<span class='kw'>titanic_test_h2o</span> <span class='op'>&lt;-</span> <span class='kw'>h2o</span>::<span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.h2o.html'>as.h2o</a></span>(<span class='kw'>titanic_test</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='input'><span class='kw'>model</span> <span class='op'>&lt;-</span> <span class='kw'>h2o</span>::<span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.gbm.html'>h2o.gbm</a></span>(
-  training_frame = <span class='kw'>titanic_h2o</span>,
-  y = <span class='st'>"survived"</span>,
-  distribution = <span class='st'>"bernoulli"</span>,
-  ntrees = <span class='fl'>500</span>,
-  max_depth = <span class='fl'>4</span>,
-  min_rows =  <span class='fl'>12</span>,
-  learn_rate = <span class='fl'>0.001</span>
-)
-<span class='kw'>explainer_h2o</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_h2o.html'>explain_h2o</a></span>(<span class='kw'>model</span>, <span class='kw'>titanic_test</span>[,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>17</span>], <span class='kw'>titanic_test</span>[,<span class='fl'>18</span>])</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
-#&gt;   -&gt; model label       :  H2OBinomialModel  ( <span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; data              :  524  rows  17  cols 
-#&gt;   -&gt; target variable   :  524  values 
-#&gt;   -&gt; predict function  :  yhat.H2OBinomialModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )</div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt;   -&gt; predicted values  :  numerical, min =  0.1994385 , mean =  0.3299534 , max =  0.5876636  </div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt;   -&gt; model_info        :  package h2o , ver. 3.30.0.1 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
-#&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )</div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt;   -&gt; residuals         :  numerical, min =  -0.5847857 , mean =  -0.01888466 , max =  0.8005615  
-#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
-<span class='kw'>explainer_scikit</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_scikitlearn.html'>explain_scikitlearn</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>,
-                                                    <span class='st'>"scikitlearn.pkl"</span>,
-                                                    package = <span class='st'>"DALEXtra"</span>),
-                                        yml = <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>,
-                                                          <span class='st'>"testing_environment.yml"</span>,
-                                                          package = <span class='st'>"DALEXtra"</span>),
-                                        data = <span class='kw'>titanic_test</span>[,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>17</span>],
-                                        y = <span class='kw'>titanic_test</span><span class='op'>$</span><span class='kw'>survived</span>)</div><div class='output co'>#&gt; <span class='message'>Path to conda not specified while on unix. Default used. /usr/share/miniconda/bin/..</span></div><div class='output co'>#&gt; <span class='message'>There already exists environment named the same as it is specified in .yml file - myenv. It will be used</span></div><div class='output co'>#&gt; Preparation of a new explainer is initiated
-#&gt;   -&gt; model label       :  scikitlearn_model  ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; data              :  524  rows  17  cols 
-#&gt;   -&gt; target variable   :  524  values 
-#&gt;   -&gt; predict function  :  yhat.scikitlearn_model  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; predicted values  :  numerical, min =  0.02086126 , mean =  0.288584 , max =  0.9119996  
-#&gt;   -&gt; model_info        :  package reticulate , ver. 1.16 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
-#&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; residuals         :  numerical, min =  -0.8669431 , mean =  0.02248468 , max =  0.9791387  
-#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
+    <pre class="examples"><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://mlr.mlr-org.com'>"mlr"</a></span>)
-<span class='kw'>task</span> <span class='op'>&lt;-</span> <span class='kw'>mlr</span>::<span class='fu'><a href='https://mlr.mlr-org.com/reference/ClassifTask.html'>makeClassifTask</a></span>(
-  id = <span class='st'>"R"</span>,
-  data = <span class='kw'>titanic_train</span>,
-  target = <span class='st'>"survived"</span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://ModelOriented.github.io/DALEXtra'>"DALEXtra"</a></span>)
+<span class='kw'>task</span> <span class='op'>&lt;-</span> <span class='kw'>mlr</span>::<span class='fu'><a href='https://mlr.mlr-org.com/reference/RegrTask.html'>makeRegrTask</a></span>(
+ id = <span class='st'>"R"</span>,
+  data = <span class='kw'>apartments</span>,
+   target = <span class='st'>"m2.price"</span>
 )
-<span class='kw'>learner</span> <span class='op'>&lt;-</span> <span class='kw'>mlr</span>::<span class='fu'><a href='https://mlr.mlr-org.com/reference/makeLearner.html'>makeLearner</a></span>(
-  <span class='st'>"classif.gbm"</span>,
-  par.vals = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-    distribution = <span class='st'>"bernoulli"</span>,
-    n.trees = <span class='fl'>500</span>,
-    interaction.depth = <span class='fl'>4</span>,
-    n.minobsinnode = <span class='fl'>12</span>,
-    shrinkage = <span class='fl'>0.001</span>,
-    bag.fraction = <span class='fl'>0.5</span>,
-    train.fraction = <span class='fl'>1</span>
-  ),
-  predict.type = <span class='st'>"prob"</span>
+ <span class='kw'>learner_lm</span> <span class='op'>&lt;-</span> <span class='kw'>mlr</span>::<span class='fu'><a href='https://mlr.mlr-org.com/reference/makeLearner.html'>makeLearner</a></span>(
+ <span class='st'>"regr.lm"</span>
 )
-<span class='kw'>gbm</span> <span class='op'>&lt;-</span> <span class='kw'>mlr</span>::<span class='fu'><a href='https://mlr.mlr-org.com/reference/train.html'>train</a></span>(<span class='kw'>learner</span>, <span class='kw'>task</span>)
-<span class='kw'>explainer_mlr</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>gbm</span>, <span class='kw'>titanic_test</span>[,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>17</span>], <span class='kw'>titanic_test</span>[,<span class='fl'>18</span>])</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
-#&gt;   -&gt; model label       :  WrappedModel  ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; data              :  524  rows  17  cols 
-#&gt;   -&gt; target variable   :  524  values 
-#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; predicted values  :  numerical, min =  0.4360456 , mean =  0.6675499 , max =  0.7296402  
-#&gt;   -&gt; model_info        :  package mlr , ver. 2.17.1 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+<span class='kw'>model_lm</span> <span class='op'>&lt;-</span> <span class='kw'>mlr</span>::<span class='fu'><a href='https://mlr.mlr-org.com/reference/train.html'>train</a></span>(<span class='kw'>learner_lm</span>, <span class='kw'>task</span>)
+<span class='kw'>explainer_lm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_lm</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"LM"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+#&gt;   -&gt; model label       :  LM 
+#&gt;   -&gt; data              :  9000  rows  6  cols 
+#&gt;   -&gt; target variable   :  9000  values 
+#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( <span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; predicted values  :  numerical, min =  1792.597 , mean =  3506.836 , max =  6241.447  
+#&gt;   -&gt; model_info        :  package mlr , ver. 2.17.1 , task regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; residuals         :  numerical, min =  -0.7296402 , mean =  -0.3564812 , max =  0.5639544  
+#&gt;   -&gt; residuals         :  numerical, min =  -257.2555 , mean =  4.687686 , max =  472.356  
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
-<span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/trainig_test_comparison.html'>training_test_comparison</a></span>(<span class='kw'>explainer_scikit</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>explainer_h2o</span>, <span class='kw'>explainer_mlr</span>),
-                                 training_data = <span class='kw'>titanic_train</span>[,<span class='op'>-</span><span class='fl'>18</span>],
-                                 training_y = <span class='kw'>titanic_train</span>[,<span class='fl'>18</span>])</div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>data</span>)</div><div class='img'><img src='plot.trainig_test_comparison-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span></div></span></pre>
+<span class='kw'>learner_rf</span> <span class='op'>&lt;-</span> <span class='kw'>mlr</span>::<span class='fu'><a href='https://mlr.mlr-org.com/reference/makeLearner.html'>makeLearner</a></span>(
+<span class='st'>"regr.randomForest"</span>
+)
+<span class='kw'>model_rf</span> <span class='op'>&lt;-</span> <span class='kw'>mlr</span>::<span class='fu'><a href='https://mlr.mlr-org.com/reference/train.html'>train</a></span>(<span class='kw'>learner_rf</span>, <span class='kw'>task</span>)
+<span class='kw'>explainer_rf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_rf</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"RF"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+#&gt;   -&gt; model label       :  RF 
+#&gt;   -&gt; data              :  9000  rows  6  cols 
+#&gt;   -&gt; target variable   :  9000  values 
+#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; predicted values  :  numerical, min =  1981.847 , mean =  3506.758 , max =  5819.938  
+#&gt;   -&gt; model_info        :  package mlr , ver. 2.17.1 , task regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; residuals         :  numerical, min =  -718.8968 , mean =  4.765479 , max =  1267.136  
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
+<span class='kw'>learner_gbm</span> <span class='op'>&lt;-</span> <span class='kw'>mlr</span>::<span class='fu'><a href='https://mlr.mlr-org.com/reference/makeLearner.html'>makeLearner</a></span>(
+<span class='st'>"regr.gbm"</span>
+)
+<span class='kw'>model_gbm</span> <span class='op'>&lt;-</span> <span class='kw'>mlr</span>::<span class='fu'><a href='https://mlr.mlr-org.com/reference/train.html'>train</a></span>(<span class='kw'>learner_gbm</span>, <span class='kw'>task</span>)
+<span class='kw'>explainer_gbm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_gbm</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"GBM"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+#&gt;   -&gt; model label       :  GBM 
+#&gt;   -&gt; data              :  9000  rows  6  cols 
+#&gt;   -&gt; target variable   :  9000  values 
+#&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; predicted values  :  numerical, min =  2114.989 , mean =  3503.359 , max =  6051.216  
+#&gt;   -&gt; model_info        :  package mlr , ver. 2.17.1 , task regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; residuals         :  numerical, min =  -556.7555 , mean =  8.164272 , max =  717.9094  
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
+<span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/trainig_test_comparison.html'>training_test_comparison</a></span>(<span class='kw'>explainer_lm</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>explainer_gbm</span>, <span class='kw'>explainer_rf</span>),
+                                 training_data = <span class='kw'>apartments</span>,
+                                 training_y = <span class='kw'>apartments</span><span class='op'>$</span><span class='kw'>m2.price</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>data</span>)</div><div class='img'><img src='plot.trainig_test_comparison-1.png' alt='' width='700' height='433' /></div><div class='input'></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
