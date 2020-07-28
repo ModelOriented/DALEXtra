@@ -87,7 +87,7 @@ test_that("automl example", {
 })
 
 test_that("y is numeric", {
-  #skip_if_no_java()
+  skip_if_no_java()
   titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
   titanic_train <- read.csv(system.file("extdata", "titanic_train.csv", package = "DALEXtra"))
   h2o::h2o.init()
