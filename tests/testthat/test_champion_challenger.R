@@ -1,6 +1,10 @@
 context("champion_challenger")
 test_that("Report generates without errors", {
-skip_if_unix()
+
+if (!"CONDA_TEST" %in% names(Sys.getenv()) & .Platform$OS.type == "unix") {
+  skip("Test with windows")
+}
+
 library("mlr")
 library("DALEXtra")
 task <- mlr::makeRegrTask(
