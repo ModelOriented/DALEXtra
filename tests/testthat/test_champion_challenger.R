@@ -1,6 +1,6 @@
 context("champion_challenger")
 test_that("Report generates without errors", {
-skif_if_unix()
+skip_if_unix()
 library("mlr")
 library("DALEXtra")
 task <- mlr::makeRegrTask(
