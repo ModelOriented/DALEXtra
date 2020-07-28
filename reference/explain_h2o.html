@@ -160,7 +160,7 @@ Unfortunately R packages that create such models are very inconsistent. Differen
 One of those tools, we would like to make more accessible is H2O.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_h2o.html'>explain_h2o</a></span>(
+    <pre class="usage"><span class='fu'>explain_h2o</span>(
   <span class='kw'>model</span>,
   data = <span class='kw'>NULL</span>,
   y = <span class='kw'>NULL</span>,
@@ -270,18 +270,18 @@ One of those tools, we would like to make more accessible is H2O.</p>
 #&gt; H2O is not running yet, starting it now...
 #&gt; 
 #&gt; Note:  In case of errors look at the following log files:
-#&gt;     /tmp/RtmphajMKt/file43bb2eebd366/h2o_runner_started_from_r.out
-#&gt;     /tmp/RtmphajMKt/file43bb2ffab309/h2o_runner_started_from_r.err
+#&gt;     /tmp/RtmpcLmmtm/file835f7f665db9/h2o_runner_started_from_r.out
+#&gt;     /tmp/RtmpcLmmtm/file835f78e14d5b/h2o_runner_started_from_r.err
 #&gt; 
 #&gt; 
-#&gt; Starting H2O JVM and connecting: ... Connection successful!
+#&gt; Starting H2O JVM and connecting: .. Connection successful!
 #&gt; 
 #&gt; R is connected to the H2O cluster: 
-#&gt;     H2O cluster uptime:         2 seconds 691 milliseconds 
+#&gt;     H2O cluster uptime:         2 seconds 311 milliseconds 
 #&gt;     H2O cluster timezone:       UTC 
 #&gt;     H2O data parsing timezone:  UTC 
 #&gt;     H2O cluster version:        3.30.0.1 
-#&gt;     H2O cluster version age:    3 months and 12 days !!! 
+#&gt;     H2O cluster version age:    3 months and 24 days !!! 
 #&gt;     H2O cluster name:           H2O_started_from_R_runner_tjh847 
 #&gt;     H2O cluster total nodes:    1 
 #&gt;     H2O cluster total memory:   1.51 GB 
@@ -294,7 +294,7 @@ One of those tools, we would like to make more accessible is H2O.</p>
 #&gt;     H2O Internal Security:      FALSE 
 #&gt;     H2O API Extensions:         Amazon S3, XGBoost, Algos, AutoML, Core V3, TargetEncoder, Core V4 
 #&gt;     R Version:                  R version 4.0.2 (2020-06-22) </div><div class='output co'>#&gt; <span class='warning'>Warning: </span>
-#&gt; <span class='warning'>Your H2O cluster version is too old (3 months and 12 days)!</span>
+#&gt; <span class='warning'>Your H2O cluster version is too old (3 months and 24 days)!</span>
 #&gt; <span class='warning'>Please download and install the latest version from http://h2o.ai/download/</span></div><div class='output co'>#&gt; </div><div class='input'>
 <span class='co'># stop h2o progress printing</span>
  <span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.no_progress.html'>h2o.no_progress</a></span>()
@@ -331,7 +331,7 @@ max_depth = <span class='fl'>4</span>,
 min_rows =  <span class='fl'>12</span>,
 learn_rate = <span class='fl'>0.001</span>
 )
-<span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_h2o.html'>explain_h2o</a></span>(<span class='kw'>model</span>, <span class='kw'>titanic_test</span>[,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>17</span>], <span class='kw'>titanic_test</span>[,<span class='fl'>18</span>])</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+<span class='fu'>explain_h2o</span>(<span class='kw'>model</span>, <span class='kw'>titanic_test</span>[,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>17</span>], <span class='kw'>titanic_test</span>[,<span class='fl'>18</span>])</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  H2OBinomialModel  ( <span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; data              :  524  rows  17  cols 
 #&gt;   -&gt; target variable   :  524  values 

@@ -154,7 +154,7 @@ plot_radar. Keep in mind that the function creates two plots returned as list." 
     </div>
 
     <div class="ref-description">
-    <p>The function plots data created with <code><a href='https://rdrr.io/pkg/DALEXtra/man/overall_comparison.html'>overall_comparison</a></code>. For radar plot it uses auditor's
+    <p>The function plots data created with <code><a href='overall_comparison.html'>overall_comparison</a></code>. For radar plot it uses auditor's
 <code><a href='https://rdrr.io/pkg/auditor/man/plot_radar.html'>plot_radar</a></code>. Keep in mind that the function creates two plots returned as list.</p>
     </div>
 
@@ -166,7 +166,7 @@ plot_radar. Keep in mind that the function creates two plots returned as list." 
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>- data created with <code><a href='https://rdrr.io/pkg/DALEXtra/man/overall_comparison.html'>overall_comparison</a></code></p></td>
+      <td><p>- data created with <code><a href='overall_comparison.html'>overall_comparison</a></code></p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -197,7 +197,7 @@ plot_radar. Keep in mind that the function creates two plots returned as list." 
   <span class='st'>"regr.lm"</span>
 )
 <span class='kw'>model_lm</span> <span class='op'>&lt;-</span> <span class='kw'>mlr</span>::<span class='fu'><a href='https://mlr.mlr-org.com/reference/train.html'>train</a></span>(<span class='kw'>learner_lm</span>, <span class='kw'>task</span>)
-<span class='kw'>explainer_lm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_lm</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"LM"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+<span class='kw'>explainer_lm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_lm</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"LM"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  LM 
 #&gt;   -&gt; data              :  9000  rows  6  cols 
 #&gt;   -&gt; target variable   :  9000  values 
@@ -211,7 +211,7 @@ plot_radar. Keep in mind that the function creates two plots returned as list." 
   <span class='st'>"regr.randomForest"</span>
 )
 <span class='kw'>model_rf</span> <span class='op'>&lt;-</span> <span class='kw'>mlr</span>::<span class='fu'><a href='https://mlr.mlr-org.com/reference/train.html'>train</a></span>(<span class='kw'>learner_rf</span>, <span class='kw'>task</span>)
-<span class='kw'>explainer_rf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_rf</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"RF"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+<span class='kw'>explainer_rf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_rf</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"RF"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  RF 
 #&gt;   -&gt; data              :  9000  rows  6  cols 
 #&gt;   -&gt; target variable   :  9000  values 
@@ -225,7 +225,7 @@ plot_radar. Keep in mind that the function creates two plots returned as list." 
   <span class='st'>"regr.gbm"</span>
 )
 <span class='kw'>model_gbm</span><span class='op'>&lt;-</span> <span class='kw'>mlr</span>::<span class='fu'><a href='https://mlr.mlr-org.com/reference/train.html'>train</a></span>(<span class='kw'>learner_gbm</span>, <span class='kw'>task</span>)
-<span class='kw'>explainer_gbm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_gbm</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"GBM"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+<span class='kw'>explainer_gbm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_gbm</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"GBM"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  GBM 
 #&gt;   -&gt; data              :  9000  rows  6  cols 
 #&gt;   -&gt; target variable   :  9000  values 
@@ -235,7 +235,7 @@ plot_radar. Keep in mind that the function creates two plots returned as list." 
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -571.0463 , mean =  9.550043 , max =  741.3712  
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
-<span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/overall_comparison.html'>overall_comparison</a></span>(<span class='kw'>explainer_lm</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>explainer_gbm</span>, <span class='kw'>explainer_rf</span>), type = <span class='st'>"regression"</span>)
+<span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='overall_comparison.html'>overall_comparison</a></span>(<span class='kw'>explainer_lm</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>explainer_gbm</span>, <span class='kw'>explainer_rf</span>), type = <span class='st'>"regression"</span>)
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>data</span>)</div><div class='output co'>#&gt; $radar_plot</div><div class='img'><img src='plot.overall_comparison-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
 #&gt; $accordance_plot</div><div class='img'><img src='plot.overall_comparison-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; </div><div class='input'><span class='co'># }</span></div></span></pre>
   </div>

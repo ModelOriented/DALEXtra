@@ -160,7 +160,7 @@ and compare it with other models, using R tools like DALEX. This function create
 exported from Python via pickle file.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_scikitlearn.html'>explain_scikitlearn</a></span>(
+    <pre class="usage"><span class='fu'>explain_scikitlearn</span>(
   <span class='kw'>path</span>,
   yml = <span class='kw'>NULL</span>,
   condaenv = <span class='kw'>NULL</span>,
@@ -297,7 +297,7 @@ If .yml file seems not to work, virtual env can be created manually using anacon
    <span class='kw'>titanic_test</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_test.csv"</span>, package = <span class='st'>"DALEXtra"</span>))
    <span class='co'># Keep in mind that when pickle is being built and loaded,</span>
    <span class='co'># not only Python version but libraries versions has to match aswell</span>
-   <span class='kw'>explainer</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_scikitlearn.html'>explain_scikitlearn</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"scikitlearn.pkl"</span>, package = <span class='st'>"DALEXtra"</span>),
+   <span class='kw'>explainer</span> <span class='op'>&lt;-</span> <span class='fu'>explain_scikitlearn</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"scikitlearn.pkl"</span>, package = <span class='st'>"DALEXtra"</span>),
    yml = <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"testing_environment.yml"</span>, package = <span class='st'>"DALEXtra"</span>),
    data = <span class='kw'>titanic_test</span>[,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>17</span>], y = <span class='kw'>titanic_test</span><span class='op'>$</span><span class='kw'>survived</span>)
    <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/DALEX/man/model_performance.html'>model_performance</a></span>(<span class='kw'>explainer</span>))

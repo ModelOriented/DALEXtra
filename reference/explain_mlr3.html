@@ -160,7 +160,7 @@ Unfortunately R packages that create such models are very inconsistent. Differen
 One of those tools, which is one of the most popular one is mlr3 package. We would like to present dedicated explain function for it.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_mlr3.html'>explain_mlr3</a></span>(
+    <pre class="usage"><span class='fu'>explain_mlr3</span>(
   <span class='kw'>model</span>,
   data = <span class='kw'>NULL</span>,
   y = <span class='kw'>NULL</span>,
@@ -246,14 +246,14 @@ One of those tools, which is one of the most popular one is mlr3 package. We wou
 <span class='kw'>task_classif</span> <span class='op'>&lt;-</span> <span class='kw'>TaskClassif</span><span class='op'>$</span><span class='fu'>new</span>(id = <span class='st'>"1"</span>, backend = <span class='kw'>titanic_imputed</span>, target = <span class='st'>"survived"</span>)
 <span class='kw'>learner_classif</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"classif.rpart"</span>, predict_type = <span class='st'>"prob"</span>)
 <span class='kw'>learner_classif</span><span class='op'>$</span><span class='fu'><a href='https://mlr.mlr-org.com/reference/train.html'>train</a></span>(<span class='kw'>task_classif</span>)
-<span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_mlr3.html'>explain_mlr3</a></span>(<span class='kw'>learner_classif</span>, data = <span class='kw'>titanic_imputed</span>,
+<span class='fu'>explain_mlr3</span>(<span class='kw'>learner_classif</span>, data = <span class='kw'>titanic_imputed</span>,
              y = <span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.numeric.html'>as.numeric</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span>(<span class='kw'>titanic_imputed</span><span class='op'>$</span><span class='kw'>survived</span>)))</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  R6  ( <span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; data              :  2207  rows  8  cols 
 #&gt;   -&gt; target variable   :  2207  values 
 #&gt;   -&gt; predict function  :  yhat.LearnerClassif  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; predicted values  :  numerical, min =  0.05555556 , mean =  0.3221568 , max =  0.9267399  
-#&gt;   -&gt; model_info        :  package mlr3 , ver. 0.3.0 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; model_info        :  package mlr3 , ver. 0.4.0 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -0.9267399 , mean =  1.858834e-17 , max =  0.9444444  
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='output co'>#&gt; Model label:  R6 
@@ -266,13 +266,13 @@ One of those tools, which is one of the most popular one is mlr3 package. We wou
 <span class='kw'>task_regr</span> <span class='op'>&lt;-</span> <span class='kw'>TaskRegr</span><span class='op'>$</span><span class='fu'>new</span>(id = <span class='st'>"2"</span>, backend = <span class='kw'>apartments</span>, target = <span class='st'>"m2.price"</span>)
 <span class='kw'>learner_regr</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"regr.rpart"</span>)
 <span class='kw'>learner_regr</span><span class='op'>$</span><span class='fu'><a href='https://mlr.mlr-org.com/reference/train.html'>train</a></span>(<span class='kw'>task_regr</span>)
-<span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_mlr3.html'>explain_mlr3</a></span>(<span class='kw'>learner_regr</span>, data = <span class='kw'>apartments</span>, <span class='kw'>apartments</span><span class='op'>$</span><span class='kw'>m2.price</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+<span class='fu'>explain_mlr3</span>(<span class='kw'>learner_regr</span>, data = <span class='kw'>apartments</span>, <span class='kw'>apartments</span><span class='op'>$</span><span class='kw'>m2.price</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  R6  ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; data              :  1000  rows  6  cols 
 #&gt;   -&gt; target variable   :  1000  values 
 #&gt;   -&gt; predict function  :  yhat.LearnerRegr  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; predicted values  :  numerical, min =  2289.664 , mean =  3487.019 , max =  5737.175  
-#&gt;   -&gt; model_info        :  package mlr3 , ver. 0.3.0 , task regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; model_info        :  package mlr3 , ver. 0.4.0 , task regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -1044.133 , mean =  4.321552e-14 , max =  1080.867  
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='output co'>#&gt; Model label:  R6 

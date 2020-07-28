@@ -160,7 +160,7 @@ Unfortunately R packages that create such models are very inconsistent. Differen
 One of those tools, which is one of the most popular one is mlr package. We would like to present dedicated explain function for it.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_mlr.html'>explain_mlr</a></span>(
+    <pre class="usage"><span class='fu'>explain_mlr</span>(
   <span class='kw'>model</span>,
   data = <span class='kw'>NULL</span>,
   y = <span class='kw'>NULL</span>,
@@ -261,7 +261,7 @@ target = <span class='st'>"survived"</span>
   predict.type = <span class='st'>"prob"</span>
 )
 <span class='kw'>gbm</span> <span class='op'>&lt;-</span> <span class='kw'>mlr</span>::<span class='fu'><a href='https://mlr.mlr-org.com/reference/train.html'>train</a></span>(<span class='kw'>learner</span>, <span class='kw'>task</span>)
-<span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>gbm</span>, <span class='kw'>titanic_test</span>[,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>17</span>], <span class='kw'>titanic_test</span>[,<span class='fl'>18</span>])</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+<span class='fu'>explain_mlr</span>(<span class='kw'>gbm</span>, <span class='kw'>titanic_test</span>[,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>17</span>], <span class='kw'>titanic_test</span>[,<span class='fl'>18</span>])</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  WrappedModel  ( <span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; data              :  524  rows  17  cols 
 #&gt;   -&gt; target variable   :  524  values 

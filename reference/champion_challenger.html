@@ -161,12 +161,12 @@ be inculded at report." />
     <p>Determining if one model is better than the other one is a difficult task. Mostly because there is a lot of fields that have to be
 covered to make such a judgemnt. Overall performance, performance on the crucial subset, distribution of residuals, those are only
 few among many ideas related to that issue. Following function allow user to create a report based on various sections. Each says something different
-about relation between champion and challengers. <code>DALEXtra</code> package share 3 base sections which are <code><a href='https://rdrr.io/pkg/DALEXtra/man/funnel_measure.html'>funnel_measure</a></code>
-<code><a href='https://rdrr.io/pkg/DALEXtra/man/overall_comparison.html'>overall_comparison</a></code> and <code><a href='https://rdrr.io/pkg/DALEXtra/man/trainig_test_comparison.html'>training_test_comparison</a></code> but any object that has generic <code>plot</code> function can
+about relation between champion and challengers. <code>DALEXtra</code> package share 3 base sections which are <code><a href='funnel_measure.html'>funnel_measure</a></code>
+<code><a href='overall_comparison.html'>overall_comparison</a></code> and <code><a href='training_test_comparison.html'>training_test_comparison</a></code> but any object that has generic <code>plot</code> function can
 be inculded at report.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/champion_challenger.html'>champion_challenger</a></span>(
+    <pre class="usage"><span class='fu'>champion_challenger</span>(
   <span class='kw'>sections</span>,
   dot_size = <span class='fl'>4</span>,
   output_dir_path = <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>(),
@@ -182,13 +182,13 @@ be inculded at report.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>sections</th>
-      <td><p>- list of sections to be attached to report. Could be sections available with DALEXtra which are <code><a href='https://rdrr.io/pkg/DALEXtra/man/funnel_measure.html'>funnel_measure</a></code>
-<code><a href='https://rdrr.io/pkg/DALEXtra/man/trainig_test_comparison.html'>training_test_comparison</a></code>, <code><a href='https://rdrr.io/pkg/DALEXtra/man/overall_comparison.html'>overall_comparison</a></code> or any other explanation that can work with <code>plot</code> function. Please
+      <td><p>- list of sections to be attached to report. Could be sections available with DALEXtra which are <code><a href='funnel_measure.html'>funnel_measure</a></code>
+<code><a href='training_test_comparison.html'>training_test_comparison</a></code>, <code><a href='overall_comparison.html'>overall_comparison</a></code> or any other explanation that can work with <code>plot</code> function. Please
 provide name for not standard sections, that will be presented as section titles. Oterwise class of the object will be used.</p></td>
     </tr>
     <tr>
       <th>dot_size</th>
-      <td><p>- dot_size argument passed to <code><a href='https://rdrr.io/pkg/DALEXtra/man/plot.funnel_measure.html'>plot.funnel_measure</a></code> if <code><a href='https://rdrr.io/pkg/DALEXtra/man/funnel_measure.html'>funnel_measure</a></code> section present</p></td>
+      <td><p>- dot_size argument passed to <code><a href='plot.funnel_measure.html'>plot.funnel_measure</a></code> if <code><a href='funnel_measure.html'>funnel_measure</a></code> section present</p></td>
     </tr>
     <tr>
       <th>output_dir_path</th>
@@ -200,7 +200,7 @@ provide name for not standard sections, that will be presented as section titles
     </tr>
     <tr>
       <th>model_performance_table</th>
-      <td><p>- If TRUE and <code><a href='https://rdrr.io/pkg/DALEXtra/man/overall_comparison.html'>overall_comparison</a></code> section present, table of scores will be displayed.</p></td>
+      <td><p>- If TRUE and <code><a href='overall_comparison.html'>overall_comparison</a></code> section present, table of scores will be displayed.</p></td>
     </tr>
     <tr>
       <th>title</th>
@@ -233,7 +233,7 @@ provide name for not standard sections, that will be presented as section titles
    <span class='st'>"regr.lm"</span>
  )
  <span class='kw'>model_lm</span> <span class='op'>&lt;-</span> <span class='kw'>mlr</span>::<span class='fu'><a href='https://mlr.mlr-org.com/reference/train.html'>train</a></span>(<span class='kw'>learner_lm</span>, <span class='kw'>task</span>)
- <span class='kw'>explainer_lm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_lm</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"LM"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+ <span class='kw'>explainer_lm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_lm</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"LM"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  LM 
 #&gt;   -&gt; data              :  9000  rows  6  cols 
 #&gt;   -&gt; target variable   :  9000  values 
@@ -247,7 +247,7 @@ provide name for not standard sections, that will be presented as section titles
  <span class='st'>"regr.randomForest"</span>
  )
  <span class='kw'>model_rf</span> <span class='op'>&lt;-</span> <span class='kw'>mlr</span>::<span class='fu'><a href='https://mlr.mlr-org.com/reference/train.html'>train</a></span>(<span class='kw'>learner_rf</span>, <span class='kw'>task</span>)
- <span class='kw'>explainer_rf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_rf</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"RF"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+ <span class='kw'>explainer_rf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_rf</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"RF"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  RF 
 #&gt;   -&gt; data              :  9000  rows  6  cols 
 #&gt;   -&gt; target variable   :  9000  values 
@@ -261,7 +261,7 @@ provide name for not standard sections, that will be presented as section titles
  <span class='st'>"regr.gbm"</span>
  )
  <span class='kw'>model_gbm</span> <span class='op'>&lt;-</span> <span class='kw'>mlr</span>::<span class='fu'><a href='https://mlr.mlr-org.com/reference/train.html'>train</a></span>(<span class='kw'>learner_gbm</span>, <span class='kw'>task</span>)
- <span class='kw'>explainer_gbm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_gbm</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"GBM"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+ <span class='kw'>explainer_gbm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_gbm</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"GBM"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  GBM 
 #&gt;   -&gt; data              :  9000  rows  6  cols 
 #&gt;   -&gt; target variable   :  9000  values 
@@ -272,9 +272,9 @@ provide name for not standard sections, that will be presented as section titles
 #&gt;   -&gt; residuals         :  numerical, min =  -575.2021 , mean =  6.542163 , max =  793.4677  
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 
- <span class='kw'>plot_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/funnel_measure.html'>funnel_measure</a></span>(<span class='kw'>explainer_lm</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>explainer_rf</span>, <span class='kw'>explainer_gbm</span>),
+ <span class='kw'>plot_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='funnel_measure.html'>funnel_measure</a></span>(<span class='kw'>explainer_lm</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>explainer_rf</span>, <span class='kw'>explainer_gbm</span>),
                           nbins = <span class='fl'>5</span>, measure_function = <span class='kw'>DALEX</span>::<span class='kw'><a href='https://rdrr.io/pkg/DALEX/man/loss_functions.html'>loss_root_mean_square</a></span>)</div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |============                                                          |  17%  |                                                                              |=======================                                               |  33%  |                                                                              |===================================                                   |  50%  |                                                                              |===============================================                       |  67%  |                                                                              |==========================================================            |  83%  |                                                                              |======================================================================| 100%</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/champion_challenger.html'>champion_challenger</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>plot_data</span>), dot_size = <span class='fl'>3</span>)
+<span class='fu'>champion_challenger</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>plot_data</span>), dot_size = <span class='fl'>3</span>)
 <span class='co'># }</span>
 </div></span></pre>
   </div>

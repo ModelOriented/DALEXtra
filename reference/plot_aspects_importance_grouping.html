@@ -158,7 +158,7 @@ importance values of every newly created aspect." />
 importance values of every newly created aspect.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/plot_aspects_importance_grouping.html'>plot_aspects_importance_grouping</a></span>(
+    <pre class="usage"><span class='fu'>plot_aspects_importance_grouping</span>(
   <span class='kw'>x</span>,
   <span class='kw'>data</span>,
   predict_function = <span class='kw'>predict</span>,
@@ -235,7 +235,7 @@ value of children and node aspect importance values</p></td>
 <span class='kw'>apartments_num_lm_model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span>(<span class='kw'>m2.price</span> <span class='op'>~</span> <span class='kw'>.</span>, data = <span class='kw'>apartments_num</span>)
 <span class='kw'>apartments_num_new_observation</span> <span class='op'>&lt;-</span> <span class='kw'>apartments_num</span>[<span class='fl'>2</span>,<span class='op'>-</span><span class='fl'>1</span>]
 <span class='kw'>apartments_num_mod</span> <span class='op'>&lt;-</span> <span class='kw'>apartments_num</span>[,<span class='op'>-</span><span class='fl'>1</span>]
-<span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/plot_aspects_importance_grouping.html'>plot_aspects_importance_grouping</a></span>(x = <span class='kw'>apartments_num_lm_model</span>,
+<span class='fu'>plot_aspects_importance_grouping</span>(x = <span class='kw'>apartments_num_lm_model</span>,
 data = <span class='kw'>apartments_num_mod</span>, new_observation = <span class='kw'>apartments_num_new_observation</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='img'><img src='plot_aspects_importance_grouping-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>

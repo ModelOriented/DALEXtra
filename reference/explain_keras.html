@@ -160,7 +160,7 @@ and compare it with other models, using R tools like DALEX. This function create
 exported from Python via pickle file.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_keras.html'>explain_keras</a></span>(
+    <pre class="usage"><span class='fu'>explain_keras</span>(
   <span class='kw'>path</span>,
   yml = <span class='kw'>NULL</span>,
   condaenv = <span class='kw'>NULL</span>,
@@ -251,7 +251,7 @@ exported from Python via pickle file.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An object of the class 'explainer'.</p>
-<p><b>Example of Python code avialble at documentation <code><a href='https://rdrr.io/pkg/DALEXtra/man/explain_scikitlearn.html'>explain_scikitlearn</a></code></b><br /></p>
+<p><b>Example of Python code avialble at documentation <code><a href='explain_scikitlearn.html'>explain_scikitlearn</a></code></b><br /></p>
 <p><b>Errors use case</b><br />
 Here is shortened version of solution for specific errors <br />
 <br />
@@ -289,7 +289,7 @@ If .yml file seems not to work, virtual env can be created manually using anacon
    sep = <span class='st'>","</span>)
    <span class='co'># Keep in mind that when pickle is being built and loaded,</span>
    <span class='co'># not only Python version but libraries versions has to match aswell</span>
-   <span class='kw'>explainer</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_keras.html'>explain_keras</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"keras.pkl"</span>, package = <span class='st'>"DALEXtra"</span>),
+   <span class='kw'>explainer</span> <span class='op'>&lt;-</span> <span class='fu'>explain_keras</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"keras.pkl"</span>, package = <span class='st'>"DALEXtra"</span>),
    conda = <span class='st'>"myenv"</span>,
    data = <span class='kw'>test_data</span>[,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>8</span>], y = <span class='kw'>test_data</span>[,<span class='fl'>9</span>])
    <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/DALEX/man/model_performance.html'>model_performance</a></span>(<span class='kw'>explainer</span>))

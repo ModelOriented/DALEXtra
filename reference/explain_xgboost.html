@@ -160,7 +160,7 @@ Unfortunately R packages that create such models are very inconsistent. Differen
 One of those tools, we would like to make more accessible is xgboost.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_xgboost.html'>explain_xgboost</a></span>(
+    <pre class="usage"><span class='fu'>explain_xgboost</span>(
   <span class='kw'>model</span>,
   data = <span class='kw'>NULL</span>,
   y = <span class='kw'>NULL</span>,
@@ -255,7 +255,7 @@ One of those tools, we would like to make more accessible is xgboost.</p>
 <span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='fu'><a href='https://mlr.mlr-org.com/reference/createDummyFeatures.html'>createDummyFeatures</a></span>(<span class='kw'>titanic_imputed</span>[,<span class='op'>-</span><span class='fl'>8</span>]))
 <span class='kw'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/xgboost/man/xgb.train.html'>xgboost</a></span>(<span class='kw'>data</span>, <span class='kw'>titanic_imputed</span><span class='op'>$</span><span class='kw'>survived</span>, nrounds = <span class='fl'>10</span>,
                  params = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(objective = <span class='st'>"binary:logistic"</span>),
-                prediction = <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [10:22:52] WARNING: amalgamation/../src/learner.cc:480: 
+                prediction = <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [07:45:09] WARNING: amalgamation/../src/learner.cc:480: 
 #&gt; Parameters: { prediction } might not be used.
 #&gt; 
 #&gt;   This may not be accurate due to some parameters are only used in language bindings but
@@ -273,7 +273,7 @@ One of those tools, we would like to make more accessible is xgboost.</p>
 #&gt; [8]	train-error:0.154961 
 #&gt; [9]	train-error:0.155415 
 #&gt; [10]	train-error:0.155415 </div><div class='input'><span class='co'># explainer with encode functiom</span>
-<span class='kw'>explainer_1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_xgboost.html'>explain_xgboost</a></span>(<span class='kw'>model</span>, data = <span class='kw'>titanic_imputed</span>[,<span class='op'>-</span><span class='fl'>8</span>],
+<span class='kw'>explainer_1</span> <span class='op'>&lt;-</span> <span class='fu'>explain_xgboost</span>(<span class='kw'>model</span>, data = <span class='kw'>titanic_imputed</span>[,<span class='op'>-</span><span class='fl'>8</span>],
                                <span class='kw'>titanic_imputed</span><span class='op'>$</span><span class='kw'>survived</span>,
                                encode_function = <span class='fu'>function</span>(<span class='kw'>data</span>) {
  <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='fu'><a href='https://mlr.mlr-org.com/reference/createDummyFeatures.html'>createDummyFeatures</a></span>(<span class='kw'>data</span>))
@@ -288,7 +288,7 @@ One of those tools, we would like to make more accessible is xgboost.</p>
 #&gt;   -&gt; residuals         :  numerical, min =  -0.8105438 , mean =  -0.005083592 , max =  0.9452911  
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/DALEX/man/predict_parts.html'>predict_parts</a></span>(<span class='kw'>explainer_1</span>, <span class='kw'>titanic_imputed</span>[<span class='fl'>1</span>,<span class='op'>-</span><span class='fl'>8</span>]))</div><div class='img'><img src='explain_xgboost-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># explainer without encode function</span>
-<span class='kw'>explainer_2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_xgboost.html'>explain_xgboost</a></span>(<span class='kw'>model</span>, data = <span class='kw'>data</span>, <span class='kw'>titanic_imputed</span><span class='op'>$</span><span class='kw'>survived</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+<span class='kw'>explainer_2</span> <span class='op'>&lt;-</span> <span class='fu'>explain_xgboost</span>(<span class='kw'>model</span>, data = <span class='kw'>data</span>, <span class='kw'>titanic_imputed</span><span class='op'>$</span><span class='kw'>survived</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  xgb.Booster  ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; data              :  2207  rows  17  cols 
 #&gt;   -&gt; target variable   :  2207  values 

@@ -170,10 +170,10 @@ expanded aspect</p></li>
 
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/triplot.html'>triplot</a></span>(<span class='kw'>x</span>, <span class='kw'>...</span>)
+    <pre class="usage"><span class='fu'>triplot</span>(<span class='kw'>x</span>, <span class='kw'>...</span>)
 
 <span class='co'># S3 method for explainer</span>
-<span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/triplot.html'>triplot</a></span>(
+<span class='fu'>triplot</span>(
   <span class='kw'>x</span>,
   <span class='kw'>new_observation</span>,
   N = <span class='fl'>500</span>,
@@ -188,7 +188,7 @@ expanded aspect</p></li>
 )
 
 <span class='co'># S3 method for default</span>
-<span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/triplot.html'>triplot</a></span>(
+<span class='fu'>triplot</span>(
   <span class='kw'>x</span>,
   <span class='kw'>data</span>,
   predict_function = <span class='kw'>predict</span>,
@@ -284,7 +284,7 @@ importance plot will be abbreviated according to this parameter</p></td>
 <span class='kw'>apartments_num_lm_model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span>(<span class='kw'>m2.price</span> <span class='op'>~</span> <span class='kw'>.</span>, data = <span class='kw'>apartments_num</span>)
 <span class='kw'>apartments_num_new_observation</span> <span class='op'>&lt;-</span> <span class='kw'>apartments_num</span>[<span class='fl'>30</span>,<span class='op'>-</span><span class='fl'>1</span>]
 <span class='kw'>apartments_num_mod</span> <span class='op'>&lt;-</span> <span class='kw'>apartments_num</span>[,<span class='op'>-</span><span class='fl'>1</span>]
-<span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/triplot.html'>triplot</a></span>(x = <span class='kw'>apartments_num_lm_model</span>,
+<span class='fu'>triplot</span>(x = <span class='kw'>apartments_num_lm_model</span>,
   data = <span class='kw'>apartments_num_mod</span>,
   new_observation = <span class='kw'>apartments_num_new_observation</span>,
   add_importance_labels = <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `expand_scale()` is deprecated; use `expansion()` instead.</span></div><div class='img'><img src='triplot-1.png' alt='' width='700' height='433' /></div><div class='input'>

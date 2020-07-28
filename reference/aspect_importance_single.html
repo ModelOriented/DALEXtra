@@ -158,10 +158,10 @@ one feature)." />
 one feature).</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/aspect_importance_single.html'>aspect_importance_single</a></span>(<span class='kw'>x</span>, <span class='kw'>...</span>)
+    <pre class="usage"><span class='fu'>aspect_importance_single</span>(<span class='kw'>x</span>, <span class='kw'>...</span>)
 
 <span class='co'># S3 method for explainer</span>
-<span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/aspect_importance_single.html'>aspect_importance_single</a></span>(
+<span class='fu'>aspect_importance_single</span>(
   <span class='kw'>x</span>,
   <span class='kw'>new_observation</span>,
   N = <span class='fl'>100</span>,
@@ -172,7 +172,7 @@ one feature).</p>
 )
 
 <span class='co'># S3 method for default</span>
-<span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/aspect_importance_single.html'>aspect_importance_single</a></span>(
+<span class='fu'>aspect_importance_single</span>(
   <span class='kw'>x</span>,
   <span class='kw'>data</span>,
   predict_function = <span class='kw'>predict</span>,
@@ -208,7 +208,7 @@ variables used in the model, should be without target variable</p></td>
     </tr>
     <tr>
       <th>sample_method</th>
-      <td><p>sampling method in <code><a href='https://rdrr.io/pkg/DALEXtra/man/get_sample.html'>get_sample</a></code></p></td>
+      <td><p>sampling method in <code><a href='get_sample.html'>get_sample</a></code></p></td>
     </tr>
     <tr>
       <th>n_var</th>
@@ -217,7 +217,7 @@ linear regression is used</p></td>
     </tr>
     <tr>
       <th>f</th>
-      <td><p>frequency in in <code><a href='https://rdrr.io/pkg/DALEXtra/man/get_sample.html'>get_sample</a></code></p></td>
+      <td><p>frequency in in <code><a href='get_sample.html'>get_sample</a></code></p></td>
     </tr>
     <tr>
       <th>data</th>
@@ -249,7 +249,7 @@ attribute of the model.</p></td>
                          data = <span class='kw'>titanic_imputed</span>,
                          family = <span class='st'>"binomial"</span>)
 
-<span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/aspect_importance_single.html'>aspect_importance_single</a></span>(<span class='kw'>model_titanic_glm</span>, data = <span class='kw'>titanic_imputed</span>[,<span class='op'>-</span><span class='fl'>8</span>],
+<span class='fu'>aspect_importance_single</span>(<span class='kw'>model_titanic_glm</span>, data = <span class='kw'>titanic_imputed</span>[,<span class='op'>-</span><span class='fl'>8</span>],
                          new_observation = <span class='kw'>titanic_imputed</span>[<span class='fl'>1</span>,<span class='op'>-</span><span class='fl'>8</span>])</div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function is deprecated. Please use triplot package</span></div><div class='output co'>#&gt;    aspects importance        new observation
 #&gt; 4    class   -0.49881            class = 3rd
 #&gt; 2   gender   -0.31263          gender = male

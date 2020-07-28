@@ -185,7 +185,7 @@
  <span class='st'>"regr.lm"</span>
 )
 <span class='kw'>model_lm</span> <span class='op'>&lt;-</span> <span class='kw'>mlr</span>::<span class='fu'><a href='https://mlr.mlr-org.com/reference/train.html'>train</a></span>(<span class='kw'>learner_lm</span>, <span class='kw'>task</span>)
-<span class='kw'>explainer_lm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_lm</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"LM"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+<span class='kw'>explainer_lm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_lm</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"LM"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  LM 
 #&gt;   -&gt; data              :  9000  rows  6  cols 
 #&gt;   -&gt; target variable   :  9000  values 
@@ -199,7 +199,7 @@
 <span class='st'>"regr.randomForest"</span>
 )
 <span class='kw'>model_rf</span> <span class='op'>&lt;-</span> <span class='kw'>mlr</span>::<span class='fu'><a href='https://mlr.mlr-org.com/reference/train.html'>train</a></span>(<span class='kw'>learner_rf</span>, <span class='kw'>task</span>)
-<span class='kw'>explainer_rf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_rf</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"RF"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+<span class='kw'>explainer_rf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_rf</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"RF"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  RF 
 #&gt;   -&gt; data              :  9000  rows  6  cols 
 #&gt;   -&gt; target variable   :  9000  values 
@@ -213,7 +213,7 @@
 <span class='st'>"regr.gbm"</span>
 )
 <span class='kw'>model_gbm</span> <span class='op'>&lt;-</span> <span class='kw'>mlr</span>::<span class='fu'><a href='https://mlr.mlr-org.com/reference/train.html'>train</a></span>(<span class='kw'>learner_gbm</span>, <span class='kw'>task</span>)
-<span class='kw'>explainer_gbm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_gbm</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"GBM"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+<span class='kw'>explainer_gbm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_gbm</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"GBM"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  GBM 
 #&gt;   -&gt; data              :  9000  rows  6  cols 
 #&gt;   -&gt; target variable   :  9000  values 
@@ -223,7 +223,7 @@
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -516.4435 , mean =  9.365623 , max =  660.4484  
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
-<span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DALEXtra/man/trainig_test_comparison.html'>training_test_comparison</a></span>(<span class='kw'>explainer_lm</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>explainer_gbm</span>, <span class='kw'>explainer_rf</span>),
+<span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='training_test_comparison.html'>training_test_comparison</a></span>(<span class='kw'>explainer_lm</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>explainer_gbm</span>, <span class='kw'>explainer_rf</span>),
                                  training_data = <span class='kw'>apartments</span>,
                                  training_y = <span class='kw'>apartments</span><span class='op'>$</span><span class='kw'>m2.price</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>data</span>)</div><div class='output co'>#&gt; Training test data head:
