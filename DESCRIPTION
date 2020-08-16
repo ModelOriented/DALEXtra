@@ -34,7 +34,7 @@ Depends:
 License: GPL
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Imports: 
   reticulate,
   ggplot2,
@@ -50,10 +50,12 @@ Suggests:
     mlr,
     mlr3,
     randomForest,
+    recipes,
     rmarkdown,
     rpart,
     xgboost,
     testthat,
+    tidymodels,
     covr
 URL: https://ModelOriented.github.io/DALEXtra/, https://github.com/ModelOriented/DALEXtra
 BugReports: https://github.com/ModelOriented/DALEXtra/issues

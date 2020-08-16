@@ -17,6 +17,7 @@
 #' \item \code{keras} models created with \code{keras} pyhton library and accesed via \code{reticulate}
 #' \item \code{mlr3} models created with \code{mlr3} package
 #' \item \code{xgboost} models created with \code{xgboost} package
+#' \item \code{tidymodels} models created with \code{tidymodels} package
 #' }
 #'
 #' @return A named list of class \code{model_info}
@@ -180,6 +181,26 @@ model_info.xgb.Booster <- function(model, is_multiclass = FALSE, ...) {
   package <- "xgboost"
   ver <- get_pkg_ver_safe(package)
   model_info <- list(package = package, ver = ver, type = type)
+  class(model_info) <- "model_info"
+  model_info
+}
+
+#' @rdname model_info
+#' @export
+model_info.workflow <- function(model, is_multiclass = FALSE, ...) {
+  model <- model$fit$fit
+  if (model$spec$mode == "classification" & is_multiclass) {
+    type <- "multiclass"
+  } else if (model$spec$mode == "classification" & !is_multiclass) {
+    type <- "classification"
+  } else {
+    type <- "regression"
+  }
+  package_wrapper <- "tidymodels"
+  ver_wrapper <- get_pkg_ver_safe(package_wrapper)
+  package <- model$spec$method$libs
+  ver <- get_pkg_ver_safe(package)
+  model_info <- list(package = c(wrapper = package_wrapper, package = package), ver = c(wrapper = ver_wrapper, package = ver), type = type)
   class(model_info) <- "model_info"
   model_info
 }

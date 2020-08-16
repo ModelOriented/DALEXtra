@@ -1,12 +1,12 @@
-#' Create explainer from your mlr model
+#' Create explainer from your tidymodels workflow.
 #'
 #' DALEX is designed to work with various black-box models like tree ensembles, linear models, neural networks etc.
 #' Unfortunately R packages that create such models are very inconsistent. Different tools use different interfaces to train, validate and use models.
-#' One of those tools, which is one of the most popular one is mlr3 package. We would like to present dedicated explain function for it.
+#' One of those tools, which is one of the most popular one is tidymodels package. We would like to present dedicated explain function for it.
 #'
 #'
-#' @param model object - a fitted learner created with \code{mlr3}.
-#' @param data data.frame or matrix - data that was used for fitting. If not provided then will be extracted from the model. Data should be passed without target column (this shall be provided as the \code{y} argument). NOTE: If target variable is present in the \code{data}, some of the functionalities my not work properly.
+#' @param model object - a fitted workflow created with \code{mlr3}.
+#' @param data data.frame or matrix - data that was used for fitting. Data should be passed without target column (this shall be provided as the \code{y} argument). NOTE: If target variable is present in the \code{data}, some of the functionalities my not work properly. Tibble will be converted into data.frame
 #' @param y numeric vector with outputs / scores. If provided then it shall have the same size as \code{data}
 #' @param weights numeric vector with sampling weights. By default it's \code{NULL}. If provided then it shall have the same length as \code{data}
 #' @param predict_function function that takes two arguments: model and new data and returns numeric vector with predictions
@@ -25,27 +25,34 @@
 #' @importFrom stats predict
 #' @importFrom DALEX yhat
 #'
-#' @rdname explain_mlr3
+#' @rdname explain_tidymodels
 #' @export
 #' @examples
-#'library("DALEXtra")
-#' library(mlr3)
-#' titanic_imputed$survived <- as.factor(titanic_imputed$survived)
-#' task_classif <- TaskClassif$new(id = "1", backend = titanic_imputed, target = "survived")
-#' learner_classif <- lrn("classif.rpart", predict_type = "prob")
-#' learner_classif$train(task_classif)
-#' explain_mlr3(learner_classif, data = titanic_imputed,
-#'              y = as.numeric(as.character(titanic_imputed$survived)))
+#' library("DALEXtra")
+#' library("tidymodels")
+#' library("recipes")
+#' rec <- recipe(survived ~ ., data = titanic_imputed) %>%
+#'        step_mutate(survived = as.factor(survived)) %>%
+#'        prep()
+#' model <- decision_tree(tree_depth = 25) %>%
+#'          set_engine("rpart") %>%
+#'          set_mode("classification")
+#'
+#' wflow <- workflow() %>%
+#'          add_recipe(rec) %>%
+#'          add_model(model)
 #'
 #'
-#' task_regr <- TaskRegr$new(id = "2", backend = apartments, target = "m2.price")
-#' learner_regr <- lrn("regr.rpart")
-#' learner_regr$train(task_regr)
-#' explain_mlr3(learner_regr, data = apartments, apartments$m2.price)
+#' model_fitted <- wflow %>%
+#'                 fit(data = titanic_imputed)
+#'
+#' explain_tidymodels(model_fitted, data = titanic_imputed, y = titanic_imputed$survived)
+#'
 #'
 
 
-explain_mlr3 <-
+
+explain_tidymodels <-
   function(model,
            data = NULL,
            y = NULL,
@@ -59,7 +66,17 @@ explain_mlr3 <-
            colorize = TRUE,
            model_info = NULL,
            type = NULL
-           ) {
+  ) {
+
+    if (!model$trained) {
+      stop("Only trained workflows can be passed to explain function")
+    }
+
+    if (is.null(data)) {
+
+    }
+
+
     explain(
       model,
       data = data,

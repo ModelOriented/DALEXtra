@@ -11,6 +11,7 @@
 \alias{model_info.LearnerClassif}
 \alias{model_info.GraphLearner}
 \alias{model_info.xgb.Booster}
+\alias{model_info.workflow}
 \title{Exract info from model}
 \usage{
 \method{model_info}{WrappedModel}(model, is_multiclass = FALSE, ...)
@@ -32,6 +33,8 @@
 \method{model_info}{GraphLearner}(model, is_multiclass = FALSE, ...)
 
 \method{model_info}{xgb.Booster}(model, is_multiclass = FALSE, ...)
+
+\method{model_info}{workflow}(model, is_multiclass = FALSE, ...)
 }
 \arguments{
 \item{model}{- model object}
@@ -49,6 +52,7 @@ Currently supported packages are:
 \item \code{keras} models created with \code{keras} pyhton library and accesed via \code{reticulate}
 \item \code{mlr3} models created with \code{mlr3} package
 \item \code{xgboost} models created with \code{xgboost} package
+\item \code{tidymodels} models created with \code{tidymodels} package
 }}
 }
 \value{

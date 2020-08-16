@@ -12,6 +12,7 @@
 #' \item \code{keras} see more in \code{\link{explain_keras}}
 #' \item \code{mlr3} see more in \code{\link{explain_mlr3}}
 #' \item \code{xgboost} see more in \code{\link{explain_xgboost}}
+#' \item \code{tidymodels} see more in \code{\link{explain_tidymodels}}
 #' }
 #'
 #' @param X.model object - a model to be explained
@@ -206,6 +207,33 @@ yhat.xgb.Booster <- function(X.model, newdata, ...) {
   }
   ret
 }
+
+
+#' @rdname yhat
+#' @export
+yhat.workflow <- function(X.model, newdata, ...) {
+  if ("tbl" %in% class(newdata)) {
+    newdata <- as.data.frame(newdata)
+  }
+  if (!is.null(X.model$pre$actions$recipe)){
+    newdata <- as.data.frame(recipes::bake(recipes::prep(X.model$pre$actions$recipe$recipe, newdata), newdata))
+  }
+
+  if (X.model$fit$fit$spec$mode == "classification") {
+    response <- as.matrix(predict(X.model, newdata, type = "prob"))
+    colnames(response) <- X.model$fit$fit$lvl
+    if (ncol(response) == 2) {
+      response <- response[,2]
+    }
+  }
+  if (X.model$fit$fit$spec$mode == "regression") {
+    pred <- predict(X.model, newdata)
+    response <- pred$.pred
+  }
+  response
+
+}
+
 
 
 normalize_h2o_names <- function(names) {
