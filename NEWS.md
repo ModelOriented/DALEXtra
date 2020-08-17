@@ -1,3 +1,7 @@
+DALEXtra 2.0
+----------------------------------------------------------------
+* `explain_tidymodels()` added as a supprt for tidymodels workflows.
+
 DALEXtra 1.3.2
 ----------------------------------------------------------------
 * Fixed cran check results
