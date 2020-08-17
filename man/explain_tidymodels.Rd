@@ -17,7 +17,8 @@ explain_tidymodels(
   precalculate = TRUE,
   colorize = TRUE,
   model_info = NULL,
-  type = NULL
+  type = NULL,
+  adjust_data = TRUE
 )
 }
 \arguments{
@@ -46,6 +47,8 @@ explain_tidymodels(
 \item{model_info}{a named list (\code{package}, \code{version}, \code{type}) containg information about model. If \code{NULL}, \code{DALEX} will seek for information on it's own.}
 
 \item{type}{type of a model, either \code{classification} or \code{regression}. If not specified then \code{type} will be extracted from \code{model_info}.}
+
+\item{adjust_data}{if TRUE and workflow object contains the recipe, data parameter will be converted according to that recipe.}
 }
 \value{
 explainer object (\code{\link[DALEX]{explain}}) ready to work with DALEX

@@ -18,6 +18,7 @@
 #' @param colorize if TRUE (default) then \code{WARNINGS}, \code{ERRORS} and \code{NOTES} are colorized. Will work only in the R console.
 #' @param model_info a named list (\code{package}, \code{version}, \code{type}) containg information about model. If \code{NULL}, \code{DALEX} will seek for information on it's own.
 #' @param type type of a model, either \code{classification} or \code{regression}. If not specified then \code{type} will be extracted from \code{model_info}.
+#' @param adjust_data if TRUE and workflow object contains the recipe, data parameter will be converted according to that recipe.
 #'
 #' @return explainer object (\code{\link[DALEX]{explain}}) ready to work with DALEX
 #'
@@ -65,15 +66,17 @@ explain_tidymodels <-
            precalculate = TRUE,
            colorize = TRUE,
            model_info = NULL,
-           type = NULL
+           type = NULL,
+           adjust_data = TRUE
   ) {
 
     if (!model$trained) {
       stop("Only trained workflows can be passed to explain function")
     }
 
-    if (is.null(data)) {
-
+    if (!is.null(model$pre$actions$recipe) & adjust_data){
+      data <- as.data.frame(recipes::bake(recipes::prep(model$pre$actions$recipe$recipe, data), data))
+      attr(data, "adjusted") <- TRUE
     }
 
 
