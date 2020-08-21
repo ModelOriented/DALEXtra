@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create explainer from your xgboost model — explain_xgboost • DALEXtra</title>
+<title>Create explainer from your tidymodels workflow. — explain_tidymodels • DALEXtra</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -52,10 +52,10 @@
 
 
 
-<meta property="og:title" content="Create explainer from your xgboost model — explain_xgboost" />
+<meta property="og:title" content="Create explainer from your tidymodels workflow. — explain_tidymodels" />
 <meta property="og:description" content="DALEX is designed to work with various black-box models like tree ensembles, linear models, neural networks etc.
 Unfortunately R packages that create such models are very inconsistent. Different tools use different interfaces to train, validate and use models.
-One of those tools, we would like to make more accessible is xgboost." />
+One of those tools, which is one of the most popular one is tidymodels package. We would like to present dedicated explain function for it." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -149,18 +149,18 @@ One of those tools, we would like to make more accessible is xgboost." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create explainer from your xgboost model</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ModelOriented/DALEXtra/blob/master/R/explain_xgboost.R'><code>R/explain_xgboost.R</code></a></small>
-    <div class="hidden name"><code>explain_xgboost.Rd</code></div>
+    <h1>Create explainer from your tidymodels workflow.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ModelOriented/DALEXtra/blob/master/R/explain_tidymodels.R'><code>R/explain_tidymodels.R</code></a></small>
+    <div class="hidden name"><code>explain_tidymodels.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>DALEX is designed to work with various black-box models like tree ensembles, linear models, neural networks etc.
 Unfortunately R packages that create such models are very inconsistent. Different tools use different interfaces to train, validate and use models.
-One of those tools, we would like to make more accessible is xgboost.</p>
+One of those tools, which is one of the most popular one is tidymodels package. We would like to present dedicated explain function for it.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>explain_xgboost</span>(
+    <pre class="usage"><span class='fu'>explain_tidymodels</span>(
   <span class='kw'>model</span>,
   data = <span class='kw'>NULL</span>,
   y = <span class='kw'>NULL</span>,
@@ -174,8 +174,7 @@ One of those tools, we would like to make more accessible is xgboost.</p>
   colorize = <span class='fl'>TRUE</span>,
   model_info = <span class='kw'>NULL</span>,
   type = <span class='kw'>NULL</span>,
-  encode_function = <span class='kw'>NULL</span>,
-  true_labels = <span class='kw'>NULL</span>
+  adjust_data = <span class='fl'>TRUE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -183,15 +182,15 @@ One of those tools, we would like to make more accessible is xgboost.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>model</th>
-      <td><p>object - a model to be explained</p></td>
+      <td><p>object - a fitted workflow created with <code>mlr3</code>.</p></td>
     </tr>
     <tr>
       <th>data</th>
-      <td><p>data.frame or matrix - data that was used for fitting. If not provided then will be extracted from the model. Data should be passed without target column (this shall be provided as the <code>y</code> argument). NOTE: If target variable is present in the <code>data</code>, some of the functionalities my not work properly.</p></td>
+      <td><p>data.frame or matrix - data that was used for fitting. Data should be passed without target column (this shall be provided as the <code>y</code> argument). NOTE: If target variable is present in the <code>data</code>, some of the functionalities my not work properly. Tibble will be converted into data.frame</p></td>
     </tr>
     <tr>
       <th>y</th>
-      <td><p>numeric vector with outputs / scores. If provided then it shall have the same size as <code>data</code>. For classif task has to be numerci in range [0, nclasses)</p></td>
+      <td><p>numeric vector with outputs / scores. If provided then it shall have the same size as <code>data</code></p></td>
     </tr>
     <tr>
       <th>weights</th>
@@ -215,7 +214,7 @@ One of those tools, we would like to make more accessible is xgboost.</p>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>if TRUE (default) then diagnostic messages will be printed</p></td>
+      <td><p>if TRUE (default) then diagnostic messages will be printed.</p></td>
     </tr>
     <tr>
       <th>precalculate</th>
@@ -233,14 +232,6 @@ One of those tools, we would like to make more accessible is xgboost.</p>
       <th>type</th>
       <td><p>type of a model, either <code>classification</code> or <code>regression</code>. If not specified then <code>type</code> will be extracted from <code>model_info</code>.</p></td>
     </tr>
-    <tr>
-      <th>encode_function</th>
-      <td><p>fuction(data, ...) that if executed with <code>data</code> parameters returns encoded dataframe that was used to fit model. Xgboost does not handle factors on it's own so such function is needed to aquire better explanations.</p></td>
-    </tr>
-    <tr>
-      <th>true_labels</th>
-      <td><p>vecotr of <code>y</code> before encoding.</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -248,58 +239,52 @@ One of those tools, we would like to make more accessible is xgboost.</p>
     <p>explainer object (<code><a href='https://rdrr.io/pkg/DALEX/man/explain.html'>explain</a></code>) ready to work with DALEX</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://github.com/dmlc/xgboost'>"xgboost"</a></span>)</div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘xgboost’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:dplyr’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    slice</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://ModelOriented.github.io/DALEXtra'>"DALEXtra"</a></span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://mlr.mlr-org.com'>"mlr"</a></span>)
-<span class='co'># 8th column is target that has to be omitted in X data</span>
-<span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='fu'><a href='https://mlr.mlr-org.com/reference/createDummyFeatures.html'>createDummyFeatures</a></span>(<span class='kw'>titanic_imputed</span>[,<span class='op'>-</span><span class='fl'>8</span>]))
-<span class='kw'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/xgboost/man/xgb.train.html'>xgboost</a></span>(<span class='kw'>data</span>, <span class='kw'>titanic_imputed</span><span class='op'>$</span><span class='kw'>survived</span>, nrounds = <span class='fl'>10</span>,
-                 params = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(objective = <span class='st'>"binary:logistic"</span>),
-                prediction = <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [12:48:14] WARNING: amalgamation/../src/learner.cc:480: 
-#&gt; Parameters: { prediction } might not be used.
-#&gt; 
-#&gt;   This may not be accurate due to some parameters are only used in language bindings but
-#&gt;   passed down to XGBoost core.  Or some parameters are not used but slip through this
-#&gt;   verification. Please open an issue if you find above cases.
-#&gt; 
-#&gt; 
-#&gt; [1]	train-error:0.168555 
-#&gt; [2]	train-error:0.166289 
-#&gt; [3]	train-error:0.166742 
-#&gt; [4]	train-error:0.165383 
-#&gt; [5]	train-error:0.159946 
-#&gt; [6]	train-error:0.157680 
-#&gt; [7]	train-error:0.154508 
-#&gt; [8]	train-error:0.154961 
-#&gt; [9]	train-error:0.155415 
-#&gt; [10]	train-error:0.155415 </div><div class='input'><span class='co'># explainer with encode functiom</span>
-<span class='kw'>explainer_1</span> <span class='op'>&lt;-</span> <span class='fu'>explain_xgboost</span>(<span class='kw'>model</span>, data = <span class='kw'>titanic_imputed</span>[,<span class='op'>-</span><span class='fl'>8</span>],
-                               <span class='kw'>titanic_imputed</span><span class='op'>$</span><span class='kw'>survived</span>,
-                               encode_function = <span class='fu'>function</span>(<span class='kw'>data</span>) {
- <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='fu'><a href='https://mlr.mlr-org.com/reference/createDummyFeatures.html'>createDummyFeatures</a></span>(<span class='kw'>data</span>))
-})</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
-#&gt;   -&gt; model label       :  xgb.Booster  ( <span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; data              :  2207  rows  7  cols 
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://ModelOriented.github.io/DALEXtra'>"DALEXtra"</a></span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://tidymodels.tidymodels.org'>"tidymodels"</a></span>)</div><div class='output co'>#&gt; <span class='message'>── <span style='font-weight: bold;'>Attaching packages</span><span> ────────────────────────────────────── tidymodels 0.1.1 ──</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>broom    </span><span> 0.7.0      </span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>recipes  </span><span> 0.1.13</span>
+#&gt; <span class='message'></span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>dials    </span><span> 0.0.8      </span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>rsample  </span><span> 0.0.7 </span>
+#&gt; <span class='message'></span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>dplyr    </span><span> 1.0.2      </span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>tibble   </span><span> 3.0.3 </span>
+#&gt; <span class='message'></span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>infer    </span><span> 0.5.3      </span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>tidyr    </span><span> 1.1.1 </span>
+#&gt; <span class='message'></span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>modeldata</span><span> 0.0.2      </span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>tune     </span><span> 0.1.1 </span>
+#&gt; <span class='message'></span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>parsnip  </span><span> 0.1.3      </span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>workflows</span><span> 0.1.3 </span>
+#&gt; <span class='message'></span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>purrr    </span><span> 0.3.4      </span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>yardstick</span><span> 0.0.7 </span></div><div class='output co'>#&gt; <span class='message'>── </span><span style='font-weight: bold;'>Conflicts</span><span> ───────────────────────────────────────── tidymodels_conflicts() ──</span>
+#&gt; <span class='message'></span><span style='color: #BB0000;'>✖</span><span> </span><span style='color: #0000BB;'>dplyr</span><span>::</span><span style='color: #00BB00;'>combine()</span><span>  masks </span><span style='color: #0000BB;'>randomForest</span><span>::combine()</span>
+#&gt; <span class='message'></span><span style='color: #BB0000;'>✖</span><span> </span><span style='color: #0000BB;'>purrr</span><span>::</span><span style='color: #00BB00;'>discard()</span><span>  masks </span><span style='color: #0000BB;'>scales</span><span>::discard()</span>
+#&gt; <span class='message'></span><span style='color: #BB0000;'>✖</span><span> </span><span style='color: #0000BB;'>dplyr</span><span>::</span><span style='color: #00BB00;'>explain()</span><span>  masks </span><span style='color: #0000BB;'>DALEX</span><span>::explain()</span>
+#&gt; <span class='message'></span><span style='color: #BB0000;'>✖</span><span> </span><span style='color: #0000BB;'>dplyr</span><span>::</span><span style='color: #00BB00;'>filter()</span><span>   masks </span><span style='color: #0000BB;'>stats</span><span>::filter()</span>
+#&gt; <span class='message'></span><span style='color: #BB0000;'>✖</span><span> </span><span style='color: #0000BB;'>dplyr</span><span>::</span><span style='color: #00BB00;'>lag()</span><span>      masks </span><span style='color: #0000BB;'>stats</span><span>::lag()</span>
+#&gt; <span class='message'></span><span style='color: #BB0000;'>✖</span><span> </span><span style='color: #0000BB;'>ggplot2</span><span>::</span><span style='color: #00BB00;'>margin()</span><span> masks </span><span style='color: #0000BB;'>randomForest</span><span>::margin()</span>
+#&gt; <span class='message'></span><span style='color: #BB0000;'>✖</span><span> </span><span style='color: #0000BB;'>recipes</span><span>::</span><span style='color: #00BB00;'>step()</span><span>   masks </span><span style='color: #0000BB;'>stats</span><span>::step()</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://github.com/tidymodels/recipes'>"recipes"</a></span>)
+<span class='kw'>rec</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://recipes.tidymodels.org/reference/recipe.html'>recipe</a></span>(<span class='kw'>survived</span> <span class='op'>~</span> <span class='kw'>.</span>, data = <span class='kw'>titanic_imputed</span>) <span class='op'>%&gt;%</span>
+       <span class='fu'><a href='https://recipes.tidymodels.org/reference/step_mutate.html'>step_mutate</a></span>(survived = <span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.factor.html'>as.factor</a></span>(<span class='kw'>survived</span>)) <span class='op'>%&gt;%</span>
+       <span class='fu'><a href='https://recipes.tidymodels.org/reference/prep.html'>prep</a></span>()
+<span class='kw'>model</span> <span class='op'>&lt;-</span> <span class='fu'>decision_tree</span>(tree_depth = <span class='fl'>25</span>) <span class='op'>%&gt;%</span>
+         <span class='fu'>set_engine</span>(<span class='st'>"rpart"</span>) <span class='op'>%&gt;%</span>
+         <span class='fu'>set_mode</span>(<span class='st'>"classification"</span>)
+
+<span class='kw'>wflow</span> <span class='op'>&lt;-</span> <span class='fu'>workflow</span>() <span class='op'>%&gt;%</span>
+         <span class='fu'>add_recipe</span>(<span class='kw'>rec</span>) <span class='op'>%&gt;%</span>
+         <span class='fu'>add_model</span>(<span class='kw'>model</span>)
+
+
+<span class='kw'>model_fitted</span> <span class='op'>&lt;-</span> <span class='kw'>wflow</span> <span class='op'>%&gt;%</span>
+                <span class='fu'>fit</span>(data = <span class='kw'>titanic_imputed</span>)
+
+<span class='fu'>explain_tidymodels</span>(<span class='kw'>model_fitted</span>, data = <span class='kw'>titanic_imputed</span>, y = <span class='kw'>titanic_imputed</span><span class='op'>$</span><span class='kw'>survived</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+#&gt;   -&gt; model label       :  workflow  ( </span><span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; data              :  2207  rows  8  cols 
 #&gt;   -&gt; target variable   :  2207  values 
-#&gt;   -&gt; predict function  :  yhat.xgb.Booster  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; predicted values  :  numerical, min =  0.04738454 , mean =  0.3272404 , max =  0.9705966  
-#&gt;   -&gt; model_info        :  package xgboost , ver. 1.1.1.1 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; predict function  :  yhat.workflow  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
+#&gt;   -&gt; predicted values  :  the predict_function returns an error when executed ( </span><span style='color: #BB0000;'> WARNING </span><span> ) 
+#&gt;   -&gt; model_info        :  package tidymodels , ver. 0.1.1 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; residuals         :  numerical, min =  -0.8105438 , mean =  -0.005083592 , max =  0.9452911  
-#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/DALEX/man/predict_parts.html'>predict_parts</a></span>(<span class='kw'>explainer_1</span>, <span class='kw'>titanic_imputed</span>[<span class='fl'>1</span>,<span class='op'>-</span><span class='fl'>8</span>]))</div><div class='img'><img src='explain_xgboost-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># explainer without encode function</span>
-<span class='kw'>explainer_2</span> <span class='op'>&lt;-</span> <span class='fu'>explain_xgboost</span>(<span class='kw'>model</span>, data = <span class='kw'>data</span>, <span class='kw'>titanic_imputed</span><span class='op'>$</span><span class='kw'>survived</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
-#&gt;   -&gt; model label       :  xgb.Booster  ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; data              :  2207  rows  17  cols 
-#&gt;   -&gt; target variable   :  2207  values 
-#&gt;   -&gt; predict function  :  yhat.xgb.Booster  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; predicted values  :  numerical, min =  0.04738454 , mean =  0.3272404 , max =  0.9705966  
-#&gt;   -&gt; model_info        :  package xgboost , ver. 1.1.1.1 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
-#&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; residuals         :  numerical, min =  -0.8105438 , mean =  -0.005083592 , max =  0.9452911  
-#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/DALEX/man/predict_parts.html'>predict_parts</a></span>(<span class='kw'>explainer_2</span>, <span class='kw'>data</span>[<span class='fl'>1</span>,,drop = <span class='fl'>FALSE</span>]))</div><div class='img'><img src='explain_xgboost-2.png' alt='' width='700' height='433' /></div><div class='input'></div></span></pre>
+#&gt;   -&gt; residuals         :  the residual_function returns an error when executed ( </span><span style='color: #BB0000;'> WARNING </span><span> ) 
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='output co'>#&gt; Model label:  workflow 
+#&gt; Model class:  workflow 
+#&gt; Data head  :
+#&gt;   gender age class    embarked  fare sibsp parch survived
+#&gt; 1   male  42   3rd Southampton  7.11     0     0        0
+#&gt; 2   male  13   3rd Southampton 20.05     0     2        0</div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

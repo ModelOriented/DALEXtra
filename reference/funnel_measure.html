@@ -102,7 +102,7 @@ to compare multiple Challengers at once." />
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/">MI^2 DataLab</a> </span>
-          <span class="version version-default">1.3.2</span>
+          <span class="version version-default">2.0</span>
         </div>
       </div>
     </div>
@@ -274,10 +274,10 @@ By default full test data. If data.frame, number of rows has to be equal to numb
 #&gt;   -&gt; data              :  9000  rows  6  cols 
 #&gt;   -&gt; target variable   :  9000  values 
 #&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; predicted values  :  numerical, min =  2008.105 , mean =  3506.845 , max =  5766.709  
+#&gt;   -&gt; predicted values  :  numerical, min =  1975.095 , mean =  3508.194 , max =  5787.716  
 #&gt;   -&gt; model_info        :  package mlr , ver. 2.17.1 , task regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; residuals         :  numerical, min =  -758.6053 , mean =  4.679013 , max =  1241.342  
+#&gt;   -&gt; residuals         :  numerical, min =  -756.6208 , mean =  3.329998 , max =  1245.593  
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 <span class='kw'>learner_gbm</span> <span class='op'>&lt;-</span> <span class='kw'>mlr</span>::<span class='fu'><a href='https://mlr.mlr-org.com/reference/makeLearner.html'>makeLearner</a></span>(
   <span class='st'>"regr.gbm"</span>
@@ -288,10 +288,10 @@ By default full test data. If data.frame, number of rows has to be equal to numb
 #&gt;   -&gt; data              :  9000  rows  6  cols 
 #&gt;   -&gt; target variable   :  9000  values 
 #&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; predicted values  :  numerical, min =  2121.046 , mean =  3502.52 , max =  6065.67  
+#&gt;   -&gt; predicted values  :  numerical, min =  2105.291 , mean =  3501.791 , max =  6061.235  
 #&gt;   -&gt; model_info        :  package mlr , ver. 2.17.1 , task regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; residuals         :  numerical, min =  -518.0455 , mean =  9.003829 , max =  704.6582  
+#&gt;   -&gt; residuals         :  numerical, min =  -502.2911 , mean =  9.732469 , max =  762.8405  
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 
 <span class='kw'>plot_data</span> <span class='op'>&lt;-</span> <span class='fu'>funnel_measure</span>(<span class='kw'>explainer_lm</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>explainer_rf</span>, <span class='kw'>explainer_gbm</span>),
