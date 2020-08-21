@@ -17,8 +17,7 @@ explain_tidymodels(
   precalculate = TRUE,
   colorize = TRUE,
   model_info = NULL,
-  type = NULL,
-  adjust_data = TRUE
+  type = NULL
 )
 }
 \arguments{
