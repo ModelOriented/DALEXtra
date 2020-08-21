@@ -215,8 +215,6 @@ yhat.workflow <- function(X.model, newdata, ...) {
   if ("tbl" %in% class(newdata)) {
     newdata <- as.data.frame(newdata)
   }
-
-  if (is.null(attr(newdata, "adjusted"))){
     if (X.model$fit$fit$spec$mode == "classification") {
       response <- as.matrix(predict(X.model, newdata, type = "prob"))
       colnames(response) <- X.model$fit$fit$lvl
@@ -232,23 +230,7 @@ yhat.workflow <- function(X.model, newdata, ...) {
       stop("Mode specification has to be either classification or regression")
     }
 
-  } else {
-    if (X.model$fit$fit$spec$mode == "classification") {
-      response <- as.matrix(predict(X.model$fit$fit, newdata, type = "prob"))
-      colnames(response) <- X.model$fit$fit$lvl
-      if (ncol(response) == 2) {
-        response <- response[,2]
-      }
-    }
-    else if (X.model$fit$fit$spec$mode == "regression") {
-      pred <- predict(X.model$fit$fit, newdata)
-      response <- pred$.pred
-    }
-    else {
-      stop("Mode specification has to be either classification or regression")
-    }
 
-  }
   response
 
 }
