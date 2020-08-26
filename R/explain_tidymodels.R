@@ -31,9 +31,10 @@
 #' library("DALEXtra")
 #' library("tidymodels")
 #' library("recipes")
-#' rec <- recipe(survived ~ ., data = titanic_imputed) %>%
-#'        step_mutate(survived = as.factor(survived)) %>%
-#'        prep()
+#' data <- titanic_imputed
+#' data$survived <- as.factor(data$survived)
+#' rec <- recipe(survived ~ ., data = data) %>%
+#'        step_normalize(fare)
 #' model <- decision_tree(tree_depth = 25) %>%
 #'          set_engine("rpart") %>%
 #'          set_mode("classification")
@@ -44,7 +45,7 @@
 #'
 #'
 #' model_fitted <- wflow %>%
-#'                 fit(data = titanic_imputed)
+#'                 fit(data = data)
 #'
 #' explain_tidymodels(model_fitted, data = titanic_imputed, y = titanic_imputed$survived)
 #'
