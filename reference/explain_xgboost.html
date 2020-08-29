@@ -115,18 +115,6 @@ One of those tools, we would like to make more accessible is xgboost." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/vignette_aspect_importance.html">Aspect importance function examples</a>
-    </li>
-  </ul>
-</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -248,7 +236,8 @@ One of those tools, we would like to make more accessible is xgboost.</p>
     <p>explainer object (<code><a href='https://rdrr.io/pkg/DALEX/man/explain.html'>explain</a></code>) ready to work with DALEX</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://github.com/dmlc/xgboost'>"xgboost"</a></span>)</div><div class='output co'>#&gt; <span class='message'></span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://github.com/dmlc/xgboost'>"xgboost"</a></span>)
+</div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Attaching package: ‘xgboost’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:dplyr’:</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    slice</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://ModelOriented.github.io/DALEXtra'>"DALEXtra"</a></span>)
@@ -257,7 +246,8 @@ One of those tools, we would like to make more accessible is xgboost.</p>
 <span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='fu'><a href='https://mlr.mlr-org.com/reference/createDummyFeatures.html'>createDummyFeatures</a></span>(<span class='kw'>titanic_imputed</span>[,<span class='op'>-</span><span class='fl'>8</span>]))
 <span class='kw'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/xgboost/man/xgb.train.html'>xgboost</a></span>(<span class='kw'>data</span>, <span class='kw'>titanic_imputed</span><span class='op'>$</span><span class='kw'>survived</span>, nrounds = <span class='fl'>10</span>,
                  params = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(objective = <span class='st'>"binary:logistic"</span>),
-                prediction = <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [13:23:45] WARNING: amalgamation/../src/learner.cc:480: 
+                prediction = <span class='fl'>TRUE</span>)
+</div><div class='output co'>#&gt; [19:46:46] WARNING: amalgamation/../src/learner.cc:480: 
 #&gt; Parameters: { prediction } might not be used.
 #&gt; 
 #&gt;   This may not be accurate due to some parameters are only used in language bindings but
@@ -279,7 +269,8 @@ One of those tools, we would like to make more accessible is xgboost.</p>
                                <span class='kw'>titanic_imputed</span><span class='op'>$</span><span class='kw'>survived</span>,
                                encode_function = <span class='fu'>function</span>(<span class='kw'>data</span>) {
  <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='fu'><a href='https://mlr.mlr-org.com/reference/createDummyFeatures.html'>createDummyFeatures</a></span>(<span class='kw'>data</span>))
-})</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+})
+</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  xgb.Booster  ( <span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; data              :  2207  rows  7  cols 
 #&gt;   -&gt; target variable   :  2207  values 
@@ -288,9 +279,11 @@ One of those tools, we would like to make more accessible is xgboost.</p>
 #&gt;   -&gt; model_info        :  package xgboost , ver. 1.1.1.1 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -0.8105438 , mean =  -0.005083592 , max =  0.9452911  
-#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/DALEX/man/predict_parts.html'>predict_parts</a></span>(<span class='kw'>explainer_1</span>, <span class='kw'>titanic_imputed</span>[<span class='fl'>1</span>,<span class='op'>-</span><span class='fl'>8</span>]))</div><div class='img'><img src='explain_xgboost-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/DALEX/man/predict_parts.html'>predict_parts</a></span>(<span class='kw'>explainer_1</span>, <span class='kw'>titanic_imputed</span>[<span class='fl'>1</span>,<span class='op'>-</span><span class='fl'>8</span>]))
+</div><div class='img'><img src='explain_xgboost-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># explainer without encode function</span>
-<span class='kw'>explainer_2</span> <span class='op'>&lt;-</span> <span class='fu'>explain_xgboost</span>(<span class='kw'>model</span>, data = <span class='kw'>data</span>, <span class='kw'>titanic_imputed</span><span class='op'>$</span><span class='kw'>survived</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+<span class='kw'>explainer_2</span> <span class='op'>&lt;-</span> <span class='fu'>explain_xgboost</span>(<span class='kw'>model</span>, data = <span class='kw'>data</span>, <span class='kw'>titanic_imputed</span><span class='op'>$</span><span class='kw'>survived</span>)
+</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  xgb.Booster  ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; data              :  2207  rows  17  cols 
 #&gt;   -&gt; target variable   :  2207  values 
@@ -299,7 +292,9 @@ One of those tools, we would like to make more accessible is xgboost.</p>
 #&gt;   -&gt; model_info        :  package xgboost , ver. 1.1.1.1 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -0.8105438 , mean =  -0.005083592 , max =  0.9452911  
-#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/DALEX/man/predict_parts.html'>predict_parts</a></span>(<span class='kw'>explainer_2</span>, <span class='kw'>data</span>[<span class='fl'>1</span>,,drop = <span class='fl'>FALSE</span>]))</div><div class='img'><img src='explain_xgboost-2.png' alt='' width='700' height='433' /></div><div class='input'></div></span></pre>
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/DALEX/man/predict_parts.html'>predict_parts</a></span>(<span class='kw'>explainer_2</span>, <span class='kw'>data</span>[<span class='fl'>1</span>,,drop = <span class='fl'>FALSE</span>]))
+</div><div class='img'><img src='explain_xgboost-2.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -311,7 +306,7 @@ One of those tools, we would like to make more accessible is xgboost.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Szymon Maksymiuk, Przemyslaw Biecek, Katarzyna Pekala.</p>
+  <p>Developed by Szymon Maksymiuk, Przemyslaw Biecek.</p>
 </div>
 
 <div class="pkgdown">

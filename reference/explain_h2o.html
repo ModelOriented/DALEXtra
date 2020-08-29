@@ -115,18 +115,6 @@ One of those tools, we would like to make more accessible is H2O." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/vignette_aspect_importance.html">Aspect importance function examples</a>
-    </li>
-  </ul>
-</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -242,7 +230,8 @@ One of those tools, we would like to make more accessible is H2O.</p>
 
 
 <span class='co'># # load packages and data</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/h2oai/h2o-3'>h2o</a></span>)</div><div class='output co'>#&gt; <span class='message'></span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/h2oai/h2o-3'>h2o</a></span>)
+</div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>----------------------------------------------------------------------</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>Your next step is to start H2O:</span>
@@ -266,23 +255,24 @@ One of those tools, we would like to make more accessible is H2O.</p>
 <span class='co'># data &lt;- DALEX::titanic_imputed</span>
 
 <span class='co'># init h2o</span>
- <span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.init.html'>h2o.init</a></span>()</div><div class='output co'>#&gt; 
+ <span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.init.html'>h2o.init</a></span>()
+</div><div class='output co'>#&gt; 
 #&gt; H2O is not running yet, starting it now...
 #&gt; 
 #&gt; Note:  In case of errors look at the following log files:
-#&gt;     /tmp/RtmpEHXJVl/file2ecc797ca3d2/h2o_runner_started_from_r.out
-#&gt;     /tmp/RtmpEHXJVl/file2ecc6f8eea10/h2o_runner_started_from_r.err
+#&gt;     /tmp/RtmpwqIh5Z/file31058e203c3/h2o_runner_started_from_r.out
+#&gt;     /tmp/RtmpwqIh5Z/file31054f9ab4af/h2o_runner_started_from_r.err
 #&gt; 
 #&gt; 
 #&gt; Starting H2O JVM and connecting: .... Connection successful!
 #&gt; 
 #&gt; R is connected to the H2O cluster: 
-#&gt;     H2O cluster uptime:         3 seconds 361 milliseconds 
+#&gt;     H2O cluster uptime:         2 seconds 944 milliseconds 
 #&gt;     H2O cluster timezone:       UTC 
 #&gt;     H2O data parsing timezone:  UTC 
 #&gt;     H2O cluster version:        3.30.0.1 
-#&gt;     H2O cluster version age:    4 months and 22 days !!! 
-#&gt;     H2O cluster name:           H2O_started_from_R_runner_tjh847 
+#&gt;     H2O cluster version age:    4 months and 25 days !!! 
+#&gt;     H2O cluster name:           H2O_started_from_R_runner_jnu133 
 #&gt;     H2O cluster total nodes:    1 
 #&gt;     H2O cluster total memory:   1.51 GB 
 #&gt;     H2O cluster total cores:    2 
@@ -294,7 +284,7 @@ One of those tools, we would like to make more accessible is H2O.</p>
 #&gt;     H2O Internal Security:      FALSE 
 #&gt;     H2O API Extensions:         Amazon S3, XGBoost, Algos, AutoML, Core V3, TargetEncoder, Core V4 
 #&gt;     R Version:                  R version 4.0.2 (2020-06-22) </div><div class='output co'>#&gt; <span class='warning'>Warning: </span>
-#&gt; <span class='warning'>Your H2O cluster version is too old (4 months and 22 days)!</span>
+#&gt; <span class='warning'>Your H2O cluster version is too old (4 months and 25 days)!</span>
 #&gt; <span class='warning'>Please download and install the latest version from http://h2o.ai/download/</span></div><div class='output co'>#&gt; </div><div class='input'>
 <span class='co'># stop h2o progress printing</span>
  <span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.no_progress.html'>h2o.no_progress</a></span>()
@@ -321,8 +311,10 @@ One of those tools, we would like to make more accessible is H2O.</p>
 
 <span class='kw'>titanic_test</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_test.csv"</span>, package = <span class='st'>"DALEXtra"</span>))
 <span class='kw'>titanic_train</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"titanic_train.csv"</span>, package = <span class='st'>"DALEXtra"</span>))
-<span class='kw'>titanic_h2o</span> <span class='op'>&lt;-</span> <span class='kw'>h2o</span>::<span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.h2o.html'>as.h2o</a></span>(<span class='kw'>titanic_train</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='input'><span class='kw'>titanic_h2o</span>[<span class='st'>"survived"</span>] <span class='op'>&lt;-</span> <span class='kw'>h2o</span>::<span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.factor.html'>as.factor</a></span>(<span class='kw'>titanic_h2o</span>[<span class='st'>"survived"</span>])
-<span class='kw'>titanic_test_h2o</span> <span class='op'>&lt;-</span> <span class='kw'>h2o</span>::<span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.h2o.html'>as.h2o</a></span>(<span class='kw'>titanic_test</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='input'><span class='kw'>model</span> <span class='op'>&lt;-</span> <span class='kw'>h2o</span>::<span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.gbm.html'>h2o.gbm</a></span>(
+<span class='kw'>titanic_h2o</span> <span class='op'>&lt;-</span> <span class='kw'>h2o</span>::<span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.h2o.html'>as.h2o</a></span>(<span class='kw'>titanic_train</span>)
+</div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='input'><span class='kw'>titanic_h2o</span>[<span class='st'>"survived"</span>] <span class='op'>&lt;-</span> <span class='kw'>h2o</span>::<span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.factor.html'>as.factor</a></span>(<span class='kw'>titanic_h2o</span>[<span class='st'>"survived"</span>])
+<span class='kw'>titanic_test_h2o</span> <span class='op'>&lt;-</span> <span class='kw'>h2o</span>::<span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.h2o.html'>as.h2o</a></span>(<span class='kw'>titanic_test</span>)
+</div><div class='output co'>#&gt; <span class='warning'>Warning: data.table cannot be used without R package bit64 version 0.9.7 or higher.  Please upgrade to take advangage of data.table speedups.</span></div><div class='input'><span class='kw'>model</span> <span class='op'>&lt;-</span> <span class='kw'>h2o</span>::<span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.gbm.html'>h2o.gbm</a></span>(
 training_frame = <span class='kw'>titanic_h2o</span>,
 y = <span class='st'>"survived"</span>,
 distribution = <span class='st'>"bernoulli"</span>,
@@ -331,7 +323,8 @@ max_depth = <span class='fl'>4</span>,
 min_rows =  <span class='fl'>12</span>,
 learn_rate = <span class='fl'>0.001</span>
 )
-<span class='fu'>explain_h2o</span>(<span class='kw'>model</span>, <span class='kw'>titanic_test</span>[,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>17</span>], <span class='kw'>titanic_test</span>[,<span class='fl'>18</span>])</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+<span class='fu'>explain_h2o</span>(<span class='kw'>model</span>, <span class='kw'>titanic_test</span>[,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>17</span>], <span class='kw'>titanic_test</span>[,<span class='fl'>18</span>])
+</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  H2OBinomialModel  ( <span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; data              :  524  rows  17  cols 
 #&gt;   -&gt; target variable   :  524  values 
@@ -353,7 +346,8 @@ learn_rate = <span class='fl'>0.001</span>
 #&gt; 1 7.13     0     0
 #&gt; 2 7.13     0     0</div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/pkg/h2o/man/h2o.shutdown.html'>h2o.shutdown</a></span>(prompt = <span class='fl'>FALSE</span>)
-<span class='co'># }</span></div></span></pre>
+<span class='co'># }</span>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -365,7 +359,7 @@ learn_rate = <span class='fl'>0.001</span>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Szymon Maksymiuk, Przemyslaw Biecek, Katarzyna Pekala.</p>
+  <p>Developed by Szymon Maksymiuk, Przemyslaw Biecek.</p>
 </div>
 
 <div class="pkgdown">

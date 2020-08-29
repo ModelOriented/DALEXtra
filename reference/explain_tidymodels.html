@@ -115,18 +115,6 @@ One of those tools, which is one of the most popular one is tidymodels package. 
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/vignette_aspect_importance.html">Aspect importance function examples</a>
-    </li>
-  </ul>
-</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -239,20 +227,19 @@ One of those tools, which is one of the most popular one is tidymodels package. 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://ModelOriented.github.io/DALEXtra'>"DALEXtra"</a></span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://tidymodels.tidymodels.org'>"tidymodels"</a></span>)</div><div class='output co'>#&gt; <span class='message'>── <span style='font-weight: bold;'>Attaching packages</span><span> ────────────────────────────────────── tidymodels 0.1.1 ──</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>broom    </span><span> 0.7.0      </span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>recipes  </span><span> 0.1.13</span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://tidymodels.tidymodels.org'>"tidymodels"</a></span>)
+</div><div class='output co'>#&gt; <span class='message'>── <span style='font-weight: bold;'>Attaching packages</span><span> ────────────────────────────────────── tidymodels 0.1.1 ──</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>broom    </span><span> 0.7.0      </span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>recipes  </span><span> 0.1.13</span>
 #&gt; <span class='message'></span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>dials    </span><span> 0.0.8      </span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>rsample  </span><span> 0.0.7 </span>
 #&gt; <span class='message'></span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>dplyr    </span><span> 1.0.2      </span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>tibble   </span><span> 3.0.3 </span>
-#&gt; <span class='message'></span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>infer    </span><span> 0.5.3      </span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>tidyr    </span><span> 1.1.1 </span>
+#&gt; <span class='message'></span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>infer    </span><span> 0.5.3      </span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>tidyr    </span><span> 1.1.2 </span>
 #&gt; <span class='message'></span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>modeldata</span><span> 0.0.2      </span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>tune     </span><span> 0.1.1 </span>
 #&gt; <span class='message'></span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>parsnip  </span><span> 0.1.3      </span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>workflows</span><span> 0.1.3 </span>
 #&gt; <span class='message'></span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>purrr    </span><span> 0.3.4      </span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>yardstick</span><span> 0.0.7 </span></div><div class='output co'>#&gt; <span class='message'>── </span><span style='font-weight: bold;'>Conflicts</span><span> ───────────────────────────────────────── tidymodels_conflicts() ──</span>
-#&gt; <span class='message'></span><span style='color: #BB0000;'>✖</span><span> </span><span style='color: #0000BB;'>dplyr</span><span>::</span><span style='color: #00BB00;'>combine()</span><span>  masks </span><span style='color: #0000BB;'>randomForest</span><span>::combine()</span>
-#&gt; <span class='message'></span><span style='color: #BB0000;'>✖</span><span> </span><span style='color: #0000BB;'>purrr</span><span>::</span><span style='color: #00BB00;'>discard()</span><span>  masks </span><span style='color: #0000BB;'>scales</span><span>::discard()</span>
-#&gt; <span class='message'></span><span style='color: #BB0000;'>✖</span><span> </span><span style='color: #0000BB;'>dplyr</span><span>::</span><span style='color: #00BB00;'>explain()</span><span>  masks </span><span style='color: #0000BB;'>DALEX</span><span>::explain()</span>
-#&gt; <span class='message'></span><span style='color: #BB0000;'>✖</span><span> </span><span style='color: #0000BB;'>dplyr</span><span>::</span><span style='color: #00BB00;'>filter()</span><span>   masks </span><span style='color: #0000BB;'>stats</span><span>::filter()</span>
-#&gt; <span class='message'></span><span style='color: #BB0000;'>✖</span><span> </span><span style='color: #0000BB;'>dplyr</span><span>::</span><span style='color: #00BB00;'>lag()</span><span>      masks </span><span style='color: #0000BB;'>stats</span><span>::lag()</span>
-#&gt; <span class='message'></span><span style='color: #BB0000;'>✖</span><span> </span><span style='color: #0000BB;'>ggplot2</span><span>::</span><span style='color: #00BB00;'>margin()</span><span> masks </span><span style='color: #0000BB;'>randomForest</span><span>::margin()</span>
-#&gt; <span class='message'></span><span style='color: #BB0000;'>✖</span><span> </span><span style='color: #0000BB;'>recipes</span><span>::</span><span style='color: #00BB00;'>step()</span><span>   masks </span><span style='color: #0000BB;'>stats</span><span>::step()</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://github.com/tidymodels/recipes'>"recipes"</a></span>)
+#&gt; <span class='message'></span><span style='color: #BB0000;'>✖</span><span> </span><span style='color: #0000BB;'>purrr</span><span>::</span><span style='color: #00BB00;'>discard()</span><span> masks </span><span style='color: #0000BB;'>scales</span><span>::discard()</span>
+#&gt; <span class='message'></span><span style='color: #BB0000;'>✖</span><span> </span><span style='color: #0000BB;'>dplyr</span><span>::</span><span style='color: #00BB00;'>explain()</span><span> masks </span><span style='color: #0000BB;'>DALEX</span><span>::explain()</span>
+#&gt; <span class='message'></span><span style='color: #BB0000;'>✖</span><span> </span><span style='color: #0000BB;'>dplyr</span><span>::</span><span style='color: #00BB00;'>filter()</span><span>  masks </span><span style='color: #0000BB;'>stats</span><span>::filter()</span>
+#&gt; <span class='message'></span><span style='color: #BB0000;'>✖</span><span> </span><span style='color: #0000BB;'>dplyr</span><span>::</span><span style='color: #00BB00;'>lag()</span><span>     masks </span><span style='color: #0000BB;'>stats</span><span>::lag()</span>
+#&gt; <span class='message'></span><span style='color: #BB0000;'>✖</span><span> </span><span style='color: #0000BB;'>recipes</span><span>::</span><span style='color: #00BB00;'>step()</span><span>  masks </span><span style='color: #0000BB;'>stats</span><span>::step()</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://github.com/tidymodels/recipes'>"recipes"</a></span>)
 <span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='kw'>titanic_imputed</span>
 <span class='kw'>data</span><span class='op'>$</span><span class='kw'>survived</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/h2o/man/as.factor.html'>as.factor</a></span>(<span class='kw'>data</span><span class='op'>$</span><span class='kw'>survived</span>)
 <span class='kw'>rec</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://recipes.tidymodels.org/reference/recipe.html'>recipe</a></span>(<span class='kw'>survived</span> <span class='op'>~</span> <span class='kw'>.</span>, data = <span class='kw'>data</span>) <span class='op'>%&gt;%</span>
@@ -269,7 +256,8 @@ One of those tools, which is one of the most popular one is tidymodels package. 
 <span class='kw'>model_fitted</span> <span class='op'>&lt;-</span> <span class='kw'>wflow</span> <span class='op'>%&gt;%</span>
                 <span class='fu'>fit</span>(data = <span class='kw'>data</span>)
 
-<span class='fu'>explain_tidymodels</span>(<span class='kw'>model_fitted</span>, data = <span class='kw'>titanic_imputed</span>, y = <span class='kw'>titanic_imputed</span><span class='op'>$</span><span class='kw'>survived</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+<span class='fu'>explain_tidymodels</span>(<span class='kw'>model_fitted</span>, data = <span class='kw'>titanic_imputed</span>, y = <span class='kw'>titanic_imputed</span><span class='op'>$</span><span class='kw'>survived</span>)
+</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  workflow  ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; data              :  2207  rows  8  cols 
 #&gt;   -&gt; target variable   :  2207  values 
@@ -284,6 +272,7 @@ One of those tools, which is one of the most popular one is tidymodels package. 
 #&gt;   gender age class    embarked  fare sibsp parch survived
 #&gt; 1   male  42   3rd Southampton  7.11     0     0        0
 #&gt; 2   male  13   3rd Southampton 20.05     0     2        0</div><div class='input'>
+
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -296,7 +285,7 @@ One of those tools, which is one of the most popular one is tidymodels package. 
 
       <footer>
       <div class="copyright">
-  <p>Developed by Szymon Maksymiuk, Przemyslaw Biecek, Katarzyna Pekala.</p>
+  <p>Developed by Szymon Maksymiuk, Przemyslaw Biecek.</p>
 </div>
 
 <div class="pkgdown">

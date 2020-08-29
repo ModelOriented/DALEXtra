@@ -113,18 +113,6 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/vignette_aspect_importance.html">Aspect importance function examples</a>
-    </li>
-  </ul>
-</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -186,7 +174,8 @@
   <span class='st'>"regr.lm"</span>
 )
 <span class='kw'>model_lm</span> <span class='op'>&lt;-</span> <span class='kw'>mlr</span>::<span class='fu'><a href='https://mlr.mlr-org.com/reference/train.html'>train</a></span>(<span class='kw'>learner_lm</span>, <span class='kw'>task</span>)
-<span class='kw'>explainer_lm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_lm</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"LM"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+<span class='kw'>explainer_lm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_lm</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"LM"</span>)
+</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  LM 
 #&gt;   -&gt; data              :  9000  rows  6  cols 
 #&gt;   -&gt; target variable   :  9000  values 
@@ -200,44 +189,49 @@
   <span class='st'>"regr.randomForest"</span>
 )
 <span class='kw'>model_rf</span> <span class='op'>&lt;-</span> <span class='kw'>mlr</span>::<span class='fu'><a href='https://mlr.mlr-org.com/reference/train.html'>train</a></span>(<span class='kw'>learner_rf</span>, <span class='kw'>task</span>)
-<span class='kw'>explainer_rf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_rf</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"RF"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+<span class='kw'>explainer_rf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_rf</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"RF"</span>)
+</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  RF 
 #&gt;   -&gt; data              :  9000  rows  6  cols 
 #&gt;   -&gt; target variable   :  9000  values 
 #&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; predicted values  :  numerical, min =  1982.75 , mean =  3507.705 , max =  5788.239  
+#&gt;   -&gt; predicted values  :  numerical, min =  1994.255 , mean =  3508.686 , max =  5779.797  
 #&gt;   -&gt; model_info        :  package mlr , ver. 2.17.1 , task regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; residuals         :  numerical, min =  -713.2149 , mean =  3.818959 , max =  1310.663  
+#&gt;   -&gt; residuals         :  numerical, min =  -769.9248 , mean =  2.837467 , max =  1290.395  
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 <span class='kw'>learner_gbm</span> <span class='op'>&lt;-</span> <span class='kw'>mlr</span>::<span class='fu'><a href='https://mlr.mlr-org.com/reference/makeLearner.html'>makeLearner</a></span>(
   <span class='st'>"regr.gbm"</span>
 )
 <span class='kw'>model_gbm</span> <span class='op'>&lt;-</span> <span class='kw'>mlr</span>::<span class='fu'><a href='https://mlr.mlr-org.com/reference/train.html'>train</a></span>(<span class='kw'>learner_gbm</span>, <span class='kw'>task</span>)
-<span class='kw'>explainer_gbm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_gbm</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"GBM"</span>)</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
+<span class='kw'>explainer_gbm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='explain_mlr.html'>explain_mlr</a></span>(<span class='kw'>model_gbm</span>, <span class='kw'>apartmentsTest</span>, <span class='kw'>apartmentsTest</span><span class='op'>$</span><span class='kw'>m2.price</span>, label = <span class='st'>"GBM"</span>)
+</div><div class='output co'>#&gt; Preparation of a new explainer is initiated
 #&gt;   -&gt; model label       :  GBM 
 #&gt;   -&gt; data              :  9000  rows  6  cols 
 #&gt;   -&gt; target variable   :  9000  values 
 #&gt;   -&gt; predict function  :  yhat.WrappedModel  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; predicted values  :  numerical, min =  2107.284 , mean =  3500.733 , max =  6053.587  
+#&gt;   -&gt; predicted values  :  numerical, min =  2110.351 , mean =  3500.656 , max =  6053.854  
 #&gt;   -&gt; model_info        :  package mlr , ver. 2.17.1 , task regression ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
-#&gt;   -&gt; residuals         :  numerical, min =  -507.3206 , mean =  10.79061 , max =  755.155  
+#&gt;   -&gt; residuals         :  numerical, min =  -507.3508 , mean =  10.86777 , max =  716.3434  
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'>
 <span class='kw'>plot_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='funnel_measure.html'>funnel_measure</a></span>(<span class='kw'>explainer_lm</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>explainer_rf</span>, <span class='kw'>explainer_gbm</span>),
-                            nbins = <span class='fl'>5</span>, measure_function = <span class='kw'>DALEX</span>::<span class='kw'><a href='https://rdrr.io/pkg/DALEX/man/loss_functions.html'>loss_root_mean_square</a></span>)</div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |============                                                          |  17%  |                                                                              |=======================                                               |  33%  |                                                                              |===================================                                   |  50%  |                                                                              |===============================================                       |  67%  |                                                                              |==========================================================            |  83%  |                                                                              |======================================================================| 100%</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>plot_data</span>)</div><div class='output co'>#&gt; Funnel measure head:
+                            nbins = <span class='fl'>5</span>, measure_function = <span class='kw'>DALEX</span>::<span class='kw'><a href='https://rdrr.io/pkg/DALEX/man/loss_functions.html'>loss_root_mean_square</a></span>)
+</div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |============                                                          |  17%  |                                                                              |=======================                                               |  33%  |                                                                              |===================================                                   |  50%  |                                                                              |===============================================                       |  67%  |                                                                              |==========================================================            |  83%  |                                                                              |======================================================================| 100%</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>plot_data</span>)
+</div><div class='output co'>#&gt; Funnel measure head:
 #&gt;    Variable    Measure          Label Challenger Category
-#&gt; 0% m2.price   44.52551 [1603, 2736.8]         RF   Target
-#&gt; 2  m2.price  -28.01363 [1603, 2736.8]        GBM   Target
-#&gt; 3  m2.price  -60.16893 (2736.8, 3198]         RF   Target
-#&gt; 4  m2.price -146.81129 (2736.8, 3198]        GBM   Target
-#&gt; 5  m2.price -145.11758   (3198, 3634]         RF   Target
-#&gt; 6  m2.price -179.87644   (3198, 3634]        GBM   Target
+#&gt; 0% m2.price   53.02400 [1603, 2736.8]         RF   Target
+#&gt; 2  m2.price  -31.13039 [1603, 2736.8]        GBM   Target
+#&gt; 3  m2.price  -63.83573 (2736.8, 3198]         RF   Target
+#&gt; 4  m2.price -140.82441 (2736.8, 3198]        GBM   Target
+#&gt; 5  m2.price -149.42814   (3198, 3634]         RF   Target
+#&gt; 6  m2.price -171.29939   (3198, 3634]        GBM   Target
 #&gt; Models Info
 #&gt;   label        class       type
 #&gt; 1    LM WrappedModel   Champion
 #&gt; 2    RF WrappedModel Challenger
-#&gt; 3   GBM WrappedModel Challenger</div><div class='input'><span class='co'># }</span></div></span></pre>
+#&gt; 3   GBM WrappedModel Challenger</div><div class='input'><span class='co'># }</span>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -249,7 +243,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Szymon Maksymiuk, Przemyslaw Biecek, Katarzyna Pekala.</p>
+  <p>Developed by Szymon Maksymiuk, Przemyslaw Biecek.</p>
 </div>
 
 <div class="pkgdown">
