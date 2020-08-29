@@ -39,6 +39,9 @@ Imports:
   ggplot2,
   gridExtra
 Suggests:
+    lime,
+    iml,
+    localModel,
     auditor,
     ingredients,
     gbm,

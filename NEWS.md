@@ -2,6 +2,7 @@ DALEXtra 2.0
 ----------------------------------------------------------------
 * `explain_tidymodels()` added as a support for tidymodels workflows.
 * Removed aspect importance. It's available in triplot package https://cran.r-project.org/web/packages/triplot/index.html.
+* `predict_surrogate()` function is added to provide easier interface of accessing lime/iml/localModel implementations of the LIME method.
 
 DALEXtra 1.3.2
 ----------------------------------------------------------------
