@@ -247,7 +247,7 @@ One of those tools, we would like to make more accessible is xgboost.</p>
 <span class='kw'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/xgboost/man/xgb.train.html'>xgboost</a></span>(<span class='kw'>data</span>, <span class='kw'>titanic_imputed</span><span class='op'>$</span><span class='kw'>survived</span>, nrounds = <span class='fl'>10</span>,
                  params = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(objective = <span class='st'>"binary:logistic"</span>),
                 prediction = <span class='fl'>TRUE</span>)
-</div><div class='output co'>#&gt; [19:46:46] WARNING: amalgamation/../src/learner.cc:480: 
+</div><div class='output co'>#&gt; [20:31:27] WARNING: amalgamation/../src/learner.cc:480: 
 #&gt; Parameters: { prediction } might not be used.
 #&gt; 
 #&gt;   This may not be accurate due to some parameters are only used in language bindings but
@@ -279,7 +279,7 @@ One of those tools, we would like to make more accessible is xgboost.</p>
 #&gt;   -&gt; model_info        :  package xgboost , ver. 1.1.1.1 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -0.8105438 , mean =  -0.005083592 , max =  0.9452911  
-#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/DALEX/man/predict_parts.html'>predict_parts</a></span>(<span class='kw'>explainer_1</span>, <span class='kw'>titanic_imputed</span>[<span class='fl'>1</span>,<span class='op'>-</span><span class='fl'>8</span>]))
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='predict_surrogate.html'>predict_parts</a></span>(<span class='kw'>explainer_1</span>, <span class='kw'>titanic_imputed</span>[<span class='fl'>1</span>,<span class='op'>-</span><span class='fl'>8</span>]))
 </div><div class='img'><img src='explain_xgboost-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># explainer without encode function</span>
 <span class='kw'>explainer_2</span> <span class='op'>&lt;-</span> <span class='fu'>explain_xgboost</span>(<span class='kw'>model</span>, data = <span class='kw'>data</span>, <span class='kw'>titanic_imputed</span><span class='op'>$</span><span class='kw'>survived</span>)
@@ -292,7 +292,7 @@ One of those tools, we would like to make more accessible is xgboost.</p>
 #&gt;   -&gt; model_info        :  package xgboost , ver. 1.1.1.1 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -0.8105438 , mean =  -0.005083592 , max =  0.9452911  
-#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/DALEX/man/predict_parts.html'>predict_parts</a></span>(<span class='kw'>explainer_2</span>, <span class='kw'>data</span>[<span class='fl'>1</span>,,drop = <span class='fl'>FALSE</span>]))
+#&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='predict_surrogate.html'>predict_parts</a></span>(<span class='kw'>explainer_2</span>, <span class='kw'>data</span>[<span class='fl'>1</span>,,drop = <span class='fl'>FALSE</span>]))
 </div><div class='img'><img src='explain_xgboost-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></span></pre>
   </div>
