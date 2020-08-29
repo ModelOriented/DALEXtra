@@ -1,6 +1,7 @@
 DALEXtra 2.0
 ----------------------------------------------------------------
 * `explain_tidymodels()` added as a support for tidymodels workflows.
+* Removed aspect importance. It's available in triplot package https://cran.r-project.org/web/packages/triplot/index.html.
 
 DALEXtra 1.3.2
 ----------------------------------------------------------------

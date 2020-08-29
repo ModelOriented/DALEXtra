@@ -12,7 +12,6 @@ Authors@R:
              email = "przemyslaw.biecek@gmail.com", 
              role = c("aut"), 
              comment = c(ORCID = "0000-0001-8423-1823")),
-      person("Katarzyna", "Pekala", role = "aut"),
 	    person("Anna", "Kozak", role = "ctb"),
 	    person("Hubert", "Baniecki", role = "ctb"))
 Description: Provides wrapper of various machine learning models. 
@@ -38,8 +37,6 @@ RoxygenNote: 7.1.1
 Imports: 
   reticulate,
   ggplot2,
-  glmnet,
-  ggdendro,
   gridExtra
 Suggests:
     auditor,
@@ -55,7 +52,6 @@ Suggests:
     rpart,
     xgboost,
     testthat,
-    tidymodels,
-    covr
+    tidymodels
 URL: https://ModelOriented.github.io/DALEXtra/, https://github.com/ModelOriented/DALEXtra
 BugReports: https://github.com/ModelOriented/DALEXtra/issues

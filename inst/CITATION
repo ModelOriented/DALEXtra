@@ -1,0 +1,11 @@
+bibentry(bibtype = "Manual",
+         title = "DALEXtra: Extension for 'DALEX' Package",
+         author = c(person(given = "Szymon",
+                           family = "Maksymiuk"),
+                    person(given = "Przemyslaw",
+                           family = "Biecek")),
+         year = "2020",
+         url = "https://CRAN.R-project.org/package=DALEXtra",
+         note = {"R package version 2.0.0"},
+         header = "To cite DALEX in publications use:"
+)

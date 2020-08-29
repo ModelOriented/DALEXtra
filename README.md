@@ -16,7 +16,7 @@ The `DALEXtra` package is an extension pack for
 [DALEX](https://modeloriented.github.io/DALEX) package. It contains
 various tools for XAI (eXplainable Artificial Intelligence) that can
 help us inspect and improve our model. Functionalities of the `DALEXtra`
-could be divided into three areas.
+could be divided into two areas.
 
   - Champion-Challenger analysis
       - Lets us compare two or more Machine-Learning models, determinate
@@ -29,10 +29,7 @@ could be divided into three areas.
         they can be explained using R tools like
         [DrWhy.AI](https://github.com/ModelOriented/DrWhy) family.
       - Currently supported are **Python** *scikit-learn* and *keras*,
-        **Java** *h2o* and *mljar*, **R** *xgboost*, *mlr* and *mlr3*.
-  - Aspect Importance analysis
-      - Provides instance-level explanations for the groups of
-        explanatory variables.
+        **Java** *h2o*, **R** *xgboost*, *mlr*, *mlr3* and *tidymodels*.
 
 ## Installation
 
@@ -170,8 +167,7 @@ While using unix-like OS, adding conda to PATH is not required.
 First we need provide the data, explainer is useless without them. Thing
 is Python object does not store training data so always have to provide
 dataset. Feel free to use those attached to `DALEX` package or those
-stored in `DALEXtra`
-files.
+stored in `DALEXtra` files.
 
 ``` r
 titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
@@ -203,7 +199,7 @@ data = titanic_test[,1:17], y = titanic_test$survived, colorize = FALSE)
     ##   -> target variable   :  524  values 
     ##   -> predict function  :  yhat.scikitlearn_model  will be used (  default  )
     ##   -> predicted values  :  numerical, min =  0.02086126 , mean =  0.288584 , max =  0.9119996  
-    ##   -> model_info        :  package reticulate , ver. 1.15 , task classification (  default  ) 
+    ##   -> model_info        :  package reticulate , ver. 1.16 , task classification (  default  ) 
     ##   -> residual function :  difference between y and yhat (  default  )
     ##   -> residuals         :  numerical, min =  -0.8669431 , mean =  0.02248468 , max =  0.9791387  
     ##   A new explainer has been created!
@@ -232,7 +228,7 @@ plot(feature_importance(explainer))
 describe(feature_importance(explainer))
 ```
 
-    ## The number of important variables for scikitlearn_model's prediction is 4 out of 17. 
+    ## The number of important variables for scikitlearn_model's prediction is 3 out of 17. 
     ##  Variables gender.female, gender.male, age have the highest importantance.
 
 ``` r
@@ -267,94 +263,6 @@ predict(explainer, titanic_test[1:10, 1:17])
 
     ##  [1] 0.3565896 0.1321947 0.7638813 0.1037486 0.1265221 0.2949228 0.1421281
     ##  [8] 0.1421281 0.4154695 0.1321947
-
-# Aspect importance
-
-Aspect importance function provides instance-level explanations for the
-groups of explanatory variables. It enables grouping predictors into
-entities called aspects. Afterwards, it can calculate the contribution
-of those aspects to the prediction.
-
-To illustrate how the function works, we use titanic example. We build
-random forest model, group features into aspects and choose new
-observation to be explained. Then we build `DALEX` explainer and use it
-to call aspect importance function. Finally, we print and plot function
-results. We can observe that `personal` (`age` and `gender`) variables
-have the biggest contribution to the prediction. This contribution is of
-a positive type.
-
-``` r
-library("DALEX")
-library("randomForest")
-library("DALEXtra")
-titanic <- titanic_imputed
-titanic$country <- NULL
-titanic_without_target <- titanic[,colnames(titanic)!="survived"]
-aspects_titanic <-
-  list(
-    wealth = c("class", "fare"),
-    family = c("sibsp", "parch"),
-    personal = c("age", "gender"),
-    embarked = "embarked"
-  )
-passenger <- titanic_without_target[4,]
-model_titanic_rf <- randomForest(factor(survived) == "yes" ~ gender + age + 
-                                   class + embarked + fare + sibsp + parch,  
-                                 data = titanic)
-predict(model_titanic_rf, passenger)
-```
-
-``` r
-explain_titanic_rf <- explain(model_titanic_rf, 
-                               data = titanic_without_target,
-                               y = titanic$survived == "yes", 
-                               predict_function = predict,
-                               verbose = FALSE)
-titanic_rf_ai <- aspect_importance(x = explain_titanic_rf, 
-                                   new_observation = passenger, 
-                                   aspects = aspects_titanic)
-titanic_rf_ai
-plot(titanic_rf_ai, add_importance = TRUE)
-```
-
-## Automated grouping
-
-In examples described above, we had to manually group features into
-aspects. Aspect importance provides `group_variables()` - function that
-automatically groups features for us, based on the features correlation.
-Function only works on numeric variables.
-
-Below, we test aspect importance function on another dataset. But this
-time we build aspect list by running run `group_variables()` (with cut
-off level set on 0.6). As a result, we get a list of variables groups
-(aspects) where absolute value of features’ pairwise correlation is at
-least at 0.6.
-
-``` r
-library(DALEX)
-data("apartments")
-apartments_num <- apartments[,unlist(lapply(apartments, is.numeric))] 
-apartments_no_target <- apartments_num[,-1]
-new_observation_apartments <- apartments_num[10,]
-model_apartments <- lm(m2.price ~ ., data = apartments_num)
-aspects_apartments <- group_variables(apartments_no_target, 0.6)
-predict(model_apartments, new_observation_apartments)
-```
-
-``` r
-explain_apartments <- explain(model_apartments, 
-                               data = apartments_no_target,
-                               y = apartments$m2.price, 
-                               predict_function = predict,
-                               verbose = FALSE)
-apartments_ai <- aspect_importance(x = explain_apartments, 
-                                   new_observation = new_observation_apartments, 
-                                   aspects = aspects_apartments, 
-                                   N = 1000, show_cor = TRUE)
-apartments_ai
-plot(apartments_ai, aspects_on_axis = FALSE, add_importance = TRUE, 
-     digits_to_round = 0)
-```
 
 # Acknowledgments
 
