@@ -11,6 +11,8 @@ reference:
     - explain_keras
     - explain_mlr
     - explain_mlr3
+    - explain_xgboost
+    - explain_tidymodels
   - title: Addapters for yhat
     desc: Specfic versions of the generic yhat function
     contents:
