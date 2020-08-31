@@ -47,18 +47,6 @@ reference:
     - training_test_comparison
     - print.training_test_comparison
     - plot.training_test_comparison
-  - title: Aspect importance
-    desc: Function used for Aspect Importance analysys
-    contents:
-    - aspect_importance
-    - aspect_importance_single
-    - plot.aspect_importance
-    - get_sample
-    - group_variables
-    - plot_aspects_importance_grouping
-    - plot_group_variables
-    - lime
-    - triplot
   - title: Misc
     contents:
     - print.scikitlearn_set
