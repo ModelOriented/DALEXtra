@@ -39,14 +39,14 @@ Imports:
   ggplot2,
   gridExtra
 Suggests:
-    lime,
-    iml,
-    localModel,
     auditor,
     ingredients,
     gbm,
     ggrepel,
     h2o,
+    iml,
+    lime,
+    loclaModel,
     mlr,
     mlr3,
     randomForest,
