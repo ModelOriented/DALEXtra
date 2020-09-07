@@ -240,14 +240,14 @@ One of those tools, we would like to make more accessible is xgboost.</p>
 </div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Attaching package: ‘xgboost’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:dplyr’:</span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>    slice</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://ModelOriented.github.io/DALEXtra'>"DALEXtra"</a></span>)
+#&gt; <span class='message'>    slice</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://ModelOriented.github.io/DALEXtra/'>"DALEXtra"</a></span>)
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://mlr.mlr-org.com'>"mlr"</a></span>)
 <span class='co'># 8th column is target that has to be omitted in X data</span>
 <span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='fu'><a href='https://mlr.mlr-org.com/reference/createDummyFeatures.html'>createDummyFeatures</a></span>(<span class='kw'>titanic_imputed</span>[,<span class='op'>-</span><span class='fl'>8</span>]))
 <span class='kw'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/xgboost/man/xgb.train.html'>xgboost</a></span>(<span class='kw'>data</span>, <span class='kw'>titanic_imputed</span><span class='op'>$</span><span class='kw'>survived</span>, nrounds = <span class='fl'>10</span>,
                  params = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(objective = <span class='st'>"binary:logistic"</span>),
                 prediction = <span class='fl'>TRUE</span>)
-</div><div class='output co'>#&gt; [07:16:20] WARNING: amalgamation/../src/learner.cc:480: 
+</div><div class='output co'>#&gt; [07:09:05] WARNING: amalgamation/../src/learner.cc:516: 
 #&gt; Parameters: { prediction } might not be used.
 #&gt; 
 #&gt;   This may not be accurate due to some parameters are only used in language bindings but
@@ -276,7 +276,7 @@ One of those tools, we would like to make more accessible is xgboost.</p>
 #&gt;   -&gt; target variable   :  2207  values 
 #&gt;   -&gt; predict function  :  yhat.xgb.Booster  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; predicted values  :  numerical, min =  0.04738454 , mean =  0.3272404 , max =  0.9705966  
-#&gt;   -&gt; model_info        :  package xgboost , ver. 1.1.1.1 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; model_info        :  package xgboost , ver. 1.2.0.1 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -0.8105438 , mean =  -0.005083592 , max =  0.9452911  
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='predict_surrogate.html'>predict_parts</a></span>(<span class='kw'>explainer_1</span>, <span class='kw'>titanic_imputed</span>[<span class='fl'>1</span>,<span class='op'>-</span><span class='fl'>8</span>]))
@@ -289,7 +289,7 @@ One of those tools, we would like to make more accessible is xgboost.</p>
 #&gt;   -&gt; target variable   :  2207  values 
 #&gt;   -&gt; predict function  :  yhat.xgb.Booster  will be used ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; predicted values  :  numerical, min =  0.04738454 , mean =  0.3272404 , max =  0.9705966  
-#&gt;   -&gt; model_info        :  package xgboost , ver. 1.1.1.1 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
+#&gt;   -&gt; model_info        :  package xgboost , ver. 1.2.0.1 , task classification ( </span><span style='color: #BBBB00;'> default </span><span> ) 
 #&gt;   -&gt; residual function :  difference between y and yhat ( </span><span style='color: #BBBB00;'> default </span><span> )
 #&gt;   -&gt; residuals         :  numerical, min =  -0.8105438 , mean =  -0.005083592 , max =  0.9452911  
 #&gt;  </span><span style='color: #00BB00;'> A new explainer has been created! </span><span> </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='predict_surrogate.html'>predict_parts</a></span>(<span class='kw'>explainer_2</span>, <span class='kw'>data</span>[<span class='fl'>1</span>,,drop = <span class='fl'>FALSE</span>]))
