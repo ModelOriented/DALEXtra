@@ -46,7 +46,7 @@ Suggests:
     h2o,
     iml,
     lime,
-    loclaModel,
+    localModel,
     mlr,
     mlr3,
     randomForest,
