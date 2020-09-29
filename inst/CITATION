@@ -1,11 +1,14 @@
-bibentry(bibtype = "Manual",
-         title = "DALEXtra: Extension for 'DALEX' Package",
+bibentry(bibtype = "Article",
+         title = {"Landscape of R packages for eXplainable Artificial Intelligence"},
          author = c(person(given = "Szymon",
                            family = "Maksymiuk"),
+                    person(given = "Alicja",
+                           family = "Gosiewska"),
                     person(given = "Przemyslaw",
                            family = "Biecek")),
          year = "2020",
-         url = "https://CRAN.R-project.org/package=DALEXtra",
-         note = {"R package version 2.0.0"},
+         journal = "arXiv",
+         url = "https://arxiv.org/abs/2009.13248",
+         note = {"Pages 6, 7, 11, 15"},
          header = "To cite DALEXtra in publications use:"
 )
