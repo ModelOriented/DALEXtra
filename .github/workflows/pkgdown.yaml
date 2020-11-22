@@ -57,10 +57,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          remotes::install_cran(c("curl", "pkgdown"))
+          install.packages("remotes")
           remotes::install_deps(dependencies = TRUE)
-          remotes::install_github("ModelOriented/DALEX")
-          remotes::install_github("ModelOriented/auditor")
+          install.packages("pkgdown")
           remotes::install_github("ModelOriented/DrWhyTemplate")
         shell: Rscript {0}
 
