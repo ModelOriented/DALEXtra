@@ -57,7 +57,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          install.packages(c("ps"))
+          install.packages(c("ps", "textshaping"))
           remotes::install_cran("curl")
           remotes::install_deps(dependencies = TRUE)
           remotes::install_dev("pkgdown")
