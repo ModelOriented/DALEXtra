@@ -33,24 +33,7 @@ test_that("if check", {
 
 })
 
-test_that("wrong env",{
-  skip_because_conda_conf_needed()
-          expect_error(explain_scikitlearn(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
-                                           condaenv = conda_list()$name[1]))
 
-  })
-
-test_that("env change error", {
-
-  skip_because_conda_conf_needed()
-  if(!"myenv" %in% reticulate::conda_list()$name){
-    create_env(system.file("extdata", "testing_environment.yml", package = "DALEXtra"))
-  }
-  py_discover_config()
-  expect_error(explain_scikitlearn(system.file("extdata", "scikitlearn.pkl", package = "DALEXtra"),
-                                   condaenv = conda_list()$name[1]))
-
-})
 
 
 
