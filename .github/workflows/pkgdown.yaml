@@ -57,10 +57,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          install.packages(c("ps", "textshaping"))
-          remotes::install_cran("curl")
+          remotes::install_cran(c("curl", "pkgdown"))
           remotes::install_deps(dependencies = TRUE)
-          remotes::install_dev("pkgdown")
           remotes::install_github("ModelOriented/DALEX")
           remotes::install_github("ModelOriented/auditor")
           remotes::install_github("ModelOriented/DrWhyTemplate")
