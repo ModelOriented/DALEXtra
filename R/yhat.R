@@ -32,6 +32,9 @@ yhat.WrappedModel <- function(X.model, newdata, ...) {
            if (X.model$learner$predict.type != "prob") {
              return(pred$data$response)
            }
+           if (!is.null(attr(X.model, "predict_function_target_column"))) {
+             return(pred$data[,attr(X.model, "predict_function_target_column")])
+           }
            if ("truth" %in% colnames(pred$data)){
              if (ncol(pred$data) == 4) {
                response <- pred$data[, 3]
@@ -74,6 +77,11 @@ yhat.h2o <- function(X.model, newdata, ...) {
         newdata <- h2o::as.h2o(newdata)
       }
       ret <- as.data.frame(h2o::h2o.predict(X.model, newdata = newdata))
+
+      if (!is.null(attr(X.model, "predict_function_target_column"))) {
+        return(ret[,attr(X.model, "predict_function_target_column")])
+      }
+
       if ("predict" %in% colnames(ret)) {
         ret <- ret [,3]
       } else {
@@ -88,6 +96,11 @@ yhat.h2o <- function(X.model, newdata, ...) {
       }
       ret <- as.data.frame(h2o::h2o.predict(X.model, newdata = newdata))
       colnames(ret) <- normalize_h2o_names(colnames(ret))
+
+      if (!is.null(attr(X.model, "predict_function_target_column"))) {
+        return(ret[,attr(X.model, "predict_function_target_column")])
+      }
+
       ret[,-1]
     },
     stop("Model is not explainable h2o object")
@@ -111,10 +124,15 @@ yhat.H2OMultinomialModel <- yhat.h2o
 yhat.scikitlearn_model <- function(X.model, newdata, ...) {
   if ("predict_proba" %in% names(X.model)) {
     pred <-  X.model$predict_proba(newdata)
+
+    colnames(pred) <- 0:(ncol(pred)-1)
+
+    if (!is.null(attr(X.model, "predict_function_target_column"))) {
+      return(pred[,attr(X.model, "predict_function_target_column")])
+    }
+
     if (ncol(pred) == 2) {
       pred <- pred[,2]
-    } else {
-      colnames(pred) <- 0:(ncol(pred)-1)
     }
 
   } else {
@@ -128,12 +146,16 @@ yhat.scikitlearn_model <- function(X.model, newdata, ...) {
 yhat.keras <- function(X.model, newdata, ...) {
   if ("predict_proba" %in% names(X.model)) {
     pred <-  X.model$predict_proba(newdata)
+    colnames(pred) <- 0:(ncol(pred)-1)
+
+    if (!is.null(attr(X.model, "predict_function_target_column"))) {
+      return(pred[,attr(X.model, "predict_function_target_column")])
+    }
+
     if (ncol(pred) == 1) {
       pred <- as.numeric(pred)
     } else if (ncol(pred) == 2) {
       pred <- as.numeric(pred[,2])
-    } else {
-      colnames(pred) <- 0:(ncol(pred)-1)
     }
   } else {
     pred <-  X.model$predict(newdata)
@@ -158,6 +180,11 @@ yhat.LearnerClassif <- function(X.model, newdata, ...) {
 
   # return probabilities for class: 1
   response <- pred$prob
+
+  if (!is.null(attr(X.model, "predict_function_target_column"))) {
+    return(response[,attr(X.model, "predict_function_target_column")])
+  }
+
   if (ncol(response) == 2) {
     response <- response[,2]
   }
@@ -171,6 +198,11 @@ yhat.GraphLearner <- function(X.model, newdata, ...) {
     pred <- X.model$predict_newdata(newdata)
     # return probabilities for class: 1
     response <- pred$prob
+
+    if (!is.null(attr(X.model, "predict_function_target_column"))) {
+      return(response[,attr(X.model, "predict_function_target_column")])
+    }
+
     if (ncol(response) == 2) {
       response <- response[,2]
     }
@@ -195,11 +227,17 @@ yhat.xgb.Booster <- function(X.model, newdata, ...) {
     }
     p <- predict(X.model, newdata, type="response")
     ret <- matrix(p, ncol = X.model$params$num_class, byrow = TRUE)
+    if (!is.null(attr(X.model, "predict_function_target_column"))) {
+      return(ret[,attr(X.model, "predict_function_target_column")])
+    }
     colnames(ret) <- col_names
   } else if (X.model$params$objective == "multi:softprob") {
     stop("Please use objective\"multi:softmax\" to get probability output")
   } else if (X.model$params$objective == "binary:logistic") {
     ret <- predict(X.model, newdata, type="response")
+    if (!is.null(attr(X.model, "predict_function_target_column"))) {
+      return(ret[,attr(X.model, "predict_function_target_column")])
+    }
   } else if (X.model$params$objective == "binary:logitraw" | X.model$params$objective == "binary:hinge") {
     stop("Please use objective\"binary:logistic\" to get probability output")
   } else {
@@ -218,6 +256,11 @@ yhat.workflow <- function(X.model, newdata, ...) {
     if (X.model$fit$fit$spec$mode == "classification") {
       response <- as.matrix(predict(X.model, newdata, type = "prob"))
       colnames(response) <- X.model$fit$fit$lvl
+
+      if (!is.null(attr(X.model, "predict_function_target_column"))) {
+        return(response[,attr(X.model, "predict_function_target_column")])
+      }
+
       if (ncol(response) == 2) {
         response <- response[,2]
       }

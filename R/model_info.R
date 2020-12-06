@@ -50,7 +50,11 @@ model_info.h2o <- function(model, is_multiclass = FALSE, ...) {
       type <- "classification"
     },
     "H2OMultinomialModel" = {
-      type <- "multiclass"
+      if (!is.null(attr(model, "predict_function_target_column"))) {
+       type <- "classification"
+      } else {
+        type <- "multiclass"
+      }
     },
     stop("Model is not explainable h2o object")
   )
@@ -170,7 +174,11 @@ model_info.GraphLearner <- function(model, is_multiclass = FALSE, ...) {
 model_info.xgb.Booster <- function(model, is_multiclass = FALSE, ...) {
   task <- strsplit(model$params$objective, ":", fixed = TRUE)[[1]][1]
   if (task == "multi") {
-    type <- "multiclass"
+    if (!is.null(attr(model, "predict_function_target_column"))) {
+      type <- "classification"
+    } else {
+      type <- "multiclass"
+    }
   } else if (task == "binary") {
     type <- "classification"
   } else if (task == "reg") {

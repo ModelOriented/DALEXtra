@@ -13,6 +13,7 @@
 #' @param y vector that will be passed to \code{\link[DALEX]{explain}}.
 #' @param weights numeric vector with sampling weights. By default it's \code{NULL}. If provided then it shall have the same length as \code{data}
 #' @param predict_function predict function that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.
+#' @param predict_function_target_column Character or numeric containing either column name or column number in the model prediction object of the class that should be considered as positive (ie. the class that is associated with probability 1). If NULL, the second column of the output will be taken for binary classification. For a multiclass classification setting that parameter cause switch to binary classification mode with 1 vs others probabilities.
 #' @param residual_function residual function that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.
 #' @param ... other parameters
 #' @param label label that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.
@@ -100,6 +101,7 @@ explain_scikitlearn <-
            y = NULL,
            weights = NULL,
            predict_function = NULL,
+           predict_function_target_column = NULL,
            residual_function = NULL,
            ...,
            label = NULL,
@@ -156,6 +158,7 @@ explain_scikitlearn <-
                           y = y,
                           weights = weights,
                           predict_function = predict_function,
+                          predict_function_target_column = predict_function_target_column,
                           residual_function = residual_function,
                           ...,
                           label = label,
@@ -164,7 +167,7 @@ explain_scikitlearn <-
                           colorize = colorize,
                           model_info = model_info,
                           type = type
-                        )
+    )
     explainer$param_set <- params
     explainer
   }
