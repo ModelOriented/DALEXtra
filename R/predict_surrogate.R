@@ -77,7 +77,8 @@ predict_surrogate_lime <- function(explainer, new_observation, n_features = 4, n
   lime_expl <- lime::explain(x = new_observation,
                              explainer = lime_model,
                              n_features = n_features,
-                             n_permutations = n_permutations)
+                             n_permutations = n_permutations,
+                             ...)
   class(lime_expl) <- c("predict_surrogate_lime", class(lime_expl))
   lime_expl
 }
