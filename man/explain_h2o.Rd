@@ -62,15 +62,15 @@ One of those tools, we would like to make more accessible is H2O.
 \donttest{
 
 
-# # load packages and data
+# load packages and data
 library(h2o)
 library(DALEXtra)
 
 # data <- DALEX::titanic_imputed
 
 # init h2o
- h2o.init()
-
+ cluster <- try(h2o::h2o.init())
+if (!inherits(cluster, "try-error")) {
 # stop h2o progress printing
  h2o.no_progress()
 
@@ -111,5 +111,6 @@ learn_rate = 0.001
 explain_h2o(model, titanic_test[,1:17], titanic_test[,18])
 
 h2o.shutdown(prompt = FALSE)
+ }
 }
 }

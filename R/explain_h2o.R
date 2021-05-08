@@ -30,15 +30,15 @@
 #' \donttest{
 #'
 #'
-#' # # load packages and data
+#' # load packages and data
 #' library(h2o)
 #' library(DALEXtra)
 #'
 #' # data <- DALEX::titanic_imputed
 #'
 #' # init h2o
-#'  h2o.init()
-#'
+#'  cluster <- try(h2o::h2o.init())
+#' if (!inherits(cluster, "try-error")) {
 #' # stop h2o progress printing
 #'  h2o.no_progress()
 #'
@@ -48,7 +48,7 @@
 #' # test <- as.data.frame(h2o_split[[2]])
 #' # h2o automl takes target as factor
 #' # train$survived <- as.factor(train$survived)
-#'
+#'ń
 #' # fit a model
 #' # automl <- h2o.automl(y = "survived",
 #' #                   training_frame = train,
@@ -79,6 +79,7 @@
 #' explain_h2o(model, titanic_test[,1:17], titanic_test[,18])
 #'
 #' h2o.shutdown(prompt = FALSE)
+#'  }
 #' }
 #' @rdname explain_h2o
 #' @export
