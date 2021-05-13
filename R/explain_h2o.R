@@ -48,7 +48,7 @@
 #' # test <- as.data.frame(h2o_split[[2]])
 #' # h2o automl takes target as factor
 #' # train$survived <- as.factor(train$survived)
-#'ń
+#'
 #' # fit a model
 #' # automl <- h2o.automl(y = "survived",
 #' #                   training_frame = train,

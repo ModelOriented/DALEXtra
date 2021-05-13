@@ -1,7 +1,7 @@
 #' Instance Level Surrogate Models
 #'
 #' Interface to different implementations of the LIME method.
-#' Find information how the LIME method works here: \url{https://pbiecek.github.io/ema/LIME.html}.
+#' Find information how the LIME method works here: \url{https://ema.drwhy.ai/LIME.html}.
 #'
 #' @param explainer a model to be explained, preprocessed by the 'explain' function
 #' @param new_observation a new observation for which predictions need to be explained
@@ -19,7 +19,7 @@
 #' @return Depending on the \code{type} there are different classess of the resulting object.
 #'
 #' @aliases predict_parts_break_down predict_parts predict_parts_ibreak_down predict_parts_shap
-#' @references Explanatory Model Analysis. Explore, Explain and Examine Predictive Models. \url{https://pbiecek.github.io/ema/}
+#' @references Explanatory Model Analysis. Explore, Explain and Examine Predictive Models. \url{https://ema.drwhy.ai/}
 #'
 #' @name predict_surrogate
 #' @export

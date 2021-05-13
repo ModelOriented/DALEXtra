@@ -71,8 +71,8 @@ Depending on the \code{type} there are different classess of the resulting objec
 }
 \description{
 Interface to different implementations of the LIME method.
-Find information how the LIME method works here: \url{https://pbiecek.github.io/ema/LIME.html}.
+Find information how the LIME method works here: \url{https://ema.drwhy.ai/LIME.html}.
 }
 \references{
-Explanatory Model Analysis. Explore, Explain and Examine Predictive Models. \url{https://pbiecek.github.io/ema/}
+Explanatory Model Analysis. Explore, Explain and Examine Predictive Models. \url{https://ema.drwhy.ai/}
 }
