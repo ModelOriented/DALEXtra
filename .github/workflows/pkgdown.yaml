@@ -7,8 +7,7 @@ name: pkgdown
 
 jobs:
   pkgdown:
-
-    runs-on: ubuntu-16.04
+    runs-on: macOS-latest
     steps:
       - uses: actions/checkout@master
       - uses: r-lib/actions/setup-pandoc@v1
