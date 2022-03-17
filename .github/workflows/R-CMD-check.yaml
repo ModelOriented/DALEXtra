@@ -88,10 +88,10 @@ jobs:
       - name: Install dependencies
         run: |
           remotes::install_deps(dependencies = TRUE)
-          remotes::install_github("ModelOriented/ingredients")
-          remotes::install_github("ModelOriented/iBreakDown")
-          remotes::install_github("ModelOriented/DALEX")
-          remotes::install_github("ModelOriented/auditor")
+  # remotes::install_github("ModelOriented/ingredients")
+  # remotes::install_github("ModelOriented/iBreakDown")
+  # remotes::install_github("ModelOriented/DALEX")
+  # remotes::install_github("ModelOriented/auditor")
           remotes::install_cran(c("rcmdcheck", "XML"))
         shell: Rscript {0}
 
