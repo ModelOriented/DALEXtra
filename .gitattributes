@@ -3,3 +3,4 @@ docs/* linguist-documentation
 man/* linguist-documentation
 misc/* linguist-documentation
 pkgdown/* linguist-documentation
+inst/ChampionChallenger/DALEXtra_example_of_report.html linguist-documentation
