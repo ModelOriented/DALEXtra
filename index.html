@@ -60,20 +60,14 @@
       <div class="navbar-brand-container">
         <a class="navbar-brand" href="index.html">DALEXtra</a>
         <div class="info">
-          <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a>
-           developed by the <a href="https://mi2.mini.pw.edu.pl/">MI^2 DataLab</a> </span>
-          <span class="version version-default">2.0</span>
+          <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy" class="external-link">DrWhy.AI</a>
+           developed by the <a href="https://mi2.mini.pw.edu.pl/" class="external-link">MI^2 DataLab</a> </span>
+          <span class="version version-default">2.1.1.9000</span>
         </div>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -81,8 +75,8 @@
   <a href="news/index.html">Changelog</a>
 </li>
         <li>
-  <a href="https://github.com/ModelOriented/DALEXtra/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/ModelOriented/DALEXtra/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -99,16 +93,15 @@
       </header><div class="row">
   <div class="contents col-md-9">
 
-<div id="dalextra-" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#dalextra-" class="anchor"></a>DALEXtra <img src="reference/figures/logo.png" align="right" width="150">
+<div class="section level1">
+<div class="page-header"><h1 id="dalextra-">DALEXtra <img src="reference/figures/logo.png" align="right" width="150"><a class="anchor" aria-label="anchor" href="#dalextra-"></a>
 </h1></div>
 
 </div>
-<div id="overview" class="section level1">
-<h1 class="hasAnchor">
-<a href="#overview" class="anchor"></a>Overview</h1>
-<p>The <code>DALEXtra</code> package is an extension pack for <a href="https://modeloriented.github.io/DALEX">DALEX</a> package. It contains various tools for XAI (eXplainable Artificial Intelligence) that can help us inspect and improve our model. Functionalities of the <code>DALEXtra</code> could be divided into two areas.</p>
+<div class="section level1">
+<h1 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h1>
+<p>The <code>DALEXtra</code> package is an extension pack for <a href="https://modeloriented.github.io/DALEX" class="external-link">DALEX</a> package. It contains various tools for XAI (eXplainable Artificial Intelligence) that can help us inspect and improve our model. Functionalities of the <code>DALEXtra</code> could be divided into two areas.</p>
 <ul>
 <li>Champion-Challenger analysis
 <ul>
@@ -119,113 +112,113 @@
 </li>
 <li>Cross langauge comaprison
 <ul>
-<li>Creating explainers for models created in different languges so they can be explained using R tools like <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a> family.</li>
+<li>Creating explainers for models created in different languges so they can be explained using R tools like <a href="https://github.com/ModelOriented/DrWhy" class="external-link">DrWhy.AI</a> family.</li>
 <li>Currently supported are <strong>Python</strong> <em>scikit-learn</em> and <em>keras</em>, <strong>Java</strong> <em>h2o</em>, <strong>R</strong> <em>xgboost</em>, <em>mlr</em>, <em>mlr3</em> and <em>tidymodels</em>.</li>
 </ul>
 </li>
 </ul>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="co"># Install the development version from GitHub:</span>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Install the development version from GitHub:</span>
 
 <span class="co"># it is recommended to install latest version of DALEX from GitHub</span>
-<span class="kw">devtools</span>::<span class="fu">install_github</span>(<span class="st">"ModelOriented/DALEX"</span>)
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ModelOriented/DALEX"</span><span class="op">)</span>
 <span class="co"># install.packages("devtools")</span>
-<span class="kw">devtools</span>::<span class="fu">install_github</span>(<span class="st">"ModelOriented/DALEXtra"</span>)</pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ModelOriented/DALEXtra"</span><span class="op">)</span></code></pre></div>
 <p>or latest CRAN version</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"DALEX"</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"DALEXtra"</span>)</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"DALEX"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"DALEXtra"</span><span class="op">)</span></code></pre></div>
 <p>Other packages useful with explanations.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="kw">devtools</span>::<span class="fu">install_github</span>(<span class="st">"ModelOriented/ingredients"</span>)
-<span class="kw">devtools</span>::<span class="fu">install_github</span>(<span class="st">"ModelOriented/iBreakDown"</span>)
-<span class="kw">devtools</span>::<span class="fu">install_github</span>(<span class="st">"ModelOriented/shapper"</span>)
-<span class="kw">devtools</span>::<span class="fu">install_github</span>(<span class="st">"ModelOriented/auditor"</span>)
-<span class="kw">devtools</span>::<span class="fu">install_github</span>(<span class="st">"ModelOriented/modelStudio"</span>)</pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ModelOriented/ingredients"</span><span class="op">)</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ModelOriented/iBreakDown"</span><span class="op">)</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ModelOriented/shapper"</span><span class="op">)</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ModelOriented/auditor"</span><span class="op">)</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ModelOriented/modelStudio"</span><span class="op">)</span></code></pre></div>
 <p>Above packages can be used along with <code>explain</code> object to create explanations (ingredients, iBreakDown, shapper), audit our model (auditor) or automate the model exploration process (modelStudio).</p>
 </div>
 </div>
-<div id="champion-challenger-analysis" class="section level1">
-<h1 class="hasAnchor">
-<a href="#champion-challenger-analysis" class="anchor"></a>Champion-Challenger analysis</h1>
-<p>Without aby doubt, comaprison of models, espacially black-box ones is very important use case nowadays. Every day new models are being created and we need tools that can allow us to determinate which one is better. For this purpose we present Champion-Challenger analysis. It is set of functions that creates comaprisons of models and later can be gathered up to created one report with generic comments. Example of report can be found <a href="http://htmlpreview.github.io/?https://github.com/ModelOriented/DALEXtra/blob/master/inst/ChampionChallenger/DALEXtra_example_of_report.html">here</a>. As you can see any explenation that has generic <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> function can be plotted.</p>
-<div id="funnel-plot" class="section level2">
-<h2 class="hasAnchor">
-<a href="#funnel-plot" class="anchor"></a>Funnel Plot</h2>
+<div class="section level1">
+<h1 id="champion-challenger-analysis">Champion-Challenger analysis<a class="anchor" aria-label="anchor" href="#champion-challenger-analysis"></a>
+</h1>
+<p>Without aby doubt, comaprison of models, espacially black-box ones is very important use case nowadays. Every day new models are being created and we need tools that can allow us to determinate which one is better. For this purpose we present Champion-Challenger analysis. It is set of functions that creates comaprisons of models and later can be gathered up to created one report with generic comments. Example of report can be found <a href="http://htmlpreview.github.io/?https://github.com/ModelOriented/DALEXtra/blob/master/inst/ChampionChallenger/DALEXtra_example_of_report.html" class="external-link">here</a>. As you can see any explenation that has generic <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> function can be plotted.</p>
+<div class="section level2">
+<h2 id="funnel-plot">Funnel Plot<a class="anchor" aria-label="anchor" href="#funnel-plot"></a>
+</h2>
 <p>Core of our analysis is funnel plot. It lets us find subsets of data where one of models is significantly better than other ones. That ability is insanely usefull, when we have models that have similiar overall performance and we want to know which one should we use.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
- <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="https://mlr.mlr-org.com">"mlr"</a></span>)
- <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="https://ModelOriented.github.io/DALEXtra/">"DALEXtra"</a></span>)
- <span class="kw">task</span> <span class="op">&lt;-</span> <span class="kw">mlr</span>::<span class="fu"><a href="https://mlr.mlr-org.com/reference/RegrTask.html">makeRegrTask</a></span>(
-   id = <span class="st">"R"</span>,
-   data = <span class="kw">apartments</span>,
-   target = <span class="st">"m2.price"</span>
- )
- <span class="kw">learner_lm</span> <span class="op">&lt;-</span> <span class="kw">mlr</span>::<span class="fu"><a href="https://mlr.mlr-org.com/reference/makeLearner.html">makeLearner</a></span>(
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://mlr.mlr-org.com" class="external-link">"mlr"</a></span><span class="op">)</span>
+ <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ModelOriented.github.io/DALEXtra/" class="external-link">"DALEXtra"</a></span><span class="op">)</span>
+ <span class="va">task</span> <span class="op">&lt;-</span> <span class="fu">mlr</span><span class="fu">::</span><span class="fu"><a href="https://mlr.mlr-org.com/reference/RegrTask.html" class="external-link">makeRegrTask</a></span><span class="op">(</span>
+   id <span class="op">=</span> <span class="st">"R"</span>,
+   data <span class="op">=</span> <span class="va">apartments</span>,
+   target <span class="op">=</span> <span class="st">"m2.price"</span>
+ <span class="op">)</span>
+ <span class="va">learner_lm</span> <span class="op">&lt;-</span> <span class="fu">mlr</span><span class="fu">::</span><span class="fu"><a href="https://mlr.mlr-org.com/reference/makeLearner.html" class="external-link">makeLearner</a></span><span class="op">(</span>
    <span class="st">"regr.lm"</span>
- )
- <span class="kw">model_lm</span> <span class="op">&lt;-</span> <span class="kw">mlr</span>::<span class="fu"><a href="https://mlr.mlr-org.com/reference/train.html">train</a></span>(<span class="kw">learner_lm</span>, <span class="kw">task</span>)
- <span class="kw">explainer_lm</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/explain_mlr.html">explain_mlr</a></span>(<span class="kw">model_lm</span>, <span class="kw">apartmentsTest</span>, <span class="kw">apartmentsTest</span><span class="op">$</span><span class="kw">m2.price</span>, label = <span class="st">"LM"</span>, 
-                             verbose = <span class="fl">FALSE</span>, precalculate = <span class="fl">FALSE</span>)
+ <span class="op">)</span>
+ <span class="va">model_lm</span> <span class="op">&lt;-</span> <span class="fu">mlr</span><span class="fu">::</span><span class="fu"><a href="https://mlr.mlr-org.com/reference/train.html" class="external-link">train</a></span><span class="op">(</span><span class="va">learner_lm</span>, <span class="va">task</span><span class="op">)</span>
+ <span class="va">explainer_lm</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/explain_mlr.html">explain_mlr</a></span><span class="op">(</span><span class="va">model_lm</span>, <span class="va">apartmentsTest</span>, <span class="va">apartmentsTest</span><span class="op">$</span><span class="va">m2.price</span>, label <span class="op">=</span> <span class="st">"LM"</span>, 
+                             verbose <span class="op">=</span> <span class="cn">FALSE</span>, precalculate <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
- <span class="kw">learner_rf</span> <span class="op">&lt;-</span> <span class="kw">mlr</span>::<span class="fu"><a href="https://mlr.mlr-org.com/reference/makeLearner.html">makeLearner</a></span>(
+ <span class="va">learner_rf</span> <span class="op">&lt;-</span> <span class="fu">mlr</span><span class="fu">::</span><span class="fu"><a href="https://mlr.mlr-org.com/reference/makeLearner.html" class="external-link">makeLearner</a></span><span class="op">(</span>
    <span class="st">"regr.randomForest"</span>
- )
- <span class="kw">model_rf</span> <span class="op">&lt;-</span> <span class="kw">mlr</span>::<span class="fu"><a href="https://mlr.mlr-org.com/reference/train.html">train</a></span>(<span class="kw">learner_rf</span>, <span class="kw">task</span>)
- <span class="kw">explainer_rf</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/explain_mlr.html">explain_mlr</a></span>(<span class="kw">model_rf</span>, <span class="kw">apartmentsTest</span>, <span class="kw">apartmentsTest</span><span class="op">$</span><span class="kw">m2.price</span>, label = <span class="st">"RF"</span>,
-                             verbose = <span class="fl">FALSE</span>, precalculate = <span class="fl">FALSE</span>)
+ <span class="op">)</span>
+ <span class="va">model_rf</span> <span class="op">&lt;-</span> <span class="fu">mlr</span><span class="fu">::</span><span class="fu"><a href="https://mlr.mlr-org.com/reference/train.html" class="external-link">train</a></span><span class="op">(</span><span class="va">learner_rf</span>, <span class="va">task</span><span class="op">)</span>
+ <span class="va">explainer_rf</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/explain_mlr.html">explain_mlr</a></span><span class="op">(</span><span class="va">model_rf</span>, <span class="va">apartmentsTest</span>, <span class="va">apartmentsTest</span><span class="op">$</span><span class="va">m2.price</span>, label <span class="op">=</span> <span class="st">"RF"</span>,
+                             verbose <span class="op">=</span> <span class="cn">FALSE</span>, precalculate <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
- <span class="kw">plot_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/funnel_measure.html">funnel_measure</a></span>(<span class="kw">explainer_lm</span>, <span class="kw">explainer_rf</span>, 
-                             partition_data = <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="kw">apartmentsTest</span>, 
-                                                    <span class="st">"m2.per.room"</span> = <span class="kw">apartmentsTest</span><span class="op">$</span><span class="kw">surface</span><span class="op">/</span><span class="kw">apartmentsTest</span><span class="op">$</span><span class="kw">no.rooms</span>),
-                             nbins = <span class="fl">5</span>, measure_function = <span class="kw">DALEX</span>::<span class="kw"><a href="https://rdrr.io/pkg/DALEX/man/loss_functions.html">loss_root_mean_square</a></span>, show_info = <span class="fl">FALSE</span>)</pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">plot_data</span>)[[<span class="fl">1</span>]]</pre></div>
+ <span class="va">plot_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/funnel_measure.html">funnel_measure</a></span><span class="op">(</span><span class="va">explainer_lm</span>, <span class="va">explainer_rf</span>, 
+                             partition_data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">apartmentsTest</span>, 
+                                                    <span class="st">"m2.per.room"</span> <span class="op">=</span> <span class="va">apartmentsTest</span><span class="op">$</span><span class="va">surface</span><span class="op">/</span><span class="va">apartmentsTest</span><span class="op">$</span><span class="va">no.rooms</span><span class="op">)</span>,
+                             nbins <span class="op">=</span> <span class="fl">5</span>, measure_function <span class="op">=</span> <span class="fu">DALEX</span><span class="fu">::</span><span class="va"><a href="https://dalex.drwhy.ai/reference/loss_functions.html" class="external-link">loss_root_mean_square</a></span>, show_info <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">plot_data</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <p><img src="reference/figures/unnamed-chunk-5-1.png" style="display: block; margin: auto;"> Such situation is shown in the following plot. Both, <code>LM</code> and <code>RF</code> models have smiliar RMSE, but Funnel Plot shows that if we want to predict expensive or cheap apartemnts, we definetly should use <code>LM</code> while <code>RF</code> for average priced apartments. Also without any doubt <code>LM</code> is much better than <code>RF</code> for <code>Srodmiescie</code> district. Following use case show us how powerfull tool can Funnel Plot be, for example we can compund two or models into one based of areas acquired from the Plot and thus improve our models. One another advantage of Funnel Plot is that it doesn’t require model to be fitted with Variables shown on the plot, as you can see, <code>m2.per.room</code> is an artificial variable.</p>
 </div>
 </div>
-<div id="cross-langauge-comaprison" class="section level1">
-<h1 class="hasAnchor">
-<a href="#cross-langauge-comaprison" class="anchor"></a>Cross langauge comaprison</h1>
+<div class="section level1">
+<h1 id="cross-langauge-comaprison">Cross langauge comaprison<a class="anchor" aria-label="anchor" href="#cross-langauge-comaprison"></a>
+</h1>
 <p>Here we will present short use case for our package and its compatibility with Python.</p>
-<div id="how-to-setup-anaconda" class="section level2">
-<h2 class="hasAnchor">
-<a href="#how-to-setup-anaconda" class="anchor"></a>How to setup Anaconda</h2>
-<p>In order to be able to use some features associated with <code>DALEXtra</code>, Anaconda in needed. The easiest way to get it, is visiting <a href="https://www.anaconda.com/distribution">Anaconda website</a>. And choosing proper OS as it stands in the following picture. <img src="https://raw.githubusercontent.com/ModelOriented/DALEXtra/master/README_files/figure-gfm/anaconda1.png"> There is no big difference bewtween Python versions when downloading Anaconda. You can always create virtual environment with any version of Python no matter which version was downloaded first.</p>
-<div id="windows" class="section level3">
-<h3 class="hasAnchor">
-<a href="#windows" class="anchor"></a>Windows</h3>
+<div class="section level2">
+<h2 id="how-to-setup-anaconda">How to setup Anaconda<a class="anchor" aria-label="anchor" href="#how-to-setup-anaconda"></a>
+</h2>
+<p>In order to be able to use some features associated with <code>DALEXtra</code>, Anaconda in needed. The easiest way to get it, is visiting <a href="https://www.anaconda.com/distribution" class="external-link">Anaconda website</a>. And choosing proper OS as it stands in the following picture. <img src="https://raw.githubusercontent.com/ModelOriented/DALEXtra/master/README_files/figure-gfm/anaconda1.png"> There is no big difference bewtween Python versions when downloading Anaconda. You can always create virtual environment with any version of Python no matter which version was downloaded first.</p>
+<div class="section level3">
+<h3 id="windows">Windows<a class="anchor" aria-label="anchor" href="#windows"></a>
+</h3>
 <p>Crucial thing is adding conda to PATH environment variable when using Windows. You can do it during the installation, by marking this checkbox.</p>
 <center>
 <p><img src="https://raw.githubusercontent.com/ModelOriented/DALEXtra/master/README_files/figure-gfm/anaconda2.png"></p>
 </center>
-<p>or, if conda is already installed, follow <a href="https://stackoverflow.com/a/44597801/9717584">those instructions</a>.</p>
+<p>or, if conda is already installed, follow <a href="https://stackoverflow.com/a/44597801/9717584" class="external-link">those instructions</a>.</p>
 </div>
-<div id="unix" class="section level3">
-<h3 class="hasAnchor">
-<a href="#unix" class="anchor"></a>Unix</h3>
+<div class="section level3">
+<h3 id="unix">Unix<a class="anchor" aria-label="anchor" href="#unix"></a>
+</h3>
 <p>While using unix-like OS, adding conda to PATH is not required.</p>
 </div>
-<div id="loading-data" class="section level3">
-<h3 class="hasAnchor">
-<a href="#loading-data" class="anchor"></a>Loading data</h3>
+<div class="section level3">
+<h3 id="loading-data">Loading data<a class="anchor" aria-label="anchor" href="#loading-data"></a>
+</h3>
 <p>First we need provide the data, explainer is useless without them. Thing is Python object does not store training data so always have to provide dataset. Feel free to use those attached to <code>DALEX</code> package or those stored in <code>DALEXtra</code> files.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="kw">titanic_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"titanic_test.csv"</span>, package = <span class="st">"DALEXtra"</span>))</pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">titanic_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"titanic_test.csv"</span>, package <span class="op">=</span> <span class="st">"DALEXtra"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Keep in mind that dataframe includes target variable (18th column) and scikit-learn models cannot work with it.</p>
 </div>
-<div id="creating-explainer" class="section level3">
-<h3 class="hasAnchor">
-<a href="#creating-explainer" class="anchor"></a>Creating explainer</h3>
+<div class="section level3">
+<h3 id="creating-explainer">Creating explainer<a class="anchor" aria-label="anchor" href="#creating-explainer"></a>
+</h3>
 <p>Creating exlainer from scikit-learn Python model is very simple thanks to <code>DALEXtra</code>. The only thing you need to provide is path to pickle and, if necessary, something that lets recognize Python environment. It may be a .yml file with packages specification, name of existing conda environment or path to Python virtual environment. Execution of <code>scikitlearn_explain</code> only with .pkl file and data will cause usage of default Python.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://ModelOriented.github.io/DALEXtra/">DALEXtra</a></span>)
-<span class="kw">explainer</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/explain_scikitlearn.html">explain_scikitlearn</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"scikitlearn.pkl"</span>, package = <span class="st">"DALEXtra"</span>),
-yml = <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"testing_environment.yml"</span>, package = <span class="st">"DALEXtra"</span>), 
-data = <span class="kw">titanic_test</span>[,<span class="fl">1</span><span class="op">:</span><span class="fl">17</span>], y = <span class="kw">titanic_test</span><span class="op">$</span><span class="kw">survived</span>, colorize = <span class="fl">FALSE</span>)</pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ModelOriented.github.io/DALEXtra/" class="external-link">DALEXtra</a></span><span class="op">)</span>
+<span class="va">explainer</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/explain_scikitlearn.html">explain_scikitlearn</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"scikitlearn.pkl"</span>, package <span class="op">=</span> <span class="st">"DALEXtra"</span><span class="op">)</span>,
+yml <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"testing_environment.yml"</span>, package <span class="op">=</span> <span class="st">"DALEXtra"</span><span class="op">)</span>, 
+data <span class="op">=</span> <span class="va">titanic_test</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">17</span><span class="op">]</span>, y <span class="op">=</span> <span class="va">titanic_test</span><span class="op">$</span><span class="va">survived</span>, colorize <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">## Preparation of a new explainer is initiated</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="co">##   -&gt; model label       :  scikitlearn_model  (  default  )</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a><span class="co">##   -&gt; data              :  524  rows  17  cols </span></span>
@@ -236,50 +229,50 @@ data = <span class="kw">titanic_test</span>[,<span class="fl">1</span><span clas
 <span id="cb8-8"><a href="#cb8-8"></a><span class="co">##   -&gt; residual function :  difference between y and yhat (  default  )</span></span>
 <span id="cb8-9"><a href="#cb8-9"></a><span class="co">##   -&gt; residuals         :  numerical, min =  -0.8669431 , mean =  0.02248468 , max =  0.9791387  </span></span>
 <span id="cb8-10"><a href="#cb8-10"></a><span class="co">##   A new explainer has been created!</span></span></code></pre></div>
-<p>Now with explainer ready we can use any of <a href="https://github.com/ModelOriented/DrWhy/blob/master/README.md">DrWhy.Ai</a> universe tools to make explanations. Here is a small demo.</p>
+<p>Now with explainer ready we can use any of <a href="https://github.com/ModelOriented/DrWhy/blob/master/README.md" class="external-link">DrWhy.Ai</a> universe tools to make explanations. Here is a small demo.</p>
 </div>
-<div id="creating-explanations" class="section level3">
-<h3 class="hasAnchor">
-<a href="#creating-explanations" class="anchor"></a>Creating explanations</h3>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://ModelOriented.github.io/DALEX/">DALEX</a></span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/DALEX/man/model_performance.html">model_performance</a></span>(<span class="kw">explainer</span>))</pre></div>
+<div class="section level3">
+<h3 id="creating-explanations">Creating explanations<a class="anchor" aria-label="anchor" href="#creating-explanations"></a>
+</h3>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dalex.drwhy.ai" class="external-link">DALEX</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="https://dalex.drwhy.ai/reference/model_performance.html" class="external-link">model_performance</a></span><span class="op">(</span><span class="va">explainer</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/unnamed-chunk-8-1.png" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://ModelOriented.github.io/ingredients/">ingredients</a></span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/ingredients/man/feature_importance.html">feature_importance</a></span>(<span class="kw">explainer</span>))</pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ModelOriented.github.io/ingredients/" class="external-link">ingredients</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="https://ModelOriented.github.io/ingredients/reference/feature_importance.html" class="external-link">feature_importance</a></span><span class="op">(</span><span class="va">explainer</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/unnamed-chunk-8-2.png" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/pkg/ingredients/man/describe.html">describe</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/ingredients/man/feature_importance.html">feature_importance</a></span>(<span class="kw">explainer</span>))</pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ModelOriented.github.io/ingredients/reference/describe.html" class="external-link">describe</a></span><span class="op">(</span><span class="fu"><a href="https://ModelOriented.github.io/ingredients/reference/feature_importance.html" class="external-link">feature_importance</a></span><span class="op">(</span><span class="va">explainer</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">## The number of important variables for scikitlearn_model's prediction is 3 out of 17. </span></span>
 <span id="cb12-2"><a href="#cb12-2"></a><span class="co">##  Variables gender.female, gender.male, age have the highest importantance.</span></span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://ModelOriented.github.io/iBreakDown/">iBreakDown</a></span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/iBreakDown/man/break_down.html">break_down</a></span>(<span class="kw">explainer</span>, <span class="kw">titanic_test</span>[<span class="fl">2</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">17</span>]))</pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ModelOriented.github.io/iBreakDown/" class="external-link">iBreakDown</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="https://ModelOriented.github.io/iBreakDown/reference/break_down.html" class="external-link">break_down</a></span><span class="op">(</span><span class="va">explainer</span>, <span class="va">titanic_test</span><span class="op">[</span><span class="fl">2</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">17</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/unnamed-chunk-8-3.png" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/pkg/iBreakDown/man/describe.html">describe</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/iBreakDown/man/break_down.html">break_down</a></span>(<span class="kw">explainer</span>, <span class="kw">titanic_test</span>[<span class="fl">2</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">17</span>]))</pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ModelOriented.github.io/iBreakDown/reference/describe.html" class="external-link">describe</a></span><span class="op">(</span><span class="fu"><a href="https://ModelOriented.github.io/iBreakDown/reference/break_down.html" class="external-link">break_down</a></span><span class="op">(</span><span class="va">explainer</span>, <span class="va">titanic_test</span><span class="op">[</span><span class="fl">2</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">17</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb15"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">## Scikitlearn_model predicts, that the prediction for the selected instance is 0.132 which is lower than the average model prediction.</span></span>
 <span id="cb15-2"><a href="#cb15-2"></a><span class="co">## </span></span>
 <span id="cb15-3"><a href="#cb15-3"></a><span class="co">## The most important variable that decrease the prediction is class.3rd.</span></span>
 <span id="cb15-4"><a href="#cb15-4"></a><span class="co">## </span></span>
 <span id="cb15-5"><a href="#cb15-5"></a><span class="co">## Other variables are with less importance. The contribution of all other variables is -0.108.</span></span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/ModelOriented/auditor">auditor</a></span>)
-<span class="kw">eval</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/auditor/man/model_evaluation.html">model_evaluation</a></span>(<span class="kw">explainer</span>)
-<span class="fu"><a href="https://rdrr.io/pkg/auditor/man/plot_roc.html">plot_roc</a></span>(<span class="kw">eval</span>)</pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ModelOriented/auditor" class="external-link">auditor</a></span><span class="op">)</span>
+<span class="va">eval</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/auditor/man/model_evaluation.html" class="external-link">model_evaluation</a></span><span class="op">(</span><span class="va">explainer</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/auditor/man/plot_roc.html" class="external-link">plot_roc</a></span><span class="op">(</span><span class="va">eval</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/unnamed-chunk-8-4.png" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb17"><pre class="downlit">
-<span class="co"># Predictions with newdata</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="kw">explainer</span>, <span class="kw">titanic_test</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">17</span>])</pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Predictions with newdata</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">explainer</span>, <span class="va">titanic_test</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">17</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb18"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co">##  [1] 0.3565896 0.1321947 0.7638813 0.1037486 0.1265221 0.2949228 0.1421281</span></span>
 <span id="cb18-2"><a href="#cb18-2"></a><span class="co">##  [8] 0.1421281 0.4154695 0.1321947</span></span></code></pre></div>
 </div>
 </div>
 </div>
-<div id="acknowledgments" class="section level1">
-<h1 class="hasAnchor">
-<a href="#acknowledgments" class="anchor"></a>Acknowledgments</h1>
+<div class="section level1">
+<h1 id="acknowledgments">Acknowledgments<a class="anchor" aria-label="anchor" href="#acknowledgments"></a>
+</h1>
 <p>Work on this package was financially supported by the <code>NCN Opus grant 2016/21/B/ST6/02176</code>.</p>
 </div>
 
@@ -287,57 +280,59 @@ data = <span class="kw">titanic_test</span>[,<span class="fl">1</span><span clas
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=DALEXtra">https://​cloud.r-project.org/​package=DALEXtra</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/ModelOriented/DALEXtra/">https://​github.com/​ModelOriented/​DALEXtra/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/ModelOriented/DALEXtra/issues">https://​github.com/​ModelOriented/​DALEXtra/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=DALEXtra" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/ModelOriented/DALEXtra/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/ModelOriented/DALEXtra/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li>GPL</li>
 </ul>
 </div>
+
+
 <div class="citation">
-<h2>Citation</h2>
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html">Citing DALEXtra</a></li>
-</ul>
-</div>
-<div class="developers">
-<h2>Developers</h2>
-<ul class="list-unstyled">
-<li>Szymon Maksymiuk <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-3120-1601" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Przemyslaw Biecek <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-8423-1823" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li><a href="authors.html">All authors...</a></li>
+<li><a href="authors.html#citation">Citing DALEXtra</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/maksymiuks/DALEXtra/actions?query=workflow%3AR-CMD-check"><img src="https://github.com/maksymiuks/DALEXtra/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://codecov.io/github/ModelOriented/DALEXtra?branch=master"><img src="https://img.shields.io/codecov/c/github/ModelOriented/DALEXtra/master.svg" alt="Coverage Status"></a></li>
-<li><a href="https://cran.r-project.org/package=DALEXtra"><img src="http://www.r-pkg.org/badges/version/DALEXtra" alt="CRAN_Status_Badge"></a></li>
-<li><a href="http://cranlogs.r-pkg.org/badges/grand-total/DALEXtra"><img src="http://cranlogs.r-pkg.org/badges/grand-total/DALEXtra?color=orange" alt="Total Downloads"></a></li>
-<li><a href="http://drwhy.ai/#BackBone"><img src="https://img.shields.io/badge/DrWhy-BackBone-373589" alt="DrWhy-eXtrAI"></a></li>
+<li>Szymon Maksymiuk <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-3120-1601" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Przemyslaw Biecek <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-8423-1823" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/maksymiuks/DALEXtra/actions?query=workflow%3AR-CMD-check" class="external-link"><img src="https://github.com/maksymiuks/DALEXtra/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://codecov.io/github/ModelOriented/DALEXtra?branch=master" class="external-link"><img src="https://img.shields.io/codecov/c/github/ModelOriented/DALEXtra/master.svg" alt="Coverage Status"></a></li>
+<li><a href="https://cran.r-project.org/package=DALEXtra" class="external-link"><img src="http://www.r-pkg.org/badges/version/DALEXtra" alt="CRAN_Status_Badge"></a></li>
+<li><a href="http://cranlogs.r-pkg.org/badges/grand-total/DALEXtra" class="external-link"><img src="http://cranlogs.r-pkg.org/badges/grand-total/DALEXtra?color=orange" alt="Total Downloads"></a></li>
+<li><a href="http://drwhy.ai/#BackBone" class="external-link"><img src="https://img.shields.io/badge/DrWhy-BackBone-373589" alt="DrWhy-eXtrAI"></a></li>
+</ul>
 </div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Szymon Maksymiuk, Przemyslaw Biecek.</p>
+  <p>Developed by .</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>.</p>
 </div>
 
       </footer>
