@@ -50,7 +50,7 @@ task_multiclassification <- makeClassifTask(
   target = "status"
 )
 
-learner_rf_classif <- makeLearner("classif.randomForest", predict.type = "prob")
+learner_rf_classif <- makeLearner("classif.ranger", predict.type = "prob")
 model_rf_classif <- train(learner_rf_classif, task_classification)
 explainer_rf_classif <- explain_mlr(model_rf_classif, titanic_factorized, titanic_imputed$survived, label = "RF", verbose = FALSE)
 
@@ -58,7 +58,7 @@ learner_rpart_classif <- makeLearner("classif.rpart", predict.type = "prob")
 model_rpart_classif <- train(learner_rpart_classif, task_classification)
 explainer_rpart_classif <- explain_mlr(model_rpart_classif, titanic_factorized, titanic_imputed$survived, label = "RF", verbose = FALSE)
 
-learner_rf_multiclassif <- makeLearner("classif.randomForest", predict.type = "prob")
+learner_rf_multiclassif <- makeLearner("classif.ranger", predict.type = "prob")
 model_rf_multiclassif <- train(learner_rf_multiclassif, task_multiclassification)
 explainer_rf_multiclassif <- explain_mlr(model_rf_multiclassif, HR, HR$status, label = "RF", verbose = FALSE)
 

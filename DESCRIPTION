@@ -1,6 +1,6 @@
 Package: DALEXtra
 Title: Extension for 'DALEX' Package
-Version: 2.1.1
+Version: 2.1.1.9000
 Authors@R: 
     c(person(given = "Szymon",
            family = "Maksymiuk",
@@ -29,30 +29,30 @@ Description: Provides wrapper of various machine learning models.
   that provides instance-level explanations for the groups of explanatory variables.
 Depends: 
   R (>= 3.5.0),
-  DALEX (>= 1.3)
+  DALEX (>= 2.0.1)
 License: GPL
 Encoding: UTF-8
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Imports: 
   reticulate,
   ggplot2
 Suggests:
-    auditor,
-    ingredients,
-    gbm,
-    ggrepel,
-    h2o,
-    iml,
-    lime,
-    localModel,
-    mlr,
-    mlr3,
-    randomForest,
-    recipes,
-    rmarkdown,
-    rpart,
-    xgboost,
-    testthat,
-    tidymodels
+  auditor,
+  ingredients,
+  gbm,
+  ggrepel,
+  h2o,
+  iml,
+  lime,
+  localModel,
+  mlr,
+  mlr3,
+  ranger,
+  recipes,
+  rmarkdown,
+  rpart,
+  xgboost,
+  testthat,
+  tidymodels
 URL: https://ModelOriented.github.io/DALEXtra/, https://github.com/ModelOriented/DALEXtra
 BugReports: https://github.com/ModelOriented/DALEXtra/issues

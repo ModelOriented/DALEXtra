@@ -45,7 +45,7 @@
 #' explainer_lm <- explain_mlr(model_lm, apartmentsTest, apartmentsTest$m2.price, label = "LM")
 #'
 #' learner_rf <- mlr::makeLearner(
-#' "regr.randomForest"
+#' "regr.ranger"
 #' )
 #' model_rf <- mlr::train(learner_rf, task)
 #' explainer_rf <- explain_mlr(model_rf, apartmentsTest, apartmentsTest$m2.price, label = "RF")
@@ -153,7 +153,7 @@ training_test_comparison <- function(champion,
 #' explainer_lm <- explain_mlr(model_lm, apartmentsTest, apartmentsTest$m2.price, label = "LM")
 #'
 #' learner_rf <- mlr::makeLearner(
-#' "regr.randomForest"
+#' "regr.ranger"
 #' )
 #' model_rf <- mlr::train(learner_rf, task)
 #' explainer_rf <- explain_mlr(model_rf, apartmentsTest, apartmentsTest$m2.price, label = "RF")

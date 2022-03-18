@@ -1,3 +1,8 @@
+DALEXtra (development)
+----------------------------------------------------------------
+* remove `randomForest` from suggest due to it enforcing R v4.1 (changed to `ranger`)
+* bump the requirement for `DALEX` from v1.3 to v2.0.1 (dated 18 months ago: 2020-10-26)
+
 DALEXtra 2.1.1
 ----------------------------------------------------------------
 * Fix CRAN results issues 

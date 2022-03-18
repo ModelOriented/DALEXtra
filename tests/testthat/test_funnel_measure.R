@@ -15,7 +15,7 @@ model_lm <- train(learner_lm, task)
 explainer_lm <- explain_mlr(model_lm, apartmentsTest, apartmentsTest$m2.price, label = "LM")
 
 learner_rf <- makeLearner(
-  "regr.randomForest"
+  "regr.ranger"
 )
 
 model_rf <- train(learner_rf, task)
