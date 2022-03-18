@@ -60,5 +60,5 @@ jobs:
       - name: Test coverage
         run: |
           Sys.setenv(CONDA_TEST = "example", JAVA = "example")
-          covr::codecov()
+          covr::codecov(quiet=FALSE)
         shell: Rscript {0}

@@ -4,7 +4,7 @@ template:
 
 reference:
   - title: Explainers
-    desc: New explainers tailored for larger model factories
+    desc: Additional explainers for specific packages and frameworks
     contents:
     - explain_scikitlearn
     - explain_h2o
@@ -13,8 +13,8 @@ reference:
     - explain_mlr3
     - explain_xgboost
     - explain_tidymodels
-  - title: Addapters for yhat
-    desc: Specfic versions of the generic yhat function
+  - title: Yhats
+    desc: Specific versions of the generic yhat function
     contents:
     - yhat.scikitlearn_model
     - yhat.WrappedModel
@@ -24,8 +24,8 @@ reference:
     - yhat.keras
     - yhat.LearnerRegr
     - yhat.LearnerClassif
-  - title: Addapters for model_info
-    desc: Specfic versions of the generic model_info function
+  - title: Model info
+    desc: Specific versions of the generic model_info function
     contents:
     - model_info.scikitlearn_model
     - model_info.WrappedModel
@@ -35,7 +35,7 @@ reference:
     - model_info.LearnerRegr
     - model_info.LearnerClassif
   - title: Champion Challenger
-    desc: Function used for Champion Challenger analysys
+    desc: Functions used for the Champion Challenger analysis
     contents:
     - champion_challenger
     - funnel_measure
@@ -47,6 +47,12 @@ reference:
     - training_test_comparison
     - print.training_test_comparison
     - plot.training_test_comparison
+  - title: Predict surrogate (LIME)
+    desc: Additional functions for the LIME method https://ema.drwhy.ai/LIME.html
+    contents:
+    - predict_surrogate
+    - plot.predict_surrogate
+    - print.predict_surrogate
   - title: Misc
     contents:
     - print.scikitlearn_set
