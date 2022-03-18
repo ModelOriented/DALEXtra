@@ -10,26 +10,32 @@ name: test-coverage
 
 jobs:
   test-coverage:
-
-    runs-on: ubuntu-16.04
+    runs-on: macOS-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
+      
       - uses: r-lib/actions/setup-pandoc@v1
         with:
           pandoc-version: '2.7.3' # The pandoc version to download (if necessary) and use.
+          
       - run: echo "# Test" | pandoc -t html
+      
       - uses: actions/checkout@v2
+      
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
         with:
           python-version: 3.8
+          
       - uses: s-weigand/setup-conda@v1
         with:
           activate-conda: false
+          
       - run: conda --version
       - run: which python
+      
       - uses: r-lib/actions/setup-r@master
       - name: Query dependencies
         run: |
@@ -37,32 +43,17 @@ jobs:
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
         shell: Rscript {0}
 
-
-      - name: Install system dependencies
-        if: runner.os == 'Linux'
-        env:
-          RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
-        run: |
-          sudo apt-get install -y qpdf
-          sudo apt-get install -y libcurl4-openssl-dev
-#          Rscript -e "remotes::install_github('r-hub/sysreqs')"
-#          sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
-#          sudo -s eval "$sysreqs"
-
-
       - name: Cache R packages
         uses: actions/cache@v1
         with:
           path: ${{ env.R_LIBS_USER }}
-          key: ubuntu-16.04-r-3.6-${{ hashFiles('.github/depends.Rds') }}
-          restore-keys: ubuntu-16.04-r-3.6-
+          key: macOS-r-4.0-1-${{ hashFiles('.github/depends.Rds') }}
+          restore-keys:  macOS-r-4.0-1-
 
       - name: Install dependencies
         run: |
           remotes::install_cran("curl")
           remotes::install_deps(dependencies = TRUE)
-          remotes::install_github("ModelOriented/DALEX")
-          remotes::install_github("ModelOriented/auditor")
           remotes::install_cran("covr")
         shell: Rscript {0}
 
