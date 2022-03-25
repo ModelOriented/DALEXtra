@@ -48,8 +48,8 @@ Currently supported packages are:
 \itemize{
 \item \code{mlr} models created with \code{mlr} package
 \item \code{h2o} models created with \code{h2o} package
-\item \code{scikit-learn} models created with \code{scikit-learn} pyhton library and accesed via \code{reticulate}
-\item \code{keras} models created with \code{keras} pyhton library and accesed via \code{reticulate}
+\item \code{scikit-learn} models created with \code{scikit-learn} Python library and accessed via \code{reticulate}
+\item \code{keras} models created with \code{keras} Python library and accessed via \code{reticulate}
 \item \code{mlr3} models created with \code{mlr3} package
 \item \code{xgboost} models created with \code{xgboost} package
 \item \code{tidymodels} models created with \code{tidymodels} package
@@ -60,6 +60,6 @@ A named list of class \code{model_info}
 }
 \description{
 This generic function let user extract base information about model. The function returns a named list of class \code{model_info} that
-contain about package of model, version and task type. For wrappers like \code{mlr} or \code{caret} both, package and wrapper inforamtion
+contain about package of model, version and task type. For wrappers like \code{mlr} or \code{caret} both, package and wrapper information
 are stored
 }

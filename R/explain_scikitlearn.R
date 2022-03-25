@@ -13,21 +13,21 @@
 #' @param y vector that will be passed to \code{\link[DALEX]{explain}}.
 #' @param weights numeric vector with sampling weights. By default it's \code{NULL}. If provided then it shall have the same length as \code{data}
 #' @param predict_function predict function that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.
-#' @param predict_function_target_column Character or numeric containing either column name or column number in the model prediction object of the class that should be considered as positive (ie. the class that is associated with probability 1). If NULL, the second column of the output will be taken for binary classification. For a multiclass classification setting that parameter cause switch to binary classification mode with 1 vs others probabilities.
+#' @param predict_function_target_column Character or numeric containing either column name or column number in the model prediction object of the class that should be considered as positive (i.e. the class that is associated with probability 1). If NULL, the second column of the output will be taken for binary classification. For a multiclass classification setting that parameter cause switch to binary classification mode with 1 vs others probabilities.
 #' @param residual_function residual function that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.
 #' @param ... other parameters
 #' @param label label that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.
 #' @param verbose bool that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.
 #' @param precalculate if TRUE (default) then 'predicted_values' and 'residuals' are calculated when explainer is created.
 #' @param colorize if TRUE (default) then \code{WARNINGS}, \code{ERRORS} and \code{NOTES} are colorized. Will work only in the R console.
-#' @param model_info a named list (\code{package}, \code{version}, \code{type}) containg information about model. If \code{NULL}, \code{DALEX} will seek for information on it's own.
+#' @param model_info a named list (\code{package}, \code{version}, \code{type}) containing information about model. If \code{NULL}, \code{DALEX} will seek for information on it's own.
 #' @param type type of a model, either \code{classification} or \code{regression}. If not specified then \code{type} will be extracted from \code{model_info}.
 #'
 #'
 #' @author Szymon Maksymiuk
 #'
 #'
-#' @return An object of the class 'explainer'. It has additional field param_set when user can check parameters of scikitlearn model
+#' @return An object of the class 'explainer'. It has additional field param_set when user can check parameters of scikit-learn model
 #'
 #' \bold{Example of Python code}\cr
 #'

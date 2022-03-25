@@ -1,6 +1,6 @@
 #' Plot and compare performance of model between training and test set
 #'
-#' Function \code{plot.training_test_comparison} plots dependecy between model performance on test and trainig dataset based on
+#' Function \code{plot.training_test_comparison} plots dependency between model performance on test and training dataset based on
 #' \code{training_test_comparison} object. Green line indicates \code{y = x} line.
 #'
 #' @param x - object created with \code{\link{training_test_comparison}} function.

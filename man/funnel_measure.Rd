@@ -27,10 +27,10 @@ Order of parameters is important and should be (y, y_hat). The measure calculate
 should have the property that lower score value indicates better model. If NULL, RMSE will be used for regression,
 one minus auc for classification and crossentropy for multiclass classification.}
 
-\item{nbins}{- Number of qunatiles (partition points) for numeric columns. In case when more than one qunatile have the same value, there will be less partition points.}
+\item{nbins}{- Number of quantiles (partition points) for numeric columns. In case when more than one quantile have the same value, there will be less partition points.}
 
-\item{partition_data}{- Data by which test dataset will be paritioned for computation. Can be either data.frame or character vector.
-When second is passed, it has to indicate names of columns that will be extracted fromm test data.
+\item{partition_data}{- Data by which test dataset will be partitioned for computation. Can be either data.frame or character vector.
+When second is passed, it has to indicate names of columns that will be extracted from test data.
 By default full test data. If data.frame, number of rows has to be equal to number of rows in test data.}
 
 \item{cutoff}{- Threshold for categorical data. Entries less frequent than specified value will be merged into one category.}
@@ -41,7 +41,7 @@ By default full test data. If data.frame, number of rows has to be equal to numb
 
 \item{show_info}{- Logical value indicating if progress bar should be shown.}
 
-\item{categories}{- a named list of variable names that will be plotted in a different colour. By deafault it is partitioned on Explanatory, External and Target.}
+\item{categories}{- a named list of variable names that will be plotted in a different colour. By default it is partitioned on Explanatory, External and Target.}
 }
 \value{
 An object of the class \code{funnel_measure}
@@ -56,13 +56,13 @@ It is a named list containing following fields:
    \item \code{Challenger} Label of challenger explainer that was used in \code{Measure}
    \item \code{Category} a category of the variable passed to function
    }
-\item \code{models_info} data.frame containig inforamtion about models used in analysys
+\item \code{models_info} data.frame containing information about models used in analysis
 }
 }
 \description{
-Function \code{funnel_measure} allows users to compare two models based on their explainers. It partitions dataset on which models were builded
-and creates categories according to quantiles of columns in \code{parition data}. \code{nbins} parameter determinates number of qunatiles.
-For each category difference in provided measure is being calculated. Positive value of that differnece means that Champion model
+Function \code{funnel_measure} allows users to compare two models based on their explainers. It partitions dataset on which models were built
+and creates categories according to quantiles of columns in \code{parition data}. \code{nbins} parameter determines number of quantiles.
+For each category difference in provided measure is being calculated. Positive value of that difference means that Champion model
 has better performance in specified category, while negative value means that one of the Challengers was better. Function allows
 to compare multiple Challengers at once.
 }

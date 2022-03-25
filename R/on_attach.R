@@ -1,4 +1,4 @@
-# Check if conda is present. If not, warning will be rised.
+# Check if conda is present. If not, warning will be raised.
 
 .onAttach <- function(libname, pkgname) {
   is_conda <- try(reticulate::conda_binary(), silent = TRUE)

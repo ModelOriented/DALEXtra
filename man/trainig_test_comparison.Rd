@@ -28,7 +28,7 @@ Order of parameters is important and should be (y, y_hat). By default it is RMSE
 \value{
 An object of the class \code{training_test_comparison}.
 
-It is a named list containig:
+It is a named list containing:
 \itemize{
 \item \code{data} data.frame with following columns
   \itemize{
@@ -37,12 +37,12 @@ It is a named list containig:
   \item \code{label} label of explainer
   \item \code{type} flag that indicates if explainer was passed as champion or as challenger.
 }
-\item \code{models_info} data.frame containig inforamtion about models used in analysys
+\item \code{models_info} data.frame containing information about models used in analysis
 }
 }
 \description{
 Function \code{training_test_comparison} calculates performance of the provided model based on specified measure function.
-Response of the model is caluclated based on test data, extracted from the explainer and training data, provided by the user.
+Response of the model is calculated based on test data, extracted from the explainer and training data, provided by the user.
 Output can be easily shown with \code{print} or \code{plot} function.
 }
 \examples{

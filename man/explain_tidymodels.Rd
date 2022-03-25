@@ -32,7 +32,7 @@ explain_tidymodels(
 
 \item{predict_function}{function that takes two arguments: model and new data and returns numeric vector with predictions}
 
-\item{predict_function_target_column}{Character or numeric containing either column name or column number in the model prediction object of the class that should be considered as positive (ie. the class that is associated with probability 1). If NULL, the second column of the output will be taken for binary classification. For a multiclass classification setting that parameter cause switch to binary classification mode with 1 vs others probabilities.}
+\item{predict_function_target_column}{Character or numeric containing either column name or column number in the model prediction object of the class that should be considered as positive (i.e. the class that is associated with probability 1). If NULL, the second column of the output will be taken for binary classification. For a multiclass classification setting that parameter cause switch to binary classification mode with 1 vs others probabilities.}
 
 \item{residual_function}{function that takes three arguments: model, data and response vector y. It should return a numeric vector with model residuals for given data. If not provided, response residuals (\eqn{y-\hat{y}}) are calculated.}
 
@@ -46,7 +46,7 @@ explain_tidymodels(
 
 \item{colorize}{if TRUE (default) then \code{WARNINGS}, \code{ERRORS} and \code{NOTES} are colorized. Will work only in the R console.}
 
-\item{model_info}{a named list (\code{package}, \code{version}, \code{type}) containg information about model. If \code{NULL}, \code{DALEX} will seek for information on it's own.}
+\item{model_info}{a named list (\code{package}, \code{version}, \code{type}) containing information about model. If \code{NULL}, \code{DALEX} will seek for information on it's own.}
 
 \item{type}{type of a model, either \code{classification} or \code{regression}. If not specified then \code{type} will be extracted from \code{model_info}.}
 }
@@ -56,7 +56,7 @@ explainer object (\code{\link[DALEX]{explain}}) ready to work with DALEX
 \description{
 DALEX is designed to work with various black-box models like tree ensembles, linear models, neural networks etc.
 Unfortunately R packages that create such models are very inconsistent. Different tools use different interfaces to train, validate and use models.
-One of those tools, which is one of the most popular one is tidymodels package. We would like to present dedicated explain function for it.
+One of those tools, which is one of the most popular one is the tidymodels package. We would like to present dedicated explain function for it.
 }
 \examples{
 library("DALEXtra")

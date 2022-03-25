@@ -41,7 +41,7 @@ explain_keras(
 
 \item{predict_function}{predict function that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.}
 
-\item{predict_function_target_column}{Character or numeric containing either column name or column number in the model prediction object of the class that should be considered as positive (ie. the class that is associated with probability 1). If NULL, the second column of the output will be taken for binary classification. For a multiclass classification setting that parameter cause switch to binary classification mode with 1 vs others probabilities.}
+\item{predict_function_target_column}{Character or numeric containing either column name or column number in the model prediction object of the class that should be considered as positive (i.e. the class that is associated with probability 1). If NULL, the second column of the output will be taken for binary classification. For a multiclass classification setting that parameter cause switch to binary classification mode with 1 vs others probabilities.}
 
 \item{residual_function}{residual function that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.}
 
@@ -55,34 +55,34 @@ explain_keras(
 
 \item{colorize}{if TRUE (default) then \code{WARNINGS}, \code{ERRORS} and \code{NOTES} are colorized. Will work only in the R console.}
 
-\item{model_info}{a named list (\code{package}, \code{version}, \code{type}) containg information about model. If \code{NULL}, \code{DALEX} will seek for information on it's own.}
+\item{model_info}{a named list (\code{package}, \code{version}, \code{type}) containing information about model. If \code{NULL}, \code{DALEX} will seek for information on it's own.}
 
 \item{type}{type of a model, either \code{classification} or \code{regression}. If not specified then \code{type} will be extracted from \code{model_info}.}
 }
 \value{
 An object of the class 'explainer'.
 
-\bold{Example of Python code avialble at documentation \code{\link{explain_scikitlearn}}}\cr
+\bold{Example of Python code available at documentation \code{\link{explain_scikitlearn}}}\cr
 
 \bold{Errors use case}\cr
 Here is shortened version of solution for specific errors \cr
 \cr
 \bold{There already exists environment with a name specified by given .yml file}\cr
-If you provide .yml file that in its header contatins name exact to name of environment that already exists, existing will be set active without changing it. \cr
+If you provide .yml file that in its header contains name exact to name of environment that already exists, existing will be set active without changing it. \cr
 You have two ways of solving that issue. Both connected with anaconda prompt. First is removing conda env with command: \cr
 \code{conda env remove --name myenv}\cr
 And execute function once again. Second is updating env via: \cr
 \code{conda env create -f environment.yml}\cr
 \cr
 \bold{Conda cannot find specified packages at channels you have provided.}\cr
-That error may be casued by a lot of things. One of those is that specified version is too old to be avaialble from offcial conda repo.
+That error may be caused by a lot of things. One of those is that specified version is too old to be available from the official conda repo.
 Edit Your .yml file and add link to proper repository at channels section.\cr
 \cr
 Issue may be also connected with the platform. If model was created on the platform with different OS yo may need to remove specific version from .yml file.\cr
 \code{- numpy=1.16.4=py36h19fb1c0_0}\cr
 \code{- numpy-base=1.16.4=py36hc3f5095_0}\cr
 In the example above You have to remove \code{=py36h19fb1c0_0} and \code{=py36hc3f5095_0} \cr
-If some packages are not availbe for anaconda at all, use pip statement\cr
+If some packages are not available for anaconda at all, use pip statement\cr
 \cr
 If .yml file seems not to work, virtual env can be created manually using anaconda promt. \cr
 \code{conda create -n name_of_env python=3.4} \cr

@@ -15,7 +15,7 @@
 ggplot object
 }
 \description{
-Function \code{plot.training_test_comparison} plots dependecy between model performance on test and trainig dataset based on
+Function \code{plot.training_test_comparison} plots dependency between model performance on test and training dataset based on
 \code{training_test_comparison} object. Green line indicates \code{y = x} line.
 }
 \examples{

@@ -41,7 +41,7 @@ explain_scikitlearn(
 
 \item{predict_function}{predict function that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.}
 
-\item{predict_function_target_column}{Character or numeric containing either column name or column number in the model prediction object of the class that should be considered as positive (ie. the class that is associated with probability 1). If NULL, the second column of the output will be taken for binary classification. For a multiclass classification setting that parameter cause switch to binary classification mode with 1 vs others probabilities.}
+\item{predict_function_target_column}{Character or numeric containing either column name or column number in the model prediction object of the class that should be considered as positive (i.e. the class that is associated with probability 1). If NULL, the second column of the output will be taken for binary classification. For a multiclass classification setting that parameter cause switch to binary classification mode with 1 vs others probabilities.}
 
 \item{residual_function}{residual function that will be passed into \code{\link[DALEX]{explain}}. If NULL, default will be used.}
 
@@ -55,12 +55,12 @@ explain_scikitlearn(
 
 \item{colorize}{if TRUE (default) then \code{WARNINGS}, \code{ERRORS} and \code{NOTES} are colorized. Will work only in the R console.}
 
-\item{model_info}{a named list (\code{package}, \code{version}, \code{type}) containg information about model. If \code{NULL}, \code{DALEX} will seek for information on it's own.}
+\item{model_info}{a named list (\code{package}, \code{version}, \code{type}) containing information about model. If \code{NULL}, \code{DALEX} will seek for information on it's own.}
 
 \item{type}{type of a model, either \code{classification} or \code{regression}. If not specified then \code{type} will be extracted from \code{model_info}.}
 }
 \value{
-An object of the class 'explainer'. It has additional field param_set when user can check parameters of scikitlearn model
+An object of the class 'explainer'. It has additional field param_set when user can check parameters of scikit-learn model
 
 \bold{Example of Python code}\cr
 

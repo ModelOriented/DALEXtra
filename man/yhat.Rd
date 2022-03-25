@@ -47,9 +47,9 @@
 An numeric vector of predictions
 }
 \description{
-These functios are default predict functions.
+These functions are default predict functions.
 Each function returns a single numeric score for each new observation.
-Those functions are very important since informations from many models have to be extracted with various techniques.
+Those functions are very important since information from many models have to be extracted with various techniques.
 }
 \details{
 Currently supported packages are:

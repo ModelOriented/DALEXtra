@@ -1,6 +1,6 @@
 #' Create your conda virtual env with DALEX
 #'
-#' Python objects may be loaded into R. However, it requiers versions of the Python and libraries to match between both machines.
+#' Python objects may be loaded into R. However, it requires versions of the Python and libraries to match between both machines.
 #' This functions allow user to create conda virtual environment based on provided .yml file.
 #'
 #' @usage create_env(yml, condaenv)

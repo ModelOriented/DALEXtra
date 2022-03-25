@@ -108,8 +108,8 @@ jobs:
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
         run: |
-          Sys.setenv(CONDA_TEST = "example", JAVA = "example", R_CHECK_DONTTEST_EXAMPLES = "false")
-          rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran", "--run-dontrun"), error_on = "warning", check_dir = "check")
+          Sys.setenv(CONDA_TEST = "example", JAVA = "example")
+          rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
         shell: Rscript {0}
 
       - name: Upload check results

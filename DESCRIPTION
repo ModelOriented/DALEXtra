@@ -12,8 +12,8 @@ Authors@R:
              email = "przemyslaw.biecek@gmail.com", 
              role = c("aut"), 
              comment = c(ORCID = "0000-0001-8423-1823")),
-	    person("Anna", "Kozak", role = "ctb"),
-	    person("Hubert", "Baniecki", role = "ctb"))
+	    person("Hubert", "Baniecki", role = "auth"),
+	    person("Anna", "Kozak", role = "ctb"))
 Description: Provides wrapper of various machine learning models. 
   In applied machine learning, there 
   is a strong belief that we need to strike a balance 
