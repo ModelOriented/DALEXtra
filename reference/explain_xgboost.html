@@ -140,7 +140,7 @@ One of those tools, we would like to make more accessible is xgboost.</p>
 <span class="r-in"><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/xgboost/man/xgb.train.html" class="external-link">xgboost</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">titanic_imputed</span><span class="op">$</span><span class="va">survived</span>, nrounds <span class="op">=</span> <span class="fl">10</span>,</span>
 <span class="r-in">                 params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>objective <span class="op">=</span> <span class="st">"binary:logistic"</span><span class="op">)</span>,</span>
 <span class="r-in">                prediction <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [20:13:04] WARNING: amalgamation/../src/learner.cc:576: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [20:18:41] WARNING: amalgamation/../src/learner.cc:576: </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Parameters: { "prediction" } might not be used.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   This could be a false alarm, with some parameters getting used by language bindings but</span>
@@ -148,7 +148,7 @@ One of those tools, we would like to make more accessible is xgboost.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   but getting flagged wrongly here. Please open an issue if you find any such cases.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [20:13:04] WARNING: amalgamation/../src/learner.cc:1115: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [20:18:41] WARNING: amalgamation/../src/learner.cc:1115: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]	train-logloss:0.574284 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [2]	train-logloss:0.509886 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [3]	train-logloss:0.472245 </span>
