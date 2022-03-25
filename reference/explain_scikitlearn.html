@@ -105,7 +105,7 @@ exported from Python via pickle file.</p>
 <dt>predict_function</dt>
 <dd><p>predict function that will be passed into <code><a href="https://dalex.drwhy.ai/reference/explain.html" class="external-link">explain</a></code>. If NULL, default will be used.</p></dd>
 <dt>predict_function_target_column</dt>
-<dd><p>Character or numeric containing either column name or column number in the model prediction object of the class that should be considered as positive (ie. the class that is associated with probability 1). If NULL, the second column of the output will be taken for binary classification. For a multiclass classification setting that parameter cause switch to binary classification mode with 1 vs others probabilities.</p></dd>
+<dd><p>Character or numeric containing either column name or column number in the model prediction object of the class that should be considered as positive (i.e. the class that is associated with probability 1). If NULL, the second column of the output will be taken for binary classification. For a multiclass classification setting that parameter cause switch to binary classification mode with 1 vs others probabilities.</p></dd>
 <dt>residual_function</dt>
 <dd><p>residual function that will be passed into <code><a href="https://dalex.drwhy.ai/reference/explain.html" class="external-link">explain</a></code>. If NULL, default will be used.</p></dd>
 <dt>...</dt>
@@ -119,13 +119,13 @@ exported from Python via pickle file.</p>
 <dt>colorize</dt>
 <dd><p>if TRUE (default) then <code>WARNINGS</code>, <code>ERRORS</code> and <code>NOTES</code> are colorized. Will work only in the R console.</p></dd>
 <dt>model_info</dt>
-<dd><p>a named list (<code>package</code>, <code>version</code>, <code>type</code>) containg information about model. If <code>NULL</code>, <code>DALEX</code> will seek for information on it's own.</p></dd>
+<dd><p>a named list (<code>package</code>, <code>version</code>, <code>type</code>) containing information about model. If <code>NULL</code>, <code>DALEX</code> will seek for information on it's own.</p></dd>
 <dt>type</dt>
 <dd><p>type of a model, either <code>classification</code> or <code>regression</code>. If not specified then <code>type</code> will be extracted from <code>model_info</code>.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>An object of the class 'explainer'. It has additional field param_set when user can check parameters of scikitlearn model
+    <p>An object of the class 'explainer'. It has additional field param_set when user can check parameters of scikit-learn model
 <b>Example of Python code</b><br>from pandas import DataFrame, read_csv <br>import pandas as pd<br>import pickle<br>import sklearn.ensemble<br>model = sklearn.ensemble.GradientBoostingClassifier() <br>model = model.fit(titanic_train_X, titanic_train_Y)<br>pickle.dump(model, open("gbm.pkl", "wb"), protocol = 2)<br><br><br>In order to export environment into .yml, activating virtual env via <code>activate name_of_the_env</code> and execution of the following shell command is necessary <br><code>conda env export &gt; environment.yml</code><br><br><b>Errors use case</b><br>Here is shortened version of solution for specific errors <br><br><b>There already exists environment with a name specified by given .yml file</b><br>If you provide .yml file that in its header contatins name exact to name of environment that already exists, existing will be set active without changing it. <br>You have two ways of solving that issue. Both connected with anaconda prompt. First is removing conda env with command: <br><code>conda env remove --name myenv</code><br>And execute function once again. Second is updating env via: <br><code>conda env create -f environment.yml</code><br><br><b>Conda cannot find specified packages at channels you have provided.</b><br>That error may be casued by a lot of things. One of those is that specified version is too old to be avaialble from offcial conda repo.
 Edit Your .yml file and add link to proper repository at channels section.<br><br>Issue may be also connected with the platform. If model was created on the platform with different OS yo may need to remove specific version from .yml file.<br><code>- numpy=1.16.4=py36h19fb1c0_0</code><br><code>- numpy-base=1.16.4=py36hc3f5095_0</code><br>In the example above You have to remove <code>=py36h19fb1c0_0</code> and <code>=py36hc3f5095_0</code><br>If some packages are not availbe for anaconda at all, use pip statement<br><br>If .yml file seems not to work, virtual env can be created manually using anaconda promt. <br><code>conda create -n name_of_env python=3.4</code><br><code>conda install -n name_of_env name_of_package=0.20</code><br></p>
     </div>

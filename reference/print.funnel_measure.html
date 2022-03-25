@@ -112,9 +112,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; predict function  :  yhat.WrappedModel  will be used ( <span style="color: #BBBB00;"> default </span> )</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; predicted values  :  No value for predict function target column. ( <span style="color: #BBBB00;"> default </span> )</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; model_info        :  package mlr , ver. 2.19.0 , task regression ( <span style="color: #BBBB00;"> default </span> ) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; predicted values  :  numerical, min =  1807.264 , mean =  3505.281 , max =  6251.123  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; predicted values  :  numerical, min =  1789.761 , mean =  3503.318 , max =  6276.304  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; residual function :  difference between y and yhat ( <span style="color: #BBBB00;"> default </span> )</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; residuals         :  numerical, min =  -538.3401 , mean =  6.242975 , max =  758.5933  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; residuals         :  numerical, min =  -568.0411 , mean =  8.20574 , max =  767.2356  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #00BB00;"> A new explainer has been created! </span> </span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">learner_gbm</span> <span class="op">&lt;-</span> <span class="fu">mlr</span><span class="fu">::</span><span class="fu"><a href="https://mlr.mlr-org.com/reference/makeLearner.html" class="external-link">makeLearner</a></span><span class="op">(</span></span>
@@ -129,9 +129,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; predict function  :  yhat.WrappedModel  will be used ( <span style="color: #BBBB00;"> default </span> )</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; predicted values  :  No value for predict function target column. ( <span style="color: #BBBB00;"> default </span> )</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; model_info        :  package mlr , ver. 2.19.0 , task regression ( <span style="color: #BBBB00;"> default </span> ) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; predicted values  :  numerical, min =  2111.558 , mean =  3503.015 , max =  6065.41  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; predicted values  :  numerical, min =  2119.067 , mean =  3504.939 , max =  6041.705  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; residual function :  difference between y and yhat ( <span style="color: #BBBB00;"> default </span> )</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; residuals         :  numerical, min =  -510.0976 , mean =  8.508576 , max =  736.9473  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; residuals         :  numerical, min =  -602.4418 , mean =  6.584339 , max =  746.3437  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #00BB00;"> A new explainer has been created! </span> </span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">plot_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="funnel_measure.html">funnel_measure</a></span><span class="op">(</span><span class="va">explainer_lm</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">explainer_rf</span>, <span class="va">explainer_gbm</span><span class="op">)</span>,</span>
@@ -139,13 +139,13 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |                                                                      |   0%  |                                                                              |============                                                          |  17%  |                                                                              |=======================                                               |  33%  |                                                                              |===================================                                   |  50%  |                                                                              |===============================================                       |  67%  |                                                                              |==========================================================            |  83%  |                                                                              |======================================================================| 100%</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">plot_data</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Funnel measure head:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Variable    Measure          Label Challenger Category</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 m2.price -109.39046 [1603, 2736.8]         RF   Target</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 m2.price  -25.77364 [1603, 2736.8]        GBM   Target</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 m2.price -140.28348 (2736.8, 3198]         RF   Target</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 m2.price -143.48152 (2736.8, 3198]        GBM   Target</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 m2.price -157.71413   (3198, 3634]         RF   Target</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 m2.price -175.75588   (3198, 3634]        GBM   Target</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Variable   Measure          Label Challenger Category</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 m2.price -113.1366 [1603, 2736.8]         RF   Target</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 m2.price  -22.2741 [1603, 2736.8]        GBM   Target</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 m2.price -139.7962 (2736.8, 3198]         RF   Target</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 m2.price -135.9611 (2736.8, 3198]        GBM   Target</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 m2.price -158.9678   (3198, 3634]         RF   Target</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 m2.price -173.9168   (3198, 3634]        GBM   Target</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Models Info</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   label        class       type</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1    LM WrappedModel   Champion</span>
