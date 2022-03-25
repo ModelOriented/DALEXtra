@@ -62,7 +62,7 @@ explain_mlr3 <-
            model_info = NULL,
            type = NULL) {
     explain(
-      model,
+      mlr3::as_learner(model),
       data = data,
       y = y,
       weights = weights,

@@ -89,11 +89,6 @@ jobs:
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
           sudo apt-get install -y qpdf
-          
-        if: runner.os == 'Windows'
-        run: |
-# PowerShell Invoke-WebRequest -Uri "https://cran.r-project.org/bin/windows/contrib/3.6/RCurl_1.98-1.1.zip" -OutFile "RCurl_1.98-1.1.zip"
-# PowerShell Expand-Archive -Path "RCurl_1.98-1.1.zip" -DestinationPath "D:/a/_temp/Library"
 
       - name: Install dependencies
         run: |
