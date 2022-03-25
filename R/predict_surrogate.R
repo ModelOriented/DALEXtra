@@ -71,7 +71,10 @@ model_type.dalex_explainer <- function(x, ...) {
 predict_surrogate_lime <- function(explainer, new_observation, n_features = 4, n_permutations = 1000, labels = unique(explainer$y)[1], ...) {
   class(explainer) <- "dalex_explainer"
 
-  lime_model <- lime::lime(x = explainer$data[,colnames(new_observation)],
+  # https://github.com/ModelOriented/DALEXtra/issues/73
+  new_observation <- new_observation[, intersect(colnames(explainer$data), colnames(new_observation))]
+  
+  lime_model <- lime::lime(x = explainer$data[, colnames(new_observation)],
                         model = explainer)
 
   lime_expl <- lime::explain(x = new_observation,
