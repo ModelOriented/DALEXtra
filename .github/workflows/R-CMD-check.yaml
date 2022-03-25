@@ -41,6 +41,7 @@ jobs:
       - uses: actions/checkout@master
       
     # - uses: r-lib/actions/setup-pandoc@master
+    
       - uses: r-lib/actions/setup-pandoc@v1
         with:
           pandoc-version: '2.7.3' # The pandoc version to download (if necessary) and use.
@@ -65,36 +66,43 @@ jobs:
           r-version: ${{ matrix.config.r }}
           
 
-      - name: Query dependencies
-        run: |
-          install.packages('remotes')
-          saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds",version = 2)
-        shell: Rscript {0}
-
-      - name: Cache R packages
-        if: runner.os != 'Windows'
-        uses: actions/cache@v1
-        with:
-          path: ${{ env.R_LIBS_USER }}
-          key: ${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('.github/depends.Rds') }}
-          restore-keys: ${{ runner.os }}-r-${{ matrix.config.r }}-
+      # - name: Query dependencies
+      #   run: |
+      #     install.packages('remotes')
+      #     saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds",version = 2)
+      #   shell: Rscript {0}
+      # 
+      # - name: Cache R packages
+      #   if: runner.os != 'Windows'
+      #   uses: actions/cache@v1
+      #   with:
+      #     path: ${{ env.R_LIBS_USER }}
+      #     key: ${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('.github/depends.Rds') }}
+      #     restore-keys: ${{ runner.os }}-r-${{ matrix.config.r }}-
           
-      - name: Install system dependencies
-        if: runner.os == 'Linux'
-        env:
-          RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
-        run: |
-          sudo apt-get install libomp-dev
-          Rscript -e "remotes::install_github('r-hub/sysreqs')"
-          sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
-          sudo -s eval "$sysreqs"
-          sudo apt-get install -y qpdf
-
-      - name: Install dependencies
-        run: |
-          remotes::install_deps(dependencies = TRUE)
-          remotes::install_cran(c("rcmdcheck", "XML"))
-        shell: Rscript {0}
+      # - name: Install system dependencies
+      #   if: runner.os == 'Linux'
+      #   env:
+      #     RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
+      #   run: |
+      #     sudo apt-get install libomp-dev
+      #     Rscript -e "remotes::install_github('r-hub/sysreqs')"
+      #     sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
+      #     sudo -s eval "$sysreqs"
+      #     sudo apt-get install -y qpdf
+      
+      # - name: Install dependencies
+      #   run: |
+      #     remotes::install_deps(dependencies = TRUE)
+      #     remotes::install_cran(c("rcmdcheck", "XML"))
+      #   shell: Rscript {0}
+        
+      - name: Install R dependencies
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: |
+            any::rcmdcheck
+            any::XML
 
       - name: Check
         env:
