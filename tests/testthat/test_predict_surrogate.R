@@ -19,9 +19,9 @@ johnny_d_faulty <- data.frame(
 
 titanic_rf_exp <- DALEX::explain(titanic_rf, titanic_imputed[,-8], titanic_imputed[,8])
 
-model_type.dalex_explainer <- DALEXtra::model_type.dalex_explainer
-predict_model.dalex_explainer <- DALEXtra::predict_model.dalex_explainer
-
+# kudos to https://github.com/r-lib/testthat/issues/720#issuecomment-378103619
+assign("model_type.dalex_explainer", DALEXtra::model_type.dalex_explainer, envir = .GlobalEnv)
+assign("predict_model.dalex_explainer", DALEXtra::predict_model.dalex_explainer, envir = .GlobalEnv)
 
 lime_johnny_d <- predict_surrogate(explainer = titanic_rf_exp, 
                                    new_observation = johnny_d, 
@@ -43,3 +43,4 @@ testthat::test_that("faulty case", {
   testthat::expect_is((as.data.frame(lime_johnny_d_faulty)), "data.frame")
   testthat::expect_is(plot(lime_johnny_d_faulty), "ggplot")
 })
+
