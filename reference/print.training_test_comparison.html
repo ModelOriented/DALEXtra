@@ -111,9 +111,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; predict function  :  yhat.WrappedModel  will be used ( <span style="color: #BBBB00;"> default </span> )</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; predicted values  :  No value for predict function target column. ( <span style="color: #BBBB00;"> default </span> )</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; model_info        :  package mlr , ver. 2.19.0 , task regression ( <span style="color: #BBBB00;"> default </span> ) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; predicted values  :  numerical, min =  1800.966 , mean =  3504.615 , max =  6252.925  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; predicted values  :  numerical, min =  1794.445 , mean =  3504.969 , max =  6278.658  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; residual function :  difference between y and yhat ( <span style="color: #BBBB00;"> default </span> )</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; residuals         :  numerical, min =  -560.8658 , mean =  6.908591 , max =  752.7552  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; residuals         :  numerical, min =  -556.6254 , mean =  6.554099 , max =  749.2768  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #00BB00;"> A new explainer has been created! </span> </span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">learner_gbm</span> <span class="op">&lt;-</span> <span class="fu">mlr</span><span class="fu">::</span><span class="fu"><a href="https://mlr.mlr-org.com/reference/makeLearner.html" class="external-link">makeLearner</a></span><span class="op">(</span></span>
@@ -128,9 +128,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; predict function  :  yhat.WrappedModel  will be used ( <span style="color: #BBBB00;"> default </span> )</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; predicted values  :  No value for predict function target column. ( <span style="color: #BBBB00;"> default </span> )</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; model_info        :  package mlr , ver. 2.19.0 , task regression ( <span style="color: #BBBB00;"> default </span> ) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; predicted values  :  numerical, min =  2135.183 , mean =  3503.378 , max =  6050.035  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; predicted values  :  numerical, min =  2122.561 , mean =  3504.421 , max =  6061.701  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; residual function :  difference between y and yhat ( <span style="color: #BBBB00;"> default </span> )</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; residuals         :  numerical, min =  -532.1832 , mean =  8.145615 , max =  741.0702  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; residuals         :  numerical, min =  -519.5605 , mean =  7.102353 , max =  771.521  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #00BB00;"> A new explainer has been created! </span> </span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="trainig_test_comparison.html">training_test_comparison</a></span><span class="op">(</span><span class="va">explainer_lm</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">explainer_gbm</span>, <span class="va">explainer_rf</span><span class="op">)</span>,</span>
@@ -139,8 +139,8 @@
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Training test data head:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   measure_test measure_train label       type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     172.7138     166.92396   GBM Challenger</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     151.8220      73.36438    RF Challenger</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     170.8418     164.52572   GBM Challenger</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     151.5346      72.06928    RF Challenger</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3     283.0865     279.32620    LM   Champion</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Models Info</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   label        class       type</span>
