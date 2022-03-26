@@ -3,7 +3,7 @@ DALEXtra (development)
 * bump the requirement for `DALEX` from v1.3 to v2.0.1 (dated 18 months ago: 2020-10-26)
 * remove `randomForest` from suggest due to it enforcing R v4.1 (changed to `ranger`)
 * fix `predict_surrogate()` when `new_observation` has too many variables (e.g. target outcome) 
-* auto-convert the mlr3 learner-like objects with `mlr3::as_learner()` in `explain_mlr3()`
+* auto-convert the `mlr3` learner-like objects with `mlr3::as_learner()` in `explain_mlr3()`
 
 DALEXtra 2.1.1
 ----------------------------------------------------------------

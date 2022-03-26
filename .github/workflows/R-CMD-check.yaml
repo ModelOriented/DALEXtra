@@ -29,8 +29,8 @@ jobs:
           - {os: macOS-latest,   r: '3.6'}
           - {os: windows-latest, r: '4.1'}
           # - {os: windows-latest, r: '3.6'} # xgboost fails
-          - {os: ubuntu-18.04, r: '4.1', vdiffr: true,  xref: true, rspm: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest"}
-          - {os: ubuntu-18.04, r: '3.6', vdiffr: true,  xref: true, rspm: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest"}
+          # - {os: ubuntu-18.04, r: '4.1', vdiffr: true,  xref: true, rspm: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest"}
+          # - {os: ubuntu-18.04, r: '3.6', vdiffr: true,  xref: true, rspm: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest"}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
@@ -108,7 +108,7 @@ jobs:
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
         run: |
-          Sys.setenv(CONDA_TEST = "example", JAVA = "example")
+          Sys.setenv(CONDA_TEST = "example", JAVA = "example", R_CHECK_DONTTEST_EXAMPLES = "false")
           rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
         shell: Rscript {0}
 
