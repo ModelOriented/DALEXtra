@@ -52,7 +52,7 @@
 #'  plot_data <- funnel_measure(explainer_lm, list(explainer_rf, explainer_gbm),
 #'                           nbins = 5, measure_function = DALEX::loss_root_mean_square)
 #'
-#' champion_challenger(list(plot_data), dot_size = 3)
+#' champion_challenger(list(plot_data), dot_size = 3, output_dir_path = tempdir())
 #' }
 #'
 #' @rdname champion_challenger
