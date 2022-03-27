@@ -50,8 +50,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-    # - uses: r-lib/actions/setup-pandoc@master
-    
       - uses: r-lib/actions/setup-pandoc@v1
       
       - uses: actions/checkout@v2
@@ -81,5 +79,5 @@ jobs:
           
       - uses: r-lib/actions/check-r-package@v1
         with:
-          error-on: 'error_on = "warning"'
+          error-on: '"warning"'
           args: 'c("--no-manual", "--as-cran", "--run-dontrun")'
