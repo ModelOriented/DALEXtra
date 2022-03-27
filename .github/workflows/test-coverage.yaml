@@ -16,14 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - uses: r-lib/actions/setup-pandoc@v1
-        with:
-          pandoc-version: '2.7.3' # The pandoc version to download (if necessary) and use.
-          
-      - run: echo "# Test" | pandoc -t html
-      
-      - uses: actions/checkout@v2
-      
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
         with:
@@ -36,29 +28,12 @@ jobs:
       - run: conda --version
       - run: which python
       
-      - uses: r-lib/actions/setup-r@master
-      - name: Query dependencies
-        run: |
-          install.packages('remotes')
-          saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
-        shell: Rscript {0}
+      - uses: r-lib/actions/setup-pandoc@v1
 
-      - name: Cache R packages
-        uses: actions/cache@v1
+      - uses: r-lib/actions/setup-r-dependencies@v1
         with:
-          path: ${{ env.R_LIBS_USER }}
-          key: windows-r-4.0-1-${{ hashFiles('.github/depends.Rds') }}
-          restore-keys:  windows-r-4.0-1-
-
-      - name: Install dependencies
-        run: |
-          remotes::install_cran("curl")
-          remotes::install_deps(dependencies = TRUE)
-          remotes::install_cran("covr")
-        shell: Rscript {0}
+          extra-packages: covr
 
       - name: Test coverage
-        run: |
-          Sys.setenv(CONDA_TEST = "example", JAVA = "example")
-          covr::codecov(quiet=FALSE)
+        run: covr::codecov()
         shell: Rscript {0}
