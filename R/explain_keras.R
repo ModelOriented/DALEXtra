@@ -59,9 +59,11 @@
 #' @import reticulate
 #'
 #' @examples
+#' 
 #' library("DALEXtra")
 #' \dontrun{
-#' if (Sys.info()["sysname"] != "Darwin) {
+#' 
+#' if (Sys.info()["sysname"] != "Darwin") {
 #'    # Explainer build (Keep in mind that 9th column is target)
 #'    test_data <-
 #'    read.csv(
