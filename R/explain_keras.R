@@ -72,13 +72,13 @@
 #' sep = ",")
 #' # Keep in mind that when pickle is being built and loaded,
 #' # not only Python version but libraries versions has to match aswell
-#' explainer <- explain_keras(system.file("extdata", "keras.pkl", package = "DALEXtra"),
-#' condaenv = "myenv",
-#' data = test_data[,1:8], y = test_data[,9])
-#' plot(model_performance(explainer))
+#' # explainer <- explain_keras(system.file("extdata", "keras.pkl", package = "DALEXtra"),
+#' # condaenv = "myenv",
+#' # data = test_data[,1:8], y = test_data[,9])
+#' # plot(model_performance(explainer))
 #'
 #' # Predictions with newdata
-#' predict(explainer, test_data[1:10,1:8])
+#' # predict(explainer, test_data[1:10,1:8])
 #'
 #'}
 #'
