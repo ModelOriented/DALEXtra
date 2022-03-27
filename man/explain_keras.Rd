@@ -98,22 +98,23 @@ exported from Python via pickle file.
 library("DALEXtra")
 \dontrun{
 
-
+if (Sys.info()["sysname"] != "Darwin") {
 # Explainer build (Keep in mind that 9th column is target)
-create_env(system.file("extdata", "testing_environment.yml", package = "DALEXtra"))
-test_data <-
-read.csv(
-"https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.data.csv",
-sep = ",")
-# Keep in mind that when pickle is being built and loaded,
-# not only Python version but libraries versions has to match aswell
-# explainer <- explain_keras(system.file("extdata", "keras.pkl", package = "DALEXtra"),
-# condaenv = "myenv",
-# data = test_data[,1:8], y = test_data[,9])
-# plot(model_performance(explainer))
+   create_env(system.file("extdata", "testing_environment.yml", package = "DALEXtra"))
+   test_data <-
+   read.csv(
+   "https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.data.csv",
+   sep = ",")
+   Keep in mind that when pickle is being built and loaded,
+   not only Python version but libraries versions has to match aswell
+   explainer <- explain_keras(system.file("extdata", "keras.pkl", package = "DALEXtra"),
+   condaenv = "myenv",
+   data = test_data[,1:8], y = test_data[,9])
+   plot(model_performance(explainer))
 
-# Predictions with newdata
-# predict(explainer, test_data[1:10,1:8])
+   Predictions with newdata
+   predict(explainer, test_data[1:10,1:8])
+}
 
 }
 
