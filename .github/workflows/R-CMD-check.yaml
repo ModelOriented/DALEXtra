@@ -74,5 +74,5 @@ jobs:
           
       - uses: r-lib/actions/check-r-package@v1
         with:
-          error-on: '"warning"'
+          error-on: '"note"'
           args: 'c("--no-manual", "--as-cran", "--run-dontrun")'

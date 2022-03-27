@@ -4,6 +4,7 @@ DALEXtra (development)
 * remove `randomForest` from suggest due to it enforcing R v4.1 (changed to `ranger`)
 * fix `predict_surrogate()` when `new_observation` has too many variables (e.g. target outcome) 
 * auto-convert the `mlr3` learner-like objects with `mlr3::as_learner()` in `explain_mlr3()`
+* Skip `explain_keras` examples as they fail CI. The same code executes properly in tests.
 
 DALEXtra 2.1.1
 ----------------------------------------------------------------
