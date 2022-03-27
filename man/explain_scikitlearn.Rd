@@ -108,6 +108,7 @@ exported from Python via pickle file.
 }
 \examples{
 \dontrun{
+
  if (Sys.info()["sysname"] != "Darwin") {
    # Explainer build (Keep in mind that 18th column is target)
    titanic_test <- read.csv(system.file("extdata", "titanic_test.csv", package = "DALEXtra"))
