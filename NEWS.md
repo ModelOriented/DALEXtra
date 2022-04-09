@@ -7,6 +7,7 @@ DALEXtra (development)
 * Skip `explain_keras` and `explain_scikitlearn` examples while running on macOS as they can rise false-positive errors during R CMD check for some versions of macOS. The very same code still executes properly in tests.
 * Skip check if the model is trained in `explain_tidymodels` if the model inherits from `model_fit` class
 * Add support for stacked tidymodels (`stacks` package)
+* Add `dalex_load_explainer` function.
 
 DALEXtra 2.1.1
 ----------------------------------------------------------------
