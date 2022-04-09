@@ -12,6 +12,7 @@
 \alias{model_info.GraphLearner}
 \alias{model_info.xgb.Booster}
 \alias{model_info.workflow}
+\alias{model_info.model_stack}
 \title{Exract info from model}
 \usage{
 \method{model_info}{WrappedModel}(model, is_multiclass = FALSE, ...)
@@ -35,6 +36,8 @@
 \method{model_info}{xgb.Booster}(model, is_multiclass = FALSE, ...)
 
 \method{model_info}{workflow}(model, is_multiclass = FALSE, ...)
+
+\method{model_info}{model_stack}(model, is_multiclass = FALSE, ...)
 }
 \arguments{
 \item{model}{- model object}

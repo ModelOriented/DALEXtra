@@ -12,6 +12,7 @@
 \alias{yhat.GraphLearner}
 \alias{yhat.xgb.Booster}
 \alias{yhat.workflow}
+\alias{yhat.model_stack}
 \title{Wrapper over the predict function}
 \usage{
 \method{yhat}{WrappedModel}(X.model, newdata, ...)
@@ -35,6 +36,8 @@
 \method{yhat}{xgb.Booster}(X.model, newdata, ...)
 
 \method{yhat}{workflow}(X.model, newdata, ...)
+
+\method{yhat}{model_stack}(X.model, newdata, ...)
 }
 \arguments{
 \item{X.model}{object - a model to be explained}

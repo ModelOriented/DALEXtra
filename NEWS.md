@@ -6,6 +6,7 @@ DALEXtra (development)
 * auto-convert the `mlr3` learner-like objects with `mlr3::as_learner()` in `explain_mlr3()`
 * Skip `explain_keras` and `explain_scikitlearn` examples while running on macOS as they can rise false-positive errors during R CMD check for some versions of macOS. The very same code still executes properly in tests.
 * Skip check if the model is trained in `explain_tidymodels` if the model inherits from `model_fit` class
+* Add support for stacked tidymodels (`stacks` package)
 
 DALEXtra 2.1.1
 ----------------------------------------------------------------

@@ -1,6 +1,6 @@
 Package: DALEXtra
 Title: Extension for 'DALEX' Package
-Version: 2.1.1.9002
+Version: 2.1.1.9003
 Authors@R: 
     c(person(given = "Szymon",
            family = "Maksymiuk",
@@ -29,7 +29,7 @@ Description: Provides wrapper of various machine learning models.
   that provides instance-level explanations for the groups of explanatory variables.
 Depends: 
   R (>= 3.5.0),
-  DALEX (>= 2.0.1)
+  DALEX (>= 2.4.0)
 License: GPL
 Encoding: UTF-8
 RoxygenNote: 7.1.2
@@ -38,11 +38,11 @@ Imports:
   ggplot2
 Suggests:
   auditor,
-  ingredients,
   gbm,
   ggrepel,
   h2o,
   iml,
+  ingredients,
   lime,
   localModel,
   mlr,
@@ -51,6 +51,7 @@ Suggests:
   recipes,
   rmarkdown,
   rpart,
+  stacks,
   xgboost,
   testthat,
   tidymodels
