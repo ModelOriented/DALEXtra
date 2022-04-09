@@ -12,7 +12,7 @@ Authors@R:
              email = "przemyslaw.biecek@gmail.com", 
              role = c("aut"), 
              comment = c(ORCID = "0000-0001-8423-1823")),
-	    person("Hubert", "Baniecki", role = "auth"),
+	    person("Hubert", "Baniecki", role = "aut"),
 	    person("Anna", "Kozak", role = "ctb"))
 Description: Provides wrapper of various machine learning models. 
   In applied machine learning, there 
