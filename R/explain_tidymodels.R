@@ -70,7 +70,7 @@ explain_tidymodels <-
            model_info = NULL,
            type = NULL) {
 
-    if (!model$trained) {
+    if (!inherits(model, "model_fit") && !model$trained) {
       stop("Only trained workflows can be passed to explain function")
     }
 
