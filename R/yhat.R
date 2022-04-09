@@ -241,7 +241,7 @@ yhat.xgb.Booster <- function(X.model, newdata, ...) {
   } else if (X.model$params$objective == "binary:logitraw" | X.model$params$objective == "binary:hinge") {
     stop("Please use objective\"binary:logistic\" to get probability output")
   } else {
-    ret <- predict(X.model, newdata, type="response")
+    ret <- predict(X.model, newdata, type = "response")
   }
   ret
 }
@@ -250,9 +250,10 @@ yhat.xgb.Booster <- function(X.model, newdata, ...) {
 #' @rdname yhat
 #' @export
 yhat.workflow <- function(X.model, newdata, ...) {
-  if ("tbl" %in% class(newdata)) {
-    newdata <- as.data.frame(newdata)
-  }
+    if ("tbl" %in% class(newdata)) {
+      newdata <- as.data.frame(newdata)
+    }
+  
     if (X.model$fit$fit$spec$mode == "classification") {
       response <- as.matrix(predict(X.model, newdata, type = "prob"))
       colnames(response) <- X.model$fit$fit$lvl
@@ -264,12 +265,10 @@ yhat.workflow <- function(X.model, newdata, ...) {
       if (ncol(response) == 2) {
         response <- response[,2]
       }
-    }
-    else if (X.model$fit$fit$spec$mode == "regression") {
+    } else if (X.model$fit$fit$spec$mode == "regression") {
       pred <- predict(X.model, newdata)
       response <- pred$.pred
-    }
-    else {
+    } else {
       stop("Mode specification has to be either classification or regression")
     }
 
@@ -277,6 +276,39 @@ yhat.workflow <- function(X.model, newdata, ...) {
   response
 
 }
+
+#' @rdname yhat
+#' @export
+yhat.model_stack <- function(X.model, newdata, ...) {
+  if ("tbl" %in% class(newdata)) {
+    newdata <- as.data.frame(newdata)
+  }
+  
+  if (X.model$mode == "classification") {
+    response <- as.data.frame(predict(X.model, newdata, type = "prob"))
+    colnames(response) <- vapply(colnames(response), function(x) {
+      strsplit(x, ".pred_", fixed = TRUE)[[1]][2]
+    }, FUN.VALUE = character(1))
+    
+    if (!is.null(attr(X.model, "predict_function_target_column"))) {
+      return(response[, attr(X.model, "predict_function_target_column")])
+    }
+    
+    if (ncol(response) == 2) {
+      response <- response[, 2]
+    }
+  } else if (X.model$mode == "regression") {
+    pred <- predict(X.model, newdata)
+    response <- pred$.pred
+  } else {
+    stop("Mode specification has to be either classification or regression")
+  }
+  
+  
+  response
+  
+}
+
 
 
 

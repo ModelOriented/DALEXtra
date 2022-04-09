@@ -213,6 +213,25 @@ model_info.workflow <- function(model, is_multiclass = FALSE, ...) {
   model_info
 }
 
+#' @rdname model_info
+#' @export
+model_info.model_stack <- function(model, is_multiclass = FALSE, ...) {
+  if (model$mode == "classification" & is_multiclass) {
+    type <- "multiclass"
+  } else if (model$mode == "classification" & !is_multiclass) {
+    type <- "classification"
+  } else {
+    type <- "regression"
+  }
+  
+  package <- "stacks"
+  ver <- get_pkg_ver_safe(package)
+  model_info <- list(package = package, ver = ver, type = type)  
+  class(model_info) <- "model_info"
+  model_info
+}
+
+
 
 get_pkg_ver_safe <- function(package) {
   ver <- try(as.character(utils::packageVersion(package)), silent = TRUE)
