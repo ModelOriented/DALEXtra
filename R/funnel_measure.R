@@ -90,7 +90,7 @@ funnel_measure <-
            categories = NULL) {
     data <- champion$data
 
-    if (class(challengers) == "explainer") {
+    if (inherits(challengers, "explainer")) {
       challengers <- list(challengers)
     }
 
@@ -103,8 +103,8 @@ funnel_measure <-
     )
 
     if (any(sapply(challengers, function(x) {
-      class(x) != "explainer"
-    })) | class(champion) != "explainer") {
+      !inherits(x, "explainer") 
+    })) | !inherits(champion, "explainer")) {
       stop("Champion and all of challengers has to be explainer objects")
     }
 
@@ -280,7 +280,7 @@ funnel_measure <-
     }
     ret <- list(data = ret, models_info = models_info)
     names(ret$data$Label) <- NULL
-    class(ret) <- c("funnel_measure")
+    class(ret) <- "funnel_measure"
     ret
   }
 

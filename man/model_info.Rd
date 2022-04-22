@@ -45,8 +45,17 @@
 \item{is_multiclass}{- if TRUE and task is classification, then multitask classification is set. Else is omitted. If \code{model_info}
 was executed withing \code{explain} function. DALEX will recognize subtype on it's own. @param is_multiclass}
 
-\item{...}{- another arguments
-
+\item{...}{- another arguments}
+}
+\value{
+A named list of class \code{model_info}
+}
+\description{
+This generic function let user extract base information about model. The function returns a named list of class \code{model_info} that
+contain about package of model, version and task type. For wrappers like \code{mlr} or \code{caret} both, package and wrapper information
+are stored
+}
+\details{
 Currently supported packages are:
 \itemize{
 \item \code{mlr} models created with \code{mlr} package
@@ -56,13 +65,5 @@ Currently supported packages are:
 \item \code{mlr3} models created with \code{mlr3} package
 \item \code{xgboost} models created with \code{xgboost} package
 \item \code{tidymodels} models created with \code{tidymodels} package
-}}
 }
-\value{
-A named list of class \code{model_info}
-}
-\description{
-This generic function let user extract base information about model. The function returns a named list of class \code{model_info} that
-contain about package of model, version and task type. For wrappers like \code{mlr} or \code{caret} both, package and wrapper information
-are stored
 }

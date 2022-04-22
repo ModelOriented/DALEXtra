@@ -9,6 +9,7 @@
 #' was executed withing \code{explain} function. DALEX will recognize subtype on it's own. @param is_multiclass
 #' @param ... - another arguments
 #'
+#' @details 
 #' Currently supported packages are:
 #' \itemize{
 #' \item \code{mlr} models created with \code{mlr} package
@@ -235,7 +236,7 @@ model_info.model_stack <- function(model, is_multiclass = FALSE, ...) {
 
 get_pkg_ver_safe <- function(package) {
   ver <- try(as.character(utils::packageVersion(package)), silent = TRUE)
-  if (class(ver) == "try-error") {
+  if (inherits(ver, "try-error")) {
     ver <- "Unknown"
   }
   ver

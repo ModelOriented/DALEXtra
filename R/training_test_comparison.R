@@ -67,13 +67,13 @@ training_test_comparison <- function(champion,
                                      training_y,
                                      measure_function = NULL) {
 
-  if (class(challengers) == "explainer") {
+  if (inherits(challengers, "explainer")) {
     challengers <- list(challengers)
   }
 
   if (any(sapply(challengers, function(x) {
-    class(x) != "explainer"
-  })) | class(champion) != "explainer") {
+    !inherits(x, "explainer")
+  })) | !inherits(champion, "explainer")) {
     stop("Champion and all of challengers has to be explainer objects")
   }
 
