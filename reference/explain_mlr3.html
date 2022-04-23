@@ -27,7 +27,7 @@ One of those tools, which is one of the most popular one is mlr3 package. We wou
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy" class="external-link">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/" class="external-link">MI^2 DataLab</a> </span>
-          <span class="version version-default">2.1.1.9003</span>
+          <span class="version version-default">2.2.0</span>
         </div>
       </div>
     </div>
@@ -77,7 +77,7 @@ One of those tools, which is one of the most popular one is mlr3 package. We wou
   label <span class="op">=</span> <span class="cn">NULL</span>,
   verbose <span class="op">=</span> <span class="cn">TRUE</span>,
   precalculate <span class="op">=</span> <span class="cn">TRUE</span>,
-  colorize <span class="op">=</span> <span class="cn">TRUE</span>,
+  colorize <span class="op">=</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isTRUE</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"knitr.in.progress"</span><span class="op">)</span><span class="op">)</span>,
   model_info <span class="op">=</span> <span class="cn">NULL</span>,
   type <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span></code></pre></div>
@@ -86,29 +86,30 @@ One of those tools, which is one of the most popular one is mlr3 package. We wou
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>model</dt>
-<dd><p>object - a fitted learner created with <code>mlr3</code>.</p></dd>
+<dd><p>object - a model to be explained</p></dd>
 <dt>data</dt>
-<dd><p>data.frame or matrix - data that was used for fitting. If not provided then will be extracted from the model. Data should be passed without target column (this shall be provided as the <code>y</code> argument). NOTE: If target variable is present in the <code>data</code>, some of the functionalities my not work properly.</p></dd>
+<dd><p>data.frame or matrix - data which will be used to calculate the explanations. If not provided, then it will be extracted from the model. Data should be passed without a target column (this shall be provided as the <code>y</code> argument). NOTE: If the target variable is present in the <code>data</code>, some of the functionalities may not work properly.</p></dd>
 <dt>y</dt>
-<dd><p>numeric vector with outputs / scores. If provided then it shall have the same size as <code>data</code></p></dd>
+<dd><p>numeric vector with outputs/scores. If provided, then it shall have the same size as <code>data</code></p></dd>
 <dt>weights</dt>
-<dd><p>numeric vector with sampling weights. By default it's <code>NULL</code>. If provided then it shall have the same length as <code>data</code></p></dd>
+<dd><p>numeric vector with sampling weights. By default it's <code>NULL</code>. If provided, then it shall have the same length as <code>data</code></p></dd>
 <dt>predict_function</dt>
-<dd><p>function that takes two arguments: model and new data and returns numeric vector with predictions</p></dd>
+<dd><p>function that takes two arguments: model and new data and returns a numeric vector with predictions.   By default it is <code>yhat</code>.</p></dd>
 <dt>predict_function_target_column</dt>
-<dd><p>Character or numeric containing either column name or column number in the model prediction object of the class that should be considered as positive (i.e. the class that is associated with probability 1). If NULL, the second column of the output will be taken for binary classification. For a multiclass classification setting that parameter cause switch to binary classification mode with 1 vs others probabilities.</p></dd>
+<dd><p>Character or numeric containing either column name or column number in the model prediction object of the class that should be considered as positive (i.e. the class that is associated with probability 1). If NULL, the second column of the output will be taken for binary classification. For a multiclass classification setting, that parameter cause switch to binary classification mode with one vs others probabilities.</p></dd>
 <dt>residual_function</dt>
-<dd><p>function that takes three arguments: model, data and response vector y. It should return a numeric vector with model residuals for given data. If not provided, response residuals (\(y-\hat{y}\)) are calculated.</p></dd>
+<dd><p>function that takes four arguments: model, data, target vector y and predict function (optionally). It should return a numeric vector with model residuals for given data. If not provided, response residuals (\(y-\hat{y}\)) are calculated. By default it is <code>residual_function_default</code>.</p></dd>
 <dt>...</dt>
 <dd><p>other parameters</p></dd>
 <dt>label</dt>
 <dd><p>character - the name of the model. By default it's extracted from the 'class' attribute of the model</p></dd>
 <dt>verbose</dt>
-<dd><p>if TRUE (default) then diagnostic messages will be printed.</p></dd>
+<dd><p>logical. If TRUE (default) then diagnostic messages will be printed</p></dd>
 <dt>precalculate</dt>
-<dd><p>if TRUE (default) then 'predicted_values' and 'residuals' are calculated when explainer is created.</p></dd>
+<dd><p>logical. If TRUE (default) then <code>predicted_values</code> and <code>residual</code> are calculated when explainer is created.
+This will happen also if <code>verbose</code> is TRUE. Set both <code>verbose</code> and <code>precalculate</code> to FALSE to omit calculations.</p></dd>
 <dt>colorize</dt>
-<dd><p>if TRUE (default) then <code>WARNINGS</code>, <code>ERRORS</code> and <code>NOTES</code> are colorized. Will work only in the R console.</p></dd>
+<dd><p>logical. If TRUE (default) then <code>WARNINGS</code>, <code>ERRORS</code> and <code>NOTES</code> are colorized. Will work only in the R console. Now by default it is <code>FALSE</code> while knitting and <code>TRUE</code> otherwise.</p></dd>
 <dt>model_info</dt>
 <dd><p>a named list (<code>package</code>, <code>version</code>, <code>type</code>) containing information about model. If <code>NULL</code>, <code>DALEX</code> will seek for information on it's own.</p></dd>
 <dt>type</dt>

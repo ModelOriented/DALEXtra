@@ -25,7 +25,7 @@
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy" class="external-link">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/" class="external-link">MI^2 DataLab</a> </span>
-          <span class="version version-default">2.1.1.9003</span>
+          <span class="version version-default">2.2.0</span>
         </div>
       </div>
     </div>
@@ -55,6 +55,18 @@
       <small>Source: <a href="https://github.com/ModelOriented/DALEXtra/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="2.2.0" id="dalextra-220">DALEXtra 2.2.0<a class="anchor" aria-label="anchor" href="#dalextra-220"></a></h2>
+<ul><li>bump the requirement for <code>DALEX</code> to 2.4.0.</li>
+<li>remove <code>randomForest</code> from suggest due to it enforcing R v4.1 (changed to <code>ranger</code>).</li>
+<li>fix <code><a href="../reference/predict_surrogate.html">predict_surrogate()</a></code> when <code>new_observation</code> has too many variables (e.g. target outcome).</li>
+<li>auto-convert the <code>mlr3</code> learner-like objects with <code><a href="https://mlr3.mlr-org.com/reference/as_learner.html" class="external-link">mlr3::as_learner()</a></code> in <code><a href="../reference/explain_mlr3.html">explain_mlr3()</a></code>.</li>
+<li>Skip <code>explain_keras</code> and <code>explain_scikitlearn</code> examples while running on macOS as they can rise false-positive errors during R CMD check for some versions of macOS. The very same code still executes properly in tests.</li>
+<li>Skip check if the model is trained in <code>explain_tidymodels</code> if the model inherits from <code>model_fit</code> class.</li>
+<li>Add support for stacked tidymodels (<code>stacks</code> package).</li>
+<li>Add <code>dalex_load_explainer</code> function.</li>
+<li>Clear up documentation.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="2.1.1" id="dalextra-211">DALEXtra 2.1.1<small>2021-05-09</small><a class="anchor" aria-label="anchor" href="#dalextra-211"></a></h2>
 <ul><li>Fix CRAN results issues</li>

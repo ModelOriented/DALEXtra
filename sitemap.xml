@@ -19,6 +19,9 @@
     <loc>/reference/create_env.html</loc>
   </url>
   <url>
+    <loc>/reference/dalex_load_explainer.html</loc>
+  </url>
+  <url>
     <loc>/reference/explain_h2o.html</loc>
   </url>
   <url>
