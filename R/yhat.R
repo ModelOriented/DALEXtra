@@ -15,9 +15,7 @@
 #' \item \code{tidymodels} see more in \code{\link{explain_tidymodels}}
 #' }
 #'
-#' @param X.model object - a model to be explained
-#' @param newdata data.frame or matrix - observations for prediction
-#' @param ... other parameters that will be passed to the predict function
+#' @inheritParams DALEX::yhat
 #'
 #' @return An numeric vector of predictions
 
@@ -66,14 +64,14 @@ yhat.h2o <- function(X.model, newdata, ...) {
   switch(
     class(X.model),
     "H2ORegressionModel" = {
-      if (!class(newdata) == "H2OFrame") {
+      if (!inherits(newdata, "H2OFrame")) {
         newdata <- h2o::as.h2o(newdata)
       }
       as.vector(h2o::h2o.predict(X.model, newdata = newdata))
     },
 
     "H2OBinomialModel" = {
-      if (!class(newdata) == "H2OFrame") {
+      if (!inherits(newdata, "H2OFrame")) {
         newdata <- h2o::as.h2o(newdata)
       }
       ret <- as.data.frame(h2o::h2o.predict(X.model, newdata = newdata))
@@ -91,7 +89,7 @@ yhat.h2o <- function(X.model, newdata, ...) {
 
     },
     "H2OMultinomialModel" = {
-      if (!class(newdata) == "H2OFrame") {
+      if (!inherits(newdata, "H2OFrame")) {
         newdata <- h2o::as.h2o(newdata)
       }
       ret <- as.data.frame(h2o::h2o.predict(X.model, newdata = newdata))
@@ -250,7 +248,7 @@ yhat.xgb.Booster <- function(X.model, newdata, ...) {
 #' @rdname yhat
 #' @export
 yhat.workflow <- function(X.model, newdata, ...) {
-    if ("tbl" %in% class(newdata)) {
+    if (inherits(newdata, "tbl")) {
       newdata <- as.data.frame(newdata)
     }
   
@@ -280,7 +278,7 @@ yhat.workflow <- function(X.model, newdata, ...) {
 #' @rdname yhat
 #' @export
 yhat.model_stack <- function(X.model, newdata, ...) {
-  if ("tbl" %in% class(newdata)) {
+  if (inherits(newdata, "tbl")) {
     newdata <- as.data.frame(newdata)
   }
   

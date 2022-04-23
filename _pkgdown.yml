@@ -24,6 +24,10 @@ reference:
     - yhat.keras
     - yhat.LearnerRegr
     - yhat.LearnerClassif
+    - yhat.GraphLearner
+    - yhat.xgb.Booster
+    - yhat.workflow
+    - yhat.model_stack
   - title: Model info
     desc: Specific versions of the generic model_info function
     contents:
@@ -34,6 +38,10 @@ reference:
     - model_info.keras
     - model_info.LearnerRegr
     - model_info.LearnerClassif
+    - model_info.GraphLearner
+    - model_info.xgb.Booster
+    - model_info.workflow
+    - model_info.model_stack
   - title: Champion Challenger
     desc: Functions used for the Champion Challenger analysis
     contents:
@@ -55,5 +63,6 @@ reference:
     - print.predict_surrogate
   - title: Misc
     contents:
+    - dalex_load_explainer
     - print.scikitlearn_set
     - create_env
