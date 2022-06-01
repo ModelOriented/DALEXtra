@@ -139,7 +139,7 @@ This will happen also if <code>verbose</code> is TRUE. Set both <code>verbose</c
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> <span style="color: #0000BB;">dplyr</span>::<span style="color: #00BB00;">filter()</span>  masks <span style="color: #0000BB;">stats</span>::filter()</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> <span style="color: #0000BB;">dplyr</span>::<span style="color: #00BB00;">lag()</span>     masks <span style="color: #0000BB;">stats</span>::lag()</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> <span style="color: #0000BB;">recipes</span>::<span style="color: #00BB00;">step()</span>  masks <span style="color: #0000BB;">stats</span>::step()</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">•</span> Search for functions across packages at <span style="color: #00BB00;">https://www.tidymodels.org/find/</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">•</span> Use <span style="color: #00BB00;">tidymodels_prefer()</span> to resolve common conflicts.</span>
 <span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/tidymodels/recipes" class="external-link">"recipes"</a></span><span class="op">)</span></span>
 <span class="r-in"><span class="va">data</span> <span class="op">&lt;-</span> <span class="va">titanic_imputed</span></span>
 <span class="r-in"><span class="va">data</span><span class="op">$</span><span class="va">survived</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/h2o/man/as.factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">survived</span><span class="op">)</span></span>
@@ -158,7 +158,7 @@ This will happen also if <code>verbose</code> is TRUE. Set both <code>verbose</c
 <span class="r-in">                <span class="fu">fit</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">explain_tidymodels</span><span class="op">(</span><span class="va">model_fitted</span>, data <span class="op">=</span> <span class="va">titanic_imputed</span>, y <span class="op">=</span> <span class="va">titanic_imputed</span><span class="op">$</span><span class="va">survived</span><span class="op">)</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in if (model$spec$mode == "classification") {    residual_function &lt;- function(m, d, y, predict_function) 0}:</span> argument is of length zero</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in if (is.null(residual_function) &amp;&amp; model$spec$mode == "classification") {    residual_function &lt;- function(m, d, y, predict_function) 0}:</span> missing value where TRUE/FALSE needed</span>
 <span class="r-in"></span>
 <span class="r-in"></span>
 </code></pre></div>
