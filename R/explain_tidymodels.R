@@ -60,6 +60,14 @@ explain_tidymodels <-
       stop("Only trained workflows can be passed to explain function")
     }
 
+    # for classification models do not calculate residuals (default)
+    # as this my rise some not needed warnings
+    if (is.null(residual_function)) {
+      if (model$spec$mode == "classification") {
+        residual_function <- function(m, d, y, predict_function) 0
+      }
+    }
+
     explain(
       model,
       data = data,

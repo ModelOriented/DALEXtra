@@ -1,3 +1,7 @@
+DALEXtra 2.2.1
+----------------------------------------------------------------
+* fixed `explain_tidymodels` to ignore `residual_function` foc classification models
+
 DALEXtra 2.2.0
 ----------------------------------------------------------------
 * bump the requirement for `DALEX` to 2.4.0.
