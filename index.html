@@ -60,7 +60,7 @@
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy" class="external-link">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/" class="external-link">MI^2 DataLab</a> </span>
-          <span class="version version-default">2.2.0</span>
+          <span class="version version-default">2.2.1</span>
         </div>
       </div>
     </div>
@@ -101,15 +101,13 @@
 </h1>
 <p>The <code>DALEXtra</code> package is an extension pack for <a href="https://modeloriented.github.io/DALEX" class="external-link">DALEX</a> package. It contains various tools for XAI (eXplainable Artificial Intelligence) that can help us inspect and improve our model. Functionalities of the <code>DALEXtra</code> could be divided into two areas.</p>
 <ul>
-<li>Champion-Challenger analysis
-<ul>
+<li>Champion-Challenger analysis<ul>
 <li>Lets us compare two or more Machine-Learning models, determinate which one is better and improve both of them.</li>
 <li>Funnel Plot of performance measures as an innovative approach to measure comparison.</li>
 <li>Automatic HTML report.</li>
 </ul>
 </li>
-<li>Cross langauge comaprison
-<ul>
+<li>Cross langauge comaprison<ul>
 <li>Creating explainers for models created in different languges so they can be explained using R tools like <a href="https://github.com/ModelOriented/DrWhy" class="external-link">DrWhy.AI</a> family.</li>
 <li>Currently supported are <strong>Python</strong> <em>scikit-learn</em> and <em>keras</em>, <strong>Java</strong> <em>h2o</em>, <strong>R</strong> <em>xgboost</em>, <em>mlr</em>, <em>mlr3</em> and <em>tidymodels</em>.</li>
 </ul>
@@ -172,7 +170,7 @@
  <span class="va">plot_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/funnel_measure.html">funnel_measure</a></span><span class="op">(</span><span class="va">explainer_lm</span>, <span class="va">explainer_rf</span>, 
                              partition_data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">apartmentsTest</span>, 
                                                     <span class="st">"m2.per.room"</span> <span class="op">=</span> <span class="va">apartmentsTest</span><span class="op">$</span><span class="va">surface</span><span class="op">/</span><span class="va">apartmentsTest</span><span class="op">$</span><span class="va">no.rooms</span><span class="op">)</span>,
-                             nbins <span class="op">=</span> <span class="fl">5</span>, measure_function <span class="op">=</span> <span class="fu">DALEX</span><span class="fu">::</span><span class="va"><a href="https://dalex.drwhy.ai/reference/loss_functions.html" class="external-link">loss_root_mean_square</a></span>, show_info <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+                             nbins <span class="op">=</span> <span class="fl">5</span>, measure_function <span class="op">=</span> <span class="fu">DALEX</span><span class="fu">::</span><span class="va"><a href="https://modeloriented.github.io/DALEX/reference/loss_functions.html" class="external-link">loss_root_mean_square</a></span>, show_info <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">plot_data</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <p><img src="reference/figures/unnamed-chunk-5-1.png" style="display: block; margin: auto;"> Such situation is shown in the following plot. Both, <code>LM</code> and <code>RF</code> models have smiliar RMSE, but Funnel Plot shows that if we want to predict expensive or cheap apartemnts, we definetly should use <code>LM</code> while <code>RF</code> for average priced apartments. Also without any doubt <code>LM</code> is much better than <code>RF</code> for <code>Srodmiescie</code> district. Following use case show us how powerfull tool can Funnel Plot be, for example we can compund two or models into one based of areas acquired from the Plot and thus improve our models. One another advantage of Funnel Plot is that it doesn’t require model to be fitted with Variables shown on the plot, as you can see, <code>m2.per.room</code> is an artificial variable.</p>
@@ -190,9 +188,7 @@
 <h3 id="windows">Windows<a class="anchor" aria-label="anchor" href="#windows"></a>
 </h3>
 <p>Crucial thing is adding conda to PATH environment variable when using Windows. You can do it during the installation, by marking this checkbox.</p>
-<center>
-<p><img src="https://raw.githubusercontent.com/ModelOriented/DALEXtra/master/README_files/figure-gfm/anaconda2.png"></p>
-</center>
+<center><p><img src="https://raw.githubusercontent.com/ModelOriented/DALEXtra/master/README_files/figure-gfm/anaconda2.png"></p></center>
 <p>or, if conda is already installed, follow <a href="https://stackoverflow.com/a/44597801/9717584" class="external-link">those instructions</a>.</p>
 </div>
 <div class="section level3">
@@ -233,8 +229,8 @@ data <span class="op">=</span> <span class="va">titanic_test</span><span class="
 <h3 id="creating-explanations">Creating explanations<a class="anchor" aria-label="anchor" href="#creating-explanations"></a>
 </h3>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dalex.drwhy.ai" class="external-link">DALEX</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="https://dalex.drwhy.ai/reference/model_performance.html" class="external-link">model_performance</a></span><span class="op">(</span><span class="va">explainer</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://modeloriented.github.io/DALEX/" class="external-link">DALEX</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="https://modeloriented.github.io/DALEX/reference/model_performance.html" class="external-link">model_performance</a></span><span class="op">(</span><span class="va">explainer</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/unnamed-chunk-8-1.png" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ModelOriented.github.io/ingredients/" class="external-link">ingredients</a></span><span class="op">)</span>

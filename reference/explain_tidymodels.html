@@ -27,7 +27,7 @@ One of those tools, which is one of the most popular one is the tidymodels packa
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy" class="external-link">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/" class="external-link">MI^2 DataLab</a> </span>
-          <span class="version version-default">2.2.0</span>
+          <span class="version version-default">2.2.1</span>
         </div>
       </div>
     </div>
@@ -117,7 +117,7 @@ This will happen also if <code>verbose</code> is TRUE. Set both <code>verbose</c
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>explainer object (<code><a href="https://dalex.drwhy.ai/reference/explain.html" class="external-link">explain</a></code>) ready to work with DALEX</p>
+    <p>explainer object (<code><a href="https://modeloriented.github.io/DALEX/reference/explain.html" class="external-link">explain</a></code>) ready to work with DALEX</p>
     </div>
 
     <div id="ref-examples">
@@ -126,8 +126,8 @@ This will happen also if <code>verbose</code> is TRUE. Set both <code>verbose</c
 <span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://tidymodels.tidymodels.org" class="external-link">"tidymodels"</a></span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Attaching packages</span> ────────────────────────────────────── tidymodels 0.2.0 ──</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">broom       </span> 0.8.0     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">rsample     </span> 0.1.1</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">dials       </span> 0.1.1     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">tibble      </span> 3.1.6</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">dplyr       </span> 1.0.8     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">tidyr       </span> 1.2.0</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">dials       </span> 0.1.1     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">tibble      </span> 3.1.7</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">dplyr       </span> 1.0.9     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">tidyr       </span> 1.2.0</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">infer       </span> 1.0.0     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">tune        </span> 0.2.0</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">modeldata   </span> 0.1.1     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">workflows   </span> 0.2.6</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">parsnip     </span> 0.2.1     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">workflowsets</span> 0.2.1</span>
@@ -158,23 +158,7 @@ This will happen also if <code>verbose</code> is TRUE. Set both <code>verbose</c
 <span class="r-in">                <span class="fu">fit</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">explain_tidymodels</span><span class="op">(</span><span class="va">model_fitted</span>, data <span class="op">=</span> <span class="va">titanic_imputed</span>, y <span class="op">=</span> <span class="va">titanic_imputed</span><span class="op">$</span><span class="va">survived</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Preparation of a new explainer is initiated</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; model label       :  workflow  ( <span style="color: #BBBB00;"> default </span> )</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; data              :  2207  rows  8  cols </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; target variable   :  2207  values </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; predict function  :  yhat.workflow  will be used ( <span style="color: #BBBB00;"> default </span> )</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; predicted values  :  No value for predict function target column. ( <span style="color: #BBBB00;"> default </span> )</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; model_info        :  package tidymodels , ver. 0.2.0 , task classification ( <span style="color: #BBBB00;"> default </span> ) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; predicted values  :  numerical, min =  0.05555556 , mean =  0.3221568 , max =  0.9267399  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; residual function :  difference between y and yhat ( <span style="color: #BBBB00;"> default </span> )</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   -&gt; residuals         :  numerical, min =  -0.9267399 , mean =  1.858834e-17 , max =  0.9444444  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #00BB00;"> A new explainer has been created! </span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model label:  workflow </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model class:  workflow </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Data head  :</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   gender age class    embarked  fare sibsp parch survived</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   male  42   3rd Southampton  7.11     0     0        0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   male  13   3rd Southampton 20.05     0     2        0</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in if (model$spec$mode == "classification") {    residual_function &lt;- function(m, d, y, predict_function) 0}:</span> argument is of length zero</span>
 <span class="r-in"></span>
 <span class="r-in"></span>
 </code></pre></div>

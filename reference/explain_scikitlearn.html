@@ -27,7 +27,7 @@ exported from Python via pickle file."><meta property="og:image" content="/logo.
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy" class="external-link">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/" class="external-link">MI^2 DataLab</a> </span>
-          <span class="version version-default">2.2.0</span>
+          <span class="version version-default">2.2.1</span>
         </div>
       </div>
     </div>
@@ -147,7 +147,7 @@ Edit Your .yml file and add link to proper repository at channels section.<br><b
 <span class="r-in">   <span class="va">explainer</span> <span class="op">&lt;-</span> <span class="fu">explain_scikitlearn</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"scikitlearn.pkl"</span>, package <span class="op">=</span> <span class="st">"DALEXtra"</span><span class="op">)</span>,</span>
 <span class="r-in">   yml <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"testing_environment.yml"</span>, package <span class="op">=</span> <span class="st">"DALEXtra"</span><span class="op">)</span>,</span>
 <span class="r-in">   data <span class="op">=</span> <span class="va">titanic_test</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">17</span><span class="op">]</span>, y <span class="op">=</span> <span class="va">titanic_test</span><span class="op">$</span><span class="va">survived</span><span class="op">)</span></span>
-<span class="r-in">   <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="https://dalex.drwhy.ai/reference/model_performance.html" class="external-link">model_performance</a></span><span class="op">(</span><span class="va">explainer</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in">   <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="https://modeloriented.github.io/DALEX/reference/model_performance.html" class="external-link">model_performance</a></span><span class="op">(</span><span class="va">explainer</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in">   <span class="co"># Predictions with newdata</span></span>
 <span class="r-in">   <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">explainer</span>, <span class="va">titanic_test</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">17</span><span class="op">]</span><span class="op">)</span></span>
