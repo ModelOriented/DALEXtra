@@ -62,12 +62,11 @@ explain_tidymodels <-
 
     # for classification models do not calculate residuals (default)
     # as this my rise some not needed warnings
-    if (is.null(residual_function) && model$spec$mode == "classification") {
-        residual_function <- function(m, d, y, predict_function)
-                               0
+    if (is.null(residual_function) && isTRUE(model$spec$mode == "classification")) {
+        residual_function <- function(m, d, y, predict_function) 0
     }
 
-    if (!is.null(type) & type == "class") {
+    if (!is.null(type) && type == "class") {
       type = "classification"
       predict_function <- function(X.model, newdata, ...)
           predict(X.model, newdata, type = "class")

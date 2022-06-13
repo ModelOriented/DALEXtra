@@ -1,6 +1,7 @@
 DALEXtra 2.2.1
 ----------------------------------------------------------------
-* fixed `explain_tidymodels` to ignore `residual_function` foc classification models
+* fixed `explain_tidymodels` to ignore `residual_function` for classification models.
+* fixed `explain_h2o` examples that might occasionally crash.
 
 DALEXtra 2.2.0
 ----------------------------------------------------------------
