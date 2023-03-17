@@ -24,7 +24,7 @@ could be divided into two areas.
       - Funnel Plot of performance measures as an innovative approach to
         measure comparison.
       - Automatic HTML report.
-  - Cross langauge comaprison
+  - Cross language comparison
       - Creating explainers for models created in different languges so
         they can be explained using R tools like
         [DrWhy.AI](https://github.com/ModelOriented/DrWhy) family.
@@ -65,22 +65,22 @@ explanations (ingredients, iBreakDown, shapper), audit our model
 
 # Champion-Challenger analysis
 
-Without aby doubt, comaprison of models, espacially black-box ones is
-very important use case nowadays. Every day new models are being created
+Without any doubts, comparison of models, especially black-box ones is
+a very important use case nowadays. Every day new models are being created
 and we need tools that can allow us to determinate which one is better.
 For this purpose we present Champion-Challenger analysis. It is set of
-functions that creates comaprisons of models and later can be gathered
-up to created one report with generic comments. Example of report can be
+functions that creates comparisons of models and later can be gathered
+up to create one report with generic comments. Example of report can be
 found
 [here](http://htmlpreview.github.io/?https://github.com/ModelOriented/DALEXtra/blob/master/inst/ChampionChallenger/DALEXtra_example_of_report.html).
-As you can see any explenation that has generic `plot()` function can be
+As you can see any explanation that has generic `plot()` function can be
 plotted.
 
 ## Funnel Plot
 
 Core of our analysis is funnel plot. It lets us find subsets of data
-where one of models is significantly better than other ones. That
-ability is insanely usefull, when we have models that have similiar
+where one of the models is significantly better than the other ones. That
+ability is insanely useful, when we have models that have similiar
 overall performance and we want to know which one should we use.
 
 ``` r
@@ -118,24 +118,24 @@ plot(plot_data)[[1]]
 <img src="man/figures/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
 Such situation is shown in the following plot. Both, `LM` and `RF`
 models have smiliar RMSE, but Funnel Plot shows that if we want to
-predict expensive or cheap apartemnts, we definetly should use `LM`
+predict expensive or cheap apartments, we definetly should use `LM`
 while `RF` for average priced apartments. Also without any doubt `LM` is
 much better than `RF` for `Srodmiescie` district. Following use case
-show us how powerfull tool can Funnel Plot be, for example we can
-compund two or models into one based of areas acquired from the Plot and
+shows us how powerful of a tool Funnel Plot can be, for example we can
+compound two or more models into one based on areas acquired from the Plot and
 thus improve our models. One another advantage of Funnel Plot is that it
 doesn’t require model to be fitted with Variables shown on the plot, as
 you can see, `m2.per.room` is an artificial variable.
 
-# Cross langauge comaprison
+# Cross language comparison
 
-Here we will present short use case for our package and its
+Here we will present a short use case for our package and its
 compatibility with Python.
 
 ## How to setup Anaconda
 
 In order to be able to use some features associated with `DALEXtra`,
-Anaconda in needed. The easiest way to get it, is visiting [Anaconda
+Anaconda is needed. The easiest way to get it, is visiting [Anaconda
 website](https://www.anaconda.com/distribution). And choosing proper OS
 as it stands in the following picture.
 ![](https://raw.githubusercontent.com/ModelOriented/DALEXtra/master/README_files/figure-gfm/anaconda1.png)
@@ -164,9 +164,9 @@ While using unix-like OS, adding conda to PATH is not required.
 
 ### Loading data
 
-First we need provide the data, explainer is useless without them. Thing
-is Python object does not store training data so always have to provide
-dataset. Feel free to use those attached to `DALEX` package or those
+First we need provide the data, explainer is useless without them. The thing
+is that Python object does not store training data so we always have to provide
+a dataset. Feel free to use those attached to `DALEX` package or those
 stored in `DALEXtra` files.
 
 ``` r
@@ -178,7 +178,7 @@ scikit-learn models cannot work with it.
 
 ### Creating explainer
 
-Creating exlainer from scikit-learn Python model is very simple thanks
+Creating explainer from scikit-learn Python model is very simple thanks
 to `DALEXtra`. The only thing you need to provide is path to pickle and,
 if necessary, something that lets recognize Python environment. It may
 be a .yml file with packages specification, name of existing conda
