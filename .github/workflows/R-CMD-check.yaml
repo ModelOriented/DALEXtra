@@ -32,7 +32,7 @@ jobs:
           - {os: windows-latest,   r: '4.3.0'}
           - {os: windows-latest,   r: '4.2.3'}
         # Ubuntu 20-04
-          - {os: ubuntu-20.04,   r: '4.3.0'', vdiffr: true,  xref: true}
+          - {os: ubuntu-20.04,   r: '4.3.0', vdiffr: true,  xref: true}
           - {os: ubuntu-20.04,   r: '4.2.3', vdiffr: true,  xref: true}
 
     env:
