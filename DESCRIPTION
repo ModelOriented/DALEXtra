@@ -1,7 +1,7 @@
 Package: DALEXtra
 Title: Extension for 'DALEX' Package
-Version: 2.2.1
-Authors@R: 
+Version: 2.3.0
+Authors@R:
     c(person(given = "Szymon",
            family = "Maksymiuk",
            role = c("aut", "cre"),
@@ -30,9 +30,8 @@ Depends:
   DALEX (>= 2.4.0)
 License: GPL
 Encoding: UTF-8
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
 Imports: 
-  reticulate,
   ggplot2
 Suggests:
   auditor,
@@ -47,6 +46,7 @@ Suggests:
   mlr3,
   ranger,
   recipes,
+  reticulate,
   rmarkdown,
   rpart,
   stacks,

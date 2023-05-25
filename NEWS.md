@@ -1,3 +1,8 @@
+DALEXtra 2.3.0
+----------------------------------------------------------------
+* Remove `reticulate` from imports.
+* Refactor `create_env`.
+
 DALEXtra 2.2.1
 ----------------------------------------------------------------
 * fixed `explain_tidymodels` to ignore `residual_function` for classification models.

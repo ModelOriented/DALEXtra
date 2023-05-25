@@ -42,14 +42,7 @@ create_env <- function(yml, condaenv = NULL) {
 
   # Check if specified env already exists
   if (name %in% reticulate::conda_list()$name) {
-    message(
-      paste(
-        "There already exists environment named the same as it is specified in .yml file - ",
-        name,
-        ". It will be used",
-        sep = ""
-      )
-    )
+    message(sprintf("There already exists environment named the same as it is specified in .yml file - %s -  loading", name))
     return(name)
   }
 
@@ -83,20 +76,11 @@ create_env <- function(yml, condaenv = NULL) {
         }
         else if (any(grepl("ResolvePackageNotFound", mes))) {
           cat(mes)
-          warning("Conda cannot find specified packages at channels you have provided.",
-                  call. = FALSE)
-          warning("Try to add more channels (conda repositories) to your .yml file.",
-                  call. = FALSE)
-          warning(
-            "Packages included in your .yml file may not be available for current Python version or OS. Try to remove exact versions o libraries",
-            call. = FALSE
-          )
-          warning("If nothing above works, try to use 'pip:' statement",
-                  call. = FALSE)
-          stop(
-            "Some of the packages are not avialable for your conda. See warnings() for more information",
-            call. = FALSE
-          )
+          stop("Conda cannot find specified packages at channels you have provided.\n",
+               "Try to add more channels (conda repositories) to your .yml file.",
+               "Additionally, packages included in your .yml file may not be available for current Python version or OS. Try to remove exact versions specifications of particular libraries.\n",
+               "If nothing above works, try to use 'pip:' statement",
+                call. = FALSE)
         }
         else{
           cat(mes)
@@ -125,20 +109,11 @@ create_env <- function(yml, condaenv = NULL) {
       },
       # Unix erros not partitioned since it is impossbile to capture whole shell output
       warning = function(w) {
-        warning(w, call. = FALSE)
-        warning(
-          "Conda cannot find specified packages at channels you have provided. Try to add more channels (conda repositories) to your .yml file.",
-          call. = FALSE
-        )
-        warning(
-          "Packages included in your .yml file may not be available for current Python version or OS. Try to remove exact versions o libraries",
-          call. = FALSE
-        )
-        warning(
-          "If nothing above works, some of the packages are not avialable for your conda, try to use 'pip:' statement",
-          call. = FALSE
-        )
-        stop("Error has occured, check warnings() for possible problems",
+        stop(w, "\n",
+             "Conda cannot find specified packages at channels you have provided. Try to add more channels (conda repositories) to your .yml file.\n",
+             "Packages included in your .yml file may not be available for current Python version or OS. Try to remove exact versions o libraries.\n",
+             "If nothing above works, some of the packages are not avialable for your conda, try to use 'pip:' statement.\n",
+             "Error has occured, check warnings() for possible problems",
              call. = FALSE)
       },
       error = function(e) {
@@ -147,10 +122,9 @@ create_env <- function(yml, condaenv = NULL) {
             "conda is not recognised by your shell. Please check you conda path is correct in order to use that function",
             call. = FALSE
           )
-        }
-        else{
-          warning(e)
+        } else{
           stop(
+            e, "\n",
             "Unrecognized error occured when creating anaconda virtual env, use warnings() to see it. Try to configure you environment manually using Anaconda prompt. For usefull commands see ?explain_scikitlearn",
             call. = FALSE
           )

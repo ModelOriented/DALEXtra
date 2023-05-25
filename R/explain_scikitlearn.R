@@ -58,7 +58,6 @@
 #'
 #'
 #' @import DALEX
-#' @import reticulate
 #' @importFrom utils head
 #'
 #' @examples
