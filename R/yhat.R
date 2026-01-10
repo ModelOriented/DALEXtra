@@ -217,31 +217,13 @@ yhat.xgb.Booster <- function(X.model, newdata, ...) {
     newdata <- attr(X.model, "encoder")(newdata)
   }
 
-  if (X.model$params$objective == "multi:softprob") {
-    if (!is.null(attr(X.model, "true_labels"))) {
-      col_names <- levels(as.factor(attr(X.model, "true_labels")))
-    } else {
-      col_names <- 0:(X.model$params$num_class-1)
-    }
-    p <- predict(X.model, newdata, type="response")
-    ret <- matrix(p, ncol = X.model$params$num_class, byrow = TRUE)
-    if (!is.null(attr(X.model, "predict_function_target_column"))) {
-      return(ret[,attr(X.model, "predict_function_target_column")])
-    }
-    colnames(ret) <- col_names
-  } else if (X.model$params$objective == "multi:softprob") {
-    stop("Please use objective\"multi:softmax\" to get probability output")
-  } else if (X.model$params$objective == "binary:logistic") {
-    ret <- predict(X.model, newdata, type="response")
-    if (!is.null(attr(X.model, "predict_function_target_column"))) {
-      return(ret[,attr(X.model, "predict_function_target_column")])
-    }
-  } else if (X.model$params$objective == "binary:logitraw" | X.model$params$objective == "binary:hinge") {
-    stop("Please use objective\"binary:logistic\" to get probability output")
+  ret <- predict(X.model, newdata)
+  target_column <- attr(X.model, "predict_function_target_column")
+  if (!is.null(ncol(ret)) && ncol(ret) >= 2 && !is.null(target_column)) {
+    ret[, target_column]
   } else {
-    ret <- predict(X.model, newdata, type = "response")
+    ret
   }
-  ret
 }
 
 

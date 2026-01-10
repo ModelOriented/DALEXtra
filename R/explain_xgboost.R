@@ -6,10 +6,6 @@
 #'
 #'
 #' @inheritParams DALEX::explain
-#' @param encode_function function(data, ...) that if executed with \code{data} 
-#' parameters returns encoded dataframe that was used to fit model. Xgboost does 
-#' not handle factors on it's own so such function is needed to acquire better explanations.
-#' @param true_labels a vector of \code{y} before encoding.
 #'
 #' @return explainer object (\code{\link[DALEX]{explain}}) ready to work with DALEX
 #'
@@ -22,21 +18,14 @@
 #' library("DALEXtra")
 #' library("mlr")
 #' # 8th column is target that has to be omitted in X data
-#' data <- as.matrix(createDummyFeatures(titanic_imputed[,-8]))
-#' model <- xgboost(data, titanic_imputed$survived, nrounds = 10,
-#'                  params = list(objective = "binary:logistic"),
-#'                 prediction = TRUE)
-#' # explainer with encode functiom
+#' data <- titanic_imputed[,-8]
+#' y <- titanic_imputed$survived
+#' model <- xgboost(data, as.factor(y), nrounds = 10,
+#'                  objective = "binary:logistic")
+#' 
 #' explainer_1 <- explain_xgboost(model, data = titanic_imputed[,-8],
-#'                                titanic_imputed$survived,
-#'                                encode_function = function(data) {
-#'  as.matrix(createDummyFeatures(data))
-#' })
+#'                                titanic_imputed$survived)
 #' plot(predict_parts(explainer_1, titanic_imputed[1,-8]))
-#'
-#' # explainer without encode function
-#' explainer_2 <- explain_xgboost(model, data = data, titanic_imputed$survived)
-#' plot(predict_parts(explainer_2, data[1,,drop = FALSE]))
 #'
 #' @rdname explain_xgboost
 #' @export
@@ -55,16 +44,7 @@ explain_xgboost <-
            precalculate = TRUE,
            colorize = !isTRUE(getOption('knitr.in.progress')),
            model_info = NULL,
-           type = NULL,
-           encode_function = NULL,
-           true_labels = NULL) {
-
-    attr(model, "encoder") <- encode_function
-    if (!is.null(true_labels)) {
-      attr(model, "true_labels") <- true_labels
-      y <- true_labels
-    }
-
+           type = NULL) {
 
     explain(
       model,

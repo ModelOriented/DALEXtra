@@ -5,12 +5,9 @@ library("mlr")
 library("xgboost")
 
 test_that("creating explainer classif", {
-  data <- as.matrix(createDummyFeatures(titanic_imputed[,-8]))
-  model <- xgboost(data, titanic_imputed$survived, nrounds = 10, params = list(objective = "binary:logistic"),
-                   prediction = TRUE, verbose = FALSE)
-  explainer_1 <- explain_xgboost(model, data = titanic_imputed[,-8], titanic_imputed$survived, verbose = FALSE, encode_function = function(data) {
-    as.matrix(createDummyFeatures(data))
-  })
+  data <- titanic_imputed[,-8]
+  model <- xgboost(data, as.factor(titanic_imputed$survived), nrounds = 10, objective = "binary:logistic", verbosity = 0)
+  explainer_1 <- explain_xgboost(model, data = titanic_imputed[,-8], titanic_imputed$survived, verbose = FALSE)
   expect_is(explainer_1, "explainer")
   expect_is(explainer_1$y_hat, "numeric")
 
@@ -23,9 +20,8 @@ test_that("creating explainer classif", {
 
 test_that("creating explainer regr", {
 
-  data <- as.matrix(createDummyFeatures(apartments[,-6]))
-  model <- xgboost(data, apartments$m2.price, nrounds = 10, params = list(objective = "reg:squarederror"),
-                   prediction = TRUE, verbose = FALSE)
+  data <- apartments[,-6]
+  model <- xgboost(data, apartments$m2.price, nrounds = 10, objective = "reg:squarederror", verbosity = 0)
   explainer_3 <- explain_xgboost(model, data = apartments[,-6], apartments$m2.price, verbose = FALSE,  encode_function = function(data) {
     as.matrix(createDummyFeatures(data))
   })
@@ -41,13 +37,10 @@ test_that("creating explainer regr", {
 
 test_that("creating explainer multi", {
 
-  data <- as.matrix(createDummyFeatures(HR[,-6]))
-  target <- as.numeric(HR$status)-1
-  model <- xgboost(data, target, nrounds = 10, params = list(objective = "multi:softprob", num_class = 3),
-                   prediction = TRUE, verbose = FALSE)
-  explainer_5 <- explain_xgboost(model, data = HR[,-6], target, verbose = FALSE, encode_function = function(data) {
-    as.matrix(createDummyFeatures(data))
-  })
+  data <- HR[,-6]
+  target <- HR$status
+  model <- xgboost(data, HR$status, nrounds = 10, objective = "multi:softprob", verbosity = 0)
+  explainer_5 <- explain_xgboost(model, data = HR[,-6], target, verbose = TRUE)
   expect_is(explainer_5, "explainer")
   expect_is(explainer_5$y_hat, "matrix")
 

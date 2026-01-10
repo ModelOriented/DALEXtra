@@ -173,7 +173,7 @@ model_info.GraphLearner <- function(model, is_multiclass = FALSE, ...) {
 #' @rdname model_info
 #' @export
 model_info.xgb.Booster <- function(model, is_multiclass = FALSE, ...) {
-  task <- strsplit(model$params$objective, ":", fixed = TRUE)[[1]][1]
+  task <- strsplit(attr(model, "params", exact = TRUE)$objective, ":", fixed = TRUE)[[1]][1]
   if (task == "multi") {
     if (!is.null(attr(model, "predict_function_target_column"))) {
       type <- "classification"

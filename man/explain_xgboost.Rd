@@ -18,9 +18,7 @@ explain_xgboost(
   precalculate = TRUE,
   colorize = !isTRUE(getOption("knitr.in.progress")),
   model_info = NULL,
-  type = NULL,
-  encode_function = NULL,
-  true_labels = NULL
+  type = NULL
 )
 }
 \arguments{
@@ -52,12 +50,6 @@ This will happen also if \code{verbose} is TRUE. Set both \code{verbose} and \co
 \item{model_info}{a named list (\code{package}, \code{version}, \code{type}) containing information about model. If \code{NULL}, \code{DALEX} will seek for information on it's own.}
 
 \item{type}{type of a model, either \code{classification} or \code{regression}. If not specified then \code{type} will be extracted from \code{model_info}.}
-
-\item{encode_function}{function(data, ...) that if executed with \code{data} 
-parameters returns encoded dataframe that was used to fit model. Xgboost does 
-not handle factors on it's own so such function is needed to acquire better explanations.}
-
-\item{true_labels}{a vector of \code{y} before encoding.}
 }
 \value{
 explainer object (\code{\link[DALEX]{explain}}) ready to work with DALEX
@@ -72,20 +64,13 @@ library("xgboost")
 library("DALEXtra")
 library("mlr")
 # 8th column is target that has to be omitted in X data
-data <- as.matrix(createDummyFeatures(titanic_imputed[,-8]))
-model <- xgboost(data, titanic_imputed$survived, nrounds = 10,
-                 params = list(objective = "binary:logistic"),
-                prediction = TRUE)
-# explainer with encode functiom
-explainer_1 <- explain_xgboost(model, data = titanic_imputed[,-8],
-                               titanic_imputed$survived,
-                               encode_function = function(data) {
- as.matrix(createDummyFeatures(data))
-})
-plot(predict_parts(explainer_1, titanic_imputed[1,-8]))
+data <- titanic_imputed[,-8]
+y <- titanic_imputed$survived
+model <- xgboost(data, as.factor(y), nrounds = 10,
+                 objective = "binary:logistic")
 
-# explainer without encode function
-explainer_2 <- explain_xgboost(model, data = data, titanic_imputed$survived)
-plot(predict_parts(explainer_2, data[1,,drop = FALSE]))
+explainer_1 <- explain_xgboost(model, data = titanic_imputed[,-8],
+                               titanic_imputed$survived)
+plot(predict_parts(explainer_1, titanic_imputed[1,-8]))
 
 }
