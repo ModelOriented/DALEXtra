@@ -29,11 +29,9 @@ jobs:
         # against the release
           - {os: macOS-latest,   r: 'release'}
         # Windows
-          - {os: windows-latest,   r: '4.3.0'}
-          - {os: windows-latest,   r: '4.2.3'}
-        # Ubuntu 20-04
-          - {os: ubuntu-20.04,   r: '4.3.0', vdiffr: true,  xref: true}
-          - {os: ubuntu-20.04,   r: '4.2.3', vdiffr: true,  xref: true}
+          - {os: windows-latest,   r: '4.5.2'}
+        # Ubuntu 22-04
+          - {os: ubuntu-24.04,   r: '4.5.2', vdiffr: true,  xref: true}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
@@ -46,10 +44,10 @@ jobs:
       
       - uses: r-lib/actions/setup-pandoc@v1
       
-      - name: Set up Python 3.8
+      - name: Set up Python 3.11
         uses: actions/setup-python@v1
         with:
-          python-version: 3.8
+          python-version: 3.11
           
       - uses: s-weigand/setup-conda@v1
         with:

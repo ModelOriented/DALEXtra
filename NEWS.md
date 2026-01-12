@@ -1,3 +1,7 @@
+DALEXtra 2.3.1
+----------------------------------------------------------------
+* Adjust `DALEXtra` to the new `xgboost` package interface
+
 DALEXtra 2.3.0
 ----------------------------------------------------------------
 * Remove `reticulate` from imports.
