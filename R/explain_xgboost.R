@@ -14,6 +14,7 @@
 #'
 #'
 #' @examples
+#' \donttest{
 #' library("xgboost")
 #' library("DALEXtra")
 #' library("mlr")
@@ -26,6 +27,7 @@
 #' explainer_1 <- explain_xgboost(model, data = titanic_imputed[,-8],
 #'                                titanic_imputed$survived)
 #' plot(predict_parts(explainer_1, titanic_imputed[1,-8]))
+#' }
 #'
 #' @rdname explain_xgboost
 #' @export

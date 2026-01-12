@@ -3,6 +3,7 @@
 generate_chunk <- function(object, output_path, iterator, name)
   UseMethod("generate_chunk")
 
+#' @export
 generate_chunk.overall_comparison <- function(object, output_path, iterator, name) {
   con_overall_comparison <- file(system.file("ChampionChallenger", "overall_comparison_section.Rmd", package = "DALEXtra"))
   lines_overall_comparison <- readLines(con_overall_comparison)
@@ -20,6 +21,7 @@ generate_chunk.overall_comparison <- function(object, output_path, iterator, nam
         append = TRUE)
 }
 
+#' @export
 generate_chunk.training_test_comparison <- function(object, output_path, iterator, name) {
   con_training_test_comparison <- file(system.file("ChampionChallenger", "training_test_comparison_section.Rmd", package = "DALEXtra"))
   lines_training_test_comparison <- readLines(con_training_test_comparison)
@@ -37,6 +39,7 @@ generate_chunk.training_test_comparison <- function(object, output_path, iterato
         append = TRUE)
 }
 
+#' @export
 generate_chunk.funnel_measure <- function(object, output_path, iterator, name) {
   con_funnel_measure <- file(system.file("ChampionChallenger", "funnel_measure_section.Rmd", package = "DALEXtra"))
   lines_funnel_measure <- readLines(con_funnel_measure)
@@ -55,6 +58,7 @@ generate_chunk.funnel_measure <- function(object, output_path, iterator, name) {
 
 }
 
+#' @export
 generate_chunk.default <- function(object, output_path, iterator, name) {
   if(is.null(name) | name == "") {
     name <- class(object)[1]

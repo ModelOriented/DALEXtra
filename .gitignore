@@ -8,3 +8,4 @@ Report.Rmd
 cran-comments.md
 CRAN-RELEASE
 docs
+^CRAN-SUBMISSION$

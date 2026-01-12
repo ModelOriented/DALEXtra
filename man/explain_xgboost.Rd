@@ -60,6 +60,7 @@ Unfortunately R packages that create such models are very inconsistent. Differen
 One of those tools, we would like to make more accessible is the xgboost package.
 }
 \examples{
+\donttest{
 library("xgboost")
 library("DALEXtra")
 library("mlr")
@@ -72,5 +73,6 @@ model <- xgboost(data, as.factor(y), nrounds = 10,
 explainer_1 <- explain_xgboost(model, data = titanic_imputed[,-8],
                                titanic_imputed$survived)
 plot(predict_parts(explainer_1, titanic_imputed[1,-8]))
+}
 
 }
