@@ -63,12 +63,11 @@ One of those tools, we would like to make more accessible is the xgboost package
 \donttest{
 library("xgboost")
 library("DALEXtra")
-library("mlr")
 # 8th column is target that has to be omitted in X data
 data <- titanic_imputed[,-8]
 y <- titanic_imputed$survived
 model <- xgboost(data, as.factor(y), nrounds = 10,
-                 objective = "binary:logistic")
+                 objective = "binary:logistic", nthreads = 1)
 
 explainer_1 <- explain_xgboost(model, data = titanic_imputed[,-8],
                                titanic_imputed$survived)
